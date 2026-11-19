@@ -616,17 +616,38 @@ html[data-theme=white] .gcard small,html[data-theme=white] .ottcard b{color:#090
 .xtm{display:grid;grid-template-columns:1fr 1fr;gap:10px}.xtm>div{padding:12px;border-radius:14px;background:var(--glass2)}
 @media(max-width:560px){.xtm{grid-template-columns:1fr}.tabs2 button{font-size:12px}}
 
-/* ===== Player mobile redesign + Party Pack (additive) ===== */
-#bMore{display:none}
-@media(max-width:700px),(pointer:coarse) and (max-width:900px){
- .ctrl{bottom:calc(6px + env(safe-area-inset-bottom));left:6px;right:6px;padding:2px 8px 4px;background:linear-gradient(transparent,rgba(0,0,0,.75));border:0;backdrop-filter:none;-webkit-backdrop-filter:none;border-radius:0}
- .crow{flex-wrap:nowrap}.cl{flex:1;min-width:0}.vg #vol,#volPct,.vg:hover #vol{display:none}.cr>*:not(#bFs):not(#bMore){display:none}
- #bMore{display:grid}
- .stage.more .cr{position:absolute;bottom:calc(100% + 6px);left:0;right:0;display:flex;flex-wrap:wrap;gap:6px;padding:10px;justify-content:center;background:rgba(14,12,24,.94);border:1px solid var(--line);border-radius:16px;z-index:6}
- .stage.more .cr>*:not(#bExit){display:flex!important}.stage.more .cr #bExit[hidden]{display:none!important}.stage.more .cr>.rw{display:block}
- #tm{font-size:11px}.cbtn{width:36px;height:36px}.cbtn.main{width:42px;height:42px}
+/* ===== Universal Responsive Media Player Controls (Mobile, Tablet, PC) ===== */
+.ctrl{position:absolute;left:10px;right:10px;bottom:10px;z-index:5;padding:8px 12px;border-radius:16px;background:rgba(12,10,22,.86);backdrop-filter:blur(20px) saturate(1.5);-webkit-backdrop-filter:blur(20px) saturate(1.5);border:1px solid rgba(255,255,255,.14);opacity:0;transform:translateY(6px);transition:opacity .25s ease,transform .25s ease;display:flex;flex-direction:column;gap:6px;box-shadow:0 8px 32px rgba(0,0,0,.6)}
+.stage.show .ctrl,.stage.paused .ctrl,.stage:hover .ctrl{opacity:1!important;transform:none!important;pointer-events:auto!important}
+.stage.nomedia .ctrl{display:none!important}
+.seekwrap{position:relative;height:24px;width:100%;cursor:pointer;display:flex;align-items:center}
+.crow{display:flex;align-items:center;justify-content:space-between;gap:8px;width:100%}
+.cl{display:flex;align-items:center;gap:4px;flex:1 1 auto;min-width:0}
+.cr{display:flex;align-items:center;gap:4px;flex-shrink:0}
+.cr>*{display:inline-flex!important}
+.cr #bExit[hidden]{display:none!important}
+.vg{display:flex;align-items:center;gap:4px}
+#vol{width:75px;opacity:1;accent-color:var(--a)}
+#volPct{font-size:11px;font-weight:700;padding:2px 6px;border-radius:999px;background:rgba(255,255,255,.12);color:#fff;font-variant-numeric:tabular-nums}
+#volPct.boost{background:linear-gradient(135deg,#fb923c,#ef4444);box-shadow:0 0 12px rgba(251,146,60,.6)}
+#tm{font-size:12px;font-variant-numeric:tabular-nums;white-space:nowrap;color:#e4e0f5;margin-left:6px}
+.pillbtn{height:32px;padding:0 10px;border-radius:999px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.14);color:#fff;font-size:12px;font-weight:600;cursor:pointer;white-space:nowrap;display:inline-flex;align-items:center;justify-content:center}
+.pillbtn:hover{background:rgba(255,255,255,.2);border-color:rgba(255,255,255,.3)}
+.cbtn{width:36px;height:36px;border-radius:50%;display:grid;place-items:center;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.1);padding:0;color:#fff;cursor:pointer;flex-shrink:0}
+.cbtn:hover{background:rgba(255,255,255,.2)}
+.cbtn.main{width:42px;height:42px;background:var(--grad);border-color:rgba(255,255,255,.25);box-shadow:0 6px 18px rgba(var(--ar),.45)}
+@media(max-width:768px){
+  .ctrl{left:6px!important;right:6px!important;bottom:6px!important;padding:6px 8px 8px!important;border-radius:14px!important}
+  .crow{flex-wrap:wrap!important;gap:6px!important}
+  .cl{width:100%!important;justify-content:space-between!important}
+  .cr{width:100%!important;justify-content:space-between!important;overflow-x:auto!important;scrollbar-width:none!important;-webkit-overflow-scrolling:touch!important;padding-top:4px!important;border-top:1px solid rgba(255,255,255,.08)!important}
+  .cr::-webkit-scrollbar{display:none!important}
+  .cbtn{width:34px!important;height:34px!important}
+  .cbtn.main{width:38px!important;height:38px!important}
+  #vol{width:55px!important}
+  #tm{font-size:11px!important;margin-left:auto!important}
+  .pillbtn{height:28px!important;padding:0 8px!important;font-size:11px!important}
 }
-@media(pointer:coarse){.stage:not(.show) .ctrl{pointer-events:none}.stage.paused:not(.show) .ctrl,.stage.paused:not(.show) .nowp{opacity:0}}
 #pp{position:fixed;inset:0;z-index:90;background:var(--bg);overflow-y:auto!important;overflow-x:hidden!important;-webkit-overflow-scrolling:touch!important;overscroll-behavior-y:contain;padding:max(14px,env(safe-area-inset-top)) 14px max(130px,calc(90px + env(safe-area-inset-bottom)))!important;font-size:15px;box-sizing:border-box;width:100vw;max-width:100%}
 #pp .w{max-width:960px;margin:0 auto;display:flex;flex-direction:column;gap:14px;width:100%;box-sizing:border-box;overflow-x:hidden}
 #pp .gc{border-radius:20px;padding:16px;display:flex;flex-direction:column;gap:8px;position:relative;background:var(--glass);border:1px solid var(--line);box-sizing:border-box}
@@ -731,74 +752,240 @@ html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
 :focus-visible{outline:2px solid var(--gold,#f5c76b)!important;outline-offset:2px;border-radius:8px}
 button,.btn,[role=button],a{touch-action:manipulation}
 
-@media (max-width:960px){
-  .app{
-    display:flex!important;
-    flex-direction:column!important;
-    height:100dvh!important;
-    padding:10px!important;
-    gap:10px!important;
-    overflow-x:hidden!important;
+/* ================= RESPONSIVE SYSTEM (Mobile, Tablet, Laptop, Desktop) ================= */
+
+/* Hub Navigation Tabs - Core Styling */
+.tabs2 {
+  display: flex !important;
+  flex-wrap: nowrap !important;
+  align-items: center !important;
+  gap: 8px !important;
+  padding: 6px 8px !important;
+  border-radius: 16px !important;
+  background: rgba(255, 255, 255, 0.05) !important;
+  border: 1px solid var(--line) !important;
+  backdrop-filter: blur(14px) !important;
+  -webkit-backdrop-filter: blur(14px) !important;
+  overflow-x: auto !important;
+  scrollbar-width: none !important;
+  -webkit-overflow-scrolling: touch !important;
+  width: 100% !important;
+  box-sizing: border-box !important;
+  flex-shrink: 0 !important;
+  margin: 4px 0 10px !important;
+}
+.tabs2::-webkit-scrollbar { display: none !important; }
+.tabs2 button {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 8px !important;
+  padding: 9px 16px !important;
+  border-radius: 12px !important;
+  background: rgba(255, 255, 255, 0.04) !important;
+  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+  color: var(--muted) !important;
+  font-weight: 700 !important;
+  font-size: 13.5px !important;
+  white-space: nowrap !important;
+  flex: 0 0 auto !important;
+  min-height: 42px !important;
+  cursor: pointer !important;
+  transition: all 0.2s ease !important;
+}
+.tabs2 button:hover {
+  background: rgba(255, 255, 255, 0.12) !important;
+  color: #fff !important;
+}
+.tabs2 button.on {
+  background: var(--grad) !important;
+  color: #fff !important;
+  border-color: rgba(255, 255, 255, 0.3) !important;
+  box-shadow: 0 6px 20px rgba(var(--ar), 0.45) !important;
+}
+.tabs2 button svg {
+  width: 18px !important;
+  height: 18px !important;
+  flex-shrink: 0 !important;
+}
+
+/* Tablet & Smaller Screens (< 1024px) */
+@media (max-width: 1024px) {
+  .app {
+    display: flex !important;
+    flex-direction: column !important;
+    height: 100dvh !important;
+    padding: 10px !important;
+    gap: 10px !important;
+    overflow-x: hidden !important;
   }
-  .main{
-    flex:1 1 auto!important;
-    min-height:0!important;
-    overflow-y:auto!important;
+  .main {
+    flex: 1 1 auto !important;
+    min-height: 0 !important;
+    overflow-y: auto !important;
+    -webkit-overflow-scrolling: touch !important;
   }
-  .chat{
-    flex:0 0 auto!important;
-    max-height:42vh!important;
+  .chat {
+    flex: 0 0 auto !important;
+    max-height: 42vh !important;
+    min-height: 0 !important;
   }
-  .hero{
-    grid-template-columns:1fr!important;
-    text-align:center!important;
-    padding:14px 16px!important;
-  }
-  .hero .chips{
-    justify-content:center!important;
-  }
-  .hero .ghl{
-    margin:12px auto 0!important;
-  }
-  .opts{
-    grid-template-columns:1fr!important;
-  }
-  .namerow{
-    grid-template-columns:1fr!important;
+  .stage {
+    aspect-ratio: 16/9 !important;
+    width: 100% !important;
+    max-height: calc(100vh - 200px) !important;
   }
 }
 
-@media (max-width:640px){
-  button,.btn,select,input{min-height:44px}
-  input,select,textarea{font-size:16px!important}
+/* Mobile Screens (< 768px) */
+@media (max-width: 768px) {
+  button,.btn,select,input{min-height:40px}
+  input,select,textarea{font-size:15px!important}
   body{padding-bottom:env(safe-area-inset-bottom)}
-  .app{
-    padding:6px!important;
+  .app {
+    padding: 6px 6px env(safe-area-inset-bottom) !important;
+    gap: 6px !important;
   }
-  .top .brand{
-    font-size:15px!important;
+  
+  /* Compact 2-Row Mobile Header */
+  .top {
+    display: flex !important;
+    flex-wrap: wrap !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    gap: 8px !important;
+    padding: 8px 10px !important;
+    background: rgba(14, 11, 26, 0.75) !important;
+    border-radius: 16px !important;
+    border: 1px solid var(--line) !important;
   }
-  .actions button .lbl, .actions a .lbl{
-    display:none!important;
+  .top #homeBtn {
+    padding: 6px 12px !important;
+    font-size: 12.5px !important;
+    min-height: 34px !important;
+    border-radius: 10px !important;
+    flex: 0 0 auto !important;
   }
-  .tabs2{
-    width:100%!important;
-    overflow-x:auto!important;
-    padding:4px!important;
-    scrollbar-width:none!important;
+  .top .brandbox {
+    display: flex !important;
+    align-items: center !important;
+    gap: 6px !important;
+    flex: 0 0 auto !important;
   }
-  .tabs2 button{
-    padding:8px 12px!important;
-    font-size:12.5px!important;
-    flex-shrink:0!important;
+  .top .brandbox .mark {
+    width: 26px !important;
+    height: 26px !important;
   }
-  .chat{
-    max-height:36vh!important;
+  .top .brandbox .brand {
+    font-size: 14.5px !important;
   }
-  #aiAssistantBtn{
-    padding:8px 14px!important;
-    font-size:12px!important;
-    right:10px!important;
+  .top .room {
+    order: unset !important;
+    flex: 1 1 auto !important;
+    min-width: 110px !important;
+    max-width: none !important;
+    padding: 5px 10px !important;
+    font-size: 11.5px !important;
+    margin: 0 !important;
+    justify-content: center !important;
+  }
+  .top .actions {
+    display: flex !important;
+    align-items: center !important;
+    gap: 6px !important;
+    width: 100% !important;
+    overflow-x: auto !important;
+    scrollbar-width: none !important;
+    -webkit-overflow-scrolling: touch !important;
+    padding: 2px 0 0 !important;
+    margin: 0 !important;
+    flex-wrap: nowrap !important;
+  }
+  .top .actions::-webkit-scrollbar { display: none !important; }
+  .top .actions .gbtn {
+    padding: 6px 10px !important;
+    font-size: 12px !important;
+    min-height: 34px !important;
+    flex-shrink: 0 !important;
+    border-radius: 10px !important;
+  }
+  .top .actions .themesw {
+    padding: 4px 8px !important;
+    flex-shrink: 0 !important;
+  }
+  .top .actions .themesw .thb {
+    font-size: 12px !important;
+  }
+  .top .actions .langsw {
+    flex-shrink: 0 !important;
+  }
+  .top .actions .langsw button {
+    padding: 5px 9px !important;
+    font-size: 12px !important;
+    min-height: 32px !important;
+  }
+  
+  /* Mobile Hub Tabs */
+  .tabs2 {
+    padding: 5px 6px !important;
+    gap: 6px !important;
+    margin: 4px 0 8px !important;
+  }
+  .tabs2 button {
+    padding: 8px 13px !important;
+    font-size: 12.5px !important;
+    min-height: 38px !important;
+    border-radius: 10px !important;
+  }
+
+  /* Virtual Cinema Stage & Controls */
+  .stage {
+    aspect-ratio: 16/9 !important;
+    width: 100% !important;
+    max-height: none !important;
+    border-radius: 16px !important;
+  }
+  
+  /* Universal Stream Bar on Mobile */
+  .uni-stream-bar {
+    padding: 10px 12px !important;
+    gap: 8px !important;
+    border-radius: 16px !important;
+  }
+  .uni-stream-row {
+    flex-direction: column !important;
+    align-items: stretch !important;
+    gap: 8px !important;
+  }
+  .uni-stream-row input {
+    width: 100% !important;
+    min-width: 0 !important;
+  }
+  .uni-stream-row button {
+    width: 100% !important;
+  }
+  .uni-quick-demos {
+    overflow-x: auto !important;
+    scrollbar-width: none !important;
+    flex-wrap: nowrap !important;
+    padding-bottom: 2px !important;
+  }
+  .uni-quick-demos::-webkit-scrollbar { display: none !important; }
+  .uni-demo-pill {
+    flex-shrink: 0 !important;
+    white-space: nowrap !important;
+  }
+
+  /* Chat Drawer on Mobile */
+  .chat {
+    max-height: 35vh !important;
+    border-radius: 16px !important;
+  }
+  #aiAssistantBtn {
+    padding: 8px 14px !important;
+    font-size: 12px !important;
+    right: 10px !important;
+    bottom: calc(54px + env(safe-area-inset-bottom)) !important;
   }
 }
 @media (prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;scroll-behavior:auto!important}}
@@ -1124,59 +1311,16 @@ button,.btn,[role=button],a{touch-action:manipulation}
       </div>
     </header>
 
-    <nav class="tabs2 glass">
-      <button id="tabP" class="on"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="14" rx="3"/><path d="m10.5 8.5 4 2.5-4 2.5z" fill="currentColor"/><path d="M8 21h8"/></svg><span data-i="tabPlayer"></span></button>
-      <button id="tabO"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="7.5" height="7.5" rx="2"/><rect x="13.5" y="4" width="7.5" height="7.5" rx="2"/><rect x="3" y="14.5" width="7.5" height="7.5" rx="2"/><rect x="13.5" y="14.5" width="7.5" height="7.5" rx="2"/></svg><span data-i="tabOtt"></span></button>
-      <button id="tabG"><svg viewBox="0 0 24 24"><rect x="2.5" y="7" width="19" height="11" rx="5"/><path d="M7.5 10v5M5 12.5h5"/><circle cx="15.5" cy="11.5" r=".8" fill="currentColor"/><circle cx="18" cy="13.5" r=".8" fill="currentColor"/></svg><span data-i="tabGames"></span><i class="bd" id="gBadge" hidden></i></button>
-      <button id="tabS"><svg viewBox="0 0 24 24"><path d="M8 4h8v5a4 4 0 0 1-8 0z"/><path d="M8 6H5v1a3 3 0 0 0 3 3M16 6h3v1a3 3 0 0 1-3 3"/><path d="M12 13v4M8.5 20h7"/></svg><span data-i="tabScore"></span></button>
-      <button id="tabW"><span>🌐</span><span class="tl">3D World Hub</span><span class="ts">3D World Hub</span></button><button id="tabX" hidden aria-hidden="true"></button>
+    <nav class="tabs2 glass" id="hubNav">
+      <button id="tabP" class="on" title="Virtual Cinema Hub"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="14" rx="3"/><path d="m10.5 8.5 4 2.5-4 2.5z" fill="currentColor"/><path d="M8 21h8"/></svg><span data-i="tabPlayer">Virtual Cinema</span></button>
+      <button id="tabO" title="OTT Hub"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="7.5" height="7.5" rx="2"/><rect x="13.5" y="4" width="7.5" height="7.5" rx="2"/><rect x="3" y="14.5" width="7.5" height="7.5" rx="2"/><rect x="13.5" y="14.5" width="7.5" height="7.5" rx="2"/></svg><span data-i="tabOtt">OTT Hub</span></button>
+      <button id="tabG" title="Game Hub · 102 Games"><svg viewBox="0 0 24 24"><rect x="2.5" y="7" width="19" height="11" rx="5"/><path d="M7.5 10v5M5 12.5h5"/><circle cx="15.5" cy="11.5" r=".8" fill="currentColor"/><circle cx="18" cy="13.5" r=".8" fill="currentColor"/></svg><span data-i="tabGames">Game Hub</span><i class="bd" id="gBadge" hidden></i></button>
+      <button id="tabS" title="Scoreboard Hub"><svg viewBox="0 0 24 24"><path d="M8 4h8v5a4 4 0 0 1-8 0z"/><path d="M8 6H5v1a3 3 0 0 0 3 3M16 6h3v1a3 3 0 0 1-3 3"/><path d="M12 13v4M8.5 20h7"/></svg><span data-i="tabScore">Scoreboard</span></button>
+      <button id="tabW" title="3D World Hub"><span>🌐</span><span class="tl">3D World Hub</span><span class="ts">3D World</span></button><button id="tabX" hidden aria-hidden="true"></button>
     </nav>
 
     <!-- ===== Virtual Cinema Hub pane ===== -->
     <div id="paneP" class="pane">
-      <!-- Universal Streaming Bar -->
-      <div class="uni-stream-bar glass" id="uniStreamBar">
-        <div class="uni-stream-row">
-          <div class="uni-stream-badge" id="uniStreamBadge">🌐 Universal Stream</div>
-          <input id="uniUrlIn" placeholder="Paste YouTube, HLS (.m3u8), DASH (.mpd), Direct Video/Audio, or OTT Link..." autocomplete="off">
-          <button id="uniLoadBtn" class="primary">▶ Load Stream</button>
-          <button id="uniStreamShareBtn" class="gbtn" title="Stream your screen / window / tab to friends in cinema">📡 Stream Screen</button>
-        </div>
-        <div class="uni-quick-demos">
-          <span class="uni-demos-lbl">⚡ Instant Demos:</span>
-          <button type="button" class="uni-demo-pill" data-demo="hls" data-url="https://test-streams.mux.dev/x36xhzz/x36xhzz.m3u8" data-title="Big Buck Bunny (HLS .m3u8)">🍏 HLS Stream (Mux)</button>
-          <button type="button" class="uni-demo-pill" data-demo="dash" data-url="https://dash.akamaized.net/akamai/bbb_30fps/bbb_30fps.mpd" data-title="Big Buck Bunny (DASH .mpd)">🚀 DASH Stream (Akamai)</button>
-          <button type="button" class="uni-demo-pill" data-demo="mp4" data-url="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/TearsOfSteel.mp4" data-title="Tears of Steel (Direct MP4)">🎬 Direct MP4</button>
-          <button type="button" class="uni-demo-pill" data-demo="yt" data-url="https://www.youtube.com/watch?v=L_LUpnjgPso" data-title="Relaxing Nature (YouTube)">▶️ YouTube</button>
-        </div>
-      </div>
-
-      <details id="srcBox" class="src glass" open>
-        <summary data-i="chooseVideo"></summary>
-        <div class="srcgrid">
-          <label class="srccard">
-            <input type="file" id="fileIn" accept="video/*,audio/*,.mkv,.mp4,.webm,.mov,.m4v,.ogv,.mp3,.m4a,.wav,.flac" hidden>
-            <div class="si"><svg viewBox="0 0 24 24"><path d="M3 7a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg></div>
-            <div><b data-i="localFile"></b><small>MP4 · WebM · MKV</small></div>
-          </label>
-          <label class="srccard">
-            <input type="file" id="mp3In" accept="audio/*,.mp3,.m4a,.wav,.ogg,.aac,.flac,.opus" hidden>
-            <div class="si"><svg viewBox="0 0 24 24"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg></div>
-            <div><b>🎵 Music</b><small>MP3 · M4A · WAV</small></div>
-          </label>
-          <div class="srccard yt">
-            <div class="si"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="4"/><path d="m10 9.5 5 2.5-5 2.5z" fill="#fff"/></svg></div>
-            <div class="ytf"><input id="ytIn" data-ph="ytPh"><button id="ytBtn" class="primary" data-i="load"></button></div>
-          </div>
-          <button id="subBtn" class="srccard">
-            <div class="si"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="3"/><path d="M10 10.5a2 2 0 1 0 0 3M16 10.5a2 2 0 1 0 0 3"/></svg></div>
-            <div><b data-i="subs"></b><small>.srt / .vtt</small></div>
-          </button>
-          <input type="file" id="subIn" accept=".srt,.vtt" hidden>
-        </div>
-        <p class="hint" data-i="hint"></p>
-      </details>
-
       <div id="stage" class="stage nomedia"><button id="bBack" class="pillbtn" hidden style="position:absolute;top:10px;right:10px;z-index:7;background:rgba(0,0,0,.6)">← Back</button>
         <video id="video" playsinline preload="auto" style="display:none"></video>
         <div id="ytWrap" style="display:none"><div id="ytPlayer"></div></div>
@@ -1221,7 +1365,10 @@ button,.btn,[role=button],a{touch-action:manipulation}
               <span id="tm">0:00 / 0:00</span>
             </div>
             <div class="cr">
-              <div class="rw"><button id="bExit" class="pillbtn" hidden style="background:#ef4444;color:#fff">✖ Exit</button></div><div class="rw" style="position:relative"><button id="bSz" class="pillbtn" title="Screen size">⛶ Fit</button><div id="szMenu" class="qm"></div></div><div class="rw" style="position:relative"><button id="bQ" class="pillbtn" title="Quality (your device only)">HD</button><div id="qMenu" class="qm"></div></div><div class="rw"><button id="bRate" class="pillbtn" data-tt="ttSpeed">1x</button><div id="rateMenu" class="menu"></div></div>
+              <div class="rw"><button id="bExit" class="pillbtn" hidden style="background:#ef4444;color:#fff">✖ Exit</button></div>
+              <div class="rw" style="position:relative"><button id="bSz" class="pillbtn" title="Screen size">⛶ Fit</button><div id="szMenu" class="qm"></div></div>
+              <div class="rw" style="position:relative"><button id="bQ" class="pillbtn" title="Quality (your device only)">HD</button><div id="qMenu" class="qm"></div></div>
+              <div class="rw" style="position:relative"><button id="bRate" class="pillbtn" data-tt="ttSpeed">1x</button><div id="rateMenu" class="menu"></div></div>
               <button id="bLoop" class="cbtn" data-tt="ttLoop"></button>
               <button id="bCC" class="cbtn" data-tt="ttCC"></button>
               <button id="bPip" class="cbtn" data-tt="ttPip"></button>
@@ -1230,6 +1377,49 @@ button,.btn,[role=button],a{touch-action:manipulation}
           </div>
         </div>
       </div>
+
+      <!-- Universal Streaming Bar -->
+      <div class="uni-stream-bar glass" id="uniStreamBar">
+        <div class="uni-stream-row">
+          <div class="uni-stream-badge" id="uniStreamBadge">🌐 Universal Stream</div>
+          <input id="uniUrlIn" placeholder="Paste YouTube, HLS (.m3u8), DASH (.mpd), Direct Video/Audio, or OTT Link..." autocomplete="off">
+          <button id="uniLoadBtn" class="primary">▶ Load Stream</button>
+          <button id="uniStreamShareBtn" class="gbtn" title="Stream your screen / window / tab to friends in cinema">📡 Stream Screen</button>
+        </div>
+        <div class="uni-quick-demos">
+          <span class="uni-demos-lbl">⚡ Instant Demos:</span>
+          <button type="button" class="uni-demo-pill" data-demo="hls" data-url="https://test-streams.mux.dev/x36xhzz/x36xhzz.m3u8" data-title="Big Buck Bunny (HLS .m3u8)">🍏 HLS Stream (Mux)</button>
+          <button type="button" class="uni-demo-pill" data-demo="dash" data-url="https://dash.akamaized.net/akamai/bbb_30fps/bbb_30fps.mpd" data-title="Big Buck Bunny (DASH .mpd)">🚀 DASH Stream (Akamai)</button>
+          <button type="button" class="uni-demo-pill" data-demo="mp4" data-url="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/TearsOfSteel.mp4" data-title="Tears of Steel (Direct MP4)">🎬 Direct MP4</button>
+          <button type="button" class="uni-demo-pill" data-demo="yt" data-url="https://www.youtube.com/watch?v=L_LUpnjgPso" data-title="Relaxing Nature (YouTube)">▶️ YouTube</button>
+        </div>
+      </div>
+
+      <details id="srcBox" class="src glass">
+        <summary data-i="chooseVideo"></summary>
+        <div class="srcgrid">
+          <label class="srccard">
+            <input type="file" id="fileIn" accept="video/*,audio/*,.mkv,.mp4,.webm,.mov,.m4v,.ogv,.mp3,.m4a,.wav,.flac" hidden>
+            <div class="si"><svg viewBox="0 0 24 24"><path d="M3 7a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg></div>
+            <div><b data-i="localFile"></b><small>MP4 · WebM · MKV</small></div>
+          </label>
+          <label class="srccard">
+            <input type="file" id="mp3In" accept="audio/*,.mp3,.m4a,.wav,.ogg,.aac,.flac,.opus" hidden>
+            <div class="si"><svg viewBox="0 0 24 24"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg></div>
+            <div><b>🎵 Music</b><small>MP3 · M4A · WAV</small></div>
+          </label>
+          <div class="srccard yt">
+            <div class="si"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="4"/><path d="m10 9.5 5 2.5-5 2.5z" fill="#fff"/></svg></div>
+            <div class="ytf"><input id="ytIn" data-ph="ytPh"><button id="ytBtn" class="primary" data-i="load"></button></div>
+          </div>
+          <button id="subBtn" class="srccard">
+            <div class="si"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="3"/><path d="M10 10.5a2 2 0 1 0 0 3M16 10.5a2 2 0 1 0 0 3"/></svg></div>
+            <div><b data-i="subs"></b><small>.srt / .vtt</small></div>
+          </button>
+          <input type="file" id="subIn" accept=".srt,.vtt" hidden>
+        </div>
+        <p class="hint" data-i="hint"></p>
+      </details>
     </div>
 
     <!-- ===== OTT Hub pane ===== -->
@@ -2266,9 +2456,42 @@ sw.addEventListener('mousemove',e=>{
 let hideT;
 function showCtrl(){
   stage.classList.add('show'); stage.classList.remove('nocursor'); clearTimeout(hideT);
-  hideT=setTimeout(()=>{ if(P.playing()||matchMedia('(pointer:coarse)').matches){ stage.classList.remove('show'); if(document.fullscreenElement) stage.classList.add('nocursor'); } },3000);
+  hideT=setTimeout(()=>{
+    if(P.playing()){
+      stage.classList.remove('show');
+      if(document.fullscreenElement) stage.classList.add('nocursor');
+    }
+  }, 4000);
 }
-(matchMedia('(pointer:coarse)').matches?[]:['mousemove','touchstart','click']).forEach(ev=>stage.addEventListener(ev,showCtrl,{passive:true}));
+['mousemove','touchstart','pointerdown','click'].forEach(ev=>stage.addEventListener(ev,showCtrl,{passive:true}));
+
+let lastStageTap = 0;
+stage.addEventListener('click', e => {
+  if (e.target.closest('#ctrl') || e.target.closest('#bBack') || e.target.closest('#banner') || e.target.closest('#ottCompanion')) return;
+  const now = Date.now();
+  const rect = stage.getBoundingClientRect();
+  const clickX = e.clientX - rect.left;
+  if (now - lastStageTap < 320) {
+    if (clickX < rect.width * 0.38) {
+      skip(-10);
+      toast('⏪ -10s');
+    } else if (clickX > rect.width * 0.62) {
+      skip(10);
+      toast('⏩ +10s');
+    } else {
+      togglePlay();
+    }
+    showCtrl();
+    lastStageTap = 0;
+  } else {
+    lastStageTap = now;
+    if (stage.classList.contains('show') && P.playing()) {
+      stage.classList.remove('show');
+    } else {
+      showCtrl();
+    }
+  }
+});
 setInterval(()=>{
   if(!state.mode) return;
   const d=P.dur()||0, x=P.time()||0, pl=P.playing();
