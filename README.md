@@ -80,27 +80,18 @@ A next-generation virtual party platform featuring synchronized video streaming,
   3. **Tanglish** (`th`)
 - Applies across all menus, buttons, game rules, dialogue cards, scoreboard, Party Pack games, and system messages.
 
-### 6. 🎉 Advanced Party Pack & 🔞 18+ After Dark
+### 6. 🎉 Restored Multiplayer Party Pack (All Ages)
 - **Real-Time Online Multiplayer**:
   - All room members play together simultaneously using their own smartphones or laptops over WebRTC data channels.
   - Synchronized timers, round prompts, live voter participation status, and synchronized reveal screens.
-  - Real-time podiums (1st 🥇, 2nd 🥈, 3rd 🥉) with confetti animations and celebratory sound effects.
+  - Real-time podiums (1st 🥇, 2nd 🥈, 3rd 🥉) with live score synchronization and celebratory audio feedback.
   - Automatic late-joiner synchronization and reconnection recovery.
-- **Family / Standard Games (All Ages)**:
-  - **Truth or Dare**: Classic party game with 3-language prompt engine and skip moderation.
-  - **Would You Rather**: Secret voting on fun dilemmas with majority-rules scoring.
-  - **Emoji Challenge**: 20-second speed decoding of famous movies and phrases.
-  - **Fake or Real?**: Fast-paced science and nature fact trivia with speed bonuses.
-- **🔞 18+ After Dark – Adult Party Games (Exclusive Private Lounge)**:
-  - Completely separate module with dedicated dark luxury neon crimson visual theme.
-  - **Private Host-Controlled Access System**:
-    - Host-generated private access passcode (never exposed in public broadcasts).
-    - Host enable/disable toggle.
-    - Player 18+ age verification check and private access request.
-    - Host moderation popup with **Accept** / **Reject** controls.
-    - Approved member roster with instant **Revoke Access** capability.
-  - **🔞 18+ Truth or Dare**: Spicy, personal, relationship, and romantic truths/dares for consenting adults with skip protection.
-  - **🔥 18+ Questions & Answers**: Provocative debates, multiple-choice polls, and open-ended confessions with group voting.
+  - Local pass-and-play support on a single shared device when playing solo or offline.
+- **Family & Friends Party Games (All Ages)**:
+  - **Truth or Dare**: Classic party game with authentic trilingual prompts and completed/forfeit scoring.
+  - **Would You Rather?**: Live group voting on entertaining dilemmas with real-time percentage breakdowns.
+  - **Emoji Challenge**: Rapid-fire decoding of blockbuster movies and famous titles from emoji sequences.
+  - **Fake or Real?**: Bizarre trivia and science facts with immediate explanations and score tracking.
 
 ### 7. 📱 Mobile Responsive & Touch Optimization
 - Smooth vertical momentum scrolling on iOS and Android devices (`-webkit-overflow-scrolling: touch`).
