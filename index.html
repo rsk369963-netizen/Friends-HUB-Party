@@ -999,6 +999,28 @@ button,.btn,[role=button],a{touch-action:manipulation}
 .g-react-pill:hover{transform:scale(1.28);background:rgba(255,255,255,.18)}
 .badge-row{display:flex;gap:6px;flex-wrap:wrap;justify-content:center;margin:10px 0}
 .achieve-badge{display:inline-flex;align-items:center;gap:4px;padding:4px 10px;border-radius:99px;font-size:12px;font-weight:700;background:linear-gradient(135deg,rgba(245,199,107,.15),rgba(139,92,246,.2));border:1px solid rgba(245,199,107,.35);color:#fde047;animation:scaleUp .3s ease-out}
+/* Universal Streaming Player & Companion Hub styles */
+.uni-stream-bar{margin:0 0 12px;padding:12px 14px;border-radius:20px;border:1.5px solid rgba(var(--ar),.35);background:linear-gradient(135deg,rgba(var(--ar),.15),rgba(var(--br),.1));display:flex;flex-direction:column;gap:10px;box-shadow:0 8px 30px rgba(0,0,0,.35)}
+.uni-stream-row{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.uni-stream-badge{flex:none;font-size:12px;font-weight:700;padding:6px 12px;border-radius:999px;background:var(--grad);color:#fff;display:inline-flex;align-items:center;gap:6px;box-shadow:0 4px 14px rgba(var(--ar),.4)}
+.uni-stream-row input{flex:1;min-width:200px;background:rgba(0,0,0,.4);border:1px solid rgba(255,255,255,.16);padding:10px 14px;border-radius:12px;font-size:13.5px}
+.uni-stream-row button{flex:none;padding:10px 16px;font-size:13px;font-weight:700;border-radius:12px}
+.uni-quick-demos{display:flex;gap:6px;align-items:center;flex-wrap:wrap;font-size:12px}
+.uni-demos-lbl{color:var(--muted);font-weight:600}
+.uni-demo-pill{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12);color:var(--text);padding:4px 10px;border-radius:999px;font-size:11.5px;cursor:pointer;transition:transform .15s,background .15s}
+.uni-demo-pill:hover{background:rgba(255,255,255,.16);transform:translateY(-1px)}
+.ott-companion-deck{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:center;align-items:center;padding:24px;background:radial-gradient(circle at 50% 35%,rgba(var(--ar),.25),#07060d 75%);text-align:center;z-index:3;animation:fadeIn .3s ease}
+.ott-comp-header{position:absolute;top:16px;left:20px;right:20px;display:flex;justify-content:space-between;align-items:center}
+.ott-comp-badge{font-size:12px;font-weight:700;padding:4px 12px;border-radius:999px;background:rgba(245,199,107,.18);color:var(--gold);border:1px solid rgba(245,199,107,.4)}
+.ott-comp-sync-status{font-size:12px;color:var(--ok);font-weight:600;display:flex;align-items:center;gap:6px}
+.ott-comp-body{display:flex;flex-direction:column;align-items:center;gap:12px;max-width:540px}
+.ott-comp-logo{font-size:48px;animation:bob 3s ease-in-out infinite}
+.ott-comp-title{margin:0;font-size:clamp(22px,4vw,32px);font-weight:800}
+.ott-comp-desc{margin:0;color:var(--muted);font-size:13.5px;line-height:1.5}
+.ott-comp-timer{font-family:'Plus Jakarta Sans',sans-serif;font-size:clamp(36px,7vw,64px);font-weight:800;letter-spacing:.08em;color:#fff;text-shadow:0 0 25px rgba(var(--ar),.6);font-variant-numeric:tabular-nums;margin:6px 0}
+.ott-comp-actions{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;width:100%}
+.ott-comp-actions button{padding:12px 18px;font-size:13.5px;font-weight:700;border-radius:14px}
+.ott-comp-hint{font-size:12px;color:var(--muted);margin-top:4px}
 </style>
 </head>
 <body>
@@ -1095,6 +1117,23 @@ button,.btn,[role=button],a{touch-action:manipulation}
 
     <!-- ===== Virtual Cinema Hub pane ===== -->
     <div id="paneP" class="pane">
+      <!-- Universal Streaming Bar -->
+      <div class="uni-stream-bar glass" id="uniStreamBar">
+        <div class="uni-stream-row">
+          <div class="uni-stream-badge" id="uniStreamBadge">🌐 Universal Stream</div>
+          <input id="uniUrlIn" placeholder="Paste YouTube, HLS (.m3u8), DASH (.mpd), Direct Video/Audio, or OTT Link..." autocomplete="off">
+          <button id="uniLoadBtn" class="primary">▶ Load Stream</button>
+          <button id="uniStreamShareBtn" class="gbtn" title="Stream your screen / window / tab to friends in cinema">📡 Stream Screen</button>
+        </div>
+        <div class="uni-quick-demos">
+          <span class="uni-demos-lbl">⚡ Instant Demos:</span>
+          <button type="button" class="uni-demo-pill" data-demo="hls" data-url="https://test-streams.mux.dev/x36xhzz/x36xhzz.m3u8" data-title="Big Buck Bunny (HLS .m3u8)">🍏 HLS Stream (Mux)</button>
+          <button type="button" class="uni-demo-pill" data-demo="dash" data-url="https://dash.akamaized.net/akamai/bbb_30fps/bbb_30fps.mpd" data-title="Big Buck Bunny (DASH .mpd)">🚀 DASH Stream (Akamai)</button>
+          <button type="button" class="uni-demo-pill" data-demo="mp4" data-url="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/TearsOfSteel.mp4" data-title="Tears of Steel (Direct MP4)">🎬 Direct MP4</button>
+          <button type="button" class="uni-demo-pill" data-demo="yt" data-url="https://www.youtube.com/watch?v=L_LUpnjgPso" data-title="Relaxing Nature (YouTube)">▶️ YouTube</button>
+        </div>
+      </div>
+
       <details id="srcBox" class="src glass" open>
         <summary data-i="chooseVideo"></summary>
         <div class="srcgrid">
@@ -1124,6 +1163,25 @@ button,.btn,[role=button],a{touch-action:manipulation}
       <div id="stage" class="stage nomedia"><button id="bBack" class="pillbtn" hidden style="position:absolute;top:10px;right:10px;z-index:7;background:rgba(0,0,0,.6)">← Back</button>
         <video id="video" playsinline preload="auto" style="display:none"></video>
         <div id="ytWrap" style="display:none"><div id="ytPlayer"></div></div>
+        <!-- OTT Watch Party Companion Screen (Authorized Co-Watching) -->
+        <div id="ottCompanion" class="ott-companion-deck" style="display:none">
+          <div class="ott-comp-header">
+            <div class="ott-comp-badge" id="ottCompBadge">🎬 Watch Party Companion</div>
+            <div class="ott-comp-sync-status" id="ottCompSyncStatus">🟢 In Sync with Room</div>
+          </div>
+          <div class="ott-comp-body">
+            <div class="ott-comp-logo" id="ottCompLogo">🍿</div>
+            <h2 id="ottCompTitle" class="ott-comp-title">Movie Watch Party</h2>
+            <p id="ottCompDesc" class="ott-comp-desc">Synchronized playback enabled! Open this title on your authorized account, and use the synchronized room controls below to start and pause together.</p>
+            <div class="ott-comp-timer" id="ottCompTimer">00:00:00</div>
+            <div class="ott-comp-actions">
+              <button id="ottCompOpenBtn" class="primary">🚀 Open on Platform ↗</button>
+              <button id="ottCompCountBtn" class="gbtn">⏱️ 3-2-1 Countdown Sync</button>
+              <button id="ottCompStreamBtn" class="gbtn">📡 Host: Stream Tab to Cinema</button>
+            </div>
+            <div class="ott-comp-hint">💡 <b>Zero-Lag Sync:</b> When the host clicks Play, Pause, or Countdown, all room members' timers sync simultaneously.</div>
+          </div>
+        </div>
         <div id="empty"><div><div class="bigpop">🍿</div><h3 data-i="partyReady"></h3><p data-i="partyReadyD"></p></div></div>
         <div id="shield"></div>
         <div id="nowp" class="nowp"></div>
@@ -1253,6 +1311,40 @@ window.loadPeerLib=function(){
     })();
   });
 };
+
+/* HLS.js loader with fallbacks */
+window.loadHlsLib=function(){
+  return new Promise(function(res){
+    if(window.Hls) return res(true);
+    var urls=['https://cdn.jsdelivr.net/npm/hls.js@1.5.8/dist/hls.min.js','https://unpkg.com/hls.js@1.5.8/dist/hls.min.js','https://cdnjs.cloudflare.com/ajax/libs/hls.js/1.5.8/hls.min.js'];
+    var i=0;
+    (function next(){
+      if(window.Hls) return res(true);
+      if(i>=urls.length) return res(false);
+      var s=document.createElement('script'); s.src=urls[i++];
+      s.onload=function(){ res(!!window.Hls); };
+      s.onerror=next;
+      document.head.appendChild(s);
+    })();
+  });
+};
+
+/* Dash.js loader with fallbacks */
+window.loadDashLib=function(){
+  return new Promise(function(res){
+    if(window.dashjs) return res(true);
+    var urls=['https://cdn.jsdelivr.net/npm/dashjs@4.7.4/dist/dash.all.min.js','https://unpkg.com/dashjs@4.7.4/dist/dash.all.min.js','https://cdnjs.cloudflare.com/ajax/libs/dashjs/4.7.4/dash.all.min.js'];
+    var i=0;
+    (function next(){
+      if(window.dashjs) return res(true);
+      if(i>=urls.length) return res(false);
+      var s=document.createElement('script'); s.src=urls[i++];
+      s.onload=function(){ res(!!window.dashjs); };
+      s.onerror=next;
+      document.head.appendChild(s);
+    })();
+  });
+};
 </script>
 <script>
 /* ============ CONFIG ============ */
@@ -1315,6 +1407,11 @@ popBlock:['Pop-up block aachu — browser-la allow pannu','Pop-up blocked — pl
 kitT:['Sync Kit — OTT-ku onna paakka','Sync Kit — watch OTT together','Sync Kit — OTT-ஐ சேர்ந்து பார்க்க'],
 kitD:['Rendu perum own OTT account-la same title open pannitu, inga ready + countdown use pannu.','Both open the same title on your own OTT accounts, then use ready + countdown here.','ரெண்டு பேரும் உங்க OTT அக்கவுண்ட்ல அதே படத்தை திறந்துட்டு இங்க ready + countdown பயன்படுத்துங்க.'],
 kReady:['Naan ready','I am ready','நான் ரெடி'],kCount:['3-2-1 Play','3-2-1 Play','3-2-1 Play'],kPause:['Pause pannu','Pause now','Pause பண்ணு'],kPlay:['Resume pannu','Resume','Resume பண்ணு'],
+uniStreamBadge:['🌐 Universal Stream','🌐 Universal Stream','🌐 யுனிவர்சல் ஸ்ட்ரீம்'],
+uniStreamPh:['YouTube, HLS (.m3u8), DASH (.mpd), Direct MP4/Audio, alladhu OTT link paste pannunga...','Paste YouTube, HLS (.m3u8), DASH (.mpd), Direct Video/Audio, or OTT Link...','YouTube, HLS (.m3u8), DASH (.mpd), Direct Video/Audio அல்லது OTT லிங்க் உள்ளிடவும்...'],
+uniLoadBtn:['▶ Load Stream','▶ Load Stream','▶ ஸ்ட்ரீம் தொடங்கு'],
+uniStreamShare:['📡 Screen Stream','📡 Stream Screen','📡 திரையைப் பகிர்'],
+sysStreamStarted:['Stream aarambichurukku','Stream started','ஸ்ட்ரீம் தொடங்கியது'],
 ottNote:['<b>Gnabagam vachuko:</b> Netflix, Prime, JioHotstar madhiri OTT-ku DRM protection irukku — adhai intha site kulla play panna / share panna mudiyaadhu. Adhunaala adhai <b>own tab / app-la own account</b>-la play pannu; inga <b>chat, emoji, countdown</b> use pannu. YouTube link-a <b>Virtual Cinema Hub</b> tab-la paste pannunga — adhu inga direct-a sync aagum.','<b>Heads up:</b> OTTs like Netflix, Prime and JioHotstar use DRM, so they cannot be played or screen-shared inside this site. Play them in <b>your own tab/app with your own account</b> and use the <b>chat, reactions and countdown</b> here. For YouTube, paste the link in the <b>Virtual Cinema Hub</b> tab — it syncs directly.','<b>நினைவில் வச்சுக்கோங்க:</b> Netflix, Prime, JioHotstar மாதிரி OTT-களுக்கு DRM பாதுகாப்பு இருக்கு — இந்த தளத்துக்குள்ள ப்ளே / ஷேர் பண்ண முடியாது. அதனால <b>உங்க டேப் / ஆப்ல உங்க அக்கவுண்ட்ல</b> பாருங்க; இங்க <b>சாட், எமோஜி, countdown</b> பயன்படுத்துங்க. யூடியூப் லிங்கை <b>Virtual Cinema Hub</b> டேப்ல ஒட்டுங்க — அது நேரடியா sync ஆகும்.'],
 sysReady:['{n} ready ✅','{n} is ready ✅','{n} ரெடி ✅'],
 cdGo:['GO!','GO!','GO!'],cdSub:['Ippo Play press pannu ▶','Press Play now ▶','இப்போ Play அழுத்துங்க ▶'],
@@ -1494,6 +1591,11 @@ function applyLang(){
   renderOtt();
   renderNowbar();
   renderLinks();
+  const uniBadge = $('#uniStreamBadge'), uniIn = $('#uniUrlIn'), uniBtn = $('#uniLoadBtn'), uniShare = $('#uniStreamShareBtn');
+  if(uniBadge) uniBadge.textContent = t('uniStreamBadge');
+  if(uniIn) uniIn.placeholder = t('uniStreamPh');
+  if(uniBtn) uniBtn.textContent = t('uniLoadBtn');
+  if(uniShare) uniShare.textContent = t('uniStreamShare');
   showLobby(lobbyKey,lobbyCls,lobbyVars);
   const gb=$('#gbox');
   if(gb && curTab==='G'){
@@ -1548,30 +1650,133 @@ $('#vol').oninput=e=>{
 $('#bMute').onclick=()=>{ state.muted=!state.muted; applyVol(); };
 function stepVol(d){ state.vol=Math.min(MAX_VOL,Math.max(0,Math.round((state.vol+d)*100)/100)); if(state.vol>1&&state.mode!=='yt') ensureAudio(); if(state.muted&&state.vol>0) state.muted=false; applyVol(); }
 
+/* ============ UNIVERSAL STREAMING ENGINE (HLS, DASH, MP4, YouTube, OTT) ============ */
+let hls = null, dash = null;
+function destroyHls(){ if(hls){ try{ hls.destroy(); }catch(e){} hls = null; } }
+function destroyDash(){ if(dash){ try{ dash.reset(); }catch(e){} dash = null; } }
+
+/* OTT Companion Watch Party Co-Watching Timer */
+let ottTimer = {
+  startAt: 0,
+  accum: 0,
+  playing: false,
+  rate: 1,
+  dur: 7200
+};
+function getOttTime(){
+  return ottTimer.accum + (ottTimer.playing ? (Date.now() - ottTimer.startAt)/1000 * ottTimer.rate : 0);
+}
+function getOttDur(){ return ottTimer.dur; }
+function isOttPlaying(){ return ottTimer.playing; }
+function startOttTimer(){
+  if(ottTimer.playing) return;
+  ottTimer.playing = true;
+  ottTimer.startAt = Date.now();
+  renderOttCompanionTimer();
+}
+function pauseOttTimer(){
+  if(!ottTimer.playing) return;
+  ottTimer.accum = getOttTime();
+  ottTimer.playing = false;
+  renderOttCompanionTimer();
+}
+function seekOttTimer(x){
+  ottTimer.accum = Math.max(0, x);
+  ottTimer.startAt = Date.now();
+  renderOttCompanionTimer();
+}
+function setOttRate(r){
+  ottTimer.accum = getOttTime();
+  ottTimer.startAt = Date.now();
+  ottTimer.rate = r;
+}
+function renderOttCompanionTimer(){
+  const el = $('#ottCompTimer');
+  if(el) el.textContent = fmt(getOttTime());
+}
+setInterval(()=>{
+  if(state.mode === 'ott' && ottTimer.playing){
+    renderOttCompanionTimer();
+    const d = getOttDur(), x = getOttTime();
+    if(!seeking){
+      seek.value = d ? x/d*1000 : 0;
+      setProg(d ? x/d : 0, 1);
+      $('#tm').textContent = fmt(x) + ' / ' + fmt(d);
+    }
+  }
+}, 350);
+
 /* ============ PLAYER ABSTRACTION ============ */
 const P = {
-  play(){ if(state.mode==='yt'){ ytReady && yt.playVideo(); } else if(state.mode==='local'){ if(aud.ctx&&aud.ctx.state==='suspended') aud.ctx.resume().catch(()=>{}); const p=video.play(); if(p&&p.catch) p.catch(()=>toast(t('tAutoplay'))); } },
-  pause(){ if(state.mode==='yt'){ ytReady && yt.pauseVideo(); } else video.pause(); },
-  seek(x){ if(state.mode==='yt'){ ytReady && yt.seekTo(x,true); } else { try{ video.currentTime=x; }catch(e){} } },
-  time(){ return state.mode==='yt' ? (ytReady&&yt.getCurrentTime ? yt.getCurrentTime() : 0) : (video.currentTime||0); },
-  dur(){ return state.mode==='yt' ? (ytReady&&yt.getDuration ? yt.getDuration() : 0) : (video.duration||0); },
-  playing(){ if(state.mode==='yt'){ if(!ytReady||!yt.getPlayerState) return false; const s=yt.getPlayerState(); return s===1||s===3; } return state.mode==='local' && !video.paused && !video.ended; },
-  rate(r){ if(state.mode==='yt'){ ytReady && yt.setPlaybackRate(r); } else video.playbackRate=r; },
-  ready(){ return state.mode==='yt' ? ytReady : (state.mode==='local' && video.readyState>=1); }
+  play(){
+    if(state.mode==='yt'){ ytReady && yt.playVideo(); }
+    else if(state.mode==='ott'){ startOttTimer(); }
+    else if(state.mode){
+      if(aud.ctx&&aud.ctx.state==='suspended') aud.ctx.resume().catch(()=>{});
+      const p = video.play();
+      if(p && p.catch) p.catch(()=>toast(t('tAutoplay')));
+    }
+  },
+  pause(){
+    if(state.mode==='yt'){ ytReady && yt.pauseVideo(); }
+    else if(state.mode==='ott'){ pauseOttTimer(); }
+    else if(state.mode) video.pause();
+  },
+  seek(x){
+    if(state.mode==='yt'){ ytReady && yt.seekTo(x,true); }
+    else if(state.mode==='ott'){ seekOttTimer(x); }
+    else { try{ video.currentTime=x; }catch(e){} }
+  },
+  time(){
+    if(state.mode==='yt') return (ytReady&&yt.getCurrentTime ? yt.getCurrentTime() : 0);
+    if(state.mode==='ott') return getOttTime();
+    return video.currentTime || 0;
+  },
+  dur(){
+    if(state.mode==='yt') return (ytReady&&yt.getDuration ? yt.getDuration() : 0);
+    if(state.mode==='ott') return getOttDur();
+    return video.duration || 0;
+  },
+  playing(){
+    if(state.mode==='yt'){
+      if(!ytReady||!yt.getPlayerState) return false;
+      const s=yt.getPlayerState();
+      return s===1||s===3;
+    }
+    if(state.mode==='ott') return isOttPlaying();
+    return !!state.mode && !video.paused && !video.ended;
+  },
+  rate(r){
+    if(state.mode==='yt'){ ytReady && yt.setPlaybackRate(r); }
+    else if(state.mode==='ott'){ setOttRate(r); }
+    else video.playbackRate = r;
+  },
+  ready(){
+    if(state.mode==='yt') return ytReady;
+    if(state.mode==='ott') return true;
+    return !!state.mode && video.readyState >= 1;
+  }
 };
+
 function setMode(m){
   if(state.mode==='yt' && m!=='yt' && ytReady){ try{ yt.pauseVideo(); }catch(e){} }
-  if(state.mode==='local' && m!=='local'){ video.pause(); }
+  if((state.mode==='local'||state.mode==='hls'||state.mode==='dash'||state.mode==='url') && m!=='local'&&m!=='hls'&&m!=='dash'&&m!=='url'){ video.pause(); }
   if(state.mode==='stream' && m!=='stream'){ video.srcObject=null; state.sh=null; }
-  state.mode=m; if(m!=='local') stage.classList.remove('audio'); if(m!=='yt') $('#shield').style.display='';
-  video.style.display = (m==='local'||m==='stream') ? 'block':'none';
+  if(state.mode==='ott' && m!=='ott'){ pauseOttTimer(); }
+  state.mode = m;
+  if(m!=='local'&&m!=='url') stage.classList.remove('audio');
+  if(m!=='yt') $('#shield').style.display='';
+  
+  video.style.display = (m==='local'||m==='stream'||m==='hls'||m==='dash'||m==='url') ? 'block':'none';
   $('#ytWrap').style.display = m==='yt' ? 'block':'none';
+  const ottC = $('#ottCompanion'); if(ottC) ottC.style.display = m==='ott' ? 'flex':'none';
   $('#empty').hidden = !!m;
   stage.classList.toggle('nomedia',!m);
   if(!m) setNow('');
   $('#spin').classList.remove('on');
   updateStreamBtn(); updateBanner(); if(aud.gain) routeStream(); applyVol();
 }
+
 function userPlay(){ lastAct=Date.now(); P.play(); send({t:'play',time:P.time()}); flash('▶'); }
 function userPause(){ lastAct=Date.now(); P.pause(); send({t:'pause',time:P.time()}); flash('⏸'); }
 function userSeek(x){ lastAct=Date.now(); P.seek(x); send({t:'seek',time:x}); }
@@ -1579,6 +1784,301 @@ function togglePlay(){ if(!state.mode) return; P.playing() ? userPause() : userP
 function skip(d){ if(!state.mode) return; const dur=P.dur()||1e9; userSeek(Math.min(Math.max(0,P.time()+d),dur)); flash(d>0?'⏩':'⏪'); }
 function setLoop(v,fromRemote){ state.loop=v; $('#bLoop').classList.toggle('on',v); if(!fromRemote) send({t:'loop',v}); }
 function onEnded(){ if(state.mode==='stream') return; if(state.loop){ P.seek(0); P.play(); } }
+
+/* ============ UNIVERSAL STREAM DETECTION & LOADERS ============ */
+function detectStreamType(url){
+  if(!url) return null;
+  url = url.trim();
+  if(/(?:youtube\.com\/(?:watch|shorts|embed|live)|youtu\.be\/)/i.test(url) || ytId(url)) return 'yt';
+  if(/\.m3u8(?:[?#]|$)/i.test(url) || /m3u8/i.test(url)) return 'hls';
+  if(/\.mpd(?:[?#]|$)/i.test(url) || /dash/i.test(url)) return 'dash';
+  if(/\.(mp4|webm|m4v|mov|ogv|mp3|m4a|wav|aac|flac|opus)(?:[?#]|$)/i.test(url)) return 'url';
+  for(const [k, id] of HOSTS){
+    if(url.toLowerCase().includes(k)) return 'ott';
+  }
+  if(/^https?:\/\//i.test(url)) return 'url';
+  return null;
+}
+
+async function loadHlsStream(url, title, fromRemote){
+  destroyHls(); destroyDash();
+  video.querySelectorAll('track').forEach(x=>x.remove());
+  setMode('hls');
+  setNow(title || 'HLS Live Stream');
+  state.streamUrl = url;
+  state.streamTitle = title || 'HLS Stream';
+  
+  if(video.canPlayType('application/vnd.apple.mpegurl')){
+    video.src = url;
+    video.load();
+    const p = video.play(); if(p && p.catch) p.catch(()=>{});
+  } else {
+    const ok = await window.loadHlsLib();
+    if(!ok || !window.Hls || !Hls.isSupported()){
+      toast('HLS is not supported in this browser');
+      return;
+    }
+    hls = new Hls({ enableWorker: true, lowLatencyMode: true });
+    hls.loadSource(url);
+    hls.attachMedia(video);
+    hls.on(Hls.Events.MANIFEST_PARSED, (ev, data)=>{
+      updateQualityMenuHls(data.levels);
+      applyVol();
+      const p = video.play(); if(p && p.catch) p.catch(()=>{});
+    });
+    hls.on(Hls.Events.ERROR, (ev, data)=>{
+      if(data.fatal){
+        switch(data.type){
+          case Hls.ErrorTypes.NETWORK_ERROR: hls.startLoad(); break;
+          case Hls.ErrorTypes.MEDIA_ERROR: hls.recoverMediaError(); break;
+          default: destroyHls(); toast('HLS playback error'); break;
+        }
+      }
+    });
+  }
+  if(!fromRemote){
+    send({ t:'src', kind:'hls', url, title: state.streamTitle });
+    sysMsg('📺 ' + t('sysStreamStarted') + ': ' + (title || 'HLS Stream'));
+    toast('📺 HLS Stream Loaded');
+  }
+}
+
+async function loadDashStream(url, title, fromRemote){
+  destroyHls(); destroyDash();
+  video.querySelectorAll('track').forEach(x=>x.remove());
+  setMode('dash');
+  setNow(title || 'DASH Live Stream');
+  state.streamUrl = url;
+  state.streamTitle = title || 'DASH Stream';
+  
+  const ok = await window.loadDashLib();
+  if(!ok || !window.dashjs){
+    toast('DASH library could not be loaded');
+    return;
+  }
+  dash = dashjs.MediaPlayer().create();
+  dash.initialize(video, url, true);
+  dash.on(dashjs.MediaPlayer.events.STREAM_INITIALIZED, ()=>{
+    updateQualityMenuDash();
+    applyVol();
+  });
+  dash.on(dashjs.MediaPlayer.events.ERROR, (e)=>{
+    toast('DASH playback error');
+  });
+  if(!fromRemote){
+    send({ t:'src', kind:'dash', url, title: state.streamTitle });
+    sysMsg('📺 ' + t('sysStreamStarted') + ': ' + (title || 'DASH Stream'));
+    toast('📺 DASH Stream Loaded');
+  }
+}
+
+function loadDirectUrl(url, title, fromRemote){
+  destroyHls(); destroyDash();
+  video.querySelectorAll('track').forEach(x=>x.remove());
+  setMode('url');
+  const isAudio = /\.(mp3|m4a|wav|ogg|aac|flac|opus)(?:[?#]|$)/i.test(url);
+  stage.classList.toggle('audio', isAudio);
+  stage.dataset.t = '🎵 ' + (title || 'Audio Stream');
+  setNow(title || (isAudio ? 'Audio Stream' : 'Video Stream'));
+  state.streamUrl = url;
+  state.streamTitle = title || 'Media Stream';
+  video.src = url;
+  video.load();
+  const p = video.play(); if(p && p.catch) p.catch(()=>{});
+  if(!fromRemote){
+    send({ t:'src', kind:'url', url, title: state.streamTitle });
+    sysMsg('🎬 ' + t('sysStreamStarted') + ': ' + (title || 'Media Stream'));
+    toast('🎬 Media Stream Loaded');
+  }
+}
+
+function activateOttCompanion(ottId, title, url, fromRemote){
+  destroyHls(); destroyDash();
+  setMode('ott');
+  const o = OTT.find(x => x.id === ottId) || { id: 'ott', n: title || 'OTT Platform', u: url || 'https://www.netflix.com/' };
+  state.ottComp = { id: o.id, name: o.n, url: url || o.u, title: title || (o.n + ' Watch Party') };
+  setNow(o.n + ': ' + (title || 'Watch Party Companion'));
+  
+  const badge = $('#ottCompBadge'); if(badge) badge.textContent = '🎬 ' + o.n + ' Watch Party';
+  const titleEl = $('#ottCompTitle'); if(titleEl) titleEl.textContent = title || (o.n + ' Sync Companion');
+  const openBtn = $('#ottCompOpenBtn');
+  if(openBtn){
+    openBtn.textContent = '🚀 Open on ' + o.n + ' ↗';
+    openBtn.onclick = () => { launchOtt(o); };
+  }
+  
+  if(!fromRemote){
+    send({ t:'src', kind:'ott', id: o.id, title, url: o.u });
+    sysMsg('🍿 ' + t('ottFriend', { n: myName, o: o.n }));
+    toast('🍿 Watch Party Started on ' + o.n);
+  }
+}
+
+function loadUniversalStream(inputUrl, explicitTitle){
+  const raw = (inputUrl || '').trim();
+  if(!raw){ toast('Please paste a stream URL or YouTube link'); return; }
+  const type = detectStreamType(raw);
+  if(type === 'yt'){
+    const yid = ytId(raw);
+    if(yid){
+      loadYT(yid);
+      send({ t:'src', kind:'yt', id: yid });
+      sysMsg(t('sysYt'));
+      toast('▶️ YouTube Loaded');
+    } else {
+      toast('Invalid YouTube URL');
+    }
+  } else if(type === 'hls'){
+    loadHlsStream(raw, explicitTitle || 'HLS Live Stream');
+  } else if(type === 'dash'){
+    loadDashStream(raw, explicitTitle || 'DASH Live Stream');
+  } else if(type === 'ott'){
+    const host = hostName(raw);
+    const o = ottByHost(host);
+    activateOttCompanion(o ? o.id : 'ott', explicitTitle || (o ? o.n : host), raw);
+  } else {
+    loadDirectUrl(raw, explicitTitle || 'Media Stream');
+  }
+}
+
+async function startScreenShareToCinema(){
+  if(!navigator.mediaDevices || !navigator.mediaDevices.getDisplayMedia){
+    toast('Screen share not supported in this browser');
+    return;
+  }
+  try {
+    const stream = await navigator.mediaDevices.getDisplayMedia({
+      video: { cursor: 'always', frameRate: { ideal: 30 } },
+      audio: true
+    });
+    destroyHls(); destroyDash();
+    video.querySelectorAll('track').forEach(x=>x.remove());
+    setMode('stream');
+    video.srcObject = stream;
+    setNow('📡 Live Screen Stream (' + myName + ')');
+    video.play().catch(()=>{});
+    
+    const targets = others().map(r=>r.id);
+    if(targets.length > 0){
+      startStream(targets);
+      toast('📡 Streaming screen to ' + targets.length + ' friends in room!');
+    } else {
+      toast('📡 Screen displayed in cinema');
+    }
+    
+    const track = stream.getVideoTracks()[0];
+    if(track){
+      track.onended = () => {
+        stopStream();
+        setMode(null);
+        toast('Screen sharing ended');
+      };
+    }
+  } catch(err){
+    if(err.name !== 'NotAllowedError'){
+      console.warn(err);
+      toast('Could not start screen sharing');
+    }
+  }
+}
+
+/* ============ QUALITY & SCREEN DISPLAY CONTROLS ============ */
+const SIZES = [
+  ['fit', '⛶ Fit', 'contain', 'none'],
+  ['cover', '🔲 Cover', 'cover', 'none'],
+  ['16x9', '🎬 16:9 Cinema', 'contain', '16/9'],
+  ['21x9', '🍿 21:9 Ultrawide', 'contain', '21/9'],
+  ['stretch', '↔️ Stretch', 'fill', 'none']
+];
+function applyScreenSize(key){
+  const found = SIZES.find(x => x[0] === key) || SIZES[0];
+  video.style.objectFit = found[2];
+  if(found[3] !== 'none') stage.style.aspectRatio = found[3];
+  else stage.style.removeProperty('aspect-ratio');
+  $('#bSz').textContent = found[1];
+  document.querySelectorAll('#szMenu button').forEach(b => b.classList.toggle('on', b.dataset.sz === key));
+  toast('Display: ' + found[1]);
+}
+function buildSizeMenu(){
+  const m = $('#szMenu'); if(!m) return;
+  m.innerHTML = '';
+  SIZES.forEach(([key, lbl]) => {
+    const b = document.createElement('button');
+    b.textContent = lbl;
+    b.dataset.sz = key;
+    if(key === 'fit') b.classList.add('on');
+    b.onclick = () => { applyScreenSize(key); m.classList.remove('on'); };
+    m.appendChild(b);
+  });
+}
+function updateQualityMenuHls(levels){
+  const menu = $('#qMenu'); if(!menu) return;
+  menu.innerHTML = '';
+  const autoBtn = document.createElement('button');
+  autoBtn.textContent = 'Auto (Adaptive)';
+  autoBtn.onclick = () => { if(hls) hls.currentLevel = -1; $('#bQ').textContent = 'Auto'; menu.classList.remove('on'); toast('Quality: Auto'); };
+  menu.appendChild(autoBtn);
+  if(levels && levels.length){
+    levels.forEach((lvl, idx) => {
+      const b = document.createElement('button');
+      b.textContent = (lvl.height ? lvl.height + 'p' : 'Level ' + idx) + (lvl.bitrate ? ' (' + Math.round(lvl.bitrate/1000) + 'k)' : '');
+      b.onclick = () => {
+        if(hls) hls.currentLevel = idx;
+        $('#bQ').textContent = (lvl.height ? lvl.height + 'p' : 'Q' + idx);
+        menu.classList.remove('on');
+        toast('Quality: ' + (lvl.height ? lvl.height + 'p' : 'Level ' + idx));
+      };
+      menu.appendChild(b);
+    });
+  }
+}
+
+function updateQualityMenuDash(){
+  const menu = $('#qMenu'); if(!menu || !dash) return;
+  menu.innerHTML = '';
+  const autoBtn = document.createElement('button');
+  autoBtn.textContent = 'Auto (Adaptive)';
+  autoBtn.onclick = () => {
+    dash.updateSettings({ streaming: { abr: { autoSwitchBitrate: { video: true } } } });
+    $('#bQ').textContent = 'Auto';
+    menu.classList.remove('on');
+    toast('Quality: Auto');
+  };
+  menu.appendChild(autoBtn);
+  const bitrates = dash.getBitrateInfoListFor('video');
+  if(bitrates && bitrates.length){
+    bitrates.forEach((info, idx) => {
+      const b = document.createElement('button');
+      b.textContent = (info.height ? info.height + 'p' : 'Level ' + idx) + (info.bitrate ? ' (' + Math.round(info.bitrate/1000) + 'k)' : '');
+      b.onclick = () => {
+        dash.updateSettings({ streaming: { abr: { autoSwitchBitrate: { video: false } } } });
+        dash.setQualityFor('video', idx);
+        $('#bQ').textContent = (info.height ? info.height + 'p' : 'Q' + idx);
+        menu.classList.remove('on');
+        toast('Quality: ' + (info.height ? info.height + 'p' : 'Level ' + idx));
+      };
+      menu.appendChild(b);
+    });
+  }
+}
+
+const bSz = $('#bSz');
+if(bSz) bSz.onclick = e => {
+  e.stopPropagation();
+  const m = $('#szMenu'); if(m) m.classList.toggle('on');
+  const q = $('#qMenu'); if(q) q.classList.remove('on');
+};
+const bQ = $('#bQ');
+if(bQ) bQ.onclick = e => {
+  e.stopPropagation();
+  const q = $('#qMenu'); if(q) q.classList.toggle('on');
+  const m = $('#szMenu'); if(m) m.classList.remove('on');
+};
+document.addEventListener('click', () => {
+  const s = $('#szMenu'), q = $('#qMenu');
+  if(s) s.classList.remove('on');
+  if(q) q.classList.remove('on');
+});
 
 /* ============ SOURCES ============ */
 function ytId(s){
@@ -1603,6 +2103,7 @@ function ytFallback(id){
   $('#shield').style.display='none'; $('#spin').classList.remove('on');
 }
 function loadYT(id){
+  destroyHls(); destroyDash();
   state.ytId=id; state.remoteLocal=null; setMode('yt'); setNow('YouTube');
   if(state.ytFb){ $('#ytWrap').innerHTML='<div id="ytPlayer"></div>'; $('#shield').style.display='none'; $('#shield').style.display=''; state.ytFb=0; yt=null; ytReady=false; }
   ensureYT(()=>{
@@ -1632,6 +2133,7 @@ $('#ytIn').addEventListener('keydown',e=>{ if(e.key==='Enter') $('#ytBtn').click
 
 $('#fileIn').onchange=()=>{
   const f=$('#fileIn').files[0]; if(!f) return;
+  destroyHls(); destroyDash();
   stopStream(); if(state.blob) URL.revokeObjectURL(state.blob);
   state.blob=URL.createObjectURL(f);
   video.querySelectorAll('track').forEach(x=>x.remove());
@@ -1646,9 +2148,9 @@ $('#fileIn').onchange=()=>{
   sysMsg(t('sysPick',{f:f.name}));
   $('#fileIn').value='';
 };
-video.onerror=()=>{ if(state.mode==='local') toast(t('tFormat')); };
+video.onerror=()=>{ if(state.mode==='local'||state.mode==='url') toast(t('tFormat')); };
 video.onended=onEnded;
-video.addEventListener('waiting',()=>{ if(state.mode==='local') $('#spin').classList.add('on'); });
+video.addEventListener('waiting',()=>{ if(state.mode==='local'||state.mode==='hls'||state.mode==='dash'||state.mode==='url') $('#spin').classList.add('on'); });
 ['playing','canplay','seeked','pause'].forEach(ev=>video.addEventListener(ev,()=>$('#spin').classList.remove('on')));
 
 function checkMatch(){
@@ -1967,6 +2469,10 @@ function sendSource(id){
   const S=o=>sendTo(id,o);
   if(state.mode==='yt') S({t:'src',kind:'yt',id:state.ytId});
   else if(state.mode==='local' && state.localMeta) S({t:'src',kind:'local',name:state.localMeta.name,size:state.localMeta.size});
+  else if(state.mode==='hls' && state.streamUrl) S({t:'src',kind:'hls',url:state.streamUrl,title:state.streamTitle});
+  else if(state.mode==='dash' && state.streamUrl) S({t:'src',kind:'dash',url:state.streamUrl,title:state.streamTitle});
+  else if(state.mode==='url' && state.streamUrl) S({t:'src',kind:'url',url:state.streamUrl,title:state.streamTitle});
+  else if(state.mode==='ott' && state.ottComp) S({t:'src',kind:'ott',id:state.ottComp.id,title:state.ottComp.title,url:state.ottComp.url});
   if(state.ott) S({t:'ott',id:state.ott,quiet:1});
   state.links.forEach(l=>S({t:'link',id:l.id,url:l.url,title:l.title,by:l.by,quiet:1}));
   setTimeout(()=>{ if(state.mode&&state.mode!=='stream'&&P.ready()) sendTo(id,hbMsg()); },2000);
@@ -2002,6 +2508,10 @@ function onData(m){
     case 'full': toast(t('tFull')); break;
     case 'src':
       if(m.kind==='yt' && ytId(String(m.id))){ loadYT(String(m.id)); showTab('P'); sysMsg(t('sysFriendYt',{n:F})); toast(t('tYtLoaded')); }
+      else if(m.kind==='hls' && m.url){ loadHlsStream(m.url, m.title, true); showTab('P'); sysMsg('📺 ' + F + ' loaded HLS: ' + (m.title||'')); toast('📺 HLS Stream Loaded'); }
+      else if(m.kind==='dash' && m.url){ loadDashStream(m.url, m.title, true); showTab('P'); sysMsg('📺 ' + F + ' loaded DASH: ' + (m.title||'')); toast('📺 DASH Stream Loaded'); }
+      else if(m.kind==='url' && m.url){ loadDirectUrl(m.url, m.title, true); showTab('P'); sysMsg('🎬 ' + F + ' loaded Media: ' + (m.title||'')); toast('🎬 Media Stream Loaded'); }
+      else if(m.kind==='ott'){ activateOttCompanion(m.id, m.title, m.url, true); showTab('P'); sysMsg('🍿 ' + F + ' started Watch Party'); toast('🍿 Watch Party Started'); }
       else if(m.kind==='local'){
         state.remoteLocal={name:String(m.name||'').slice(0,200),size:+m.size||0,fid:m.fid,fn:F};
         checkMatch(); updateBanner(); sysMsg(t('sysFriendFile',{n:F,f:state.remoteLocal.name}));
@@ -2443,6 +2953,29 @@ $('#gifKeySave').onclick=()=>{ const k=$('#gifKeyIn').value.trim(); if(k){ gkey=
   buildAvatars();
   const room=new URLSearchParams(location.search).get('room');
   applyLang(); applyVol();
+  buildSizeMenu();
+
+  const uniBtn = $('#uniLoadBtn'), uniIn = $('#uniUrlIn');
+  if(uniBtn && uniIn){
+    uniBtn.onclick = () => loadUniversalStream(uniIn.value);
+    uniIn.addEventListener('keydown', e => { if(e.key === 'Enter') loadUniversalStream(uniIn.value); });
+  }
+  const streamShareBtn = $('#uniStreamShareBtn');
+  if(streamShareBtn) streamShareBtn.onclick = startScreenShareToCinema;
+
+  document.querySelectorAll('.uni-demo-pill').forEach(b => {
+    b.onclick = () => {
+      const u = b.dataset.url;
+      if(uniIn) uniIn.value = u;
+      loadUniversalStream(u, b.dataset.title);
+    };
+  });
+
+  const ottCountBtn = $('#ottCompCountBtn');
+  if(ottCountBtn) ottCountBtn.onclick = () => { if(connected()) send({t:'cd'}); runCountdown(); };
+  const ottStreamBtn = $('#ottCompStreamBtn');
+  if(ottStreamBtn) ottStreamBtn.onclick = startScreenShareToCinema;
+
   if(room){ $('#codeIn').value=room.toUpperCase().slice(0,6); showLobby('inviteReady','ok'); setTimeout(()=>{ const s=$('#steps'); if(s) s.scrollIntoView({behavior:'smooth'}); },400); }
   else if(location.protocol==='file:') showLobby('fileNote');
 })();

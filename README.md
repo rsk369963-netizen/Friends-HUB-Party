@@ -17,12 +17,23 @@ A next-generation virtual party platform featuring synchronized video streaming,
 
 ## 🚀 Key Features
 
-### 1. 🎬 Watch Party & Video Sync
-- Synchronized playback for local MP4/WebM video and MP3 audio files across peers.
-- Built-in YouTube player with synchronized play, pause, seek, and playback rate.
-- Peer-to-peer screen streaming via WebRTC MediaStreams.
-- Audio volume booster up to 300% using Web Audio API gain nodes.
-- OTT Hub with shortcuts to major platforms (Netflix, Prime Video, Hotstar, SonyLIV, aha, ZEE5, Sun NXT, Apple TV+, and more).
+### 1. 🎬 Universal Streaming Player & Virtual Cinema
+- **Universal Stream Detection**: Paste any stream link to auto-detect and play:
+  - **Apple HLS (`.m3u8`)**: Live & VOD streaming powered by `Hls.js` and native Apple Safari pipelines.
+  - **MPEG-DASH (`.mpd`)**: Adaptive bitrate streaming powered by `Dash.js`.
+  - **Direct HTML5 Media**: Direct HTTP/HTTPS streams for MP4, WebM, OGV, MP3, M4A, WAV, and local files.
+  - **YouTube Player**: Full synchronization for standard videos, Shorts, live streams, and embed links.
+- **OTT Watch Party Companion Hub**:
+  - Authorized co-watching companion for DRM-protected services (**Netflix, JioHotstar, Amazon Prime Video, SonyLIV, aha, ZEE5, Sun NXT**, etc.).
+  - Synchronized room timestamp counter, sync beacons, and master 3-2-1 countdown trigger so friends hit play together.
+  - Zero DRM circumvention; respects official provider security boundaries while delivering true synchronized co-watching.
+- **P2P Live Screen & Audio Streaming**:
+  - Host can broadcast any screen, application window, or browser tab with system audio directly to room members via WebRTC MediaStreams.
+- **Cinema Controls**:
+  - Aspect Ratio Selector (`Fit`, `Cover`, `16:9 Cinema`, `21:9 Ultrawide`, `Stretch`).
+  - Adaptive Quality / Level Picker (Auto, 1080p, 720p, 480p, 360p).
+  - Audio Volume Booster up to 300% with Web Audio API dynamics compression.
+  - Subtitle track loader (`.vtt` / `.srt`), playback rate (`0.25x` to `2x`), Picture-in-Picture (`PiP`), and Fullscreen.
 
 ### 2. 🎮 50+ Real-Time Multiplayer Games
 - Instant P2P multiplayer powered by PeerJS DataChannels.
