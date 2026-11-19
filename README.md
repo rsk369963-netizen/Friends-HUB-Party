@@ -78,11 +78,34 @@ A next-generation virtual party platform featuring synchronized video streaming,
   1. **English** (`en`)
   2. **தமிழ் (Tamil)** (`ta`)
   3. **Tanglish** (`th`)
-- Applies across all menus, buttons, game rules, dialogue cards, scoreboard, and system messages.
+- Applies across all menus, buttons, game rules, dialogue cards, scoreboard, Party Pack games, and system messages.
 
-### 6. 📱 Full Responsive Design
-- Optimized for desktops, laptops, tablets, iPhones, and Android smartphones.
-- Zero horizontal overflow, adaptive touch targets (minimum $44 \times 44\text{ px}$), and optimized single-column layout on mobile screens.
+### 6. 🎉 Advanced Party Pack & 🔞 18+ After Dark
+- **Real-Time Online Multiplayer**:
+  - All room members play together simultaneously using their own smartphones or laptops over WebRTC data channels.
+  - Synchronized timers, round prompts, live voter participation status, and synchronized reveal screens.
+  - Real-time podiums (1st 🥇, 2nd 🥈, 3rd 🥉) with confetti animations and celebratory sound effects.
+  - Automatic late-joiner synchronization and reconnection recovery.
+- **Family / Standard Games (All Ages)**:
+  - **Truth or Dare**: Classic party game with 3-language prompt engine and skip moderation.
+  - **Would You Rather**: Secret voting on fun dilemmas with majority-rules scoring.
+  - **Emoji Challenge**: 20-second speed decoding of famous movies and phrases.
+  - **Fake or Real?**: Fast-paced science and nature fact trivia with speed bonuses.
+- **🔞 18+ After Dark – Adult Party Games (Exclusive Private Lounge)**:
+  - Completely separate module with dedicated dark luxury neon crimson visual theme.
+  - **Private Host-Controlled Access System**:
+    - Host-generated private access passcode (never exposed in public broadcasts).
+    - Host enable/disable toggle.
+    - Player 18+ age verification check and private access request.
+    - Host moderation popup with **Accept** / **Reject** controls.
+    - Approved member roster with instant **Revoke Access** capability.
+  - **🔞 18+ Truth or Dare**: Spicy, personal, relationship, and romantic truths/dares for consenting adults with skip protection.
+  - **🔥 18+ Questions & Answers**: Provocative debates, multiple-choice polls, and open-ended confessions with group voting.
+
+### 7. 📱 Mobile Responsive & Touch Optimization
+- Smooth vertical momentum scrolling on iOS and Android devices (`-webkit-overflow-scrolling: touch`).
+- Safe-area inset protection preventing bottom navigation and AI assistant floating button overlap.
+- Touch-friendly tap targets ($44\text{ px}+$ minimum), no accidental scroll locking, and zero horizontal overflow.
 
 ---
 
