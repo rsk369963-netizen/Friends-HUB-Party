@@ -1,0 +1,549 @@
+/* Phase 4: Full Responsive Design (Mobile, Tablet, Laptop, Desktop) & Accessibility */
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+:focus-visible{outline:2px solid var(--gold,#f5c76b)!important;outline-offset:2px;border-radius:8px}
+button,.btn,[role=button],a{touch-action:manipulation}
+
+/* ================= RESPONSIVE SYSTEM (Mobile, Tablet, Laptop, Desktop) ================= */
+
+/* Hub Navigation Tabs - Core Styling */
+.tabs2 {
+  display: flex !important;
+  flex-wrap: nowrap !important;
+  align-items: center !important;
+  gap: 8px !important;
+  padding: 6px 8px !important;
+  border-radius: 16px !important;
+  background: rgba(255, 255, 255, 0.05) !important;
+  border: 1px solid var(--line) !important;
+  backdrop-filter: blur(14px) !important;
+  -webkit-backdrop-filter: blur(14px) !important;
+  overflow-x: auto !important;
+  scrollbar-width: none !important;
+  -webkit-overflow-scrolling: touch !important;
+  width: 100% !important;
+  box-sizing: border-box !important;
+  flex-shrink: 0 !important;
+  margin: 4px 0 10px !important;
+}
+.tabs2::-webkit-scrollbar { display: none !important; }
+.tabs2 button {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 8px !important;
+  padding: 9px 16px !important;
+  border-radius: 12px !important;
+  background: rgba(255, 255, 255, 0.04) !important;
+  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+  color: var(--muted) !important;
+  font-weight: 700 !important;
+  font-size: 13.5px !important;
+  white-space: nowrap !important;
+  flex: 0 0 auto !important;
+  min-height: 42px !important;
+  cursor: pointer !important;
+  transition: all 0.2s ease !important;
+}
+.tabs2 button:hover {
+  background: rgba(255, 255, 255, 0.12) !important;
+  color: #fff !important;
+}
+.tabs2 button.on {
+  background: var(--grad) !important;
+  color: #fff !important;
+  border-color: rgba(255, 255, 255, 0.3) !important;
+  box-shadow: 0 6px 20px rgba(var(--ar), 0.45) !important;
+}
+.tabs2 button svg {
+  width: 18px !important;
+  height: 18px !important;
+  flex-shrink: 0 !important;
+}
+
+/* Tablet & Smaller Screens (< 1024px) */
+@media (max-width: 1024px) {
+  .app {
+    display: flex !important;
+    flex-direction: column !important;
+    height: 100dvh !important;
+    padding: 10px !important;
+    gap: 10px !important;
+    overflow-x: hidden !important;
+  }
+  .main {
+    flex: 1 1 auto !important;
+    min-height: 0 !important;
+    overflow-y: auto !important;
+    -webkit-overflow-scrolling: touch !important;
+  }
+  .chat {
+    flex: 0 0 auto !important;
+    max-height: 42vh !important;
+    min-height: 0 !important;
+  }
+  .stage {
+    aspect-ratio: 16/9 !important;
+    width: 100% !important;
+    max-height: calc(100vh - 200px) !important;
+  }
+}
+
+/* Mobile Screens (< 768px) */
+@media (max-width: 768px) {
+  button,.btn,select,input{min-height:36px}
+  input,select,textarea{font-size:14px!important}
+  body{padding-bottom:env(safe-area-inset-bottom);overflow-x:hidden}
+  .app {
+    padding: 6px 6px env(safe-area-inset-bottom) !important;
+    gap: 6px !important;
+    overflow-x: hidden !important;
+  }
+  
+  /* Compact 2-Row Mobile Header (Grid-Aligned) */
+  .top {
+    display: grid !important;
+    grid-template-columns: auto 1fr auto !important;
+    grid-template-rows: auto auto !important;
+    gap: 6px 8px !important;
+    align-items: center !important;
+    padding: 8px 10px !important;
+    background: rgba(14, 11, 26, 0.75) !important;
+    border-radius: 14px !important;
+    border: 1px solid var(--line) !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+  }
+  .top #homeBtn {
+    grid-column: 1 !important;
+    grid-row: 1 !important;
+    padding: 5px 9px !important;
+    font-size: 11.5px !important;
+    min-height: 32px !important;
+    border-radius: 8px !important;
+    white-space: nowrap !important;
+    margin: 0 !important;
+  }
+  .top .brandbox {
+    grid-column: 2 !important;
+    grid-row: 1 !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 5px !important;
+    margin: 0 !important;
+    min-width: 0 !important;
+  }
+  .top .brandbox .mark {
+    width: 22px !important;
+    height: 22px !important;
+    flex-shrink: 0 !important;
+  }
+  .top .brandbox .brand {
+    font-size: 13.5px !important;
+    white-space: nowrap !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+  }
+  .top .room {
+    grid-column: 3 !important;
+    grid-row: 1 !important;
+    padding: 4px 8px !important;
+    font-size: 11px !important;
+    margin: 0 !important;
+    white-space: nowrap !important;
+    flex: none !important;
+    max-width: none !important;
+  }
+  .top .actions {
+    grid-column: 1 / -1 !important;
+    grid-row: 2 !important;
+    display: flex !important;
+    align-items: center !important;
+    gap: 6px !important;
+    width: 100% !important;
+    overflow-x: auto !important;
+    scrollbar-width: none !important;
+    -webkit-overflow-scrolling: touch !important;
+    padding: 2px 0 0 !important;
+    margin: 0 !important;
+    flex-wrap: nowrap !important;
+  }
+  .top .actions::-webkit-scrollbar { display: none !important; }
+  .top .actions .gbtn {
+    padding: 5px 8px !important;
+    font-size: 11.5px !important;
+    min-height: 30px !important;
+    flex-shrink: 0 !important;
+    border-radius: 8px !important;
+  }
+  .top .actions .themesw {
+    padding: 3px 6px !important;
+    flex-shrink: 0 !important;
+  }
+  .top .actions .themesw .thb {
+    font-size: 11.5px !important;
+  }
+  .top .actions .langsw {
+    flex-shrink: 0 !important;
+  }
+  .top .actions .langsw button {
+    padding: 4px 7px !important;
+    font-size: 11px !important;
+    min-height: 28px !important;
+  }
+  
+  /* Mobile Hub Tabs */
+  .tabs2 {
+    padding: 4px 6px !important;
+    gap: 6px !important;
+    margin: 2px 0 6px !important;
+  }
+  .tabs2 button {
+    padding: 7px 12px !important;
+    font-size: 12px !important;
+    min-height: 36px !important;
+    border-radius: 10px !important;
+  }
+
+  /* Virtual Cinema Stage & Controls */
+  .stage {
+    aspect-ratio: 16/9 !important;
+    width: 100% !important;
+    min-height: 220px !important;
+    max-height: 48vh !important;
+    border-radius: 14px !important;
+    position: relative !important;
+  }
+  #banner {
+    top: 6px !important;
+    left: 6px !important;
+    right: 6px !important;
+    padding: 6px 10px !important;
+    font-size: 11px !important;
+    border-radius: 10px !important;
+    line-height: 1.3 !important;
+  }
+  #banner .bbtns {
+    margin-top: 4px !important;
+    gap: 4px !important;
+  }
+  #banner .bbtns button {
+    font-size: 10.5px !important;
+    padding: 3px 8px !important;
+    min-height: 26px !important;
+  }
+
+  /* Universal Stream Bar on Mobile */
+  .uni-stream-bar {
+    padding: 8px 10px !important;
+    gap: 6px !important;
+    border-radius: 14px !important;
+    margin: 4px 0 !important;
+  }
+  .uni-stream-row {
+    display: grid !important;
+    grid-template-columns: 1fr auto !important;
+    gap: 6px !important;
+    align-items: center !important;
+  }
+  .uni-stream-badge {
+    grid-column: 1 / -1 !important;
+    font-size: 11px !important;
+    padding: 3px 9px !important;
+    width: fit-content !important;
+    margin-bottom: 2px !important;
+  }
+  .uni-stream-row input {
+    grid-column: 1 !important;
+    font-size: 12.5px !important;
+    padding: 8px 10px !important;
+    min-height: 36px !important;
+    border-radius: 10px !important;
+    min-width: 0 !important;
+    width: 100% !important;
+  }
+  .uni-stream-row #uniLoadBtn {
+    grid-column: 2 !important;
+    padding: 8px 14px !important;
+    font-size: 12px !important;
+    min-height: 36px !important;
+    border-radius: 10px !important;
+    white-space: nowrap !important;
+  }
+  .uni-stream-row #uniStreamShareBtn {
+    grid-column: 1 / -1 !important;
+    padding: 6px 10px !important;
+    font-size: 11.5px !important;
+    min-height: 32px !important;
+    border-radius: 10px !important;
+  }
+  .uni-quick-demos {
+    display: flex !important;
+    gap: 5px !important;
+    overflow-x: auto !important;
+    scrollbar-width: none !important;
+    -webkit-overflow-scrolling: touch !important;
+    flex-wrap: nowrap !important;
+    padding: 2px 0 !important;
+  }
+  .uni-quick-demos::-webkit-scrollbar { display: none !important; }
+  .uni-demos-lbl {
+    font-size: 11px !important;
+    flex-shrink: 0 !important;
+  }
+  .uni-demo-pill {
+    font-size: 11px !important;
+    padding: 3px 8px !important;
+    flex-shrink: 0 !important;
+    white-space: nowrap !important;
+  }
+
+  /* Chat Drawer on Mobile */
+  .chat {
+    max-height: 35vh !important;
+    border-radius: 14px !important;
+  }
+  #aiAssistantBtn {
+    padding: 7px 12px !important;
+    font-size: 11.5px !important;
+    right: 8px !important;
+    bottom: calc(52px + env(safe-area-inset-bottom)) !important;
+  }
+}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;scroll-behavior:auto!important}}
+/* AI Assistant Floating Widget & Modern Chat Interface */
+#aiAssistantBtn{
+  position:fixed;
+  right:16px;
+  bottom:calc(66px + env(safe-area-inset-bottom));
+  z-index:99980;
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  padding:10px 18px;
+  border-radius:999px;
+  font-weight:700;
+  font-size:13.5px;
+  background:linear-gradient(135deg,#3b82f6,#8b5cf6,#ec4899);
+  color:#fff;
+  border:1px solid rgba(255,255,255,.3);
+  box-shadow:0 8px 24px rgba(139,92,246,.5), 0 0 12px rgba(59,130,246,.4);
+  cursor:pointer;
+  transition:transform .2s,box-shadow .2s;
+}
+#aiAssistantBtn:hover{
+  transform:scale(1.05);
+  box-shadow:0 12px 30px rgba(139,92,246,.65);
+}
+#aiAssistantBtn .pulse{
+  width:9px;
+  height:9px;
+  border-radius:50%;
+  background:#34d399;
+  box-shadow:0 0 8px #34d399;
+  animation:glowp 2s infinite;
+}
+#aiAssistantPanel{
+  position:fixed;
+  right:16px;
+  bottom:calc(70px + env(safe-area-inset-bottom));
+  width:min(420px,calc(100vw - 32px));
+  height:min(580px,calc(100vh - 110px));
+  z-index:99985;
+  display:flex;
+  flex-direction:column;
+  border-radius:24px;
+  background:rgba(13,10,28,.92);
+  border:1px solid rgba(255,255,255,.16);
+  backdrop-filter:blur(24px);
+  -webkit-backdrop-filter:blur(24px);
+  box-shadow:0 24px 60px rgba(0,0,0,.65), 0 0 0 1px rgba(139,92,246,.3);
+  overflow:hidden;
+  animation:scaleUp .25s ease-out;
+}
+@keyframes scaleUp{
+  from{opacity:0;transform:scale(.92) translateY(20px)}
+  to{opacity:1;transform:scale(1) translateY(0)}
+}
+#aiAssistantPanel.minimized{
+  height:60px!important;
+}
+#aiAssistantPanel .ai-head{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:14px 18px;
+  background:linear-gradient(135deg,rgba(139,92,246,.25),rgba(236,72,153,.15));
+  border-bottom:1px solid rgba(255,255,255,.1);
+}
+#aiAssistantPanel .ai-head h3{
+  margin:0;
+  font-size:15px;
+  font-weight:700;
+  display:flex;
+  align-items:center;
+  gap:8px;
+}
+#aiAssistantPanel .ai-head .ai-status{
+  font-size:11px;
+  padding:2px 8px;
+  border-radius:99px;
+  background:rgba(52,211,153,.15);
+  color:#34d399;
+  font-weight:600;
+}
+#aiAssistantPanel .ai-head-btns{
+  display:flex;
+  gap:6px;
+}
+#aiAssistantPanel .ai-head-btns button{
+  padding:6px 9px;
+  font-size:12px;
+  border-radius:8px;
+  background:rgba(255,255,255,.08);
+  border:1px solid var(--line);
+}
+#aiAssistantSettings{
+  padding:12px 16px;
+  background:rgba(0,0,0,.35);
+  border-bottom:1px solid var(--line);
+  font-size:12.5px;
+  display:none;
+}
+#aiAssistantSettings.open{
+  display:block;
+}
+#aiAssistantSettings input{
+  margin-top:6px;
+  padding:8px 12px;
+  font-size:12px;
+  border-radius:8px;
+}
+.ai-quick-prompts{
+  display:flex;
+  gap:6px;
+  padding:10px 14px;
+  overflow-x:auto;
+  scrollbar-width:none;
+  background:rgba(255,255,255,.02);
+  border-bottom:1px solid rgba(255,255,255,.06);
+}
+.ai-quick-prompts::-webkit-scrollbar{display:none}
+.ai-quick-prompts button{
+  white-space:nowrap;
+  font-size:11.5px;
+  padding:5px 10px;
+  border-radius:99px;
+  background:rgba(255,255,255,.06);
+  border:1px solid rgba(255,255,255,.1);
+  color:var(--text);
+  flex-shrink:0;
+}
+#aiAssistantMsgs{
+  flex:1;
+  padding:14px;
+  overflow-y:auto;
+  display:flex;
+  flex-direction:column;
+  gap:12px;
+  font-size:13.5px;
+  line-height:1.5;
+}
+.ai-msg{
+  display:flex;
+  flex-direction:column;
+  max-width:88%;
+  gap:4px;
+}
+.ai-msg.user{
+  align-self:flex-end;
+}
+.ai-msg.user .ai-bubble{
+  background:linear-gradient(135deg,#3b82f6,#8b5cf6);
+  color:#fff;
+  border-radius:18px 18px 4px 18px;
+  padding:10px 14px;
+}
+.ai-msg.bot{
+  align-self:flex-start;
+}
+.ai-msg.bot .ai-bubble{
+  background:rgba(255,255,255,.08);
+  border:1px solid rgba(255,255,255,.12);
+  border-radius:18px 18px 18px 4px;
+  padding:12px 14px;
+  color:#f1f0f7;
+}
+.ai-msg .ai-time{
+  font-size:10.5px;
+  color:var(--muted);
+  margin-top:2px;
+}
+.ai-msg.user .ai-time{
+  text-align:right;
+}
+#aiAssistantInputBar{
+  display:flex;
+  gap:8px;
+  padding:12px 14px;
+  background:rgba(0,0,0,.4);
+  border-top:1px solid rgba(255,255,255,.1);
+  align-items:center;
+}
+#aiAssistantInputBar input{
+  flex:1;
+  padding:10px 14px;
+  font-size:13px;
+  border-radius:12px;
+}
+#aiAssistantSendBtn{
+  padding:10px 16px;
+  font-weight:700;
+  border-radius:12px;
+  background:var(--grad);
+  color:#fff;
+  flex-shrink:0;
+}
+@media(max-width:600px){
+  #aiAssistantPanel{
+    right:8px;
+    left:8px;
+    width:auto;
+    bottom:calc(60px + env(safe-area-inset-bottom));
+    height:calc(82vh - 60px);
+  }
+}
+#p4-bar button{background:rgba(20,16,36,.82);backdrop-filter:blur(10px);color:#f4f2fb;border:1px solid rgba(255,255,255,.18);border-radius:999px;padding:8px 14px;font:600 13px Inter,system-ui,sans-serif;cursor:pointer;min-height:40px}
+#p4-bar button:hover{border-color:#8b5cf6}
+#p4-bar button.on{background:linear-gradient(135deg,#8b5cf6,#ec4899)}
+#p4-toast{position:fixed;left:50%;top:calc(14px + env(safe-area-inset-top));transform:translate(-50%,-140%);transition:transform .3s;z-index:99999;background:#1b1530;color:#fff;border:1px solid rgba(255,255,255,.2);padding:10px 16px;border-radius:12px;font:600 13px Inter,system-ui,sans-serif;max-width:92vw;text-align:center}
+#p4-toast.show{transform:translate(-50%,0)}
+#p4-toast.warn{background:#5b1f2e}
+/* In-game quick reaction bar & celebration badges */
+.g-react-bar{display:inline-flex;gap:4px;align-items:center;background:rgba(255,255,255,.06);padding:3px 8px;border-radius:99px;border:1px solid rgba(255,255,255,.12);margin:0 4px}
+.g-react-pill{background:none;border:none;font-size:16px;cursor:pointer;padding:2px 5px;border-radius:8px;transition:transform .15s,background .15s;line-height:1}
+.g-react-pill:hover{transform:scale(1.28);background:rgba(255,255,255,.18)}
+.badge-row{display:flex;gap:6px;flex-wrap:wrap;justify-content:center;margin:10px 0}
+.achieve-badge{display:inline-flex;align-items:center;gap:4px;padding:4px 10px;border-radius:99px;font-size:12px;font-weight:700;background:linear-gradient(135deg,rgba(245,199,107,.15),rgba(139,92,246,.2));border:1px solid rgba(245,199,107,.35);color:#fde047;animation:scaleUp .3s ease-out}
+/* Universal Streaming Player & Companion Hub styles */
+.uni-stream-bar{margin:0 0 12px;padding:12px 14px;border-radius:20px;border:1.5px solid rgba(var(--ar),.35);background:linear-gradient(135deg,rgba(var(--ar),.15),rgba(var(--br),.1));display:flex;flex-direction:column;gap:10px;box-shadow:0 8px 30px rgba(0,0,0,.35)}
+.uni-stream-row{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.uni-stream-badge{flex:none;font-size:12px;font-weight:700;padding:6px 12px;border-radius:999px;background:var(--grad);color:#fff;display:inline-flex;align-items:center;gap:6px;box-shadow:0 4px 14px rgba(var(--ar),.4)}
+.uni-stream-row input{flex:1;min-width:200px;background:rgba(0,0,0,.4);border:1px solid rgba(255,255,255,.16);padding:10px 14px;border-radius:12px;font-size:13.5px}
+.uni-stream-row button{flex:none;padding:10px 16px;font-size:13px;font-weight:700;border-radius:12px}
+.uni-quick-demos{display:flex;gap:6px;align-items:center;flex-wrap:wrap;font-size:12px}
+.uni-demos-lbl{color:var(--muted);font-weight:600}
+.uni-demo-pill{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12);color:var(--text);padding:4px 10px;border-radius:999px;font-size:11.5px;cursor:pointer;transition:transform .15s,background .15s}
+.uni-demo-pill:hover{background:rgba(255,255,255,.16);transform:translateY(-1px)}
+.ott-companion-deck{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:center;align-items:center;padding:24px;background:radial-gradient(circle at 50% 35%,rgba(var(--ar),.25),#07060d 75%);text-align:center;z-index:3;animation:fadeIn .3s ease}
+.ott-comp-header{position:absolute;top:16px;left:20px;right:20px;display:flex;justify-content:space-between;align-items:center}
+.ott-comp-badge{font-size:12px;font-weight:700;padding:4px 12px;border-radius:999px;background:rgba(245,199,107,.18);color:var(--gold);border:1px solid rgba(245,199,107,.4)}
+.ott-comp-sync-status{font-size:12px;color:var(--ok);font-weight:600;display:flex;align-items:center;gap:6px}
+.ott-comp-body{display:flex;flex-direction:column;align-items:center;gap:12px;max-width:540px}
+.ott-comp-logo{font-size:48px;animation:bob 3s ease-in-out infinite}
+.ott-comp-title{margin:0;font-size:clamp(22px,4vw,32px);font-weight:800}
+.ott-comp-desc{margin:0;color:var(--muted);font-size:13.5px;line-height:1.5}
+.ott-comp-timer{font-family:'Plus Jakarta Sans',sans-serif;font-size:clamp(36px,7vw,64px);font-weight:800;letter-spacing:.08em;color:#fff;text-shadow:0 0 25px rgba(var(--ar),.6);font-variant-numeric:tabular-nums;margin:6px 0}
+.ott-comp-actions{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;width:100%}
+.ott-comp-actions button{padding:12px 18px;font-size:13.5px;font-weight:700;border-radius:14px}
+.ott-comp-hint{font-size:12px;color:var(--muted);margin-top:4px}

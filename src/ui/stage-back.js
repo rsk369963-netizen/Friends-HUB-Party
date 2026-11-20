@@ -1,0 +1,1 @@
+const bsb=$('#bStageBack'); if(bsb) bsb.onclick=()=>{ if(state.mode==='stream') $('#bExit').click(); else { if(state.streaming) stopStream(); P.pause(); setMode(null); const sb=$('#srcBox'); sb.open=true; sb.scrollIntoView({behavior:'smooth',block:'center'}); } };

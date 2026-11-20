@@ -168,7 +168,7 @@ video::cue{font-size:1.2em;background:rgba(0,0,0,.65)}
 .bbtns button{font-size:13px;padding:8px 12px}
 
 .ctrl{position:absolute;left:12px;right:12px;bottom:12px;z-index:4;padding:6px 14px 8px;border-radius:18px;background:rgba(14,12,24,.66);backdrop-filter:blur(20px) saturate(1.5);-webkit-backdrop-filter:blur(20px) saturate(1.5);border:1px solid rgba(255,255,255,.12);opacity:0;transform:translateY(8px);transition:opacity .25s,transform .25s}
-.stage.show .ctrl,.stage.paused .ctrl{opacity:1;transform:none}
+.stage.show:not(.ctrl-hidden) .ctrl{opacity:1;transform:none}.stage.ctrl-hidden .ctrl{opacity:0!important;pointer-events:none!important}
 .stage.nomedia .ctrl{display:none}
 .crow{display:flex;align-items:center;justify-content:space-between;gap:6px}
 .cl,.cr{display:flex;align-items:center;gap:2px}
@@ -598,7 +598,17 @@ html[data-theme=white] .gcard small,html[data-theme=white] .ottcard b{color:#090
 
 /* ===== Universal Responsive Media Player Controls (Mobile, Tablet, PC) ===== */
 .ctrl{position:absolute;left:10px;right:10px;bottom:10px;z-index:5;padding:8px 12px;border-radius:16px;background:rgba(12,10,22,.86);backdrop-filter:blur(20px) saturate(1.5);-webkit-backdrop-filter:blur(20px) saturate(1.5);border:1px solid rgba(255,255,255,.14);opacity:0;transform:translateY(6px);transition:opacity .25s ease,transform .25s ease;display:flex;flex-direction:column;gap:6px;box-shadow:0 8px 32px rgba(0,0,0,.6)}
-.stage.show .ctrl,.stage.paused .ctrl,.stage:hover .ctrl{opacity:1!important;transform:none!important;pointer-events:auto!important}
+.stage.show:not(.ctrl-hidden) .ctrl{opacity:1!important;transform:none!important;pointer-events:auto!important}
+.stage.ctrl-hidden .ctrl{opacity:0!important;transform:translateY(14px)!important;pointer-events:none!important}
+@media(hover:hover) and (pointer:fine){.stage:hover:not(.ctrl-hidden) .ctrl{opacity:1;transform:none;pointer-events:auto}}
+.show-ctrl-pill{position:absolute!important;right:12px!important;bottom:12px!important;z-index:7!important;background:rgba(14,12,24,.82)!important;backdrop-filter:blur(16px)!important;-webkit-backdrop-filter:blur(16px)!important;border:1px solid rgba(255,255,255,.24)!important;color:#fff!important;box-shadow:0 4px 18px rgba(0,0,0,.6)!important;font-size:12px!important;font-weight:600!important;padding:0 12px!important;height:32px!important;border-radius:999px!important;cursor:pointer!important;display:inline-flex!important;align-items:center!important;gap:5px!important;transition:opacity .25s ease,transform .25s ease!important}
+.show-ctrl-pill:hover{background:rgba(var(--ar),.5)!important;border-color:rgba(255,255,255,.45)!important}
+.show-ctrl-pill[hidden]{display:none!important}
+.stage.nomedia .show-ctrl-pill{display:none!important}
+.hide-bar-btn{background:rgba(168,85,247,.22)!important;border-color:rgba(168,85,247,.45)!important;color:#e9d5ff!important;font-weight:600!important;display:inline-flex!important;align-items:center!important;gap:4px!important}
+.hide-bar-btn:hover{background:rgba(168,85,247,.4)!important;color:#fff!important}
+.uni-stream-bar.collapsed>*:not(.uni-stream-header){display:none!important}
+.uni-stream-bar.collapsed{padding:6px 12px!important;gap:0!important;margin-bottom:6px!important}
 .stage.nomedia .ctrl{display:none!important}
 .seekwrap{position:relative;height:24px;width:100%;cursor:pointer;display:flex;align-items:center}
 .crow{display:flex;align-items:center;justify-content:space-between;gap:8px;width:100%}
@@ -1372,7 +1382,7 @@ button,.btn,[role=button],a{touch-action:manipulation}
 
     <!-- ===== Virtual Cinema Hub pane ===== -->
     <div id="paneP" class="pane">
-      <div id="stage" class="stage nomedia"><button id="bStageBack" class="pillbtn" hidden style="position:absolute;top:10px;right:10px;z-index:7;background:rgba(0,0,0,.6)">← Back</button>
+      <div id="stage" class="stage nomedia"><button id="bShowCtrl" class="pillbtn show-ctrl-pill" hidden title="Show Controls (மீடியா பார் காட்டு)" data-tt="ttShowBar"><svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" style="vertical-align:middle;margin-right:4px"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg><span>Controls</span></button><button id="bStageBack" class="pillbtn" hidden style="position:absolute;top:10px;right:10px;z-index:7;background:rgba(0,0,0,.6)">← Back</button>
         <video id="video" playsinline preload="auto" style="display:none"></video>
         <div id="ytWrap" style="display:none"><div id="ytPlayer"></div></div>
         <!-- OTT Watch Party Companion Screen (Authorized Co-Watching) -->
@@ -1417,7 +1427,7 @@ button,.btn,[role=button],a{touch-action:manipulation}
             </div>
             <div class="cr">
               <div class="rw"><button id="bExit" class="pillbtn" hidden style="background:#ef4444;color:#fff">✖ Exit</button></div>
-              <div class="rw" style="position:relative"><button id="bSz" class="pillbtn" title="Screen size">⛶ Fit</button><div id="szMenu" class="qm"></div></div>
+              <button id="bHideCtrl" class="pillbtn hide-bar-btn" title="Hide Player Bar (திரை மறைக்க)" data-tt="ttHideBar"><svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" style="vertical-align:middle;margin-right:3px"><path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"/><line x1="1" y1="1" x2="23" y2="23"/></svg><span>Hide Bar</span></button><div class="rw" style="position:relative"><button id="bSz" class="pillbtn" title="Screen size">⛶ Fit</button><div id="szMenu" class="qm"></div></div>
               <div class="rw" style="position:relative"><button id="bQ" class="pillbtn" title="Quality (your device only)">HD</button><div id="qMenu" class="qm"></div></div>
               <div class="rw" style="position:relative"><button id="bRate" class="pillbtn" data-tt="ttSpeed">1x</button><div id="rateMenu" class="menu"></div></div>
               <button id="bLoop" class="cbtn" data-tt="ttLoop"></button>
@@ -1432,7 +1442,7 @@ button,.btn,[role=button],a{touch-action:manipulation}
       <!-- Universal Streaming Bar -->
       <div class="uni-stream-bar glass" id="uniStreamBar">
         <div class="uni-stream-row">
-          <div class="uni-stream-badge" id="uniStreamBadge">🌐 Universal Stream</div>
+          <div class="uni-stream-header" style="display:flex;align-items:center;justify-content:space-between;width:100%"><div class="uni-stream-badge" id="uniStreamBadge">🌐 Universal Stream</div><button id="bToggleUniStream" type="button" class="pillbtn" style="height:26px;font-size:11px;padding:0 8px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.14);color:var(--muted);cursor:pointer" title="Collapse / Expand stream section">▲ Hide Options</button></div>
           <input id="uniUrlIn" placeholder="Paste YouTube, HLS (.m3u8), DASH (.mpd), Direct Video/Audio, or OTT Link..." autocomplete="off">
           <button id="uniLoadBtn" class="primary">▶ Load Stream</button>
           <button id="uniStreamShareBtn" class="gbtn" title="Stream your screen / window / tab to friends in cinema">📡 Stream Screen</button>
@@ -1652,7 +1662,7 @@ msgPh:['Message type pannu…','Type a message…','செய்தி தட்
 gifPh:['GIF search…','Search GIFs…','GIF தேடு…'],search:['Search','Search','தேடு'],save:['Save','Save','சேமி'],
 gifKeyNote:['GIF search-ku free Giphy API key venum. Key illana kuda, GIF link-a chat-la paste pannina GIF-a varum.','GIF search needs a free Giphy API key. Without it, pasting a GIF link into chat still works.','GIF தேடலுக்கு இலவச Giphy API key தேவை. அது இல்லையென்றாலும் GIF லிங்க்கை சாட்டில் ஒட்டலாம்.'],
 gifNone:['GIF kedaikala 😅','No GIFs found 😅','GIF கிடைக்கவில்லை 😅'],gifFail:['GIF load aagala (key / internet check pannu)','GIF failed to load (check key / internet)','GIF லோட் ஆகவில்லை (இணையத்தை சரிபார்க்கவும்)'],
-ttPlay:['Play / Pause (Space)','Play / Pause (Space)','Play / Pause (Space)'],ttBack:['-10s (←)','-10s (←)','-10s (←)'],ttFwd:['+10s (→)','+10s (→)','+10s (→)'],ttMute:['Mute (M)','Mute (M)','Mute (M)'],ttSpeed:['Speed','Speed','வேகம்'],ttLoop:['Loop','Loop','Loop'],ttCC:['Subtitles (C)','Subtitles (C)','சப்டைட்டில் (C)'],ttPip:['Picture in Picture','Picture in Picture','Picture in Picture'],ttFs:['Fullscreen (F)','Fullscreen (F)','முழுத்திரை (F)'],
+ttPlay:['Play / Pause (Space)','Play / Pause (Space)','Play / Pause (Space)'],ttBack:['-10s (←)','-10s (←)','-10s (←)'],ttFwd:['+10s (→)','+10s (→)','+10s (→)'],ttMute:['Mute (M)','Mute (M)','Mute (M)'],ttSpeed:['Speed','Speed','வேகம்'],ttLoop:['Loop','Loop','Loop'],ttCC:['Subtitles (C)','Subtitles (C)','சப்டைட்டில் (C)'],ttPip:['Picture in Picture','Picture in Picture','Picture in Picture'],ttFs:['Fullscreen (F)','Fullscreen (F)','முழுத்திரை (F)'],ttHideBar:['Media Bar Maraika (H)','Hide Player Bar (H)','மீடியா பார் மறைக்க (H)'],ttShowBar:['Media Bar Kaatu','Show Player Controls','மீடியா பார் காட்டு'],
 /* OTT */
 ottSub:['Un favourite OTT-a select pannu — friend-kum same OTT open aagum.','Pick your OTT — your friend gets the same one.','உங்களுக்குப் பிடித்த OTT-ஐத் தேர்வு செய்யுங்கள் — நண்பருக்கும் அதுவே திறக்கும்.'],
 ottOpen:['Open','Open','திற'],
@@ -2505,20 +2515,64 @@ sw.addEventListener('mousemove',e=>{
   const tip=$('#stip'); tip.style.left=(f*100)+'%'; tip.textContent=fmt(f*(P.dur()||0));
 });
 let hideT;
-function showCtrl(){
-  stage.classList.add('show'); stage.classList.remove('nocursor'); clearTimeout(hideT);
-  hideT=setTimeout(()=>{
+let ctrlForcedHidden = false;
+
+function hideCtrl(userForced = false){
+  if(userForced) ctrlForcedHidden = true;
+  stage.classList.add('ctrl-hidden');
+  stage.classList.remove('show');
+  clearTimeout(hideT);
+  const sc = $('#bShowCtrl');
+  if(sc && state.mode) sc.hidden = false;
+  if(document.fullscreenElement) stage.classList.add('nocursor');
+}
+
+function showCtrl(userAction = false){
+  if(userAction) ctrlForcedHidden = false;
+  if(ctrlForcedHidden && !userAction) return;
+  stage.classList.remove('ctrl-hidden');
+  stage.classList.add('show');
+  stage.classList.remove('nocursor');
+  const sc = $('#bShowCtrl');
+  if(sc) sc.hidden = true;
+  clearTimeout(hideT);
+  hideT = setTimeout(()=>{
     if(P.playing()){
       stage.classList.remove('show');
       if(document.fullscreenElement) stage.classList.add('nocursor');
+      if(state.mode && $('#bShowCtrl')) $('#bShowCtrl').hidden = false;
     }
-  }, 4000);
+  }, 3500);
 }
-['mousemove','touchstart','pointerdown','click'].forEach(ev=>stage.addEventListener(ev,showCtrl,{passive:true}));
+
+const bHide = $('#bHideCtrl');
+if(bHide) bHide.onclick = e => {
+  e.stopPropagation();
+  hideCtrl(true);
+  toast('👁️ ' + (typeof t==='function'? t('ttHideBar'):'Player bar hidden'));
+};
+
+const bShow = $('#bShowCtrl');
+if(bShow) bShow.onclick = e => {
+  e.stopPropagation();
+  showCtrl(true);
+};
+
+const bTogUni = $('#bToggleUniStream');
+if(bTogUni) bTogUni.onclick = () => {
+  const bar = $('#uniStreamBar');
+  bar.classList.toggle('collapsed');
+  const isC = bar.classList.contains('collapsed');
+  bTogUni.textContent = isC ? '▼ Stream Options' : '▲ Hide Options';
+};
+
+['mousemove','touchstart'].forEach(ev => stage.addEventListener(ev, () => {
+  if (!ctrlForcedHidden) showCtrl(false);
+}, {passive:true}));
 
 let lastStageTap = 0;
 stage.addEventListener('click', e => {
-  if (e.target.closest('#ctrl') || e.target.closest('#bBack') || e.target.closest('#banner') || e.target.closest('#ottCompanion')) return;
+  if (e.target.closest('#ctrl') || e.target.closest('#bBack') || e.target.closest('#banner') || e.target.closest('#ottCompanion') || e.target.closest('#bStageBack') || e.target.closest('#bShowCtrl')) return;
   const now = Date.now();
   const rect = stage.getBoundingClientRect();
   const clickX = e.clientX - rect.left;
@@ -2532,14 +2586,15 @@ stage.addEventListener('click', e => {
     } else {
       togglePlay();
     }
-    showCtrl();
+    showCtrl(true);
     lastStageTap = 0;
   } else {
     lastStageTap = now;
-    if (stage.classList.contains('show') && P.playing()) {
-      stage.classList.remove('show');
+    const isVisible = stage.classList.contains('show') && !stage.classList.contains('ctrl-hidden');
+    if (isVisible) {
+      hideCtrl(true);
     } else {
-      showCtrl();
+      showCtrl(true);
     }
   }
 });
@@ -2557,7 +2612,7 @@ document.addEventListener('keydown',e=>{
   if(tg==='BUTTON' && (e.key===' '||e.key==='Enter')) return;
   const k=e.key.toLowerCase();
   const map={' ':togglePlay,'k':togglePlay,'arrowleft':()=>skip(-10),'j':()=>skip(-10),'arrowright':()=>skip(10),'l':()=>skip(10),
-    'f':toggleFs,'m':()=>$('#bMute').click(),'c':()=>$('#bCC').click(),'arrowup':()=>stepVol(.1),'arrowdown':()=>stepVol(-.1)};
+    'f':toggleFs,'h':()=>{ if(stage.classList.contains('ctrl-hidden')) showCtrl(true); else hideCtrl(true); },'m':()=>$('#bMute').click(),'c':()=>$('#bCC').click(),'arrowup':()=>stepVol(.1),'arrowdown':()=>stepVol(-.1)};
   if(map[k]){ e.preventDefault(); map[k](); showCtrl(); }
 });
 
