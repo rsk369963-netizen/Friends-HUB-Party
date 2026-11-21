@@ -1348,6 +1348,441 @@ button,.btn,[role=button],a{touch-action:manipulation}
   font-size: 11px;
   z-index: 1;
   margin-top: -6px;
+}
+/* ===== GESTURE CONTROLS & HUD (MX Player Style) ===== */
+.stage-brightness-overlay {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: #000;
+  opacity: 0;
+  z-index: 3;
+  transition: opacity .1s ease;
+}
+.gesture-hud {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: rgba(14, 12, 24, 0.88);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  border-radius: 20px;
+  padding: 16px 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  z-index: 8;
+  min-width: 130px;
+  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.7);
+  pointer-events: none;
+  animation: hudPop .15s ease-out;
+}
+.gesture-hud[hidden] { display: none !important; }
+@keyframes hudPop {
+  0% { transform: translate(-50%, -50%) scale(0.9); opacity: 0; }
+  100% { transform: translate(-50%, -50%) scale(1); opacity: 1; }
+}
+.gesture-hud-icon { font-size: 36px; line-height: 1; }
+.gesture-hud-title { font-size: 13px; font-weight: 700; color: #e4e0f5; text-transform: uppercase; letter-spacing: 0.5px; }
+.gesture-hud-bar {
+  width: 110px;
+  height: 8px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.15);
+  overflow: hidden;
+  position: relative;
+}
+.gesture-hud-bar-fill {
+  height: 100%;
+  width: 50%;
+  background: var(--grad);
+  border-radius: 999px;
+  transition: width .05s linear;
+}
+.gesture-hud-val { font-size: 15px; font-weight: 800; font-family: 'Plus Jakarta Sans', sans-serif; color: #fff; }
+
+/* ===== VIDEO MEETUP HUB STYLING ===== */
+.meet-pane {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  width: 100%;
+  box-sizing: border-box;
+}
+.meet-lobby-deck {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  max-width: 900px;
+  margin: 0 auto;
+  width: 100%;
+}
+.meet-hero {
+  border-radius: 24px;
+  padding: 24px;
+  background: linear-gradient(135deg, rgba(var(--ar), 0.2), rgba(var(--br), 0.15));
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 16px;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4);
+}
+.meet-hero-text h2 { margin: 0 0 6px; font-size: 26px; font-weight: 800; }
+.meet-hero-text p { margin: 0; color: var(--muted); font-size: 14px; max-width: 500px; line-height: 1.5; }
+.meet-actions-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 14px;
+}
+.meet-card {
+  border-radius: 20px;
+  padding: 20px;
+  background: var(--glass);
+  border: 1px solid var(--line);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  transition: transform .2s, border-color .2s;
+}
+.meet-card:hover {
+  transform: translateY(-3px);
+  border-color: rgba(255, 255, 255, 0.25);
+}
+.meet-card-icon { font-size: 32px; }
+.meet-card h3 { margin: 0; font-size: 17px; }
+.meet-card p { margin: 0; font-size: 13px; color: var(--muted); line-height: 1.45; }
+.meet-input-row { display: flex; gap: 8px; width: 100%; }
+.meet-input-row input { flex: 1; min-width: 0; padding: 10px 14px; border-radius: 12px; background: rgba(255,255,255,.06); border: 1px solid var(--line); color: #fff; }
+
+/* Active Call Room */
+.meet-call-deck {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  width: 100%;
+  height: 100%;
+  min-height: calc(100vh - 180px);
+  position: relative;
+}
+.meet-call-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 16px;
+  border-radius: 16px;
+  background: var(--glass);
+  border: 1px solid var(--line);
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.meet-id-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 700;
+  font-size: 14px;
+}
+.meet-timer-pill {
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: rgba(34, 197, 94, 0.15);
+  border: 1px solid rgba(34, 197, 94, 0.35);
+  color: #86efac;
+  font-size: 12px;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}
+.meet-gallery.speaker-view {
+  display: flex !important;
+  flex-direction: column !important;
+}
+.meet-gallery.speaker-view .meet-card-p:first-child {
+  width: 100% !important;
+  max-height: 55vh !important;
+  min-height: 280px !important;
+}
+.meet-gallery.speaker-view .meet-card-p:not(:first-child) {
+  max-height: 120px !important;
+  aspect-ratio: 16/9 !important;
+  display: inline-flex !important;
+}
+.meet-gallery {
+  flex: 1;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr));
+  gap: 12px;
+  min-height: 380px;
+  position: relative;
+  align-items: center;
+  justify-content: center;
+}
+.meet-card-p {
+  position: relative;
+  border-radius: 18px;
+  overflow: hidden;
+  background: #0d0b18;
+  border: 2px solid rgba(255, 255, 255, 0.1);
+  aspect-ratio: 16/9;
+  width: 100%;
+  max-height: 480px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5);
+  transition: border-color .25s, box-shadow .25s;
+}
+.meet-card-p.active-speaker {
+  border-color: #10b981 !important;
+  box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.4), 0 8px 32px rgba(0,0,0,.6) !important;
+}
+.meet-card-p video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  background: #05040a;
+}
+.meet-card-p.mirrored video {
+  transform: scaleX(-1);
+}
+.meet-avatar-fallback {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle, rgba(var(--ar), 0.3), #070510 75%);
+}
+.meet-avatar-fallback .av-circle {
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  background: var(--grad);
+  display: grid;
+  place-items: center;
+  font-size: 36px;
+  box-shadow: 0 8px 24px rgba(var(--ar), 0.4);
+}
+.meet-card-overlay {
+  position: absolute;
+  left: 10px;
+  bottom: 10px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(8px);
+  color: #fff;
+  font-size: 12px;
+  font-weight: 600;
+  max-width: calc(100% - 20px);
+}
+.meet-hand-badge {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  padding: 5px 10px;
+  border-radius: 999px;
+  background: #f59e0b;
+  color: #000;
+  font-size: 13px;
+  font-weight: 800;
+  box-shadow: 0 4px 16px rgba(245, 158, 11, 0.6);
+  animation: bounceHand .5s infinite alternate ease-in-out;
+}
+@keyframes bounceHand {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(-4px); }
+}
+
+/* Meeting Bottom Toolbar */
+.meet-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 10px 14px;
+  border-radius: 20px;
+  background: rgba(14, 12, 24, 0.9);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.6);
+  flex-wrap: wrap;
+  width: fit-content;
+  margin: 0 auto;
+}
+.meet-btn {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: #fff;
+  font-size: 18px;
+  cursor: pointer;
+  transition: all .2s;
+  padding: 0;
+}
+.meet-btn:hover {
+  background: rgba(255, 255, 255, 0.22);
+  transform: translateY(-2px);
+}
+.meet-btn.off {
+  background: #ef4444 !important;
+  border-color: #f87171 !important;
+  color: #fff !important;
+}
+.meet-btn.active {
+  background: #f59e0b !important;
+  color: #000 !important;
+}
+.meet-btn.leave {
+  background: #ef4444 !important;
+  border-radius: 999px !important;
+  width: auto !important;
+  padding: 0 16px !important;
+  font-size: 14px !important;
+  font-weight: 700 !important;
+}
+
+/* Floating Emoji Reactions */
+.flying-reaction {
+  position: absolute;
+  bottom: 80px;
+  right: 40px;
+  font-size: 32px;
+  pointer-events: none;
+  animation: flyUp 2.5s ease-out forwards;
+  z-index: 99;
+}
+@keyframes flyUp {
+  0% { transform: translateY(0) scale(0.6); opacity: 1; }
+  70% { transform: translateY(-220px) scale(1.3); opacity: 0.9; }
+  100% { transform: translateY(-340px) scale(1.1); opacity: 0; }
+}
+
+/* ===== DRAGGABLE PARTY CHAT STYLING ===== */
+.chat {
+  transition: box-shadow .2s ease;
+  user-select: text;
+}
+.chat.floating {
+  position: fixed !important;
+  z-index: 92 !important;
+  width: min(380px, 92vw) !important;
+  max-height: min(520px, 75vh) !important;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.8), 0 0 0 1px rgba(255, 255, 255, 0.18) !important;
+}
+.chead {
+  cursor: grab;
+  user-select: none;
+  -webkit-user-select: none;
+}
+.chead:active {
+  cursor: grabbing;
+}
+.drag-handle {
+  color: var(--muted);
+  font-size: 15px;
+  letter-spacing: -2px;
+  cursor: grab;
+  margin-right: 4px;
+}
+.chat-float-pill {
+  position: fixed;
+  bottom: 18px;
+  right: 18px;
+  z-index: 90;
+  padding: 10px 18px;
+  border-radius: 999px;
+  background: var(--grad);
+  color: #fff;
+  font-weight: 700;
+  font-size: 14px;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  box-shadow: 0 10px 30px rgba(var(--ar), 0.5);
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  transition: transform .2s, box-shadow .2s;
+}
+.chat-float-pill:hover {
+  transform: translateY(-2px) scale(1.03);
+}
+.chat-float-pill[hidden] { display: none !important; }
+
+/* ===== OTT COMING SOON CARDS ===== */
+.ott-cs-desc {
+  color: #f59e0b;
+  font-size: 11px;
+  font-weight: 600;
+  z-index: 1;
+  margin-top: -4px;
+}
+.ott-cs-btn {
+  position: relative;
+  z-index: 1;
+  font-size: 11.5px;
+  font-weight: 700;
+  padding: 5px 12px;
+  border-radius: 999px;
+  background: rgba(245, 158, 11, 0.18);
+  border: 1px solid rgba(245, 158, 11, 0.4);
+  color: #fbbf24;
+  letter-spacing: 0.3px;
+}
+.ottcard:hover .ott-cs-btn {
+  background: rgba(245, 158, 11, 0.35);
+  color: #fff;
+}
+
+/* ===== REAL SCOREBOARD STYLING ===== */
+.stbl {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 10px;
+}
+.stbl th {
+  text-align: left;
+  font-size: 12px;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  padding: 10px 12px;
+  border-bottom: 1px solid var(--line);
+}
+.stbl td {
+  padding: 12px;
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+  font-size: 14px;
+}
+.stbl tr:hover td {
+  background: rgba(255, 255, 255, 0.03);
+}
+.stbl tr.me td {
+  background: rgba(var(--ar), 0.12);
+  font-weight: 700;
+}
+.score-badge {
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: rgba(var(--ar), 0.2);
+  border: 1px solid rgba(var(--ar), 0.4);
+  color: #c4b5fd;
+  font-weight: 800;
+  font-variant-numeric: tabular-nums;
 }</style>
 </head>
 <body>
@@ -1437,6 +1872,7 @@ button,.btn,[role=button],a{touch-action:manipulation}
     <nav class="tabs2 glass" id="hubNav">
       <button id="tabP" class="on" title="Virtual Cinema Hub"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="14" rx="3"/><path d="m10.5 8.5 4 2.5-4 2.5z" fill="currentColor"/><path d="M8 21h8"/></svg><span data-i="tabPlayer">Virtual Cinema</span></button>
       <button id="tabO" title="OTT Hub"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="7.5" height="7.5" rx="2"/><rect x="13.5" y="4" width="7.5" height="7.5" rx="2"/><rect x="3" y="14.5" width="7.5" height="7.5" rx="2"/><rect x="13.5" y="14.5" width="7.5" height="7.5" rx="2"/></svg><span data-i="tabOtt">OTT Hub</span></button>
+      <button id="tabM" title="Video Meetup Hub"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 10l5-3v10l-5-3v-4z"/><rect x="3" y="6" width="12" height="12" rx="3" fill="currentColor" fill-opacity="0.2"/></svg><span data-i="tabMeet">Video Meetup</span><i class="bd" id="meetLiveBadge" hidden>Live</i></button>
       <button id="tabG" title="Game Hub · 102 Games"><svg viewBox="0 0 24 24"><rect x="2.5" y="7" width="19" height="11" rx="5"/><path d="M7.5 10v5M5 12.5h5"/><circle cx="15.5" cy="11.5" r=".8" fill="currentColor"/><circle cx="18" cy="13.5" r=".8" fill="currentColor"/></svg><span data-i="tabGames">Game Hub</span><i class="bd" id="gBadge" hidden></i></button>
       <button id="tabS" title="Scoreboard Hub"><svg viewBox="0 0 24 24"><path d="M8 4h8v5a4 4 0 0 1-8 0z"/><path d="M8 6H5v1a3 3 0 0 0 3 3M16 6h3v1a3 3 0 0 1-3 3"/><path d="M12 13v4M8.5 20h7"/></svg><span data-i="tabScore">Scoreboard</span></button>
       
@@ -1444,7 +1880,16 @@ button,.btn,[role=button],a{touch-action:manipulation}
 
     <!-- ===== Virtual Cinema Hub pane ===== -->
     <div id="paneP" class="pane">
-      <div id="stage" class="stage nomedia"><button id="bShowCtrl" class="pillbtn show-ctrl-pill" hidden title="Show Controls (மீடியா பார் காட்டு)" data-tt="ttShowBar"><svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" style="vertical-align:middle;margin-right:4px"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg><span>Controls</span></button><button id="bStageBack" class="pillbtn" hidden style="position:absolute;top:10px;right:10px;z-index:7;background:rgba(0,0,0,.6)">← Back</button>
+      <div id="stage" class="stage nomedia">
+        <!-- Brightness overlay (MX Player style) -->
+        <div id="stageBrightnessOverlay" class="stage-brightness-overlay"></div>
+        <!-- Gesture HUD Indicator (Brightness / Volume / Seek) -->
+        <div id="gestureHud" class="gesture-hud" hidden>
+          <div id="gestureIcon" class="gesture-hud-icon">☀️</div>
+          <div class="gesture-hud-title" id="gestureTitle">Brightness</div>
+          <div class="gesture-hud-bar"><div id="gestureBarProg" class="gesture-hud-bar-fill"></div></div>
+          <div id="gestureVal" class="gesture-hud-val">100%</div>
+        </div><button id="bShowCtrl" class="pillbtn show-ctrl-pill" hidden title="Show Controls (மீடியா பார் காட்டு)" data-tt="ttShowBar"><svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" style="vertical-align:middle;margin-right:4px"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg><span>Controls</span></button><button id="bStageBack" class="pillbtn" hidden style="position:absolute;top:10px;right:10px;z-index:7;background:rgba(0,0,0,.6)">← Back</button>
         <video id="video" playsinline preload="auto" style="display:none"></video>
         <div id="ytWrap" style="display:none"><div id="ytPlayer"></div></div>
         <!-- OTT Watch Party Companion Screen (Authorized Co-Watching) -->
@@ -1573,15 +2018,112 @@ button,.btn,[role=button],a{touch-action:manipulation}
       <div class="note" data-ih="ottNote"></div>
     </div>
 
+    <!-- ===== Video Meetup Hub pane ===== -->
+    <div id="paneM" class="pane meet-pane" hidden>
+      <button class="gbtn backb" onclick="showTab('P')">← Back to Cinema</button>
+
+      <!-- Meetup Lobby (Create / Join / Schedule) -->
+      <div id="meetLobby" class="meet-lobby-deck">
+        <div class="meet-hero">
+          <div class="meet-hero-text">
+            <span class="badge"><span class="gold">✦ VIDEO MEETUP HUB</span></span>
+            <h2>Friends <span class="grad">Meetup</span></h2>
+            <p>Connect face-to-face with your friends in HD video & crystal-clear audio. Peer-to-peer encrypted, zero lag, screen sharing, and emoji reactions.</p>
+          </div>
+          <button id="bInstantMeet" class="primary" style="padding:14px 24px;border-radius:18px;font-size:15px;font-weight:700">🚀 Start Instant Meeting</button>
+        </div>
+
+        <div class="meet-actions-grid">
+          <div class="meet-card">
+            <div class="meet-card-icon">📹</div>
+            <h3>New Meeting</h3>
+            <p>Create a fresh meeting room and invite your friends via direct link or room code.</p>
+            <button id="bCreateMeet" class="primary" style="margin-top:auto">Create Meeting</button>
+          </div>
+
+          <div class="meet-card">
+            <div class="meet-card-icon">🔗</div>
+            <h3>Join with Code</h3>
+            <p>Enter the 6-character Meeting ID or Room Code shared by your friend.</p>
+            <div class="meet-input-row" style="margin-top:auto">
+              <input id="inMeetCode" placeholder="e.g. M-QYWS27" maxlength="12" autocomplete="off">
+              <button id="bJoinMeet" class="gbtn">Join</button>
+            </div>
+          </div>
+
+          <div class="meet-card">
+            <div class="meet-card-icon">📅</div>
+            <h3>Schedule Meeting</h3>
+            <p>Plan a watch party or gaming session in advance with calendar invite details.</p>
+            <button id="bScheduleMeet" class="gbtn" style="margin-top:auto">Schedule</button>
+          </div>
+        </div>
+
+        <!-- Recent Meetings -->
+        <div id="meetRecentBox" class="glass" style="padding:16px 20px;border-radius:20px;border:1px solid var(--line)" hidden>
+          <h4 style="margin:0 0 10px;font-size:14px;color:var(--muted)">🕒 Recent Meetings</h4>
+          <div id="meetRecentList" style="display:flex;gap:10px;flex-wrap:wrap"></div>
+        </div>
+      </div>
+
+      <!-- Active Video Call Screen -->
+      <div id="meetCall" class="meet-call-deck" hidden>
+        <div class="meet-call-header">
+          <div class="meet-id-badge">
+            <span style="color:#10b981">●</span>
+            <b>Room: <span id="meetActiveCode">LIVE</span></b>
+            <button id="bMeetCopyLink" class="pillbtn" style="font-size:11px;padding:2px 8px;height:24px">📋 Copy Invite</button>
+            <button id="bMeetShareWa" class="pillbtn" style="font-size:11px;padding:2px 8px;height:24px">💬 WhatsApp</button>
+          </div>
+          <div style="display:flex;align-items:center;gap:8px">
+            <span class="meet-timer-pill" id="meetCallTimer">⏱️ 00:00:00</span>
+            <button id="bMeetToggleView" class="pillbtn" title="Toggle Grid / Speaker View">🔲 Grid View</button>
+          </div>
+        </div>
+
+        <!-- Video Gallery Grid -->
+        <div id="meetGallery" class="meet-gallery">
+          <!-- Local participant video card -->
+          <div id="meetCardLocal" class="meet-card-p mirrored">
+            <video id="meetLocalVideo" autoplay playsinline muted></video>
+            <div id="meetLocalFallback" class="meet-avatar-fallback" hidden>
+              <div class="av-circle" id="meetLocalAv">🙂</div>
+              <b id="meetLocalName">You</b>
+            </div>
+            <div class="meet-card-overlay">
+              <span id="meetLocalOverlayName">You (Host)</span>
+              <span id="meetLocalMicStatus">🎤</span>
+            </div>
+            <div id="meetLocalHand" class="meet-hand-badge" hidden>✋ Hand Raised</div>
+          </div>
+        </div>
+
+        <!-- Meeting Floating Bottom Toolbar -->
+        <div class="meet-toolbar">
+          <button id="bMeetMic" class="meet-btn" title="Toggle Microphone">🎤</button>
+          <button id="bMeetCam" class="meet-btn" title="Toggle Camera">📹</button>
+          <button id="bMeetFlip" class="meet-btn" title="Switch Front/Back Camera">🔄</button>
+          <button id="bMeetScreen" class="meet-btn" title="Share Screen">🖥️</button>
+          <button id="bMeetHand" class="meet-btn" title="Raise Hand">✋</button>
+          <button id="bMeetChat" class="meet-btn" title="In-Meeting Chat">💬</button>
+          <button id="bMeetReact" class="meet-btn" title="Send Emoji Reaction">😍</button>
+          <button id="bMeetRecord" class="meet-btn" title="Record Meeting">⏺️</button>
+          <button id="bMeetPeople" class="meet-btn" title="Participants List">👥</button>
+          <button id="bMeetLeave" class="meet-btn leave" title="Leave Meeting">🔴 Leave</button>
+        </div>
+      </div>
+    </div>
+
     <div id="paneG" class="pane gh" hidden><button class="gbtn backb" onclick="showTab('P')">← Back to Cinema</button><div id="gbox"></div></div>
 
     <div id="paneS" class="pane sc" hidden><button class="gbtn backb" onclick="showTab('P')">← Back</button><div id="sbox"></div></div>
   </section>
 
   <aside class="chat glass">
-    <div class="chead">
+    <div class="chead" title="Drag to move chat window">
+      <span class="drag-handle">⋮⋮</span>
       <div class="mstack" id="mstack"></div>
-      <div><div class="n" data-i="partyChat"></div><div class="s" id="chatSub"></div></div><div class="chbtns"><i id="chBd" hidden>0</i><button id="chClr" title="Clear">🧹</button><button id="chMin" title="Minimize">–</button><button id="chMax" title="Maximize">⤢</button></div>
+      <div><div class="n" data-i="partyChat"></div><div class="s" id="chatSub"></div></div><div class="chbtns"><i id="chBd" hidden>0</i><button id="chClr" title="Clear">🧹</button><button id="chMin" title="Minimize">–</button><button id="chMax" title="Maximize">⤢</button><button id="chClose" title="Close / Hide Chat" style="font-weight:700">✕</button></div>
     </div>
     <div id="msgs"></div>
     <div id="panel" class="panel" hidden>
@@ -1785,7 +2327,7 @@ linkOpened:['{n} "{t}" open pannaru — neeyum open pannu 👉','{n} opened "{t}
 linkAdded:['Link add aachu ✅','Link added ✅','லிங்க் சேர்க்கப்பட்டது ✅'],
 remove:['Remove','Remove','நீக்கு'],
 tConnErr:['Connection error: {e}','Connection error: {e}','இணைப்புப் பிழை: {e}'],
-tabGames:['Game Hub','Game Hub','கேம் ஹப்'],tabScore:['Scoreboard Hub','Scoreboard Hub','ஸ்கோர்போர்டு ஹப்'],
+tabGames:['Game Hub','Game Hub','கேம் ஹப்'],tabScore:['Scoreboard Hub','Scoreboard Hub','ஸ்கோர்போர்டு ஹப்'],tabMeet:['Video Meetup','Video Meetup','வீடியோ மீட்'],
 nOnline:['{n} online','{n} online','{n} ஆன்லைன்'],partyChat:['Party chat','Party chat','பார்ட்டி சாட்'],
 plTitle:['Players & devices','Players & devices','வீரர்கள் மற்றும் சாதனங்கள்'],
 plHint:['Innoru phone / laptop-la intha code use panni join aagalaam. Oru room-la 8 per varaikum.','Join from any other phone or laptop with this code. Up to 8 devices per room.','வேறு போன் / லேப்டாப்பில் இந்தக் கோடைப் பயன்படுத்தி இணையலாம். ஒரு ரூமில் 8 பேர் வரை.'],
@@ -2777,15 +3319,16 @@ $('#mp3In').onchange=()=>{ const f=$('#mp3In').files[0]; if(!f) return; try{ con
 /* tabs */
 let curTab='P';
 function showTab(k){
-  if(!['P','O','G','S'].includes(k)) k='P';
+  if(!['P','O','M','G','S'].includes(k)) k='P';
   curTab=k;
-  ['P','O','G','S'].forEach(x=>{ const p=$('#pane'+x); if(p) p.hidden=(x!==k); const tb=$('#tab'+x); if(tb) tb.classList.toggle('on',x===k); });
+  ['P','O','M','G','S'].forEach(x=>{ const p=$('#pane'+x); if(p) p.hidden=(x!==k); const tb=$('#tab'+x); if(tb) tb.classList.toggle('on',x===k); });
+  if(k==='M'&&window.meetShown) meetShown();
   if(k==='G'){ const b=$('#gBadge'); if(b) b.hidden=true; if(window.gamesShown) gamesShown(); }
   if(k!=='G'&&window.gamesHidden) gamesHidden();
   if(k==='S'&&window.scoreShown) scoreShown();
   store.set('fwp-tab',k);
 }
-['P','O','G','S'].forEach(x=>{ const tb=$('#tab'+x); if(tb) tb.onclick=()=>showTab(x); });
+['P','O','M','G','S'].forEach(x=>{ const tb=$('#tab'+x); if(tb) tb.onclick=()=>showTab(x); });
 
 /* reactions (float over whole page) */
 ['❤️','😂','😮','👏','🔥','🥹','😭','🍿'].forEach(e=>{
@@ -2826,13 +3369,13 @@ function renderOtt(){
     c.style.setProperty('--c1',o.c1);
     c.innerHTML=
       tileHtml(o) +
-      '<span class="ott-cs-badge">⏳ Coming Soon</span>' +
+      '<span class="ott-cs-badge">⏳ COMING SOON</span>' +
       '<b>'+o.n+'</b>' +
-      '<small class="ott-cs-sub">விரைவில் வரும் · Co-Watching Sync</small>' +
-      '<span class="go">⏳ Coming Soon ↗</span>';
+      '<small class="ott-cs-desc">Authorized Co-Watching In Development</small>' +
+      '<span class="ott-cs-btn">🔒 COMING SOON</span>';
     c.onclick=()=>{
+      toast('⏳ ' + o.n + ' Co-Watching Watch Party is COMING SOON! Opening official site in new tab.');
       openOtt(o.id, true);
-      toast('⏳ ' + o.n + ' Watch Party direct integration is Coming Soon!');
     };
     g.appendChild(c);
   });
@@ -3497,7 +4040,7 @@ $('#gifKeySave').onclick=()=>{ const k=$('#gifKeyIn').value.trim(); if(k){ gkey=
 (function(){
 'use strict';
 const PCOL=['#ef4444','#22c55e','#eab308','#3b82f6','#a855f7','#f97316','#14b8a6','#ec4899','#84cc16','#06b6d4'];
-const PTS=[10,6,3,1,1,1,1,1];
+/* Real Score System: Points calculated directly from game logic */
 const BOTN=['Bolt','Maya','Rocky','Zara','Neo','Pixel','Vega','Dash','Blaze','Echo'];
 const DICE='⚀⚁⚂⚃⚄⚅';
 const rnd=n=>Math.floor(Math.random()*n);
@@ -4470,12 +5013,59 @@ function addPlayer(id,name,av,bot){ const g=GAMES[GS.g]; if(GS.status!=='lobby'|
 let SID2=0;
 function finish(o){
   const g=G(), n=GS.players.length; const r=o.rank.slice(); for(let i=0;i<n;i++) if(!r.includes(i)) r.push(i);
-  const res={draw:!!o.draw,tm:o.tm,rank:r.map((i,pos)=>{ const p=GS.players[i]; return {i,name:p.name,av:p.av,bot:p.bot,pts:p.bot?0:(o.draw?3:(PTS[pos]||1))}; })};
-  GS.status='over'; GS.res=res;
-  res.rank.forEach((x,pos)=>{ const p=GS.players[x.i]; if(p.bot) return; const b=BOARD.players[p.id]||(BOARD.players[p.id]={name:p.name,av:p.av,pts:0,wins:0,games:0});
-    b.name=p.name; b.av=p.av; b.pts+=x.pts; b.games++; if(pos===0&&!o.draw) b.wins++; });
-  const w=res.rank[0]; BOARD.hist.unshift({g:GS.g,ts:Date.now(),draw:res.draw,w:res.draw?null:{name:w.name,av:w.av},n:n}); BOARD.hist.length=Math.min(BOARD.hist.length,12);
-  pushState(); pushBoard();
+
+  // Compute ACTUAL earned score for each player based on real game outcome
+  const res={
+    draw: !!o.draw,
+    tm: o.tm,
+    rank: r.map((i, pos)=>{
+      const p = GS.players[i];
+      let earnedScore = 0;
+      // 1. Check if game reported explicit score array or object
+      if (o.scores && typeof o.scores[i] === 'number') {
+        earnedScore = o.scores[i];
+      } else if (GS.s && typeof GS.s.score === 'number' && pos === 0) {
+        earnedScore = GS.s.score;
+      } else if (GS.s && GS.s.scores && typeof GS.s.scores[i] === 'number') {
+        earnedScore = GS.s.scores[i];
+      } else if (GS.s && typeof GS.s.p1Score === 'number') {
+        earnedScore = (i === 0 ? GS.s.p1Score : (GS.s.p2Score || 0));
+      } else {
+        // Strategy / match game: winner gets +1 victory point, draw gets +0.5
+        earnedScore = o.draw ? 0.5 : (pos === 0 ? 1 : 0);
+      }
+      return { i, name: p.name, av: p.av, bot: p.bot, pts: p.bot ? 0 : earnedScore, rawScore: earnedScore };
+    })
+  };
+
+  GS.status = 'over';
+  GS.res = res;
+
+  res.rank.forEach((x, pos)=>{
+    if (x.bot) return;
+    const p = GS.players[x.i];
+    const b = BOARD.players[p.id] || (BOARD.players[p.id] = { name: p.name, av: p.av, pts: 0, wins: 0, games: 0, lastScore: 0 });
+    b.name = p.name;
+    b.av = p.av;
+    b.pts = Math.round((b.pts + x.pts) * 10) / 10;
+    b.lastScore = x.rawScore;
+    b.games++;
+    if (pos === 0 && !o.draw) b.wins++;
+  });
+
+  const w = res.rank[0];
+  const summaryScore = res.rank.map(rk => rk.name + ': ' + rk.rawScore).join(' vs ');
+  BOARD.hist.unshift({
+    g: GS.g,
+    ts: Date.now(),
+    draw: res.draw,
+    w: res.draw ? null : { name: w.name, av: w.av },
+    scores: summaryScore,
+    n: n
+  });
+  BOARD.hist.length = Math.min(BOARD.hist.length, 15);
+  pushState();
+  pushBoard();
 }
 function afterChange(){ const o=G().over(GS.s); if(o) finish(o); else pushState(); }
 function doAct(i,a,now){ const g=G(); if(!g.act(GS.s,i,a,now)) return false; GS.ver++; afterChange(); return true; }
@@ -5019,23 +5609,86 @@ setInterval(()=>{ if(GS&&GS.status==='play'&&G().live&&curTab==='G'&&!document.h
 /* ---------- scoreboard ---------- */
 function scoreRender(){
   const box=$('#sbox'); if(!box) return; box.innerHTML='';
-  box.appendChild(h('h2',null,'🏆 '+t('gScoreT'))); box.appendChild(h('p','sub',t('gScoreD')));
-  const arr=Object.keys(BOARD.players).map(id=>Object.assign({id},BOARD.players[id])).sort((a,b)=>b.pts-a.pts||b.wins-a.wins||a.games-b.games);
+  box.appendChild(h('h2',null,'🏆 '+t('gScoreT')));
+  box.appendChild(h('p','sub','Real-time dynamic leaderboard based on genuine game scores earned in matches.'));
+
+  const arr=Object.keys(BOARD.players).map(id=>Object.assign({id},BOARD.players[id]))
+    .sort((a,b)=>b.pts-a.pts||b.wins-a.wins||a.games-b.games);
+
   const card=h('div','card2 glass');
-  if(!arr.length){ card.appendChild(h('div','glog',t('gNoScore'))); box.appendChild(card); return; }
+  if(!arr.length){
+    card.appendChild(h('div','glog','No scores recorded yet. Play any game in Game Hub to see real live points!'));
+    box.appendChild(card);
+    return;
+  }
+
+  // Podium for Top 3
   const pod=h('div','pod'); const order=[1,0,2];
-  order.forEach(k=>{ const p=arr[k]; if(!p) return; const d=h('div','p r'+(k+1)); if(k===0) d.appendChild(h('div','crown','👑'));
-    d.appendChild(h('div','av',p.av)); d.appendChild(h('b',null,p.name)); d.appendChild(h('div','bar',String(p.pts))); pod.appendChild(d); });
+  order.forEach(k=>{
+    const p=arr[k]; if(!p) return;
+    const d=h('div','p r'+(k+1));
+    if(k===0) d.appendChild(h('div','crown','👑'));
+    d.appendChild(h('div','av',p.av));
+    d.appendChild(h('b',null,p.name));
+    d.appendChild(h('div','bar',String(p.pts) + ' pts'));
+    pod.appendChild(d);
+  });
   card.appendChild(pod);
-  const tb=h('table','stbl'); const hd=h('tr'); ['#',t('gPlayer'),t('gPts'),t('gWins'),t('gGames')].forEach(x=>hd.appendChild(h('th',null,x))); tb.appendChild(hd);
-  arr.forEach((p,i)=>{ const tr=h('tr',p.id===myId()?'me':''); tr.appendChild(h('td',null,i===0?'🥇':i===1?'🥈':i===2?'🥉':String(i+1)));
-    const td=h('td'); const pc=h('div','pc'); pc.appendChild(h('span','av',p.av)); pc.appendChild(h('span',null,p.name)); td.appendChild(pc); tr.appendChild(td);
-    tr.appendChild(h('td','pt',String(p.pts))); tr.appendChild(h('td',null,String(p.wins))); tr.appendChild(h('td',null,String(p.games))); tb.appendChild(tr); });
-  card.appendChild(tb); box.appendChild(card);
-  if(BOARD.hist.length){ box.appendChild(h('h3',null,t('gRecent'))); const hs=h('div','hist');
-    BOARD.hist.forEach(x=>{ const g=GAMES[x.g]; hs.appendChild(h('div',null,(g?g.emoji+' '+g.name:x.g)+' · '+(x.draw?t('gDrawT'):'🏆 '+x.w.av+' '+x.w.name)+' · '+new Date(x.ts).toLocaleTimeString([],{hour:'2-digit',minute:'2-digit'}))); });
-    box.appendChild(hs); }
-  if(isHost){ const rb=btn('gbtn',t('gReset'),()=>{ if(confirm(t('gReset')+'?')) gameSend({t:'g_resetboard'}); }); rb.style.marginTop='14px'; box.appendChild(rb); }
+
+  // Detailed Table
+  const tb=h('table','stbl');
+  const hd=h('tr');
+  ['Rank', 'Player', 'Real Score', 'Wins', 'Matches', 'Win Rate'].forEach(x=>hd.appendChild(h('th',null,x)));
+  tb.appendChild(hd);
+
+  arr.forEach((p,i)=>{
+    const tr=h('tr',p.id===myId()?'me':'');
+    tr.appendChild(h('td',null,i===0?'🥇':i===1?'🥈':i===2?'🥉':String(i+1)));
+    const td=h('td'); const pc=h('div','pc');
+    pc.appendChild(h('span','av',p.av));
+    pc.appendChild(h('span',null,p.name + (p.id===myId()?' (You)':'')));
+    td.appendChild(pc); tr.appendChild(td);
+
+    const tdScore = h('td','pt');
+    tdScore.innerHTML = '<span class="score-badge">' + p.pts + ' pts</span>';
+    tr.appendChild(tdScore);
+
+    tr.appendChild(h('td',null,String(p.wins)));
+    tr.appendChild(h('td',null,String(p.games)));
+    const rate = p.games ? Math.round((p.wins / p.games) * 100) + '%' : '0%';
+    tr.appendChild(h('td',null,rate));
+    tb.appendChild(tr);
+  });
+  card.appendChild(tb);
+  box.appendChild(card);
+
+  // Match History with Actual Score Details
+  if(BOARD.hist && BOARD.hist.length){
+    box.appendChild(h('h3',null,'📜 ' + t('gRecent') + ' (Actual Match Scores)'));
+    const hs=h('div','hist');
+    BOARD.hist.forEach(x=>{
+      const g=GAMES[x.g];
+      const gTitle = (g ? g.emoji+' '+g.name : x.g);
+      const scoreTxt = x.scores ? ' [' + x.scores + ']' : '';
+      const winTxt = x.draw ? '🤝 Draw' : ('🏆 ' + (x.w ? x.w.av + ' ' + x.w.name : 'Won'));
+      const timeTxt = new Date(x.ts).toLocaleTimeString([],{hour:'2-digit',minute:'2-digit'});
+      hs.appendChild(h('div',null, gTitle + ' · ' + winTxt + scoreTxt + ' · ' + timeTxt));
+    });
+    box.appendChild(hs);
+  }
+
+  if(isHost){
+    const rb=btn('gbtn','🔄 Reset Leaderboard Scores',()=>{
+      if(confirm('Are you sure you want to reset all game scores?')){
+        BOARD = { players: {}, hist: [] };
+        pushBoard();
+        scoreRender();
+        toast('Leaderboard reset successfully');
+      }
+    });
+    rb.style.marginTop='14px';
+    box.appendChild(rb);
+  }
 }
 
 /* ---------- celebration ---------- */
@@ -5333,7 +5986,7 @@ themeK=(TH.find(x=>x[0]===store.get('fwp-theme'))||TH[0])[0];buildThemes();apply
   <div class="ai-quick-prompts">
     <button type="button" data-prompt="How do I host or join a room?">🎬 Room Help</button>
     <button type="button" data-prompt="Explain game rules for Cricket and Racing">⚽ Game Rules</button>
-    <button type="button" data-prompt="How do 3D Virtual World avatars and city work?">🌐 3D City Guide</button>
+    <button type="button" data-prompt="How does Video Meetup Hub work?">📹 Video Meetup Guide</button>
     <button type="button" data-prompt="How to boost audio and sync video playback?">🔊 Audio Booster</button>
     <button type="button" data-prompt="விளையாட்டு விதிகள் மற்றும் அறை அமைப்பது எப்படி?">தமிழ் உதவி</button>
     <button type="button" data-prompt="Romba lag aana enna pannanum?">Tanglish Help</button>
@@ -5578,5 +6231,650 @@ themeK=(TH.find(x=>x[0]===store.get('fwp-theme'))||TH[0])[0];buildThemes();apply
   };
 })();
 </script>
-</body>
+<!-- Floating Chat Pill (When closed or minimized) -->
+<button id="chatFloatingBtn" class="chat-float-pill" hidden>
+  <span>💬 Party Chat</span>
+  <i id="chFloatBadge" hidden style="background:#ef4444;color:#fff;border-radius:999px;padding:1px 6px;font-size:11px;font-style:normal">0</i>
+</button>
+<script id="fwp-upgrades-engine">
+(function(){
+  'use strict';
+
+  /* ==========================================================================
+     1. MEDIA PLAYER ADVANCED GESTURES (LEFT BRIGHTNESS / RIGHT VOLUME)
+     ========================================================================== */
+  let curBrightness = 100;
+  let hudTimeout = null;
+
+  function setStageBrightness(val){
+    curBrightness = Math.round(Math.min(180, Math.max(20, val)));
+    const v = $('#video'), yt = $('#ytWrap');
+    if(v) v.style.filter = 'brightness(' + curBrightness + '%)';
+    if(yt) yt.style.filter = 'brightness(' + curBrightness + '%)';
+    const ov = $('#stageBrightnessOverlay');
+    if(ov){
+      if(curBrightness < 100){
+        ov.style.opacity = ((100 - curBrightness) / 100 * 0.82).toFixed(2);
+      } else {
+        ov.style.opacity = '0';
+      }
+    }
+  }
+
+  function setStageVolume(newV){
+    newV = Math.round(Math.min(300, Math.max(0, newV)));
+    if(typeof state !== 'undefined'){
+      state.vol = newV / 100;
+      if(state.vol > 1 && state.mode !== 'yt' && typeof ensureAudio === 'function') ensureAudio();
+      if(state.muted && state.vol > 0) state.muted = false;
+      if(typeof applyVol === 'function') applyVol();
+    }
+    const sl = $('#vol'); if(sl) sl.value = newV;
+  }
+
+  function showGestureHud(icon, title, valText, progressFrac){
+    const hud = $('#gestureHud'); if(!hud) return;
+    $('#gestureIcon').textContent = icon;
+    $('#gestureTitle').textContent = title;
+    $('#gestureVal').textContent = valText;
+    const bar = $('#gestureBarProg');
+    if(bar){
+      if(progressFrac !== null && progressFrac !== undefined){
+        bar.style.width = Math.round(Math.min(1, Math.max(0, progressFrac)) * 100) + '%';
+        bar.parentElement.hidden = false;
+      } else {
+        bar.parentElement.hidden = true;
+      }
+    }
+    hud.hidden = false;
+    clearTimeout(hudTimeout);
+    hudTimeout = setTimeout(()=>{ hud.hidden = true; }, 1400);
+  }
+
+  // Hook touch & pointer gestures on stage
+  let gStartX = 0, gStartY = 0, gStartTime = 0;
+  let gInitialVal = 0;
+  let gType = null; // 'brightness' | 'volume' | 'seek' | null
+  let gMoved = false;
+
+  const st = $('#stage');
+  if(st){
+    function onGestureStart(e){
+      if(e.target.closest('#ctrl') || e.target.closest('#bShowCtrl') || e.target.closest('#bStageBack') || e.target.closest('#ottCompanion')) return;
+      const pt = (e.touches && e.touches[0]) || e;
+      gStartX = pt.clientX;
+      gStartY = pt.clientY;
+      gStartTime = Date.now();
+      gType = null;
+      gMoved = false;
+    }
+
+    function onGestureMove(e){
+      if(!gStartTime) return;
+      const pt = (e.touches && e.touches[0]) || e;
+      const dx = pt.clientX - gStartX;
+      const dy = pt.clientY - gStartY;
+
+      if(!gMoved){
+        if(Math.hypot(dx, dy) > 10){
+          gMoved = true;
+          const rect = st.getBoundingClientRect();
+          if(Math.abs(dy) >= Math.abs(dx)){
+            // Vertical gesture
+            if(gStartX < (rect.left + rect.width * 0.5)){
+              gType = 'brightness';
+              gInitialVal = curBrightness;
+            } else {
+              gType = 'volume';
+              const curVol = (typeof state !== 'undefined' ? Math.round(state.vol * 100) : (+$('#vol').value || 100));
+              gInitialVal = curVol;
+            }
+          } else {
+            gType = 'seek';
+          }
+        }
+      }
+
+      if(gType === 'brightness'){
+        if(e.cancelable) e.preventDefault();
+        const delta = -dy * 0.45;
+        const newB = Math.round(Math.min(180, Math.max(20, gInitialVal + delta)));
+        setStageBrightness(newB);
+        showGestureHud('☀️', 'Brightness', newB + '%', (newB - 20) / 160);
+      } else if(gType === 'volume'){
+        if(e.cancelable) e.preventDefault();
+        const delta = -dy * 0.75;
+        const newV = Math.round(Math.min(300, Math.max(0, gInitialVal + delta)));
+        setStageVolume(newV);
+        showGestureHud(newV === 0 ? '🔇' : (newV > 100 ? '🔊⚡' : '🔊'), 'Volume', newV + '%', newV / 300);
+      } else if(gType === 'seek'){
+        if(e.cancelable) e.preventDefault();
+        const sec = Math.round(dx * 0.2);
+        showGestureHud(sec >= 0 ? '⏩' : '⏪', 'Seek', (sec >= 0 ? '+' : '') + sec + 's', null);
+      }
+    }
+
+    function onGestureEnd(e){
+      if(!gStartTime) return;
+      if(gMoved){
+        if(gType === 'seek'){
+          const pt = (e.changedTouches && e.changedTouches[0]) || e;
+          const sec = Math.round((pt.clientX - gStartX) * 0.2);
+          if(Math.abs(sec) >= 2 && typeof skip === 'function') skip(sec);
+        }
+        setTimeout(()=>{ gMoved = false; }, 50);
+      }
+      gStartTime = 0;
+      gType = null;
+    }
+
+    st.addEventListener('touchstart', onGestureStart, { passive: true });
+    st.addEventListener('touchmove', onGestureMove, { passive: false });
+    st.addEventListener('touchend', onGestureEnd, { passive: true });
+    st.addEventListener('pointerdown', onGestureStart);
+    window.addEventListener('pointermove', onGestureMove);
+    window.addEventListener('pointerup', onGestureEnd);
+  }
+
+  /* ==========================================================================
+     2. DRAGGABLE FLOATING PARTY CHAT (MOUSE & TOUCH DRAG)
+     ========================================================================== */
+  const chat = $('aside.chat');
+  const chead = $('.chead');
+  const chatFloatBtn = $('#chatFloatingBtn');
+
+  if(chat && chead){
+    let isDraggingChat = false;
+    let chatStartX = 0, chatStartY = 0;
+    let chatInitialLeft = 0, chatInitialTop = 0;
+
+    function startChatDrag(e){
+      if(e.target.closest('button') || e.target.closest('input')) return;
+      const pt = (e.touches && e.touches[0]) || e;
+      isDraggingChat = true;
+      chatStartX = pt.clientX;
+      chatStartY = pt.clientY;
+      const rect = chat.getBoundingClientRect();
+      chatInitialLeft = rect.left;
+      chatInitialTop = rect.top;
+      chat.classList.add('floating');
+    }
+
+    function moveChatDrag(e){
+      if(!isDraggingChat) return;
+      const pt = (e.touches && e.touches[0]) || e;
+      if(e.cancelable) e.preventDefault();
+      const dx = pt.clientX - chatStartX;
+      const dy = pt.clientY - chatStartY;
+
+      const w = chat.offsetWidth;
+      const h = chat.offsetHeight;
+      const maxLeft = Math.max(10, window.innerWidth - w - 10);
+      const maxTop = Math.max(10, window.innerHeight - h - 10);
+
+      const newLeft = Math.max(10, Math.min(maxLeft, chatInitialLeft + dx));
+      const newTop = Math.max(10, Math.min(maxTop, chatInitialTop + dy));
+
+      chat.style.position = 'fixed';
+      chat.style.left = newLeft + 'px';
+      chat.style.top = newTop + 'px';
+      chat.style.right = 'auto';
+      chat.style.bottom = 'auto';
+      chat.style.zIndex = '95';
+    }
+
+    function endChatDrag(){
+      if(isDraggingChat){
+        isDraggingChat = false;
+        try{
+          localStorage.setItem('fwp_chat_pos', JSON.stringify({ left: chat.style.left, top: chat.style.top }));
+        }catch(err){}
+      }
+    }
+
+    chead.addEventListener('mousedown', startChatDrag);
+    window.addEventListener('mousemove', moveChatDrag);
+    window.addEventListener('mouseup', endChatDrag);
+
+    chead.addEventListener('touchstart', startChatDrag, { passive: true });
+    window.addEventListener('touchmove', moveChatDrag, { passive: false });
+    window.addEventListener('touchend', endChatDrag, { passive: true });
+
+    // Close button hides chat & shows floating pill
+    const chClose = $('#chClose');
+    if(chClose){
+      chClose.onclick = e => {
+        e.stopPropagation();
+        chat.hidden = true;
+        if(chatFloatBtn) chatFloatBtn.hidden = false;
+        toast('💬 Chat minimized to floating button');
+      };
+    }
+
+    // Floating pill restores chat
+    if(chatFloatBtn){
+      chatFloatBtn.onclick = () => {
+        chat.hidden = false;
+        chatFloatBtn.hidden = true;
+        const b = $('#chFloatBadge'); if(b) b.hidden = true;
+      };
+    }
+  }
+
+  /* ==========================================================================
+     3. VIDEO MEETUP HUB ENGINE (WebRTC Video Calling, Camera, Screen Share)
+     ========================================================================== */
+  const Meet = {
+    inCall: false,
+    meetingId: '',
+    localStream: null,
+    screenStream: null,
+    audioMuted: false,
+    videoMuted: false,
+    facingMode: 'user',
+    handRaised: false,
+    viewMode: 'grid',
+    timerId: null,
+    startTime: 0,
+    mediaRecorder: null,
+    recordedChunks: [],
+    calls: new Map(), // peerId -> mediaConnection
+    activeSpeaker: null
+  };
+
+  window.Meet = Meet;
+
+  function getMeetMedia(video=true, audio=true){
+    return navigator.mediaDevices.getUserMedia({
+      video: video ? { facingMode: Meet.facingMode, width: { ideal: 1280 }, height: { ideal: 720 } } : false,
+      audio: audio
+    });
+  }
+
+  async function startMeetCall(roomId, isHost = false){
+    Meet.meetingId = roomId || ('M-' + Math.random().toString(36).substr(2, 6).toUpperCase());
+    Meet.inCall = true;
+    Meet.startTime = Date.now();
+
+    $('#meetLobby').hidden = true;
+    $('#meetCall').hidden = false;
+    $('#meetActiveCode').textContent = Meet.meetingId;
+    $('#meetLiveBadge').hidden = false;
+
+    // Start timer
+    clearInterval(Meet.timerId);
+    Meet.timerId = setInterval(()=>{
+      const s = Math.floor((Date.now() - Meet.startTime) / 1000);
+      const m = Math.floor(s / 60);
+      const h = Math.floor(m / 60);
+      const txt = (h ? (h<10?'0':'')+h+':' : '') + (m%60<10?'0':'')+(m%60)+':'+(s%60<10?'0':'')+(s%60);
+      $('#meetCallTimer').textContent = '⏱️ ' + txt;
+    }, 1000);
+
+    // Save recent meeting
+    try{
+      const rec = JSON.parse(localStorage.getItem('fwp_recent_meets')||'[]');
+      if(!rec.includes(Meet.meetingId)){ rec.unshift(Meet.meetingId); }
+      localStorage.setItem('fwp_recent_meets', JSON.stringify(rec.slice(0, 5)));
+      renderRecentMeets();
+    }catch(e){}
+
+    // Request local audio/video
+    try {
+      Meet.localStream = await getMeetMedia(true, true);
+      const locVid = $('#meetLocalVideo');
+      if(locVid){
+        locVid.srcObject = Meet.localStream;
+        locVid.play().catch(()=>{});
+      }
+      $('#meetLocalFallback').hidden = true;
+      $('#meetLocalVideo').hidden = false;
+      toast('🟢 Connected to Video Meetup');
+    } catch(err){
+      console.warn('Camera/Mic permission failed:', err);
+      $('#meetLocalFallback').hidden = false;
+      $('#meetLocalVideo').hidden = true;
+      toast('⚠️ Camera permission not granted. Running in audio/fallback mode.');
+    }
+
+    // Call connected peers in room via PeerJS
+    if(typeof peer !== 'undefined' && peer && typeof conns !== 'undefined' && Meet.localStream){
+      conns.forEach((c, peerId)=>{
+        try{
+          const call = peer.call(peerId, Meet.localStream, { metadata: { type: 'meet', name: myName, av: myAv } });
+          handleIncomingStream(call, peerId);
+        }catch(err){ console.warn('Call error:', err); }
+      });
+    }
+
+    // Announce via data channel
+    if(typeof send === 'function'){
+      send({ t: 'meet_join', meetId: Meet.meetingId, name: myName, av: myAv });
+    }
+  }
+
+  function handleIncomingStream(call, peerId){
+    Meet.calls.set(peerId, call);
+    call.on('stream', remoteStream => {
+      let card = document.getElementById('meetCard_' + peerId);
+      if(!card){
+        card = document.createElement('div');
+        card.id = 'meetCard_' + peerId;
+        card.className = 'meet-card-p';
+        card.innerHTML = `
+          <video autoplay playsinline></video>
+          <div class="meet-card-overlay">
+            <span class="m-name">${call.metadata?.name || 'Participant'}</span>
+            <span class="m-mic">🎤</span>
+          </div>
+          <div class="meet-hand-badge" hidden>✋ Hand Raised</div>
+        `;
+        $('#meetGallery').appendChild(card);
+      }
+      const vid = card.querySelector('video');
+      if(vid){
+        vid.srcObject = remoteStream;
+        vid.play().catch(()=>{});
+      }
+    });
+    call.on('close', ()=>{
+      const c = document.getElementById('meetCard_' + peerId);
+      if(c) c.remove();
+      Meet.calls.delete(peerId);
+    });
+  }
+
+  // PeerJS incoming call listener
+  if(typeof peer !== 'undefined' && peer){
+    peer.on('call', incomingCall => {
+      if(Meet.inCall && Meet.localStream){
+        incomingCall.answer(Meet.localStream);
+        handleIncomingStream(incomingCall, incomingCall.peer);
+      }
+    });
+  }
+
+  function endMeetCall(){
+    Meet.inCall = false;
+    clearInterval(Meet.timerId);
+    if(Meet.localStream){
+      Meet.localStream.getTracks().forEach(t => t.stop());
+      Meet.localStream = null;
+    }
+    if(Meet.screenStream){
+      Meet.screenStream.getTracks().forEach(t => t.stop());
+      Meet.screenStream = null;
+    }
+    Meet.calls.forEach(c => { try{ c.close(); }catch(e){} });
+    Meet.calls.clear();
+
+    // Clean remote video cards
+    document.querySelectorAll('[id^="meetCard_"]').forEach(el => el.remove());
+
+    $('#meetCall').hidden = true;
+    $('#meetLobby').hidden = false;
+    $('#meetLiveBadge').hidden = true;
+    toast('🔴 Left Video Meeting');
+  }
+
+  // Meet Toolbar Buttons
+  $('#bInstantMeet')?.addEventListener('click', ()=> startMeetCall());
+  $('#bCreateMeet')?.addEventListener('click', ()=> startMeetCall());
+  $('#bJoinMeet')?.addEventListener('click', ()=>{
+    const code = ($('#inMeetCode').value || '').trim();
+    if(!code){ toast('Enter a Meeting ID'); return; }
+    startMeetCall(code);
+  });
+  $('#bMeetLeave')?.addEventListener('click', endMeetCall);
+
+  // Mic toggle
+  $('#bMeetMic')?.addEventListener('click', ()=>{
+    if(!Meet.localStream) return;
+    Meet.audioMuted = !Meet.audioMuted;
+    Meet.localStream.getAudioTracks().forEach(t => { t.enabled = !Meet.audioMuted; });
+    $('#bMeetMic').classList.toggle('off', Meet.audioMuted);
+    $('#bMeetMic').textContent = Meet.audioMuted ? '🔇' : '🎤';
+    $('#meetLocalMicStatus').textContent = Meet.audioMuted ? '🔇' : '🎤';
+    toast(Meet.audioMuted ? 'Microphone Muted' : 'Microphone Active');
+  });
+
+  // Camera toggle
+  $('#bMeetCam')?.addEventListener('click', ()=>{
+    if(!Meet.localStream) return;
+    Meet.videoMuted = !Meet.videoMuted;
+    Meet.localStream.getVideoTracks().forEach(t => { t.enabled = !Meet.videoMuted; });
+    $('#bMeetCam').classList.toggle('off', Meet.videoMuted);
+    $('#bMeetCam').textContent = Meet.videoMuted ? '🚫' : '📹';
+    $('#meetLocalVideo').hidden = Meet.videoMuted;
+    $('#meetLocalFallback').hidden = !Meet.videoMuted;
+    toast(Meet.videoMuted ? 'Camera Turned Off' : 'Camera Active');
+  });
+
+  // Flip Camera (mobile)
+  $('#bMeetFlip')?.addEventListener('click', async ()=>{
+    Meet.facingMode = (Meet.facingMode === 'user' ? 'environment' : 'user');
+    try{
+      const newStream = await getMeetMedia(true, !Meet.audioMuted);
+      const newVTrack = newStream.getVideoTracks()[0];
+      if(newVTrack && Meet.localStream){
+        const oldVTrack = Meet.localStream.getVideoTracks()[0];
+        if(oldVTrack){
+          Meet.localStream.removeTrack(oldVTrack);
+          oldVTrack.stop();
+        }
+        Meet.localStream.addTrack(newVTrack);
+        const locVid = $('#meetLocalVideo');
+        if(locVid) locVid.srcObject = Meet.localStream;
+        $('#meetCardLocal').classList.toggle('mirrored', Meet.facingMode === 'user');
+        // Replace track on peer connections
+        Meet.calls.forEach(c => {
+          const sender = c.peerConnection?.getSenders()?.find(s => s.track && s.track.kind === 'video');
+          if(sender) sender.replaceTrack(newVTrack);
+        });
+        toast('Camera Switched: ' + (Meet.facingMode === 'user' ? 'Front' : 'Rear'));
+      }
+    }catch(err){ toast('Could not switch camera'); }
+  });
+
+  // Screen Share
+  $('#bMeetScreen')?.addEventListener('click', async ()=>{
+    if(!Meet.inCall) return;
+    try{
+      if(!Meet.screenStream){
+        Meet.screenStream = await navigator.mediaDevices.getDisplayMedia({ video: true });
+        const scrTrack = Meet.screenStream.getVideoTracks()[0];
+        $('#meetLocalVideo').srcObject = Meet.screenStream;
+        $('#meetCardLocal').classList.remove('mirrored');
+        $('#bMeetScreen').classList.add('active');
+        Meet.calls.forEach(c => {
+          const sender = c.peerConnection?.getSenders()?.find(s => s.track && s.track.kind === 'video');
+          if(sender) sender.replaceTrack(scrTrack);
+        });
+        scrTrack.onended = ()=>{ $('#bMeetScreen').click(); };
+        toast('🖥️ Screen Sharing Started');
+      } else {
+        Meet.screenStream.getTracks().forEach(t => t.stop());
+        Meet.screenStream = null;
+        if(Meet.localStream){
+          $('#meetLocalVideo').srcObject = Meet.localStream;
+          $('#meetCardLocal').classList.toggle('mirrored', Meet.facingMode === 'user');
+          const camTrack = Meet.localStream.getVideoTracks()[0];
+          Meet.calls.forEach(c => {
+            const sender = c.peerConnection?.getSenders()?.find(s => s.track && s.track.kind === 'video');
+            if(sender && camTrack) sender.replaceTrack(camTrack);
+          });
+        }
+        $('#bMeetScreen').classList.remove('active');
+        toast('Screen Sharing Stopped');
+      }
+    }catch(e){ console.warn(e); }
+  });
+
+  // Raise Hand
+  $('#bMeetHand')?.addEventListener('click', ()=>{
+    Meet.handRaised = !Meet.handRaised;
+    $('#bMeetHand').classList.toggle('active', Meet.handRaised);
+    $('#meetLocalHand').hidden = !Meet.handRaised;
+    if(typeof send === 'function'){
+      send({ t: 'meet_hand', raised: Meet.handRaised, name: myName });
+    }
+    toast(Meet.handRaised ? '✋ Hand Raised' : 'Hand Lowered');
+  });
+
+  // Reactions (Flying emoji)
+  const REACTIONS = ['❤️', '👏', '🎉', '👍', '😂', '🔥'];
+  $('#bMeetReact')?.addEventListener('click', ()=>{
+    const emoji = REACTIONS[Math.floor(Math.random() * REACTIONS.length)];
+    spawnFlyingReaction(emoji);
+    if(typeof send === 'function'){
+      send({ t: 'meet_react', emoji: emoji });
+    }
+  });
+
+  function spawnFlyingReaction(emoji){
+    const el = document.createElement('div');
+    el.className = 'flying-reaction';
+    el.textContent = emoji;
+    document.body.appendChild(el);
+    setTimeout(()=>{ el.remove(); }, 2500);
+  }
+
+  // Meeting Recording (MediaRecorder)
+  $('#bMeetRecord')?.addEventListener('click', ()=>{
+    if(!Meet.inCall) return;
+    if(!Meet.mediaRecorder || Meet.mediaRecorder.state === 'inactive'){
+      try{
+        const stm = Meet.screenStream || Meet.localStream;
+        if(!stm){ toast('No media stream to record'); return; }
+        Meet.recordedChunks = [];
+        Meet.mediaRecorder = new MediaRecorder(stm, { mimeType: 'video/webm' });
+        Meet.mediaRecorder.ondataavailable = e => { if(e.data.size > 0) Meet.recordedChunks.push(e.data); };
+        Meet.mediaRecorder.onstop = ()=>{
+          const blob = new Blob(Meet.recordedChunks, { type: 'video/webm' });
+          const url = URL.createObjectURL(blob);
+          const a = document.createElement('a');
+          a.href = url;
+          a.download = 'FriendsHub-Meeting-' + Meet.meetingId + '-' + Date.now() + '.webm';
+          a.click();
+          URL.revokeObjectURL(url);
+          toast('✅ Meeting recording saved and downloaded!');
+        };
+        Meet.mediaRecorder.start();
+        $('#bMeetRecord').classList.add('active');
+        toast('⏺️ Recording started...');
+      }catch(err){ toast('Recording not supported on this browser'); }
+    } else {
+      Meet.mediaRecorder.stop();
+      $('#bMeetRecord').classList.remove('active');
+      toast('⏹️ Stopping recording & saving...');
+    }
+  });
+
+  // Copy meeting link
+  $('#bMeetCopyLink')?.addEventListener('click', ()=>{
+    const url = location.origin + location.pathname + '?meet=' + Meet.meetingId;
+    navigator.clipboard.writeText(url).then(()=> toast('📋 Meeting Link Copied!')).catch(()=> toast(url));
+  });
+
+  // WhatsApp share
+  $('#bMeetShareWa')?.addEventListener('click', ()=>{
+    const url = location.origin + location.pathname + '?meet=' + Meet.meetingId;
+    const txt = encodeURIComponent('Join my Friends HUB Video Meeting: ' + url + ' (Meeting ID: ' + Meet.meetingId + ')');
+    window.open('https://wa.me/?text=' + txt, '_blank');
+  });
+
+  // Render recent meetings
+  function renderRecentMeets(){
+    const box = $('#meetRecentBox'), list = $('#meetRecentList');
+    if(!box || !list) return;
+    try{
+      const rec = JSON.parse(localStorage.getItem('fwp_recent_meets')||'[]');
+      if(!rec.length){ box.hidden = true; return; }
+      list.innerHTML = '';
+      rec.forEach(code => {
+        const b = document.createElement('button');
+        b.className = 'pillbtn';
+        b.textContent = 'Rejoin ' + code;
+        b.onclick = ()=> startMeetCall(code);
+        list.appendChild(b);
+      });
+      box.hidden = false;
+    }catch(e){ box.hidden = true; }
+  }
+  renderRecentMeets();
+
+  // Schedule Meeting handler
+  $('#bScheduleMeet')?.addEventListener('click', ()=>{
+    const title = prompt('Enter Meeting Title:', 'Movie Night & Gaming');
+    if(!title) return;
+    const time = prompt('Enter Date & Time:', 'Tonight at 8:00 PM');
+    if(!time) return;
+    const code = 'M-' + Math.random().toString(36).substr(2, 6).toUpperCase();
+    const link = location.origin + location.pathname + '?meet=' + code;
+    const invite = `📅 Friends HUB Video Meetup: "${title}"\n⏰ Time: ${time}\n🔗 Join: ${link}\n🔑 Meeting ID: ${code}`;
+    navigator.clipboard.writeText(invite).then(()=>{
+      toast('✅ Meeting scheduled & invitation copied to clipboard!');
+    }).catch(()=>{ toast('Meeting ID: ' + code); });
+  });
+
+  // Toggle Grid / Speaker View
+  $('#bMeetToggleView')?.addEventListener('click', ()=>{
+    Meet.viewMode = (Meet.viewMode === 'grid' ? 'speaker' : 'grid');
+    const gal = $('#meetGallery');
+    if(gal){
+      gal.classList.toggle('speaker-view', Meet.viewMode === 'speaker');
+    }
+    $('#bMeetToggleView').textContent = (Meet.viewMode === 'grid' ? '🔲 Grid View' : '👤 Speaker View');
+    toast('Switched to ' + (Meet.viewMode === 'grid' ? 'Grid View' : 'Speaker View'));
+  });
+
+  // In-Call Chat Button opens draggable chat
+  $('#bMeetChat')?.addEventListener('click', ()=>{
+    const ch = $('aside.chat');
+    if(ch){
+      ch.hidden = false;
+      const flBtn = $('#chatFloatingBtn'); if(flBtn) flBtn.hidden = true;
+      toast('💬 In-Meeting Chat Active');
+    }
+  });
+
+  // Participants list drawer / Host Mute All
+  $('#bMeetPeople')?.addEventListener('click', ()=>{
+    const totalCount = Meet.calls.size + 1;
+    const isRoomHost = (typeof isHost !== 'undefined' ? isHost : true);
+    if(isRoomHost){
+      if(confirm(`👥 Participants (${totalCount})\n\nWould you like to MUTE ALL participants?`)){
+        if(typeof send === 'function'){
+          send({ t: 'meet_mute_all' });
+        }
+        toast('🔇 Mute command sent to all participants');
+      }
+    } else {
+      toast(`👥 Total Participants in Meeting: ${totalCount}`);
+    }
+  });
+
+  // Tab switch hook for Meetup
+  window.meetShown = function(){
+    if(!Meet.inCall) renderRecentMeets();
+  };
+
+  // Wire incoming peer messages for meetup
+  const prevNetMsg = window.netMsg;
+  window.netMsg = function(m){
+    if(m && m.t === 'meet_react'){
+      spawnFlyingReaction(m.emoji || '🎉');
+    } else if(m && m.t === 'meet_hand'){
+      const card = document.getElementById('meetCard_' + m.fid);
+      if(card){
+        const hb = card.querySelector('.meet-hand-badge');
+        if(hb) hb.hidden = !m.raised;
+      }
+      toast('✋ ' + (m.name || 'Friend') + (m.raised ? ' raised their hand' : ' lowered hand'));
+    }
+    if(typeof prevNetMsg === 'function') prevNetMsg(m);
+  };
+
+})();
+</script></body>
 </html>

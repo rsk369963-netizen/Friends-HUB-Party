@@ -1007,15 +1007,16 @@ $('#mp3In').onchange=()=>{ const f=$('#mp3In').files[0]; if(!f) return; try{ con
 /* tabs */
 let curTab='P';
 function showTab(k){
-  if(!['P','O','G','S'].includes(k)) k='P';
+  if(!['P','O','M','G','S'].includes(k)) k='P';
   curTab=k;
-  ['P','O','G','S'].forEach(x=>{ const p=$('#pane'+x); if(p) p.hidden=(x!==k); const tb=$('#tab'+x); if(tb) tb.classList.toggle('on',x===k); });
+  ['P','O','M','G','S'].forEach(x=>{ const p=$('#pane'+x); if(p) p.hidden=(x!==k); const tb=$('#tab'+x); if(tb) tb.classList.toggle('on',x===k); });
+  if(k==='M'&&window.meetShown) meetShown();
   if(k==='G'){ const b=$('#gBadge'); if(b) b.hidden=true; if(window.gamesShown) gamesShown(); }
   if(k!=='G'&&window.gamesHidden) gamesHidden();
   if(k==='S'&&window.scoreShown) scoreShown();
   store.set('fwp-tab',k);
 }
-['P','O','G','S'].forEach(x=>{ const tb=$('#tab'+x); if(tb) tb.onclick=()=>showTab(x); });
+['P','O','M','G','S'].forEach(x=>{ const tb=$('#tab'+x); if(tb) tb.onclick=()=>showTab(x); });
 
 /* reactions (float over whole page) */
 ['❤️','😂','😮','👏','🔥','🥹','😭','🍿'].forEach(e=>{
