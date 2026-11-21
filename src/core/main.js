@@ -1007,18 +1007,15 @@ $('#mp3In').onchange=()=>{ const f=$('#mp3In').files[0]; if(!f) return; try{ con
 /* tabs */
 let curTab='P';
 function showTab(k){
-  if(!['P','O','G','S','X','W'].includes(k)) k='P';
+  if(!['P','O','G','S'].includes(k)) k='P';
   curTab=k;
-  ['P','O','G','S','X','W'].forEach(x=>{ $('#pane'+x).hidden=(x!==k); $('#tab'+x).classList.toggle('on',x===k); });
-  if(k==='G'){ const b=$('#gBadge'); b.hidden=true; if(window.gamesShown) gamesShown(); }
+  ['P','O','G','S'].forEach(x=>{ const p=$('#pane'+x); if(p) p.hidden=(x!==k); const tb=$('#tab'+x); if(tb) tb.classList.toggle('on',x===k); });
+  if(k==='G'){ const b=$('#gBadge'); if(b) b.hidden=true; if(window.gamesShown) gamesShown(); }
   if(k!=='G'&&window.gamesHidden) gamesHidden();
   if(k==='S'&&window.scoreShown) scoreShown();
-  if(k==='X'&&window.expShown) expShown();
-  if(k==='W'&&window.vwShown) vwShown();
-  if(k!=='W'&&window.vwHidden) vwHidden();
   store.set('fwp-tab',k);
 }
-['P','O','G','S','X','W'].forEach(x=>{ $('#tab'+x).onclick=()=>showTab(x); });
+['P','O','G','S'].forEach(x=>{ const tb=$('#tab'+x); if(tb) tb.onclick=()=>showTab(x); });
 
 /* reactions (float over whole page) */
 ['❤️','😂','😮','👏','🔥','🥹','😭','🍿'].forEach(e=>{
@@ -1051,11 +1048,22 @@ function tileHtml(o){
   return '<div class="tile" style="--c1:'+o.c1+';--c2:'+o.c2+'">'+inner+'</div>';
 }
 function renderOtt(){
-  const g=$('#ottgrid'); g.innerHTML='';
+  const g=$('#ottgrid'); if(!g) return;
+  g.innerHTML='';
   OTT.forEach(o=>{
-    const c=document.createElement('div'); c.className='ottcard'+(state.ott===o.id?' on':''); c.style.setProperty('--c1',o.c1);
-    c.innerHTML=tileHtml(o)+'<b>'+o.n+'</b><span class="go">'+t('ottOpen')+' ↗</span>';
-    c.onclick=()=>openOtt(o.id,true);
+    const c=document.createElement('div');
+    c.className='ottcard'+(state.ott===o.id?' on':'');
+    c.style.setProperty('--c1',o.c1);
+    c.innerHTML=
+      tileHtml(o) +
+      '<span class="ott-cs-badge">⏳ Coming Soon</span>' +
+      '<b>'+o.n+'</b>' +
+      '<small class="ott-cs-sub">விரைவில் வரும் · Co-Watching Sync</small>' +
+      '<span class="go">⏳ Coming Soon ↗</span>';
+    c.onclick=()=>{
+      openOtt(o.id, true);
+      toast('⏳ ' + o.n + ' Watch Party direct integration is Coming Soon!');
+    };
     g.appendChild(c);
   });
 }

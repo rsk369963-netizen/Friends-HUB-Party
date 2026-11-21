@@ -721,3 +721,65 @@ html[data-theme=white] .gcard small,html[data-theme=white] .ottcard b{color:#090
 .hide-bar-btn:hover{background:rgba(168,85,247,.4)!important;color:#fff!important}
 .uni-stream-bar.collapsed>*:not(.uni-stream-header){display:none!important}
 .uni-stream-bar.collapsed{padding:6px 12px!important;gap:0!important;margin-bottom:6px!important}
+/* Popups for Speed, Screen Size, Quality */
+.menu, .qm {
+  position: absolute !important;
+  bottom: calc(100% + 10px) !important;
+  right: 0 !important;
+  background: rgba(16,13,28,.97) !important;
+  backdrop-filter: blur(20px) !important;
+  -webkit-backdrop-filter: blur(20px) !important;
+  border: 1px solid rgba(255,255,255,.22) !important;
+  border-radius: 14px !important;
+  padding: 6px !important;
+  min-width: 140px !important;
+  max-height: 240px !important;
+  overflow-y: auto !important;
+  box-shadow: 0 16px 40px rgba(0,0,0,.75) !important;
+  z-index: 100 !important;
+}
+.menu.open { display: flex !important; flex-direction: column !important; gap: 2px !important; }
+.qm.on { display: flex !important; flex-direction: column !important; gap: 2px !important; }
+.menu button, .qm button {
+  display: block !important;
+  width: 100% !important;
+  text-align: left !important;
+  background: transparent !important;
+  padding: 8px 12px !important;
+  border-radius: 9px !important;
+  font-size: 12.5px !important;
+  color: #fff !important;
+  cursor: pointer !important;
+  white-space: nowrap !important;
+  border: none !important;
+}
+.menu button:hover, .qm button:hover { background: rgba(255,255,255,.14) !important; }
+.menu button.on, .qm button.on { background: var(--grad) !important; font-weight: 700 !important; }
+
+/* OTT Hub Coming Soon Badges */
+.ott-cs-badge {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 10px;
+  font-weight: 700;
+  padding: 3px 8px;
+  border-radius: 999px;
+  background: rgba(245, 158, 11, 0.22);
+  border: 1px solid rgba(245, 158, 11, 0.5);
+  color: #fbbf24;
+  letter-spacing: 0.3px;
+  z-index: 2;
+  box-shadow: 0 2px 8px rgba(0,0,0,.35);
+  animation: pulseCs 2.5s infinite ease-in-out;
+}
+@keyframes pulseCs {
+  0%, 100% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.04); opacity: 0.85; }
+}
+.ott-cs-sub {
+  color: var(--muted);
+  font-size: 11px;
+  z-index: 1;
+  margin-top: -6px;
+}
