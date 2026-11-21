@@ -2171,6 +2171,370 @@ aside.chat.floating {
   box-shadow: 0 10px 30px rgba(0,0,0,0.7), 0 0 15px rgba(16, 185, 129, 0.3);
   backdrop-filter: blur(10px);
 }
+
+/* ==================== 1-TO-1 VIDEO CHAT SYSTEM ==================== */
+.vchat-user-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 14px;
+  margin-top: 12px;
+}
+.vchat-user-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 16px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  border-radius: 18px;
+  transition: all .25s ease;
+}
+.vchat-user-card:hover {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(168, 85, 247, 0.4);
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.4);
+}
+.vchat-user-meta {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.vchat-av-wrap {
+  position: relative;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, rgba(168, 85, 247, 0.3), rgba(236, 72, 153, 0.3));
+  border: 1.5px solid rgba(255, 255, 255, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+  flex-shrink: 0;
+}
+.vchat-online-dot {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: #10b981;
+  border: 2px solid #0d0e14;
+}
+.vchat-user-name {
+  font-weight: 700;
+  font-size: 14px;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.vchat-status-badge {
+  font-size: 11px;
+  padding: 2px 8px;
+  border-radius: 999px;
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  margin-top: 3px;
+}
+.vchat-status-badge.available {
+  background: rgba(16, 185, 129, 0.18);
+  color: #34d399;
+  border: 1px solid rgba(16, 185, 129, 0.35);
+}
+.vchat-status-badge.calling {
+  background: rgba(245, 158, 11, 0.22);
+  color: #fbbf24;
+  border: 1px solid rgba(245, 158, 11, 0.5);
+  animation: pulseCs 1.4s infinite ease-in-out;
+}
+.vchat-status-badge.absent {
+  background: rgba(239, 68, 68, 0.2);
+  color: #f87171;
+  border: 1px solid rgba(239, 68, 68, 0.45);
+}
+.vchat-status-badge.declined {
+  background: rgba(148, 163, 184, 0.2);
+  color: #cbd5e1;
+  border: 1px solid rgba(148, 163, 184, 0.4);
+}
+.vchat-status-badge.incall {
+  background: rgba(168, 85, 247, 0.22);
+  color: #c084fc;
+  border: 1px solid rgba(168, 85, 247, 0.45);
+}
+
+/* ACTIVE VIDEO CALL SCREEN & DUAL LAYOUT */
+.vchat-call-screen {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  width: 100%;
+  animation: lenovoSlideIn .3s ease;
+}
+.vchat-call-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 18px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+.vchat-peer-meta {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.vchat-live-dot {
+  color: #10b981;
+  animation: pulseCs 1.2s infinite;
+  font-size: 14px;
+}
+.vchat-status-pill {
+  font-size: 11px;
+  padding: 3px 10px;
+  border-radius: 999px;
+  background: rgba(16, 185, 129, 0.18);
+  border: 1px solid rgba(16, 185, 129, 0.35);
+  color: #34d399;
+  font-weight: 600;
+}
+.vchat-status-pill.reconnecting {
+  background: rgba(245, 158, 11, 0.2);
+  border-color: rgba(245, 158, 11, 0.4);
+  color: #fbbf24;
+}
+.vchat-top-actions {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.vchat-timer-pill {
+  font-family: monospace;
+  font-size: 12px;
+  padding: 4px 10px;
+  background: rgba(0,0,0,0.5);
+  border-radius: 999px;
+  border: 1px solid var(--line);
+  color: #cbd5e1;
+}
+
+/* DUAL VIDEO CONTAINER LAYOUTS */
+.vchat-dual-container {
+  width: 100%;
+  transition: all .3s ease;
+}
+.vchat-dual-container.layout-balanced-1-1 {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 16px;
+  justify-content: center;
+}
+.vchat-dual-container.layout-balanced-1-1 .vchat-video-card {
+  aspect-ratio: 1 / 1 !important;
+  max-height: 480px;
+  width: 100%;
+  border-radius: 22px;
+  overflow: hidden;
+  background: #000;
+  position: relative;
+  box-shadow: 0 16px 40px rgba(0,0,0,0.7);
+  border: 1.5px solid rgba(255,255,255,0.12);
+}
+.vchat-dual-container.layout-dual-16-9 {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 16px;
+}
+.vchat-dual-container.layout-dual-16-9 .vchat-video-card {
+  aspect-ratio: 16 / 9 !important;
+  border-radius: 20px;
+  overflow: hidden;
+  background: #000;
+  position: relative;
+  box-shadow: 0 16px 40px rgba(0,0,0,0.7);
+  border: 1.5px solid rgba(255,255,255,0.12);
+}
+.vchat-dual-container.layout-pip {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  border-radius: 22px;
+  overflow: hidden;
+  background: #000;
+  border: 1.5px solid rgba(255,255,255,0.12);
+}
+.vchat-dual-container.layout-pip .vchat-video-card.remote {
+  width: 100%;
+  height: 100%;
+  aspect-ratio: 16 / 9;
+}
+.vchat-dual-container.layout-pip .vchat-video-card.local {
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+  width: 170px;
+  height: 170px;
+  aspect-ratio: 1 / 1;
+  border-radius: 18px;
+  z-index: 10;
+  box-shadow: 0 12px 35px rgba(0,0,0,0.9);
+  border: 2px solid #a855f7;
+}
+
+.vchat-video-card video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.vchat-video-card.local.mirrored video {
+  transform: scaleX(-1);
+}
+.vchat-card-overlay {
+  position: absolute;
+  bottom: 12px;
+  left: 12px;
+  right: 12px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  pointer-events: none;
+}
+.vchat-name-tag {
+  background: rgba(0,0,0,0.7);
+  backdrop-filter: blur(8px);
+  padding: 4px 10px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  color: #fff;
+  border: 1px solid rgba(255,255,255,0.15);
+}
+.vchat-icon-tag {
+  background: rgba(0,0,0,0.7);
+  backdrop-filter: blur(8px);
+  padding: 4px 8px;
+  border-radius: 8px;
+  font-size: 12px;
+  color: #fff;
+  border: 1px solid rgba(255,255,255,0.15);
+}
+.vchat-fallback {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background: radial-gradient(circle at center, #1b1330 0%, #0a0812 100%);
+}
+.vchat-fallback-av {
+  width: 68px;
+  height: 68px;
+  border-radius: 50%;
+  background: rgba(168, 85, 247, 0.25);
+  border: 2px solid rgba(168, 85, 247, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 34px;
+}
+.vchat-fallback-name {
+  font-weight: 700;
+  font-size: 15px;
+  color: #fff;
+}
+
+/* IN-CALL TOOLBAR */
+.vchat-call-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  padding: 14px 20px;
+  background: rgba(18, 14, 28, 0.95);
+  border: 1px solid var(--line);
+  border-radius: 22px;
+  box-shadow: 0 16px 45px rgba(0,0,0,0.6);
+  flex-wrap: wrap;
+}
+.vchat-ctrl-btn {
+  height: 44px;
+  padding: 0 16px;
+  border-radius: 14px;
+  font-size: 13.5px;
+  font-weight: 700;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  color: #fff;
+  cursor: pointer;
+  transition: all .2s ease;
+}
+.vchat-ctrl-btn:hover {
+  background: rgba(255, 255, 255, 0.16);
+  transform: translateY(-2px);
+}
+.vchat-ctrl-btn.off {
+  background: rgba(239, 68, 68, 0.25) !important;
+  border-color: #ef4444 !important;
+  color: #fca5a5 !important;
+}
+.vchat-ctrl-btn.end-call {
+  background: #ef4444 !important;
+  border-color: #dc2626 !important;
+  color: #fff !important;
+}
+.vchat-ctrl-btn.end-call:hover {
+  background: #dc2626 !important;
+  box-shadow: 0 0 18px rgba(239, 68, 68, 0.5) !important;
+}
+
+/* MINIMIZED FLOATING VIDEO CHAT WIDGET */
+.vchat-call-screen.minimized {
+  position: fixed !important;
+  bottom: 85px !important;
+  right: 25px !important;
+  width: 320px !important;
+  max-width: calc(100vw - 30px) !important;
+  z-index: 9999 !important;
+  background: rgba(14, 11, 24, 0.96) !important;
+  border: 1.5px solid rgba(168, 85, 247, 0.55) !important;
+  border-radius: 20px !important;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.85), 0 0 30px rgba(168, 85, 247, 0.3) !important;
+  padding: 10px !important;
+}
+.vchat-call-screen.minimized .vchat-dual-container {
+  display: flex !important;
+  flex-direction: row !important;
+  gap: 8px !important;
+}
+.vchat-call-screen.minimized .vchat-video-card {
+  aspect-ratio: 1 / 1 !important;
+  height: 100px !important;
+  flex: 1 !important;
+  border-radius: 12px !important;
+}
+.vchat-call-screen.minimized .vchat-call-toolbar {
+  padding: 8px 10px !important;
+  gap: 6px !important;
+}
+.vchat-call-screen.minimized .vchat-ctrl-btn {
+  height: 32px !important;
+  padding: 0 8px !important;
+  font-size: 11px !important;
+}
 }</style>
 </head>
 <body>
@@ -2260,7 +2624,7 @@ aside.chat.floating {
     <nav class="tabs2 glass" id="hubNav">
       <button id="tabP" class="on" title="Virtual Cinema Hub"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="14" rx="3"/><path d="m10.5 8.5 4 2.5-4 2.5z" fill="currentColor"/><path d="M8 21h8"/></svg><span data-i="tabPlayer">Virtual Cinema</span></button>
       <button id="tabO" title="OTT Hub"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="7.5" height="7.5" rx="2"/><rect x="13.5" y="4" width="7.5" height="7.5" rx="2"/><rect x="3" y="14.5" width="7.5" height="7.5" rx="2"/><rect x="13.5" y="14.5" width="7.5" height="7.5" rx="2"/></svg><span data-i="tabOtt">OTT Hub</span></button>
-      <button id="tabM" title="Video Meetup Hub"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 10l5-3v10l-5-3v-4z"/><rect x="3" y="6" width="12" height="12" rx="3" fill="currentColor" fill-opacity="0.2"/></svg><span data-i="tabMeet">Video Meetup</span><i class="bd" id="meetLiveBadge" hidden>Live</i></button>
+      <button id="tabM" title="1-to-1 Video Chat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 10l5-3v10l-5-3v-4z"/><rect x="3" y="6" width="12" height="12" rx="3" fill="currentColor" fill-opacity="0.2"/></svg><span data-i="tabMeet">Video Chat</span><i class="bd" id="meetLiveBadge" hidden>Live</i></button>
       <button id="tabG" title="Game Hub · 102 Games"><svg viewBox="0 0 24 24"><rect x="2.5" y="7" width="19" height="11" rx="5"/><path d="M7.5 10v5M5 12.5h5"/><circle cx="15.5" cy="11.5" r=".8" fill="currentColor"/><circle cx="18" cy="13.5" r=".8" fill="currentColor"/></svg><span data-i="tabGames">Game Hub</span><i class="bd" id="gBadge" hidden></i></button>
       <button id="tabS" title="Scoreboard Hub"><svg viewBox="0 0 24 24"><path d="M8 4h8v5a4 4 0 0 1-8 0z"/><path d="M8 6H5v1a3 3 0 0 0 3 3M16 6h3v1a3 3 0 0 1-3 3"/><path d="M12 13v4M8.5 20h7"/></svg><span data-i="tabScore">Scoreboard</span></button>
       
@@ -2409,97 +2773,118 @@ aside.chat.floating {
     </div>
 
     <!-- ===== Video Meetup Hub pane ===== -->
+        <!-- ===== Video Chat Hub pane (1-to-1 Live Video Calling) ===== -->
     <div id="paneM" class="pane meet-pane" hidden>
       <button class="gbtn backb" onclick="showTab('P')">← Back to Cinema</button>
 
-      <!-- Meetup Lobby (Create / Join / Schedule) -->
-      <div id="meetLobby" class="meet-lobby-deck">
+      <!-- Video Chat Lobby: Real-time User List (No Codes, No Manual Joining) -->
+      <div id="vchatLobby" class="vchat-lobby-deck">
         <div class="meet-hero">
           <div class="meet-hero-text">
-            <span class="badge"><span class="gold">✦ VIDEO MEETUP HUB</span></span>
-            <h2>Friends <span class="grad">Meetup</span></h2>
-            <p>Connect face-to-face with your friends in HD video & crystal-clear audio. Peer-to-peer encrypted, zero lag, screen sharing, and emoji reactions.</p>
+            <span class="badge"><span class="gold">✦ LIVE 1-TO-1 VIDEO CHAT</span></span>
+            <h2>Friends <span class="grad">Video Chat</span></h2>
+            <p>Connect face-to-face with friends in real-time HD video. Simply tap <b>Invite to Video Call</b> beside any available friend to start an instant 1-to-1 video call.</p>
           </div>
-          <div style="display:flex;gap:10px;align-items:center"><button id="bInstantMeet" class="primary" style="padding:14px 24px;border-radius:18px;font-size:15px;font-weight:700">🚀 Start Instant Meeting</button><button id="bMeetLobbyAudioTest" class="pillbtn" style="padding:14px 18px;border-radius:18px;font-size:14px">🔊 Audio Test</button></div>
+          <button id="bVchatAudioTest" class="pillbtn" style="padding:12px 20px;border-radius:18px;font-size:13px;display:flex;align-items:center;gap:6px"><span>🔊</span> <span>Audio & Camera Test</span></button>
         </div>
 
-        <div class="meet-actions-grid">
-          <div class="meet-card">
-            <div class="meet-card-icon">📹</div>
-            <h3>New Meeting</h3>
-            <p>Create a fresh meeting room and invite your friends via direct link or room code.</p>
-            <button id="bCreateMeet" class="primary" style="margin-top:auto">Create Meeting</button>
-          </div>
-
-          <div class="meet-card">
-            <div class="meet-card-icon">🔗</div>
-            <h3>Join with Code</h3>
-            <p>Enter the 6-character Meeting ID or Room Code shared by your friend.</p>
-            <div class="meet-input-row" style="margin-top:auto">
-              <input id="inMeetCode" placeholder="e.g. M-QYWS27" maxlength="12" autocomplete="off">
-              <button id="bJoinMeet" class="gbtn">Join</button>
+        <!-- Available Users & Friends Section -->
+        <div class="vchat-users-section glass" style="padding:20px;border-radius:24px;border:1px solid var(--line);margin-top:16px">
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;flex-wrap:wrap;gap:10px">
+            <div>
+              <h3 style="margin:0;font-size:17px;display:flex;align-items:center;gap:8px">
+                <span>👥</span> <span>Available Users</span>
+                <span id="vchatUserCountBadge" class="badge" style="font-size:11px;padding:2px 8px">1 Online</span>
+              </h3>
+              <p style="margin:4px 0 0;font-size:12px;color:var(--muted)">Select any active user below to start an instant live video call. No codes or room IDs required.</p>
             </div>
+            <button id="bVchatRefreshList" class="pillbtn" style="font-size:11.5px;padding:4px 12px;height:28px">🔄 Refresh</button>
           </div>
 
-          <div class="meet-card">
-            <div class="meet-card-icon">📅</div>
-            <h3>Schedule Meeting</h3>
-            <p>Plan a watch party or gaming session in advance with calendar invite details.</p>
-            <button id="bScheduleMeet" class="gbtn" style="margin-top:auto">Schedule</button>
+          <div id="vchatUserGrid" class="vchat-user-grid">
+            <!-- Dynamically populated with active friends -->
           </div>
-        </div>
-
-        <!-- Recent Meetings -->
-        <div id="meetRecentBox" class="glass" style="padding:16px 20px;border-radius:20px;border:1px solid var(--line)" hidden>
-          <h4 style="margin:0 0 10px;font-size:14px;color:var(--muted)">🕒 Recent Meetings</h4>
-          <div id="meetRecentList" style="display:flex;gap:10px;flex-wrap:wrap"></div>
         </div>
       </div>
 
-      <!-- Active Video Call Screen -->
-      <div id="meetCall" class="meet-call-deck" hidden>
-        <div class="meet-call-header">
-          <div class="meet-id-badge">
-            <span style="color:#10b981">●</span>
-            <b>Room: <span id="meetActiveCode">LIVE</span></b>
-            <button id="bMeetCopyLink" class="pillbtn" style="font-size:11px;padding:2px 8px;height:24px">📋 Copy Invite</button>
-            <button id="bMeetShareWa" class="pillbtn" style="font-size:11px;padding:2px 8px;height:24px">💬 WhatsApp</button>
+      <!-- Active 1-to-1 Video Call Interface -->
+      <div id="vchatCallScreen" class="vchat-call-screen" hidden>
+        <!-- In-Call Header Bar -->
+        <div class="vchat-call-header">
+          <div class="vchat-peer-meta">
+            <span class="vchat-live-dot">●</span>
+            <span id="vchatPeerName" style="font-weight:700;font-size:14px">Video Chat</span>
+            <span id="vchatConnStatus" class="vchat-status-pill">🟢 Connected (P2P)</span>
           </div>
-          <div style="display:flex;align-items:center;gap:8px">
-            <span class="meet-timer-pill" id="meetCallTimer">⏱️ 00:00:00</span>
-            <button id="bMeetInviteBtn" class="pillbtn" style="font-size:11px;padding:2px 8px;height:24px;background:rgba(168,85,247,.25);border:1px solid rgba(168,85,247,.45)">✉️ Invite Friends</button><button id="bMeetAudioTest" class="pillbtn" style="font-size:11px;padding:2px 8px;height:24px">🔊 Audio Test</button><button id="bMeetToggleView" class="pillbtn" title="Toggle Grid / Speaker View">🔲 Grid View</button>
-          </div>
-        </div>
-
-        <!-- Video Gallery Grid -->
-        <div id="meetGallery" class="meet-gallery">
-          <!-- Local participant video card -->
-          <div id="meetCardLocal" class="meet-card-p mirrored">
-            <video id="meetLocalVideo" autoplay playsinline muted></video>
-            <div id="meetLocalFallback" class="meet-avatar-fallback" hidden>
-              <div class="av-circle" id="meetLocalAv">🙂</div>
-              <b id="meetLocalName">You</b>
-            </div>
-            <div class="meet-card-overlay">
-              <span id="meetLocalOverlayName">You (Host)</span>
-              <span id="meetLocalMicStatus">🎤</span>
-            </div>
-            <div id="meetLocalHand" class="meet-hand-badge" hidden>✋ Hand Raised</div>
+          <div class="vchat-top-actions">
+            <span class="vchat-timer-pill" id="vchatCallTimer">⏱️ 00:00</span>
+            <!-- Layout Switcher: Balanced 1:1, Compact Dual 16:9, PiP Mode -->
+            <button id="bVchatLayout" class="pillbtn sm" title="Switch Video Layout (Balanced 1:1 / Dual 16:9 / PiP)">⚖️ 1:1 View</button>
+            <button id="bVchatQuality" class="pillbtn sm" title="Adjust Video Quality">HD 720p</button>
+            <button id="bVchatPip" class="pillbtn sm" title="Picture-in-Picture">📺 PiP</button>
+            <button id="bVchatMin" class="pillbtn sm" title="Minimize Video Window">–</button>
+            <button id="bVchatFullscreen" class="pillbtn sm" title="Fullscreen">⛶</button>
           </div>
         </div>
 
-        <!-- Meeting Floating Bottom Toolbar -->
-        <div class="meet-toolbar">
-          <button id="bMeetMic" class="meet-btn" title="Toggle Microphone">🎤</button>
-          <button id="bMeetCam" class="meet-btn" title="Toggle Camera">📹</button>
-          <button id="bMeetFlip" class="meet-btn" title="Switch Front/Back Camera">🔄</button>
-          <button id="bMeetScreen" class="meet-btn" title="Share Screen">🖥️</button>
-          <button id="bMeetHand" class="meet-btn" title="Raise Hand">✋</button>
-          <button id="bMeetChat" class="meet-btn" title="In-Meeting Chat">💬</button>
-          <button id="bMeetReact" class="meet-btn" title="Send Emoji Reaction">😍</button>
-          <button id="bMeetRecord" class="meet-btn" title="Record Meeting">⏺️</button>
-          <button id="bMeetPeople" class="meet-btn" title="Participants List">👥</button>
-          <button id="bMeetLeave" class="meet-btn leave" title="Leave Meeting">🔴 Leave</button>
+        <!-- Video Dual Display Container -->
+        <div id="vchatDualContainer" class="vchat-dual-container layout-balanced-1-1">
+          <!-- Remote Video Card -->
+          <div id="vchatRemoteCard" class="vchat-video-card remote">
+            <video id="vchatRemoteVideo" autoplay playsinline></video>
+            <div id="vchatRemoteFallback" class="vchat-fallback" hidden>
+              <div class="vchat-fallback-av" id="vchatRemoteAv">🙂</div>
+              <div class="vchat-fallback-name" id="vchatRemoteFallbackName">Friend</div>
+              <div style="font-size:11px;color:var(--muted)">Camera Paused</div>
+            </div>
+            <div class="vchat-card-overlay">
+              <span id="vchatRemoteLabel" class="vchat-name-tag">Friend</span>
+              <span id="vchatRemoteMicStatus" class="vchat-icon-tag">🎤</span>
+            </div>
+          </div>
+
+          <!-- Local Video Card -->
+          <div id="vchatLocalCard" class="vchat-video-card local mirrored">
+            <video id="vchatLocalVideo" autoplay playsinline muted></video>
+            <div id="vchatLocalFallback" class="vchat-fallback" hidden>
+              <div class="vchat-fallback-av" id="vchatLocalAv">🙂</div>
+              <div class="vchat-fallback-name">You</div>
+              <div style="font-size:11px;color:var(--muted)">Camera Off</div>
+            </div>
+            <div class="vchat-card-overlay">
+              <span class="vchat-name-tag">You</span>
+              <span id="vchatLocalMicStatus" class="vchat-icon-tag">🎤</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- In-Call Bottom Control Bar -->
+        <div class="vchat-call-toolbar">
+          <button id="bVchatMic" class="vchat-ctrl-btn" title="Mute/Unmute Microphone">🎤</button>
+          <button id="bVchatCam" class="vchat-ctrl-btn" title="Turn Camera On/Off">📹</button>
+          <button id="bVchatFlip" class="vchat-ctrl-btn" title="Switch Front/Rear Camera (Mobile)">🔄 Flip</button>
+          <button id="bVchatScreen" class="vchat-ctrl-btn" title="Share Screen">🖥️ Share</button>
+          <button id="bVchatChat" class="vchat-ctrl-btn" title="Open Chat">💬 Chat</button>
+          <button id="bVchatEnd" class="vchat-ctrl-btn end-call" title="End Video Call">🔴 End Call</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Incoming 1-to-1 Video Call Alert Modal -->
+    <div id="vchatIncomingModal" class="modal-overlay" hidden>
+      <div class="modal-box" style="text-align:center;max-width:380px">
+        <div class="modal-body" style="padding:32px 24px">
+          <div style="position:relative;width:80px;height:80px;margin:0 auto 16px">
+            <div style="position:absolute;inset:0;border-radius:50%;background:rgba(168,85,247,0.3);animation:pulseCs 1.2s infinite"></div>
+            <div class="vchat-fallback-av" style="width:80px;height:80px;font-size:38px;position:relative;z-index:1" id="vchatIncomingAv">🙂</div>
+          </div>
+          <h3 style="margin:0 0 6px;font-size:20px;color:#fff"><span id="vchatIncomingName">Friend</span></h3>
+          <p style="color:#a855f7;font-size:13px;font-weight:700;margin:0 0 8px">📹 Incoming 1-to-1 Video Call</p>
+          <p style="color:var(--muted);font-size:12px;margin:0 0 24px">Tap Accept to turn on camera and start live video chat.</p>
+          <div style="display:flex;gap:12px;justify-content:center">
+            <button id="bVchatIncomingAccept" class="primary" style="padding:12px 24px;font-size:14px;border-radius:14px;font-weight:700">🟢 Accept Video Call</button>
+            <button id="bVchatIncomingDecline" class="gbtn" style="padding:12px 20px;font-size:14px;border-radius:14px;background:#ef4444;border-color:#dc2626;color:#fff">🔴 Decline</button>
+          </div>
         </div>
       </div>
     </div>
@@ -2513,7 +2898,7 @@ aside.chat.floating {
     <div class="chead" title="Drag to move chat window">
       <span class="drag-handle">⋮⋮</span>
       <div class="mstack" id="mstack"></div>
-      <div><div class="n" data-i="partyChat"></div><div class="s" id="chatSub"></div></div><div class="ch-call-actions"><button id="chVideoCall" class="pillbtn ch-act-btn" title="Start In-Chat Video Call">📹 Call</button><button id="chAudioCall" class="pillbtn ch-act-btn" title="Start In-Chat Voice Call">📞 Voice</button></div><div class="chbtns"><i id="chBd" hidden>0</i><button id="chDock" title="Toggle Float / Dock Mode">🪟</button><button id="chClr" title="Clear">🧹</button><button id="chMin" title="Minimize">–</button><button id="chMax" title="Maximize">⤢</button><button id="chClose" title="Close / Hide Chat" style="font-weight:700">✕</button></div>
+      <div><div class="n" data-i="partyChat"></div><div class="s" id="chatSub"></div></div><div class="ch-call-actions"><button id="chVideoCall" class="pillbtn ch-act-btn" title="Start In-Chat Video Call">📹 Video Call</button></div><div class="chbtns"><i id="chBd" hidden>0</i><button id="chDock" title="Toggle Float / Dock Mode">🪟</button><button id="chClr" title="Clear">🧹</button><button id="chMin" title="Minimize">–</button><button id="chMax" title="Maximize">⤢</button><button id="chClose" title="Close / Hide Chat" style="font-weight:700">✕</button></div>
     </div>
     
     <!-- In-Chat Video/Audio Call Deck -->
@@ -4043,6 +4428,7 @@ function onRosterChanged(){
   roster.slice(0,5).forEach(r=>{ const d=document.createElement('div'); d.className='mb'; d.textContent=r.av; d.title=r.name; ms.appendChild(d); });
   if(roster.length>5){ const d=document.createElement('div'); d.className='mb more'; d.textContent='+'+(roster.length-5); ms.appendChild(d); }
   renderPlayersModal();
+  if(typeof window.renderVchatUserList === 'function') window.renderVchatUserList();
   if(window.gamesRosterChanged) gamesRosterChanged();
   if(window.expRoster) expRoster();
 }
@@ -4074,7 +4460,8 @@ function renderPlayersModal(){
     list.appendChild(row);
   });
 }
-$('#plBtn').onclick=()=>{ $('#pmodal').hidden=false; renderPlayersModal(); };
+$('#plBtn').onclick=()=>{ $('#pmodal').hidden=false; renderPlayersModal();
+  if(typeof window.renderVchatUserList === 'function') window.renderVchatUserList(); };
 $('#pmodal').addEventListener('click',e=>{ if(e.target===$('#pmodal')) $('#pmodal').hidden=true; });
 
 function setupGuestConn(c){
@@ -4237,6 +4624,8 @@ function stopStreamTo(id){
 }
 function attachCall(p){
   p.on('call',call=>{
+    const type = call.metadata?.type;
+    if(type === 'vchat_call' || type === 'meet' || type === 'chat_call') return;
     call.answer(); state.inCall=call;
     call.on('stream',rs=>onRemoteStream(rs,call.peer));
     call.on('close',()=>onStreamEnd());
@@ -5747,6 +6136,7 @@ function renderInlineGamePanel(box){
         gameSend({t:'g_open', g:k});
         $('#pmodal').hidden=false;
         renderPlayersModal();
+  if(typeof window.renderVchatUserList === 'function') window.renderVchatUserList();
       }, 500);
     }
   });
@@ -5971,7 +6361,8 @@ function renderLobby(box){
   }
   
   if(code && code !== 'LOCAL'){
-    const invB = btn('gbtn', '🔗 '+t('plCopy'), ()=>{ $('#pmodal').hidden=false; renderPlayersModal(); });
+    const invB = btn('gbtn', '🔗 '+t('plCopy'), ()=>{ $('#pmodal').hidden=false; renderPlayersModal();
+  if(typeof window.renderVchatUserList === 'function') window.renderVchatUserList(); });
     bt.appendChild(invB);
   }
   
@@ -7569,6 +7960,617 @@ themeK=(TH.find(x=>x[0]===store.get('fwp-theme'))||TH[0])[0];buildThemes();apply
       toast('✋ ' + (m.name || 'Friend') + (m.raised ? ' raised their hand' : ' lowered hand'));
     }
     if(typeof prevNetMsg === 'function') prevNetMsg(m);
+
+
+  /* ==========================================================================
+     VCHAT ENGINE: 1-TO-1 VIDEO CHAT WITH REAL WEBRTC & ABSENT TIMEOUT
+     ========================================================================== */
+  const Vchat = {
+    inCall: false,
+    targetPeerId: null,
+    targetPeerName: '',
+    localStream: null,
+    remoteStream: null,
+    currentCall: null,
+    timerId: null,
+    startTime: 0,
+    facingMode: 'user',
+    audioMuted: false,
+    videoMuted: false,
+    layout: 'balanced-1-1', // 'balanced-1-1' | 'dual-16-9' | 'pip'
+    quality: '720p',
+    inviteTimers: new Map(), // peerId -> timerId
+    userStates: new Map(),   // peerId -> 'available' | 'calling' | 'absent' | 'declined' | 'incall'
+    pendingInvite: null
+  };
+
+  window.Vchat = Vchat;
+
+  // Render Real-time Available Users in Video Chat Lobby
+  window.renderVchatUserList = function(){
+    const grid = $('#vchatUserGrid');
+    if(!grid) return;
+    grid.innerHTML = '';
+
+    const users = (typeof roster !== 'undefined' ? roster : []).filter(u => u.name !== myName);
+    const countBadge = $('#vchatUserCountBadge');
+    if(countBadge){
+      countBadge.textContent = users.length ? `${users.length} Friend${users.length > 1 ? 's' : ''} Online` : 'Alone in Room';
+    }
+
+    if(!users.length){
+      grid.innerHTML = `
+        <div style="text-align:center;padding:34px 16px;color:var(--muted);grid-column:1/-1">
+          <div style="font-size:38px;margin-bottom:8px">👥</div>
+          <div style="font-weight:700;font-size:15px;color:#fff">Waiting for friends to join...</div>
+          <div style="font-size:12px;margin:6px 0 16px">Share your Party Room link so your friends will appear here for instant 1-to-1 video calls.</div>
+          <button class="primary" id="bVchatCopyRoomLink" style="border-radius:12px;font-size:12px;padding:8px 18px">📋 Copy Party Room Link</button>
+        </div>
+      `;
+      $('#bVchatCopyRoomLink')?.addEventListener('click', ()=>{
+        const l = (typeof roomLink === 'function') ? roomLink() : window.location.href;
+        navigator.clipboard.writeText(l).then(()=>toast('📋 Party Room Link Copied! Send it to your friend!'));
+      });
+      return;
+    }
+
+    users.forEach(u => {
+      const card = document.createElement('div');
+      card.className = 'vchat-user-card';
+      card.id = 'vchatCard_' + u.id;
+      const state = Vchat.userStates.get(u.id) || 'available';
+
+      let statusHtml = '';
+      if(state === 'calling'){
+        statusHtml = '<span class="vchat-status-badge calling">⏳ Calling (Waiting)...</span>';
+      } else if(state === 'absent'){
+        statusHtml = '<span class="vchat-status-badge absent">⚠️ Absent (No Answer)</span>';
+      } else if(state === 'declined'){
+        statusHtml = '<span class="vchat-status-badge declined">❌ Declined</span>';
+      } else if(state === 'incall'){
+        statusHtml = '<span class="vchat-status-badge incall">🔴 In Call</span>';
+      } else {
+        statusHtml = '<span class="vchat-status-badge available">● Available</span>';
+      }
+
+      card.innerHTML = `
+        <div class="vchat-user-meta">
+          <div class="vchat-av-wrap">
+            <span>${u.av || '🙂'}</span>
+            <span class="vchat-online-dot"></span>
+          </div>
+          <div>
+            <div class="vchat-user-name">
+              <span>${u.name}</span>
+              ${u.host ? '<span class="badge" style="font-size:9.5px;padding:1px 6px">HOST</span>' : ''}
+            </div>
+            <div>${statusHtml}</div>
+          </div>
+        </div>
+        <button class="primary vchat-invite-btn" data-peer="${u.id}" ${state === 'calling' ? 'disabled' : ''} style="padding:8px 16px;border-radius:12px;font-size:12.5px;font-weight:700">
+          ${state === 'calling' ? '⏳ Calling...' : '📹 Video Call'}
+        </button>
+      `;
+
+      card.querySelector('.vchat-invite-btn').onclick = () => {
+        inviteToVideoCall(u.id, u.name);
+      };
+      grid.appendChild(card);
+    });
+  };
+
+  // Invite selected user to 1-to-1 Video Call (with 25s timeout -> Absent)
+  function inviteToVideoCall(peerId, friendName){
+    if(Vchat.inCall){
+      toast('⚠️ You are already in an active video call');
+      return;
+    }
+
+    // Set calling state
+    Vchat.userStates.set(peerId, 'calling');
+    window.renderVchatUserList();
+
+    // Play outgoing chime
+    playToneChime([440, 554.37], 0.2);
+
+    // Send invitation packet
+    if(typeof send === 'function'){
+      send({
+        t: 'vchat_invite',
+        to: peerId,
+        from: myName,
+        fromAv: (typeof myAv !== 'undefined' ? myAv : '🙂'),
+        fromId: (typeof myId === 'function' ? myId() : (typeof peer !== 'undefined' ? peer.id : ''))
+      });
+    }
+
+    toast(`📹 Video call invitation sent to ${friendName}...`);
+
+    // Clear previous timer if any
+    if(Vchat.inviteTimers.has(peerId)){
+      clearTimeout(Vchat.inviteTimers.get(peerId));
+    }
+
+    // 25-Second Configured Invitation Timeout
+    const timer = setTimeout(() => {
+      if(Vchat.userStates.get(peerId) === 'calling'){
+        Vchat.userStates.set(peerId, 'absent');
+        window.renderVchatUserList();
+        toast(`⚠️ ${friendName} is absent (did not answer in time).`);
+        if(typeof send === 'function'){
+          send({ t: 'vchat_timeout', to: peerId, from: myName });
+        }
+      }
+    }, 25000);
+
+    Vchat.inviteTimers.set(peerId, timer);
+  }
+
+  // Handle incoming invitation
+  function handleIncomingVchatInvite(m){
+    Vchat.pendingInvite = m;
+    const modal = $('#vchatIncomingModal');
+    if(!modal) return;
+    $('#vchatIncomingName').textContent = m.from || 'Friend';
+    $('#vchatIncomingAv').textContent = m.fromAv || '🙂';
+    modal.hidden = false;
+
+    // Incoming ringing chime
+    playToneChime([523.25, 659.25, 783.99], 0.25);
+
+    // Auto-dismiss if caller times out or after 25s
+    clearTimeout(window._vchatIncomingTimer);
+    window._vchatIncomingTimer = setTimeout(()=>{
+      if(!modal.hidden){
+        modal.hidden = true;
+        toast(`Missed video call from ${m.from}`);
+      }
+    }, 25000);
+  }
+
+  // Accept incoming video call
+  $('#bVchatIncomingAccept')?.addEventListener('click', async ()=>{
+    clearTimeout(window._vchatIncomingTimer);
+    $('#vchatIncomingModal').hidden = true;
+    const inv = Vchat.pendingInvite;
+    if(!inv) return;
+
+    if(typeof send === 'function'){
+      send({
+        t: 'vchat_accept',
+        to: inv.fromId,
+        from: myName,
+        fromAv: (typeof myAv !== 'undefined' ? myAv : '🙂'),
+        fromId: (typeof myId === 'function' ? myId() : (typeof peer !== 'undefined' ? peer.id : ''))
+      });
+    }
+
+    showTab('M');
+    await startVchatCall(inv.fromId, inv.from, false);
+  });
+
+  // Decline incoming video call
+  $('#bVchatIncomingDecline')?.addEventListener('click', ()=>{
+    clearTimeout(window._vchatIncomingTimer);
+    $('#vchatIncomingModal').hidden = true;
+    const inv = Vchat.pendingInvite;
+    if(inv && typeof send === 'function'){
+      send({ t: 'vchat_decline', to: inv.fromId, from: myName });
+      toast('❌ Video call declined');
+    }
+  });
+
+  // Establish 1-to-1 Video Call with WebRTC
+  async function startVchatCall(targetPeerId, targetPeerName, isInitiator = false){
+    Vchat.inCall = true;
+    Vchat.targetPeerId = targetPeerId;
+    Vchat.targetPeerName = targetPeerName || 'Friend';
+    Vchat.startTime = Date.now();
+
+    // Switch to Dual-video call screen
+    $('#vchatLobby').hidden = true;
+    $('#vchatCallScreen').hidden = false;
+    $('#vchatCallScreen').classList.remove('minimized');
+    $('#vchatPeerName').textContent = Vchat.targetPeerName;
+    $('#vchatRemoteLabel').textContent = Vchat.targetPeerName;
+    $('#vchatRemoteFallbackName').textContent = Vchat.targetPeerName;
+    $('#vchatConnStatus').textContent = '🟡 Connecting...';
+    $('#vchatConnStatus').classList.add('reconnecting');
+
+    // Start in-call duration timer
+    clearInterval(Vchat.timerId);
+    Vchat.timerId = setInterval(()=>{
+      const s = Math.floor((Date.now() - Vchat.startTime) / 1000);
+      const m = Math.floor(s / 60);
+      $('#vchatCallTimer').textContent = `⏱️ ${(m<10?'0':'')+m}:${(s%60<10?'0':'')+(s%60)}`;
+    }, 1000);
+
+    // Acquire Local Camera & Microphone Streams
+    try {
+      Vchat.localStream = await navigator.mediaDevices.getUserMedia({
+        video: {
+          facingMode: Vchat.facingMode,
+          width: { ideal: 1280 },
+          height: { ideal: 720 },
+          frameRate: { ideal: 30 }
+        },
+        audio: {
+          echoCancellation: true,
+          noiseSuppression: true,
+          autoGainControl: true
+        }
+      });
+      const locVid = $('#vchatLocalVideo');
+      if(locVid){
+        locVid.srcObject = Vchat.localStream;
+        locVid.play().catch(()=>{});
+      }
+      $('#vchatLocalFallback').hidden = true;
+    } catch(err){
+      console.warn('getUserMedia permission error:', err);
+      toast('⚠️ Camera/Microphone access denied. Running in fallback mode.');
+      $('#vchatLocalFallback').hidden = false;
+    }
+
+    // Connect via PeerJS Call
+    if(isInitiator && typeof peer !== 'undefined' && peer && targetPeerId && Vchat.localStream){
+      try {
+        const call = peer.call(targetPeerId, Vchat.localStream, {
+          metadata: { type: 'vchat_call', name: myName, av: (typeof myAv !== 'undefined' ? myAv : '🙂') }
+        });
+        bindVchatCallEvents(call);
+      } catch(err){
+        console.warn('PeerJS call error:', err);
+      }
+    }
+  }
+
+  function bindVchatCallEvents(call){
+    Vchat.currentCall = call;
+
+    call.on('stream', remoteStream => {
+      Vchat.remoteStream = remoteStream;
+      const remVid = $('#vchatRemoteVideo');
+      if(remVid){
+        remVid.srcObject = remoteStream;
+        remVid.play().catch(e => {
+          // Unblock autoplay policy on user interaction
+          const unlock = () => { remVid.play().catch(()=>{}); window.removeEventListener('click', unlock); window.removeEventListener('touchstart', unlock); };
+          window.addEventListener('click', unlock, { once: true });
+          window.addEventListener('touchstart', unlock, { once: true });
+        });
+      }
+      ensureRemoteAudioPlayback('vchat_' + call.peer, remoteStream);
+      $('#vchatRemoteFallback').hidden = true;
+      $('#vchatConnStatus').textContent = '🟢 Connected (P2P)';
+      $('#vchatConnStatus').classList.remove('reconnecting');
+      toast('🟢 Live Video Chat Connected!');
+    });
+
+    call.on('close', ()=>{
+      endVchatCall(false);
+    });
+
+    call.on('error', (err)=>{
+      console.warn('Vchat connection error:', err);
+      $('#vchatConnStatus').textContent = '🟡 Reconnecting...';
+      $('#vchatConnStatus').classList.add('reconnecting');
+    });
+
+    // Monitor RTCPeerConnection status
+    const pc = call.peerConnection;
+    if(pc){
+      pc.onconnectionstatechange = () => {
+        if(pc.connectionState === 'connected'){
+          $('#vchatConnStatus').textContent = '🟢 Connected (P2P)';
+          $('#vchatConnStatus').classList.remove('reconnecting');
+        } else if(pc.connectionState === 'disconnected' || pc.connectionState === 'failed'){
+          $('#vchatConnStatus').textContent = '🟡 Reconnecting...';
+          $('#vchatConnStatus').classList.add('reconnecting');
+        }
+      };
+    }
+  }
+
+  // End Video Call
+  function endVchatCall(sendSignal = true){
+    Vchat.inCall = false;
+    clearInterval(Vchat.timerId);
+
+    if(sendSignal && Vchat.targetPeerId && typeof send === 'function'){
+      send({ t: 'vchat_end', to: Vchat.targetPeerId, from: myName });
+    }
+
+    if(Vchat.localStream){
+      Vchat.localStream.getTracks().forEach(t => t.stop());
+      Vchat.localStream = null;
+    }
+    Vchat.remoteStream = null;
+
+    if(Vchat.currentCall){
+      try { Vchat.currentCall.close(); }catch(e){}
+      Vchat.currentCall = null;
+    }
+
+    const locVid = $('#vchatLocalVideo'); if(locVid) locVid.srcObject = null;
+    const remVid = $('#vchatRemoteVideo'); if(remVid) remVid.srcObject = null;
+
+    // Reset user state back to available
+    if(Vchat.targetPeerId){
+      Vchat.userStates.set(Vchat.targetPeerId, 'available');
+    }
+
+    $('#vchatCallScreen').hidden = true;
+    $('#vchatCallScreen').classList.remove('minimized');
+    $('#vchatLobby').hidden = false;
+    window.renderVchatUserList();
+    toast('🔴 Video Call Ended');
+  }
+
+  // --- IN-CALL CONTROLS ---
+
+  // Microphone Mute / Unmute
+  $('#bVchatMic')?.addEventListener('click', ()=>{
+    if(!Vchat.localStream) return;
+    Vchat.audioMuted = !Vchat.audioMuted;
+    Vchat.localStream.getAudioTracks().forEach(t => { t.enabled = !Vchat.audioMuted; });
+    $('#bVchatMic').classList.toggle('off', Vchat.audioMuted);
+    $('#bVchatMic').textContent = Vchat.audioMuted ? '🔇' : '🎤';
+    $('#vchatLocalMicStatus').textContent = Vchat.audioMuted ? '🔇' : '🎤';
+    toast(Vchat.audioMuted ? 'Microphone Muted' : 'Microphone Active');
+  });
+
+  // Camera On / Off
+  $('#bVchatCam')?.addEventListener('click', ()=>{
+    if(!Vchat.localStream) return;
+    Vchat.videoMuted = !Vchat.videoMuted;
+    Vchat.localStream.getVideoTracks().forEach(t => { t.enabled = !Vchat.videoMuted; });
+    $('#bVchatCam').classList.toggle('off', Vchat.videoMuted);
+    $('#bVchatCam').textContent = Vchat.videoMuted ? '🚫' : '📹';
+    $('#vchatLocalFallback').hidden = !Vchat.videoMuted;
+    toast(Vchat.videoMuted ? 'Camera Turned Off' : 'Camera Active');
+  });
+
+  // Front / Rear Camera Switch (Mobile Supported)
+  $('#bVchatFlip')?.addEventListener('click', async ()=>{
+    if(!Vchat.localStream) return;
+    Vchat.facingMode = (Vchat.facingMode === 'user') ? 'environment' : 'user';
+    try {
+      const newStream = await navigator.mediaDevices.getUserMedia({
+        video: { facingMode: Vchat.facingMode },
+        audio: false
+      });
+      const newTrack = newStream.getVideoTracks()[0];
+      const oldTrack = Vchat.localStream.getVideoTracks()[0];
+      if(oldTrack){
+        Vchat.localStream.removeTrack(oldTrack);
+        oldTrack.stop();
+      }
+      Vchat.localStream.addTrack(newTrack);
+      const locVid = $('#vchatLocalVideo');
+      if(locVid) locVid.srcObject = Vchat.localStream;
+
+      // WebRTC RTCRtpSender Track Replacement
+      if(Vchat.currentCall && Vchat.currentCall.peerConnection){
+        const senders = Vchat.currentCall.peerConnection.getSenders();
+        const vSender = senders.find(s => s.track && s.track.kind === 'video');
+        if(vSender){
+          await vSender.replaceTrack(newTrack);
+        }
+      }
+      toast('🔄 Camera Switched to ' + (Vchat.facingMode === 'user' ? 'Front' : 'Rear'));
+    } catch(err){
+      toast('⚠️ Could not switch camera on this device');
+    }
+  });
+
+  // Layout Switcher: Balanced 1:1, Compact Dual 16:9, PiP
+  $('#bVchatLayout')?.addEventListener('click', ()=>{
+    const cont = $('#vchatDualContainer');
+    if(!cont) return;
+    const layouts = ['layout-balanced-1-1', 'layout-dual-16-9', 'layout-pip'];
+    layouts.forEach(l => cont.classList.remove(l));
+    let nextIdx = (layouts.indexOf(Vchat.layout) + 1) % layouts.length;
+    Vchat.layout = layouts[nextIdx];
+    cont.classList.add(Vchat.layout);
+
+    if(Vchat.layout === 'layout-balanced-1-1'){
+      $('#bVchatLayout').textContent = '⚖️ 1:1 View';
+      toast('⚖️ Balanced 1:1 Square Layout Active');
+    } else if(Vchat.layout === 'layout-dual-16-9'){
+      $('#bVchatLayout').textContent = '📺 16:9 View';
+      toast('📺 Dual 16:9 Layout Active');
+    } else {
+      $('#bVchatLayout').textContent = '📱 PiP View';
+      toast('📱 Picture-in-Picture Layout Active');
+    }
+  });
+
+  // Video Quality Adjustment (720p HD, 480p SD, 360p Lite)
+  $('#bVchatQuality')?.addEventListener('click', async ()=>{
+    if(!Vchat.localStream) return;
+    const vTrack = Vchat.localStream.getVideoTracks()[0];
+    if(!vTrack) return;
+
+    if(Vchat.quality === '720p'){
+      Vchat.quality = '480p';
+      try { await vTrack.applyConstraints({ width: { ideal: 854 }, height: { ideal: 480 }, frameRate: { ideal: 24 } }); }catch(e){}
+      $('#bVchatQuality').textContent = 'SD 480p';
+      toast('📹 Quality: SD 480p');
+    } else if(Vchat.quality === '480p'){
+      Vchat.quality = '360p';
+      try { await vTrack.applyConstraints({ width: { ideal: 640 }, height: { ideal: 360 }, frameRate: { ideal: 20 } }); }catch(e){}
+      $('#bVchatQuality').textContent = 'Lite 360p';
+      toast('📹 Quality: Data Saver 360p');
+    } else {
+      Vchat.quality = '720p';
+      try { await vTrack.applyConstraints({ width: { ideal: 1280 }, height: { ideal: 720 }, frameRate: { ideal: 30 } }); }catch(e){}
+      $('#bVchatQuality').textContent = 'HD 720p';
+      toast('📹 Quality: HD 720p');
+    }
+  });
+
+  // Picture-in-Picture mode
+  $('#bVchatPip')?.addEventListener('click', async ()=>{
+    const remVid = $('#vchatRemoteVideo');
+    if(remVid && document.pictureInPictureEnabled){
+      try {
+        if(document.pictureInPictureElement) await document.exitPictureInPicture();
+        else await remVid.requestPictureInPicture();
+      } catch(err){
+        toast('⚠️ Picture-in-Picture not supported by browser');
+      }
+    }
+  });
+
+  // Minimize / Expand Call Screen
+  $('#bVchatMin')?.addEventListener('click', ()=>{
+    const screen = $('#vchatCallScreen');
+    if(!screen) return;
+    const isMin = screen.classList.contains('minimized');
+    screen.classList.toggle('minimized', !isMin);
+    $('#bVchatMin').textContent = isMin ? '–' : '⤢';
+    toast(isMin ? '⤢ Video Call Expanded' : '– Video Call Minimized to corner');
+  });
+
+  // Fullscreen
+  $('#bVchatFullscreen')?.addEventListener('click', ()=>{
+    const screen = $('#vchatCallScreen');
+    if(!screen) return;
+    if(!document.fullscreenElement){
+      screen.requestFullscreen().catch(()=>{});
+    } else {
+      document.exitFullscreen().catch(()=>{});
+    }
+  });
+
+  // Screen Share inside Video Chat
+  $('#bVchatScreen')?.addEventListener('click', async ()=>{
+    if(!navigator.mediaDevices.getDisplayMedia){ toast('⚠️ Screen sharing not supported on this device'); return; }
+    try {
+      const screenStream = await navigator.mediaDevices.getDisplayMedia({ video: true });
+      const screenTrack = screenStream.getVideoTracks()[0];
+      const locVid = $('#vchatLocalVideo');
+      if(locVid) locVid.srcObject = screenStream;
+
+      if(Vchat.currentCall && Vchat.currentCall.peerConnection){
+        const senders = Vchat.currentCall.peerConnection.getSenders();
+        const vSender = senders.find(s => s.track && s.track.kind === 'video');
+        if(vSender) await vSender.replaceTrack(screenTrack);
+      }
+      screenTrack.onended = () => {
+        // Restore camera
+        if(Vchat.localStream){
+          const camTrack = Vchat.localStream.getVideoTracks()[0];
+          if(locVid) locVid.srcObject = Vchat.localStream;
+          if(Vchat.currentCall && Vchat.currentCall.peerConnection){
+            const senders = Vchat.currentCall.peerConnection.getSenders();
+            const vSender = senders.find(s => s.track && s.track.kind === 'video');
+            if(vSender && camTrack) vSender.replaceTrack(camTrack);
+          }
+        }
+      };
+      toast('🖥️ Screen sharing active');
+    } catch(e){}
+  });
+
+  // Open Chat from Video Chat
+  $('#bVchatChat')?.addEventListener('click', ()=>{
+    const ch = $('aside.chat');
+    if(ch){ ch.hidden = false; toast('💬 In-Chat Active'); }
+  });
+
+  // End Call Button
+  $('#bVchatEnd')?.addEventListener('click', ()=> endVchatCall(true));
+
+  // Audio & Camera Test button
+  $('#bVchatAudioTest')?.addEventListener('click', ()=>{
+    if(typeof openAudioTestModal === 'function') openAudioTestModal();
+  });
+
+  // Refresh User List button
+  $('#bVchatRefreshList')?.addEventListener('click', ()=>{
+    window.renderVchatUserList();
+    toast('🔄 User list refreshed');
+  });
+
+  // Tone chime helper
+  function playToneChime(freqs, stepDur = 0.18){
+    try {
+      const ctx = new (window.AudioContext || window.webkitAudioContext)();
+      if(ctx.state === 'suspended') ctx.resume();
+      freqs.forEach((f, idx)=>{
+        const osc = ctx.createOscillator();
+        const g = ctx.createGain();
+        osc.type = 'sine';
+        osc.frequency.value = f;
+        const t0 = ctx.currentTime + idx * stepDur;
+        g.gain.setValueAtTime(0, t0);
+        g.gain.linearRampToValueAtTime(0.2, t0 + 0.02);
+        g.gain.exponentialRampToValueAtTime(0.001, t0 + 0.35);
+        osc.connect(g);
+        g.connect(ctx.destination);
+        osc.start(t0);
+        osc.stop(t0 + 0.38);
+      });
+    }catch(e){}
+  }
+
+  // --- ROUTE VCHAT SIGNALING PACKETS VIA window.netMsg ---
+  const vchatPrevNetMsg = window.netMsg;
+  window.netMsg = function(m){
+    if(!m) return;
+    if(m.t === 'vchat_invite'){
+      handleIncomingVchatInvite(m);
+    } else if(m.t === 'vchat_accept'){
+      clearTimeout(Vchat.inviteTimers.get(m.fromId || m.from));
+      Vchat.userStates.set(m.fromId || m.from, 'incall');
+      window.renderVchatUserList();
+      toast(`🎉 ${m.from} accepted the video call! Connecting...`);
+      startVchatCall(m.fromId, m.from, true);
+    } else if(m.t === 'vchat_decline'){
+      clearTimeout(Vchat.inviteTimers.get(m.fromId || m.from));
+      Vchat.userStates.set(m.fromId || m.from, 'declined');
+      window.renderVchatUserList();
+      toast(`❌ ${m.from} declined the video call.`);
+    } else if(m.t === 'vchat_timeout'){
+      $('#vchatIncomingModal').hidden = true;
+      toast(`Missed video call from ${m.from}`);
+    } else if(m.t === 'vchat_end'){
+      endVchatCall(false);
+      toast(`🔴 ${m.from || 'Friend'} ended the video call.`);
+    }
+    if(typeof vchatPrevNetMsg === 'function') vchatPrevNetMsg(m);
+  };
+
+  // Wire incoming PeerJS calls with metadata.type === 'vchat_call'
+  if(typeof peer !== 'undefined' && peer){
+    peer.on('call', incomingCall => {
+      if(incomingCall.metadata?.type === 'vchat_call'){
+        bindVchatCallEvents(incomingCall);
+        if(Vchat.localStream){
+          incomingCall.answer(Vchat.localStream);
+        } else {
+          navigator.mediaDevices.getUserMedia({
+            video: { facingMode: Vchat.facingMode, width: { ideal: 1280 }, height: { ideal: 720 } },
+            audio: { echoCancellation: true, noiseSuppression: true, autoGainControl: true }
+          }).then(st => {
+            Vchat.localStream = st;
+            const locVid = $('#vchatLocalVideo'); if(locVid) locVid.srcObject = st;
+            incomingCall.answer(st);
+          }).catch(()=>{ incomingCall.answer(); });
+        }
+      }
+    });
+  }
+
+  // Hook into tab shown to refresh list
+  const prevMeetShown = window.meetShown;
+  window.meetShown = function(){
+    if(!Vchat.inCall) window.renderVchatUserList();
+    if(typeof prevMeetShown === 'function') prevMeetShown();
+  };
+
 
 
   /* ==========================================================================
