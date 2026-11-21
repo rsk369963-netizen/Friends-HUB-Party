@@ -2269,7 +2269,7 @@ aside.chat.floating {
 }
 
 /* ==========================================================================
-   MODERN GRID VIDEO CALL UI (DARK GLASSMORPHISM & DYNAMIC GRID CONFERENCING)
+   CLEAN & PREMIUM MODERN VIDEO CALL UI (MINIMALIST CONFERENCING & INVITATION)
    ========================================================================== */
 .modern-vcall-container {
   position: relative;
@@ -2277,15 +2277,15 @@ aside.chat.floating {
   min-height: calc(100vh - 120px);
   display: flex;
   flex-direction: column;
-  background: radial-gradient(circle at 50% 0%, #16122a 0%, #090812 70%, #05040a 100%);
-  border-radius: 24px;
+  background: radial-gradient(circle at 50% 10%, #130f24 0%, #090812 70%, #05040a 100%);
+  border-radius: 20px;
   border: 1px solid rgba(255, 255, 255, 0.08);
-  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.85);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.8);
   overflow: hidden;
   box-sizing: border-box;
-  padding: 16px 20px 20px;
+  padding: 16px 18px 18px;
   gap: 14px;
-  transition: all .3s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: all .25s ease;
 }
 
 /* TOP HEADER BAR */
@@ -2296,7 +2296,7 @@ aside.chat.floating {
   width: 100%;
   gap: 12px;
   flex-wrap: wrap;
-  z-index: 15;
+  z-index: 10;
 }
 .vcall-brand {
   display: flex;
@@ -2304,21 +2304,21 @@ aside.chat.floating {
   gap: 10px;
 }
 .vcall-logo-icon {
-  width: 38px;
-  height: 38px;
-  border-radius: 12px;
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
   background: linear-gradient(135deg, #6366f1, #a855f7);
   display: flex;
   align-items: center;
   justify-content: center;
   color: #fff;
-  box-shadow: 0 4px 14px rgba(168, 85, 247, 0.4);
+  box-shadow: 0 4px 12px rgba(168, 85, 247, 0.35);
 }
 .vcall-brand-title {
-  font-size: 16px;
-  font-weight: 800;
+  font-size: 15px;
+  font-weight: 700;
   color: #fff;
-  letter-spacing: -0.3px;
+  letter-spacing: -0.2px;
   display: flex;
   align-items: center;
   gap: 4px;
@@ -2334,27 +2334,26 @@ aside.chat.floating {
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  padding: 7px 18px;
+  padding: 6px 16px;
   background: rgba(255, 255, 255, 0.05);
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.09);
   border-radius: 999px;
-  font-size: 13px;
+  font-size: 12.5px;
   font-weight: 600;
   color: #f1f5f9;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
 }
-.vcall-room-icon { font-size: 14px; }
-.vcall-lock-icon { font-size: 12px; opacity: 0.8; }
-.vcall-dot-sep { color: #64748b; font-size: 12px; }
-.vcall-online-txt { font-weight: 700; color: #cbd5e1; }
+.vcall-room-icon { font-size: 13px; }
+.vcall-lock-icon { font-size: 11px; opacity: 0.75; }
+.vcall-dot-sep { color: #64748b; font-size: 11px; }
+.vcall-online-txt { font-weight: 700; color: #cbd5e1; font-size: 12px; }
 .vcall-signal-bars {
   display: inline-flex;
   align-items: flex-end;
   gap: 2px;
-  height: 12px;
-  margin-left: 3px;
+  height: 11px;
+  margin-left: 2px;
 }
 .vcall-signal-bars i {
   width: 2.5px;
@@ -2363,10 +2362,10 @@ aside.chat.floating {
 }
 .vcall-signal-bars i.b1 { height: 3px; }
 .vcall-signal-bars i.b2 { height: 6px; }
-.vcall-signal-bars i.b3 { height: 9px; }
-.vcall-signal-bars i.b4 { height: 12px; }
+.vcall-signal-bars i.b3 { height: 8px; }
+.vcall-signal-bars i.b4 { height: 11px; }
 
-/* TOP ACTION BUTTONS */
+/* TOP ACTIONS */
 .vcall-top-actions {
   display: flex;
   align-items: center;
@@ -2376,27 +2375,27 @@ aside.chat.floating {
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  padding: 8px 18px;
+  padding: 7px 16px;
   border-radius: 999px;
   background: linear-gradient(135deg, #7c3aed, #a855f7);
   color: #fff;
   border: none;
-  font-size: 13px;
+  font-size: 12.5px;
   font-weight: 700;
   cursor: pointer;
-  transition: all .2s;
-  box-shadow: 0 4px 15px rgba(168, 85, 247, 0.4);
+  transition: all .2s ease;
+  box-shadow: 0 4px 14px rgba(168, 85, 247, 0.35);
 }
 .vcall-invite-btn:hover {
   transform: translateY(-1px);
-  box-shadow: 0 6px 20px rgba(168, 85, 247, 0.6);
+  box-shadow: 0 6px 18px rgba(168, 85, 247, 0.55);
 }
 .vcall-icon-btn {
-  width: 36px;
-  height: 36px;
+  width: 34px;
+  height: 34px;
   border-radius: 50%;
-  background: rgba(255, 255, 255, 0.06);
-  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -2405,9 +2404,13 @@ aside.chat.floating {
   transition: all .2s;
 }
 .vcall-icon-btn:hover {
-  background: rgba(255, 255, 255, 0.15);
+  background: rgba(255, 255, 255, 0.12);
   color: #fff;
   transform: translateY(-1px);
+}
+.vcall-icon-btn.sm {
+  width: 28px;
+  height: 28px;
 }
 
 /* WORKSPACE: VIDEO GRID + SIDEBAR */
@@ -2415,7 +2418,7 @@ aside.chat.floating {
   display: flex;
   flex: 1;
   width: 100%;
-  gap: 16px;
+  gap: 14px;
   position: relative;
   min-height: 480px;
   overflow: hidden;
@@ -2425,19 +2428,19 @@ aside.chat.floating {
 .modern-video-grid {
   flex: 1;
   display: grid;
-  gap: 14px;
+  gap: 12px;
   width: 100%;
   height: 100%;
-  min-height: 480px;
+  min-height: 460px;
   transition: all .3s cubic-bezier(0.16, 1, 0.3, 1);
   position: relative;
   align-content: center;
 }
 
-/* Dynamic Grid Classes */
+/* Dynamic Grid Layout Classes */
 .modern-video-grid.grid-1 {
   grid-template-columns: 1fr;
-  max-width: 960px;
+  max-width: 920px;
   margin: 0 auto;
 }
 .modern-video-grid.grid-2 {
@@ -2461,25 +2464,25 @@ aside.chat.floating {
   grid-template-rows: repeat(4, 1fr);
 }
 
-/* Layout Speaker View */
+/* Speaker View Layout */
 .modern-video-grid.layout-speaker {
   display: flex !important;
   flex-direction: column !important;
-  gap: 12px;
+  gap: 10px;
 }
 .modern-video-grid.layout-speaker .vcall-tile.speaker-primary {
   flex: 1;
-  min-height: 380px;
+  min-height: 360px;
   width: 100%;
 }
 .modern-video-grid.layout-speaker .vcall-tile:not(.speaker-primary) {
-  height: 130px;
+  height: 120px;
   aspect-ratio: 16 / 9;
   flex: none;
   display: inline-flex;
 }
 
-/* Layout 1:1 Split View */
+/* 1:1 Split View Layout */
 .modern-video-grid.layout-split {
   grid-template-columns: repeat(2, 1fr) !important;
   grid-template-rows: 1fr !important;
@@ -2488,22 +2491,22 @@ aside.chat.floating {
 /* PARTICIPANT VIDEO CARD */
 .vcall-tile {
   position: relative;
-  border-radius: 20px;
+  border-radius: 18px;
   overflow: hidden;
-  background: #06050c;
-  border: 1.5px solid rgba(255, 255, 255, 0.1);
-  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.55);
+  background: #06050b;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.5);
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: border-color .25s ease, box-shadow .25s ease, transform .25s ease;
+  transition: border-color .25s ease, box-shadow .25s ease;
   aspect-ratio: 16 / 9;
   width: 100%;
   height: 100%;
-  min-height: 180px;
+  min-height: 160px;
 }
 .vcall-tile:hover {
-  border-color: rgba(255, 255, 255, 0.22);
+  border-color: rgba(255, 255, 255, 0.18);
 }
 .vcall-tile video {
   width: 100%;
@@ -2517,18 +2520,18 @@ aside.chat.floating {
   transform: scaleX(-1);
 }
 
-/* Active Speaker Border Glow (Exact Reference Design Match) */
+/* Active Speaker Border Glow */
 .vcall-tile.active-speaker {
   border: 2px solid #22c55e !important;
-  box-shadow: 0 0 25px rgba(34, 197, 94, 0.5), inset 0 0 15px rgba(34, 197, 94, 0.18) !important;
+  box-shadow: 0 0 20px rgba(34, 197, 94, 0.45) !important;
 }
 
 /* Card Top Bar (Host Badge + Audio Wave) */
 .vcall-tile-top {
   position: absolute;
-  top: 12px;
-  left: 12px;
-  right: 12px;
+  top: 10px;
+  left: 10px;
+  right: 10px;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -2538,48 +2541,43 @@ aside.chat.floating {
 .vcall-host-badge {
   display: inline-flex;
   align-items: center;
-  gap: 5px;
-  padding: 3px 10px;
+  gap: 4px;
+  padding: 3px 9px;
   border-radius: 999px;
-  background: rgba(234, 179, 8, 0.22);
-  border: 1px solid rgba(234, 179, 8, 0.6);
+  background: rgba(234, 179, 8, 0.18);
+  border: 1px solid rgba(234, 179, 8, 0.5);
   color: #fde047;
-  font-size: 11px;
-  font-weight: 800;
+  font-size: 10.5px;
+  font-weight: 700;
   backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
 }
 .vcall-active-wave {
   display: inline-flex;
   align-items: flex-end;
   gap: 2.5px;
-  height: 16px;
-  padding: 3px 8px;
+  height: 14px;
+  padding: 3px 7px;
   border-radius: 999px;
   background: rgba(0, 0, 0, 0.65);
   backdrop-filter: blur(8px);
 }
 .vcall-active-wave i {
-  width: 3px;
+  width: 2.5px;
   background: #22c55e;
   border-radius: 2px;
   animation: waveBounce .6s infinite alternate ease-in-out;
 }
-.vcall-active-wave i.w1 { height: 6px; animation-delay: 0.1s; }
-.vcall-active-wave i.w2 { height: 12px; animation-delay: 0.25s; }
-.vcall-active-wave i.w3 { height: 9px; animation-delay: 0.15s; }
-.vcall-active-wave i.w4 { height: 14px; animation-delay: 0.3s; }
-@keyframes waveBounce {
-  0% { transform: scaleY(0.4); }
-  100% { transform: scaleY(1); }
-}
+.vcall-active-wave i.w1 { height: 4px; animation-delay: 0.1s; }
+.vcall-active-wave i.w2 { height: 10px; animation-delay: 0.25s; }
+.vcall-active-wave i.w3 { height: 7px; animation-delay: 0.15s; }
+.vcall-active-wave i.w4 { height: 12px; animation-delay: 0.3s; }
 
 /* Card Footer Bar (Name Tag + Mic / Cam Status) */
 .vcall-tile-footer {
   position: absolute;
-  bottom: 12px;
-  left: 12px;
-  right: 12px;
+  bottom: 10px;
+  left: 10px;
+  right: 10px;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -2590,29 +2588,29 @@ aside.chat.floating {
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  padding: 5px 12px;
+  padding: 4px 10px;
   border-radius: 999px;
   background: rgba(0, 0, 0, 0.65);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
   color: #fff;
-  font-size: 12px;
+  font-size: 11.5px;
   font-weight: 700;
 }
-.vcall-user-icon { font-size: 11px; opacity: 0.85; }
+.vcall-user-icon { font-size: 10px; opacity: 0.8; }
 .vcall-media-pills {
   display: inline-flex;
   align-items: center;
-  gap: 6px;
+  gap: 5px;
 }
 .vcall-media-pill {
-  width: 28px;
-  height: 28px;
+  width: 26px;
+  height: 26px;
   border-radius: 50%;
   background: rgba(0, 0, 0, 0.65);
-  backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -2620,7 +2618,7 @@ aside.chat.floating {
   transition: all .2s;
 }
 .vcall-media-pill.muted {
-  background: rgba(239, 68, 68, 0.85) !important;
+  background: rgba(239, 68, 68, 0.8) !important;
   border-color: #ef4444 !important;
   color: #fff !important;
 }
@@ -2633,25 +2631,24 @@ aside.chat.floating {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 10px;
-  background: radial-gradient(circle at center, #1e173a 0%, #090714 85%);
+  gap: 8px;
+  background: radial-gradient(circle at center, #17132a 0%, #080612 85%);
   z-index: 2;
 }
 .vcall-fallback-av {
-  width: 72px;
-  height: 72px;
+  width: 64px;
+  height: 64px;
   border-radius: 50%;
-  background: linear-gradient(135deg, rgba(168, 85, 247, 0.3), rgba(99, 102, 241, 0.2));
-  border: 2px solid rgba(168, 85, 247, 0.6);
+  background: linear-gradient(135deg, rgba(168, 85, 247, 0.25), rgba(99, 102, 241, 0.15));
+  border: 1.5px solid rgba(168, 85, 247, 0.5);
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 36px;
-  box-shadow: 0 0 25px rgba(168, 85, 247, 0.35);
+  font-size: 32px;
 }
 .vcall-fallback-name {
   font-weight: 700;
-  font-size: 15px;
+  font-size: 14px;
   color: #fff;
 }
 .vcall-fallback-status {
@@ -2659,21 +2656,21 @@ aside.chat.floating {
   color: #94a3b8;
 }
 
-/* INTEGRATED RIGHT SIDEBAR */
+/* CLEAN RIGHT SIDEBAR (CHAT & PARTICIPANTS) */
 .vcall-sidebar {
-  width: 340px;
-  min-width: 320px;
-  max-width: 400px;
+  width: 320px;
+  min-width: 300px;
+  max-width: 380px;
   background: rgba(14, 11, 24, 0.88);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 20px;
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 18px;
   display: flex;
   flex-direction: column;
   overflow: hidden;
-  box-shadow: 0 16px 45px rgba(0, 0, 0, 0.6);
-  transition: all .3s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.5);
+  transition: all .25s ease;
   height: 100%;
 }
 .vcall-sidebar.collapsed {
@@ -2682,10 +2679,10 @@ aside.chat.floating {
 .vcall-sidebar-tabs {
   display: flex;
   align-items: center;
-  padding: 10px;
+  padding: 8px;
   gap: 6px;
   background: rgba(255, 255, 255, 0.03);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
 }
 .vcall-tab-btn {
   flex: 1;
@@ -2693,27 +2690,26 @@ aside.chat.floating {
   align-items: center;
   justify-content: center;
   gap: 6px;
-  padding: 8px 12px;
-  border-radius: 12px;
+  padding: 7px 10px;
+  border-radius: 10px;
   background: transparent;
   border: none;
   color: #94a3b8;
-  font-size: 12.5px;
+  font-size: 12px;
   font-weight: 700;
   cursor: pointer;
   transition: all .2s;
 }
 .vcall-tab-btn.active {
-  background: linear-gradient(135deg, rgba(124, 58, 237, 0.35), rgba(168, 85, 247, 0.25));
+  background: rgba(168, 85, 247, 0.2);
   color: #fff;
-  border: 1px solid rgba(168, 85, 247, 0.45);
-  box-shadow: 0 4px 15px rgba(168, 85, 247, 0.25);
+  border: 1px solid rgba(168, 85, 247, 0.4);
 }
 .vcall-close-sidebar-btn {
   background: transparent;
   border: none;
   color: #94a3b8;
-  font-size: 14px;
+  font-size: 13px;
   cursor: pointer;
   padding: 6px 8px;
   border-radius: 8px;
@@ -2728,18 +2724,18 @@ aside.chat.floating {
   display: flex;
   flex-direction: column;
   overflow: hidden;
-  padding: 12px;
+  padding: 10px 12px;
   position: relative;
 }
 .vcall-chat-date-sep {
   text-align: center;
-  margin: 4px 0 12px;
+  margin: 4px 0 10px;
 }
 .vcall-chat-date-sep span {
-  font-size: 11px;
+  font-size: 10.5px;
   color: #94a3b8;
-  padding: 3px 12px;
-  background: rgba(255, 255, 255, 0.05);
+  padding: 2px 10px;
+  background: rgba(255, 255, 255, 0.04);
   border-radius: 999px;
 }
 .vcall-chat-messages {
@@ -2747,66 +2743,65 @@ aside.chat.floating {
   overflow-y: auto;
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 10px;
   padding-right: 4px;
 }
 .vcall-chat-msg {
   display: flex;
   gap: 8px;
   max-width: 90%;
-  animation: lenovoSlideIn .25s ease;
+  animation: lenovoSlideIn .2s ease;
 }
 .vcall-chat-msg.outbound {
   align-self: flex-end;
   flex-direction: row-reverse;
 }
 .vcall-chat-av {
-  width: 32px;
-  height: 32px;
+  width: 28px;
+  height: 28px;
   border-radius: 50%;
-  background: rgba(168, 85, 247, 0.25);
-  border: 1px solid rgba(168, 85, 247, 0.4);
+  background: rgba(168, 85, 247, 0.2);
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 16px;
+  font-size: 14px;
   flex-shrink: 0;
 }
 .vcall-chat-meta {
-  font-size: 11px;
+  font-size: 10.5px;
   color: #94a3b8;
-  margin-bottom: 3px;
+  margin-bottom: 2px;
   display: flex;
-  gap: 6px;
+  gap: 5px;
 }
 .vcall-chat-msg.outbound .vcall-chat-meta {
   justify-content: flex-end;
 }
 .vcall-chat-bubble {
-  padding: 8px 14px;
-  border-radius: 16px;
-  font-size: 13px;
+  padding: 7px 12px;
+  border-radius: 14px;
+  font-size: 12.5px;
   line-height: 1.45;
   color: #f1f5f9;
-  background: rgba(255, 255, 255, 0.08);
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(255, 255, 255, 0.07);
+  border: 1px solid rgba(255, 255, 255, 0.06);
   word-break: break-word;
 }
 .vcall-chat-msg.outbound .vcall-chat-bubble {
   background: linear-gradient(135deg, #7c3aed, #a855f7);
   color: #fff;
   border: none;
-  border-bottom-right-radius: 4px;
+  border-bottom-right-radius: 3px;
 }
 .vcall-chat-input-bar {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 6px;
   padding: 6px 10px;
-  background: rgba(255, 255, 255, 0.06);
+  background: rgba(255, 255, 255, 0.05);
   border-radius: 999px;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  margin-top: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  margin-top: 8px;
 }
 .vcall-chat-input-bar input {
   flex: 1;
@@ -2814,18 +2809,18 @@ aside.chat.floating {
   border: none;
   outline: none;
   color: #fff;
-  font-size: 13px;
+  font-size: 12.5px;
 }
 .vcall-chat-icon-btn {
   background: transparent;
   border: none;
-  font-size: 16px;
+  font-size: 15px;
   cursor: pointer;
-  padding: 2px 4px;
+  padding: 2px;
 }
 .vcall-chat-send-btn {
-  width: 30px;
-  height: 30px;
+  width: 28px;
+  height: 28px;
   border-radius: 50%;
   background: #a855f7;
   color: #fff;
@@ -2838,7 +2833,6 @@ aside.chat.floating {
 }
 .vcall-chat-send-btn:hover {
   background: #c084fc;
-  transform: scale(1.05);
 }
 
 /* PARTICIPANTS TAB CONTENT */
@@ -2846,37 +2840,37 @@ aside.chat.floating {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-bottom: 12px;
+  margin-bottom: 10px;
 }
 .vcall-participants-header h4 {
   margin: 0;
-  font-size: 14px;
+  font-size: 13px;
   color: #fff;
 }
 .vcall-invite-pill-btn {
-  padding: 4px 12px;
+  padding: 4px 10px;
   border-radius: 999px;
-  background: rgba(168, 85, 247, 0.25);
-  border: 1px solid rgba(168, 85, 247, 0.5);
+  background: rgba(168, 85, 247, 0.2);
+  border: 1px solid rgba(168, 85, 247, 0.45);
   color: #c084fc;
-  font-size: 11.5px;
+  font-size: 11px;
   font-weight: 700;
   cursor: pointer;
 }
 .vcall-participants-list {
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 6px;
   overflow-y: auto;
 }
 .vcall-part-row {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 8px 12px;
-  border-radius: 12px;
-  background: rgba(255, 255, 255, 0.04);
-  border: 1px solid rgba(255, 255, 255, 0.06);
+  padding: 7px 10px;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.05);
 }
 .vcall-part-meta {
   display: flex;
@@ -2884,17 +2878,17 @@ aside.chat.floating {
   gap: 8px;
 }
 .vcall-part-av {
-  width: 32px;
-  height: 32px;
+  width: 28px;
+  height: 28px;
   border-radius: 50%;
-  background: rgba(168, 85, 247, 0.2);
+  background: rgba(168, 85, 247, 0.18);
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 16px;
+  font-size: 14px;
 }
 .vcall-part-name {
-  font-size: 13px;
+  font-size: 12.5px;
   font-weight: 700;
   color: #f1f5f9;
 }
@@ -2910,80 +2904,75 @@ aside.chat.floating {
   align-items: center;
   justify-content: space-between;
   width: 100%;
-  gap: 14px;
+  gap: 12px;
   flex-wrap: wrap;
-  z-index: 15;
-  padding-top: 4px;
+  z-index: 10;
+  padding-top: 2px;
 }
 
-/* Left Room Info Card */
+/* Room Info Card */
 .vcall-room-card {
   display: flex;
   align-items: center;
-  gap: 10px;
-  padding: 8px 14px;
-  border-radius: 16px;
-  background: rgba(255, 255, 255, 0.05);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  gap: 8px;
+  padding: 6px 12px;
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.04);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
   cursor: pointer;
   transition: background .2s;
 }
 .vcall-room-card:hover {
-  background: rgba(255, 255, 255, 0.09);
+  background: rgba(255, 255, 255, 0.08);
 }
-.vcall-clapper-icon { font-size: 20px; }
-.vcall-room-info { display: flex; flex-direction: column; gap: 2px; }
-.vcall-room-title { font-size: 12.5px; font-weight: 700; color: #fff; }
-.vcall-room-id-row { font-size: 11px; color: #94a3b8; }
+.vcall-clapper-icon { font-size: 18px; }
+.vcall-room-info { display: flex; flex-direction: column; gap: 1px; }
+.vcall-room-title { font-size: 12px; font-weight: 700; color: #fff; }
+.vcall-room-id-row { font-size: 10.5px; color: #94a3b8; }
 .vcall-copy-icon-btn {
   background: transparent;
   border: none;
   color: #cbd5e1;
   cursor: pointer;
-  padding: 4px;
-  border-radius: 6px;
+  padding: 3px;
+  border-radius: 5px;
   display: flex;
   align-items: center;
   justify-content: center;
 }
-.vcall-copy-icon-btn:hover {
-  color: #fff;
-  background: rgba(255, 255, 255, 0.1);
-}
 
-/* Center Floating Island Pill */
+/* Center Control Island */
 .vcall-control-island {
   display: inline-flex;
   align-items: center;
-  gap: 6px;
-  padding: 8px 14px;
+  gap: 4px;
+  padding: 6px 12px;
   border-radius: 999px;
-  background: rgba(14, 11, 24, 0.9);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.65), 0 0 20px rgba(168, 85, 247, 0.15);
+  background: rgba(14, 11, 24, 0.92);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
 }
 .vcall-island-btn {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 4px;
+  gap: 3px;
   background: transparent;
   border: none;
   color: #cbd5e1;
   cursor: pointer;
-  padding: 4px 10px;
-  border-radius: 12px;
+  padding: 4px 8px;
+  border-radius: 10px;
   transition: all .2s;
-  min-width: 52px;
+  min-width: 48px;
 }
 .vcall-island-btn:hover {
   color: #fff;
-  background: rgba(255, 255, 255, 0.08);
+  background: rgba(255, 255, 255, 0.07);
 }
 .vcall-island-btn.off {
   color: #f87171 !important;
@@ -2993,69 +2982,68 @@ aside.chat.floating {
   border-radius: 50%;
 }
 .vcall-island-icon {
-  width: 28px;
-  height: 28px;
+  width: 26px;
+  height: 26px;
   display: flex;
   align-items: center;
   justify-content: center;
   position: relative;
 }
 .vcall-island-label {
-  font-size: 10.5px;
+  font-size: 10px;
   font-weight: 600;
   white-space: nowrap;
 }
 .vcall-island-badge {
   position: absolute;
-  top: -4px;
-  right: -6px;
+  top: -3px;
+  right: -5px;
   background: #ef4444;
   color: #fff;
   font-size: 9px;
   font-weight: 800;
   padding: 1px 5px;
   border-radius: 999px;
-  border: 1px solid rgba(0, 0, 0, 0.5);
 }
 
 /* Leave Call Red Button */
 .vcall-leave-btn {
   display: inline-flex;
   align-items: center;
-  gap: 6px;
-  padding: 10px 20px;
+  gap: 5px;
+  padding: 8px 18px;
   border-radius: 999px;
-  background: linear-gradient(135deg, #ef4444, #dc2626);
+  background: #ef4444;
   color: #fff;
   border: none;
-  font-size: 13px;
+  font-size: 12.5px;
   font-weight: 700;
   cursor: pointer;
   transition: all .2s;
-  box-shadow: 0 4px 18px rgba(239, 68, 68, 0.45);
-  margin-left: 6px;
+  box-shadow: 0 4px 14px rgba(239, 68, 68, 0.4);
+  margin-left: 4px;
 }
 .vcall-leave-btn:hover {
-  background: linear-gradient(135deg, #dc2626, #b91c1c);
-  box-shadow: 0 6px 24px rgba(239, 68, 68, 0.65);
+  background: #dc2626;
+  box-shadow: 0 6px 18px rgba(239, 68, 68, 0.6);
   transform: translateY(-1px);
 }
 
-/* Right Layout Switcher Island */
+/* Layout Switcher Island */
 .vcall-layout-island {
   display: inline-flex;
   align-items: center;
-  gap: 4px;
-  padding: 6px 10px;
-  border-radius: 16px;
-  background: rgba(255, 255, 255, 0.05);
-  backdrop-filter: blur(12px);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  gap: 3px;
+  padding: 5px 8px;
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.04);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
 }
 .vcall-layout-btn {
-  width: 32px;
-  height: 32px;
-  border-radius: 8px;
+  width: 30px;
+  height: 30px;
+  border-radius: 7px;
   background: transparent;
   border: none;
   color: #94a3b8;
@@ -3067,37 +3055,35 @@ aside.chat.floating {
 }
 .vcall-layout-btn:hover {
   color: #fff;
-  background: rgba(255, 255, 255, 0.08);
+  background: rgba(255, 255, 255, 0.07);
 }
 .vcall-layout-btn.active {
-  background: rgba(168, 85, 247, 0.25);
+  background: rgba(168, 85, 247, 0.2);
   color: #c084fc;
-  border: 1px solid rgba(168, 85, 247, 0.4);
+  border: 1px solid rgba(168, 85, 247, 0.35);
 }
 
 /* MORE SETTINGS POPUP MENU */
 .vcall-more-menu {
   position: absolute;
-  bottom: 80px;
-  right: 220px;
+  bottom: 75px;
+  right: 200px;
   background: rgba(14, 11, 24, 0.96);
   backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  border: 1px solid rgba(255, 255, 255, 0.14);
-  border-radius: 16px;
-  box-shadow: 0 16px 45px rgba(0, 0, 0, 0.75), 0 0 25px rgba(168, 85, 247, 0.2);
-  padding: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 14px;
+  box-shadow: 0 14px 40px rgba(0, 0, 0, 0.7);
+  padding: 6px;
   display: flex;
   flex-direction: column;
-  gap: 4px;
+  gap: 3px;
   z-index: 100;
-  min-width: 240px;
-  animation: lenovoSlideIn .2s ease;
+  min-width: 220px;
 }
 .vcall-menu-item {
-  padding: 9px 12px;
-  border-radius: 10px;
-  font-size: 12.5px;
+  padding: 8px 12px;
+  border-radius: 9px;
+  font-size: 12px;
   color: #cbd5e1;
   display: flex;
   align-items: center;
@@ -3106,8 +3092,147 @@ aside.chat.floating {
   transition: background .15s;
 }
 .vcall-menu-item:hover {
-  background: rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.09);
   color: #fff;
+}
+
+/* CLEAN MODAL DIALOGS (HOST INVITATION & RECEIVER POPUP) */
+.vcall-modal-clean {
+  background: #0f0d1b !important;
+  border: 1px solid rgba(255, 255, 255, 0.12) !important;
+  border-radius: 20px !important;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.85) !important;
+  overflow: hidden !important;
+  max-width: 440px !important;
+  width: 90% !important;
+  animation: lenovoSlideIn .25s ease;
+}
+.vcall-modal-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 20px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+  background: rgba(255, 255, 255, 0.02);
+}
+.vcall-modal-body {
+  padding: 18px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+.vcall-invite-list-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.vcall-clean-badge {
+  font-size: 11px;
+  padding: 2px 8px;
+  border-radius: 999px;
+  background: rgba(34, 197, 94, 0.15);
+  color: #86efac;
+  border: 1px solid rgba(34, 197, 94, 0.35);
+  font-weight: 700;
+}
+.vcall-invite-user-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  max-height: 240px;
+  overflow-y: auto;
+}
+.vcall-invite-user-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 14px;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+}
+.vcall-invite-user-meta {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.vcall-invite-av {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: rgba(168, 85, 247, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+}
+.vcall-invite-name {
+  font-size: 13px;
+  font-weight: 700;
+  color: #fff;
+}
+.vcall-invite-status {
+  font-size: 10.5px;
+  color: #94a3b8;
+}
+.vcall-invite-status.pending { color: #f59e0b; font-weight: 600; }
+.vcall-invite-status.accepted { color: #22c55e; font-weight: 600; }
+.vcall-invite-status.declined { color: #f87171; font-weight: 600; }
+.vcall-invite-status.joined { color: #c084fc; font-weight: 600; }
+
+.vcall-clean-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 7px 14px;
+  border-radius: 10px;
+  font-size: 12px;
+  font-weight: 700;
+  border: none;
+  cursor: pointer;
+  transition: all .2s;
+}
+.vcall-clean-btn.primary {
+  background: #7c3aed;
+  color: #fff;
+}
+.vcall-clean-btn.primary:hover {
+  background: #6d28d9;
+}
+.vcall-clean-btn.success {
+  background: #16a34a;
+  color: #fff;
+}
+.vcall-clean-btn.success:hover {
+  background: #15803d;
+}
+.vcall-clean-btn.danger {
+  background: #ef4444;
+  color: #fff;
+}
+.vcall-clean-btn.danger:hover {
+  background: #dc2626;
+}
+.vcall-clean-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.vcall-share-box {
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px dashed rgba(255, 255, 255, 0.12);
+  border-radius: 12px;
+  padding: 12px;
+}
+
+/* INCOMING RECEIVER RING */
+.vcall-incoming-ring {
+  position: absolute;
+  inset: -6px;
+  border-radius: 50%;
+  border: 2px solid #22c55e;
+  animation: pulseCs 1.4s infinite ease-in-out;
 }
 
 /* MINIMIZED FLOATING MODE */
@@ -3115,14 +3240,14 @@ aside.chat.floating {
   position: fixed !important;
   bottom: 85px !important;
   right: 25px !important;
-  width: 360px !important;
+  width: 340px !important;
   min-height: auto !important;
   max-width: calc(100vw - 30px) !important;
   z-index: 9999 !important;
-  background: rgba(14, 11, 24, 0.96) !important;
-  border: 1.5px solid rgba(168, 85, 247, 0.6) !important;
-  box-shadow: 0 20px 60px rgba(0,0,0,0.9), 0 0 30px rgba(168,85,247,0.35) !important;
-  padding: 10px !important;
+  background: #0f0d1b !important;
+  border: 1.5px solid rgba(168, 85, 247, 0.5) !important;
+  box-shadow: 0 16px 45px rgba(0,0,0,0.85) !important;
+  padding: 8px !important;
 }
 .modern-vcall-container.minimized .vcall-workspace {
   min-height: auto !important;
@@ -3131,12 +3256,12 @@ aside.chat.floating {
   display: none !important;
 }
 .modern-vcall-container.minimized .modern-video-grid {
-  min-height: 120px !important;
-  max-height: 180px !important;
+  min-height: 110px !important;
+  max-height: 160px !important;
   gap: 6px !important;
 }
 .modern-vcall-container.minimized .vcall-tile {
-  min-height: 60px !important;
+  min-height: 50px !important;
 }
 .modern-vcall-container.minimized .vcall-bottom-toolbar {
   display: flex !important;
@@ -3148,19 +3273,19 @@ aside.chat.floating {
   display: none !important;
 }
 .modern-vcall-container.minimized .vcall-control-island {
-  padding: 4px 8px !important;
+  padding: 4px 6px !important;
 }
 
 /* RESPONSIVE DESIGN */
-@media (max-width: 1024px) {
+@media (max-width: 900px) {
   .vcall-workspace {
     flex-direction: column;
   }
   .vcall-sidebar {
     width: 100%;
     max-width: 100%;
-    height: 300px;
-    min-height: 250px;
+    height: 280px;
+    min-height: 240px;
   }
   .vcall-bottom-toolbar {
     justify-content: center;
@@ -3177,37 +3302,37 @@ aside.chat.floating {
     justify-content: space-around;
   }
 }
-@media (max-width: 640px) {
+@media (max-width: 600px) {
   .modern-vcall-container {
-    padding: 12px 10px 16px;
-    border-radius: 16px;
+    padding: 10px 8px 14px;
+    border-radius: 14px;
   }
   .vcall-topbar {
     justify-content: center;
-    gap: 8px;
+    gap: 6px;
   }
   .vcall-room-pill {
-    padding: 5px 12px;
-    font-size: 11.5px;
+    padding: 4px 10px;
+    font-size: 11px;
   }
   .vcall-control-island {
-    padding: 6px 10px;
+    padding: 4px 8px;
     gap: 2px;
   }
   .vcall-island-btn {
-    min-width: 42px;
-    padding: 4px 6px;
+    min-width: 38px;
+    padding: 3px 5px;
   }
   .vcall-island-label {
     display: none;
   }
   .vcall-leave-btn {
-    padding: 8px 14px;
-    font-size: 12px;
+    padding: 7px 12px;
+    font-size: 11.5px;
   }
   .vcall-more-menu {
-    right: 20px;
-    bottom: 70px;
+    right: 15px;
+    bottom: 65px;
   }
 }
 
@@ -3450,17 +3575,17 @@ aside.chat.floating {
 
     <!-- ===== Video Meetup Hub pane ===== -->
         <!-- ===== Video Chat Hub pane (1-to-1 Live Video Calling) ===== -->
-        <div id="paneM" class="pane meet-pane" hidden>
+            <div id="paneM" class="pane meet-pane" hidden>
       <button class="gbtn backb" onclick="showTab('P')">← Back to Cinema</button>
 
-      <!-- ===== MODERN GRID VIDEO CALL INTERFACE ===== -->
+      <!-- ===== CLEAN & MINIMAL MODERN VIDEO CALL INTERFACE ===== -->
       <div id="modernVcallContainer" class="modern-vcall-container">
         
         <!-- Top Header Bar -->
         <header class="vcall-topbar">
           <div class="vcall-brand">
             <div class="vcall-logo-icon">
-              <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2">
+              <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2">
                 <rect x="2" y="6" width="20" height="12" rx="4"/>
                 <path d="M6 12h4M8 10v4M16 10h.01M18 12h.01"/>
               </svg>
@@ -3484,22 +3609,22 @@ aside.chat.floating {
 
           <div class="vcall-top-actions">
             <button id="bGridInvite" class="vcall-invite-btn" title="Invite Friends to Video Call">
-              <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="8.5" cy="7" r="4"/><line x1="20" y1="8" x2="20" y2="14"/><line x1="23" y1="11" x2="17" y2="11"/></svg>
-              <span>Invite</span>
+              <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="8.5" cy="7" r="4"/><line x1="20" y1="8" x2="20" y2="14"/><line x1="23" y1="11" x2="17" y2="11"/></svg>
+              <span>+ Invite</span>
             </button>
             <button id="bGridSettings" class="vcall-icon-btn" title="Call Settings">
-              <svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 1 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 1 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 1 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 1 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+              <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 1 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 1 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 1 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 1 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
             </button>
             <button id="bGridMin" class="vcall-icon-btn" title="Minimize Video Window">
-              <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/></svg>
+              <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/></svg>
             </button>
             <button id="bGridFullscreen" class="vcall-icon-btn" title="Toggle Fullscreen">
-              <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/></svg>
+              <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/></svg>
             </button>
           </div>
         </header>
 
-        <!-- Main Workspace: Dynamic Video Grid + Collapsible Sidebar -->
+        <!-- Main Workspace: Video Grid + Collapsible Sidebar -->
         <div class="vcall-workspace">
           <!-- Dynamic Participant Video Grid -->
           <div id="modernVideoGrid" class="modern-video-grid grid-1 layout-grid">
@@ -3532,7 +3657,7 @@ aside.chat.floating {
                 </div>
               </div>
             </div>
-            <!-- Dynamic Remote Participant Video Cards Injected Here -->
+            <!-- Dynamic Remote Participant Video Cards Inserted Here -->
           </div>
 
           <!-- Integrated Right Collapsible Sidebar (Chat + Participants) -->
@@ -3540,11 +3665,11 @@ aside.chat.floating {
             <!-- Sidebar Navigation Tabs -->
             <div class="vcall-sidebar-tabs">
               <button id="tabGridChat" class="vcall-tab-btn active">
-                <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+                <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
                 <span>Chat</span>
               </button>
               <button id="tabGridParticipants" class="vcall-tab-btn">
-                <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
                 <span>Participants (<span id="gridPartCountTab">1</span>)</span>
               </button>
               <button id="bGridCloseSidebar" class="vcall-close-sidebar-btn" title="Close Sidebar">✕</button>
@@ -3554,13 +3679,13 @@ aside.chat.floating {
             <div id="gridChatView" class="vcall-sidebar-content">
               <div class="vcall-chat-date-sep"><span>Today</span></div>
               <div id="gridChatMsgs" class="vcall-chat-messages">
-                <!-- Live chat messages populated here -->
+                <!-- Clean chat messages dynamically appended -->
               </div>
               <div class="vcall-chat-input-bar">
                 <button id="bGridChatEmoji" class="vcall-chat-icon-btn" title="Insert Emoji">😊</button>
                 <input id="gridChatInput" type="text" placeholder="Type a message..." maxlength="1000" autocomplete="off">
                 <button id="bGridChatSend" class="vcall-chat-send-btn" title="Send Message">
-                  <svg viewBox="0 0 24 24" width="15" height="15" fill="currentColor"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg>
+                  <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg>
                 </button>
               </div>
             </div>
@@ -3568,11 +3693,11 @@ aside.chat.floating {
             <!-- Tab 2: Participants View -->
             <div id="gridParticipantsView" class="vcall-sidebar-content" hidden>
               <div class="vcall-participants-header">
-                <h4>In This Call (<span id="gridPartCountHeader">1</span>)</h4>
-                <button id="bGridInviteMore" class="vcall-invite-pill-btn">+ Invite</button>
+                <h4>Participants (<span id="gridPartCountHeader">1</span>)</h4>
+                <button id="bGridInviteMore" class="vcall-invite-pill-btn">+ Invite Friend</button>
               </div>
               <div id="gridParticipantsList" class="vcall-participants-list">
-                <!-- Participants rows populated here -->
+                <!-- Participants rows populated dynamically -->
               </div>
             </div>
           </aside>
@@ -3591,82 +3716,82 @@ aside.chat.floating {
               </div>
             </div>
             <button id="bGridCopyRoom" class="vcall-copy-icon-btn" title="Copy Room ID & Link">
-              <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+              <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
             </button>
           </div>
 
-          <!-- Center: Floating Island Pill -->
+          <!-- Center: 7 Simple Functional Buttons -->
           <div class="vcall-control-island">
-            <!-- Mic Mute/Unmute -->
-            <button id="bGridMic" class="vcall-island-btn" title="Mute/Unmute Microphone (M)">
+            <!-- 1. Mic -->
+            <button id="bGridMic" class="vcall-island-btn" title="Mute / Unmute Microphone (M)">
               <div class="vcall-island-icon">
-                <svg id="vcallMicSvg" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="23"/><line x1="8" y1="23" x2="16" y2="23"/></svg>
+                <svg id="vcallMicSvg" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="23"/><line x1="8" y1="23" x2="16" y2="23"/></svg>
               </div>
               <span class="vcall-island-label" id="vcallMicLabel">Mute</span>
             </button>
 
-            <!-- Camera On/Off -->
-            <button id="bGridCam" class="vcall-island-btn" title="Turn Camera On/Off (V)">
+            <!-- 2. Camera -->
+            <button id="bGridCam" class="vcall-island-btn" title="Turn Camera On / Off (V)">
               <div class="vcall-island-icon">
-                <svg id="vcallCamSvg" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><path d="M23 7l-7 5 7 5V7z"/><rect x="1" y="5" width="15" height="14" rx="2"/></svg>
+                <svg id="vcallCamSvg" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><path d="M23 7l-7 5 7 5V7z"/><rect x="1" y="5" width="15" height="14" rx="2"/></svg>
               </div>
               <span class="vcall-island-label" id="vcallCamLabel">Camera</span>
             </button>
 
-            <!-- Screen Share -->
+            <!-- 3. Screen Share -->
             <button id="bGridScreen" class="vcall-island-btn" title="Share Screen">
               <div class="vcall-island-icon">
-                <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/><path d="M12 7l-3 3h2v4h2v-4h2z" fill="currentColor"/></svg>
+                <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/><path d="M12 7l-3 3h2v4h2v-4h2z" fill="currentColor"/></svg>
               </div>
-              <span class="vcall-island-label">Screen Share</span>
+              <span class="vcall-island-label">Screen</span>
             </button>
 
-            <!-- Chat Sidebar Toggle -->
+            <!-- 4. Chat -->
             <button id="bGridChatToggle" class="vcall-island-btn" title="Toggle Chat Sidebar">
               <div class="vcall-island-icon">
-                <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+                <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
                 <span id="gridChatBadge" class="vcall-island-badge" hidden>0</span>
               </div>
               <span class="vcall-island-label">Chat</span>
             </button>
 
-            <!-- Participants Toggle -->
+            <!-- 5. Participants -->
             <button id="bGridPartToggle" class="vcall-island-btn" title="Toggle Participants List">
               <div class="vcall-island-icon">
-                <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
                 <span id="gridPartBadge" class="vcall-island-badge">1</span>
               </div>
-              <span class="vcall-island-label">Participants</span>
+              <span class="vcall-island-label">People</span>
             </button>
 
-            <!-- More Settings Dropdown -->
+            <!-- 6. More Settings -->
             <button id="bGridMore" class="vcall-island-btn" title="More Options">
               <div class="vcall-island-icon">
-                <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><circle cx="5" cy="12" r="2"/><circle cx="12" cy="12" r="2"/><circle cx="19" cy="12" r="2"/></svg>
+                <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><circle cx="5" cy="12" r="2"/><circle cx="12" cy="12" r="2"/><circle cx="19" cy="12" r="2"/></svg>
               </div>
               <span class="vcall-island-label">More</span>
             </button>
 
-            <!-- Leave Call Red Pill Button -->
+            <!-- 7. Leave Call (Red Button) -->
             <button id="bGridLeave" class="vcall-leave-btn" title="Leave Video Call">
-              <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M12 9c-1.6 0-3.15.25-4.6.72v3.1c0 .39-.23.74-.56.9-.98.49-1.87 1.12-2.66 1.85-.18.18-.43.28-.7.28-.28 0-.53-.11-.71-.29L.29 13.08a.996.996 0 0 1 0-1.41C3.28 8.91 7.42 7.5 12 7.5s8.72 1.41 11.71 4.17c.39.39.39 1.02 0 1.41l-2.48 2.48c-.18.18-.43.29-.71.29s-.52-.11-.7-.28c-.79-.74-1.69-1.36-2.67-1.85-.33-.16-.56-.5-.56-.9v-3.1C15.15 9.25 13.6 9 12 9z"/></svg>
-              <span>Leave Call</span>
+              <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M12 9c-1.6 0-3.15.25-4.6.72v3.1c0 .39-.23.74-.56.9-.98.49-1.87 1.12-2.66 1.85-.18.18-.43.28-.7.28-.28 0-.53-.11-.71-.29L.29 13.08a.996.996 0 0 1 0-1.41C3.28 8.91 7.42 7.5 12 7.5s8.72 1.41 11.71 4.17c.39.39.39 1.02 0 1.41l-2.48 2.48c-.18.18-.43.29-.71.29s-.52-.11-.7-.28c-.79-.74-1.69-1.36-2.67-1.85-.33-.16-.56-.5-.56-.9v-3.1C15.15 9.25 13.6 9 12 9z"/></svg>
+              <span>Leave</span>
             </button>
           </div>
 
           <!-- Right: Layout Switcher Island -->
           <div class="vcall-layout-island">
-            <button id="bLayoutGrid" class="vcall-layout-btn active" title="Grid View (2x2 / Auto)">
-              <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/></svg>
+            <button id="bLayoutGrid" class="vcall-layout-btn active" title="Dynamic Grid View">
+              <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/></svg>
             </button>
             <button id="bLayoutSpeaker" class="vcall-layout-btn" title="Speaker View (Active Speaker Big)">
-              <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="13" rx="2"/><circle cx="12" cy="8" r="2.5"/><path d="M7 14c0-2 2-3 5-3s5 1 5 3"/><rect x="5" y="18" width="4" height="3" rx="1"/><rect x="10" y="18" width="4" height="3" rx="1"/><rect x="15" y="18" width="4" height="3" rx="1"/></svg>
+              <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="13" rx="2"/><circle cx="12" cy="8" r="2.5"/><path d="M7 14c0-2 2-3 5-3s5 1 5 3"/><rect x="5" y="18" width="4" height="3" rx="1"/><rect x="10" y="18" width="4" height="3" rx="1"/><rect x="15" y="18" width="4" height="3" rx="1"/></svg>
             </button>
             <button id="bLayoutSplit" class="vcall-layout-btn" title="1:1 Dual Split View">
-              <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="8.5" height="16" rx="2"/><rect x="12.5" y="4" width="8.5" height="16" rx="2"/></svg>
+              <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="8.5" height="16" rx="2"/><rect x="12.5" y="4" width="8.5" height="16" rx="2"/></svg>
             </button>
             <button id="bLayoutFs" class="vcall-layout-btn" title="Toggle Fullscreen">
-              <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/></svg>
+              <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/></svg>
             </button>
           </div>
         </footer>
@@ -3683,26 +3808,55 @@ aside.chat.floating {
           <div class="vcall-menu-item" id="mItemAudioTest">
             <span>🔊 Audio & Camera Device Test</span>
           </div>
-          <div class="vcall-menu-item" id="mItemSimDemo">
-            <span>🎭 Toggle 4-Participant Demo Preview</span>
+        </div>
+      </div>
+
+      <!-- ===== HOST INVITATION MODAL (HOST SIDE) ===== -->
+      <div id="vcallInviteModal" class="modal-overlay" hidden>
+        <div class="modal-box vcall-modal-clean">
+          <div class="vcall-modal-head">
+            <div style="display:flex;align-items:center;gap:10px">
+              <span style="font-size:20px">👥</span>
+              <div>
+                <h3 style="margin:0;font-size:15px;color:#fff">Invite Users to Video Call</h3>
+                <p style="margin:2px 0 0;font-size:11.5px;color:#94a3b8">Send instant direct invitations to friends in this room.</p>
+              </div>
+            </div>
+            <button id="bCloseInviteModal" class="vcall-icon-btn sm" title="Close">✕</button>
+          </div>
+          <div class="vcall-modal-body">
+            <div class="vcall-invite-list-header">
+              <span style="font-size:11.5px;font-weight:700;color:#cbd5e1;letter-spacing:0.5px">AVAILABLE FRIENDS</span>
+              <span id="vcallInviteOnlineBadge" class="vcall-clean-badge">0 Online</span>
+            </div>
+            <div id="vcallInviteUserList" class="vcall-invite-user-list">
+              <!-- Dynamically populated friend rows -->
+            </div>
+            <div class="vcall-share-box">
+              <div style="font-size:11px;font-weight:700;color:#94a3b8;margin-bottom:6px">OR SHARE ROOM LINK DIRECTLY</div>
+              <div style="display:flex;gap:8px">
+                <input id="inVcallRoomLink" type="text" readonly style="flex:1;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);border-radius:10px;padding:8px 12px;color:#fff;font-size:12px;outline:none">
+                <button id="bCopyVcallRoomLink" class="vcall-clean-btn primary" style="padding:8px 16px;font-size:12px">📋 Copy</button>
+              </div>
+            </div>
           </div>
         </div>
       </div>
 
-      <!-- Incoming 1-to-1 / Group Video Call Alert Modal -->
-      <div id="vchatIncomingModal" class="modal-overlay" hidden>
-        <div class="modal-box" style="text-align:center;max-width:380px">
-          <div class="modal-body" style="padding:32px 24px">
+      <!-- ===== RECEIVER INVITATION POPUP (RECEIVER SIDE) ===== -->
+      <div id="vcallIncomingModal" class="modal-overlay" hidden>
+        <div class="modal-box vcall-modal-clean" style="max-width:380px;text-align:center">
+          <div style="padding:28px 24px 24px">
             <div style="position:relative;width:80px;height:80px;margin:0 auto 16px">
-              <div style="position:absolute;inset:0;border-radius:50%;background:rgba(168,85,247,0.3);animation:pulseCs 1.2s infinite"></div>
-              <div class="vcall-fallback-av" style="width:80px;height:80px;font-size:38px;position:relative;z-index:1" id="vchatIncomingAv">🙂</div>
+              <div class="vcall-incoming-ring"></div>
+              <div class="vcall-fallback-av" style="width:80px;height:80px;font-size:38px;position:relative;z-index:1" id="vchatIncomingAv">👑</div>
             </div>
-            <h3 style="margin:0 0 6px;font-size:20px;color:#fff"><span id="vchatIncomingName">Friend</span></h3>
-            <p style="color:#a855f7;font-size:13px;font-weight:700;margin:0 0 8px">📹 Incoming Video Call</p>
-            <p style="color:var(--muted);font-size:12px;margin:0 0 24px">Tap Accept to turn on camera and join live video grid call.</p>
-            <div style="display:flex;gap:12px;justify-content:center">
-              <button id="bVchatIncomingAccept" class="primary" style="padding:12px 24px;font-size:14px;border-radius:14px;font-weight:700">🟢 Accept Call</button>
-              <button id="bVchatIncomingDecline" class="gbtn" style="padding:12px 20px;font-size:14px;border-radius:14px;background:#ef4444;border-color:#dc2626;color:#fff">🔴 Decline</button>
+            <h3 style="margin:0 0 6px;font-size:18px;color:#fff"><span id="vchatIncomingHostName">Host</span></h3>
+            <p style="color:#22c55e;font-size:12.5px;font-weight:700;margin:0 0 4px" id="vchatIncomingRoomTitle">Movie Night Room</p>
+            <p style="color:#cbd5e1;font-size:13.5px;margin:0 0 22px" id="vchatIncomingMsg">invited you to join a Video Call</p>
+            <div style="display:flex;gap:10px;justify-content:center">
+              <button id="bVchatIncomingAccept" class="vcall-clean-btn success" style="flex:1;padding:12px 18px;font-size:13.5px;font-weight:700">🟢 ACCEPT</button>
+              <button id="bVchatIncomingDecline" class="vcall-clean-btn danger" style="flex:1;padding:12px 18px;font-size:13.5px;font-weight:700">🔴 REJECT</button>
             </div>
           </div>
         </div>
@@ -8783,8 +8937,8 @@ themeK=(TH.find(x=>x[0]===store.get('fwp-theme'))||TH[0])[0];buildThemes();apply
     if(typeof prevNetMsg === 'function') prevNetMsg(m);
 
 
-    /* ==========================================================================
-     MODERN GRID VIDEO CALL ENGINE (2x2 DYNAMIC GRID, WEBRTC MESH & AUDIO SENSING)
+      /* ==========================================================================
+     CLEAN & RELIABLE MODERN GRID VIDEO CALL ENGINE WITH HOST INVITATION SYSTEM
      ========================================================================== */
   const ModernGridCall = {
     inCall: false,
@@ -8800,11 +8954,13 @@ themeK=(TH.find(x=>x[0]===store.get('fwp-theme'))||TH[0])[0];buildThemes();apply
     unreadChatCount: 0,
     participants: new Map(), // peerId -> { id, name, av, host, stream, audioMuted, videoMuted, isSpeaking, analyser }
     calls: new Map(),        // peerId -> MediaConnection
+    inviteStates: new Map(), // peerId -> 'pending' | 'accepted' | 'declined' | 'joined'
+    inviteTimers: new Map(),
+    pendingInvite: null,
+    renderedMsgIds: new Set(),
     audioCtx: null,
     analyserTimer: null,
-    speakingHangovers: new Map(), // peerId -> timestamp
-    demoActive: true,
-    pendingInvite: null
+    speakingHangovers: new Map() // peerId -> timestamp
   };
 
   window.ModernGridCall = ModernGridCall;
@@ -8821,17 +8977,15 @@ themeK=(TH.find(x=>x[0]===store.get('fwp-theme'))||TH[0])[0];buildThemes();apply
     return `${hours}:${strMinutes} ${ampm}`;
   }
 
-  // --- Initialize Modern Grid UI Elements ---
+  // --- Initialize Clean UI Elements ---
   function initModernGridUI(){
-    // Room info setup
     const rName = (typeof roomTitle !== 'undefined' && roomTitle) ? roomTitle : 'Movie Night Room';
     const rCode = (typeof code !== 'undefined' && code) ? code : 'FHP2847';
     const headRoom = $('#vcallHeaderRoomName'); if(headRoom) headRoom.textContent = rName;
     const botRoom = $('#vcallBottomRoomName'); if(botRoom) botRoom.textContent = `Room: ${rName}`;
     const botCode = $('#vcallBottomRoomId'); if(botCode) botCode.textContent = rCode;
 
-    // Local user setup
-    const uName = (typeof myName !== 'undefined' && myName) ? myName : 'Sasi Kumar R';
+    const uName = (typeof myName !== 'undefined' && myName) ? myName : 'You';
     const uAv = (typeof myAv !== 'undefined' && myAv) ? myAv : '😎';
     const locTag = $('#vcallLocalNameTag'); if(locTag) locTag.textContent = uName;
     const locAv = $('#vcallLocalAv'); if(locAv) locAv.textContent = uAv;
@@ -8839,53 +8993,10 @@ themeK=(TH.find(x=>x[0]===store.get('fwp-theme'))||TH[0])[0];buildThemes();apply
     const locHost = $('#vcallLocalHostBadge');
     if(locHost) locHost.hidden = !(typeof isHost !== 'undefined' && isHost);
 
-    // Initial participant badge & counts
     updateGridOnlineCounts();
-
-    // Populate default chat demo messages if empty
-    const chatMsgs = $('#gridChatMsgs');
-    if(chatMsgs && !chatMsgs.children.length){
-      appendGridChatBubble('Sakthi', '😎', '8:10 PM', 'Movie start pannalama? 🎬', false);
-      appendGridChatBubble('Riya Sri', '🎧', '8:11 PM', 'Yes! Ready 😍', false);
-      appendGridChatBubble('Balamurugan', '🎮', '8:11 PM', "Let's Go! 🎉", false);
-      appendGridChatBubble(uName, uAv, '8:12 PM', 'Start now! ▶️', true);
-    }
-
-    // Populate initial demo participants matching the mockup if demoActive
-    if(ModernGridCall.demoActive && ModernGridCall.participants.size === 0){
-      setupDemoParticipants();
-    }
   }
 
-  // Setup Simulated 4-Participant Preview (Exact Match to User Reference Mockup!)
-  function setupDemoParticipants(){
-    // 1. Riya Sri
-    createRemoteParticipantTile('demo_riya', 'Riya Sri', '🎧', false, null, true, false);
-    // 2. Sakthi
-    createRemoteParticipantTile('demo_sakthi', 'Sakthi', '😎', false, null, false, false);
-    // 3. Balamurugan
-    createRemoteParticipantTile('demo_bala', 'Balamurugan', '🎮', false, null, false, false);
-
-    // Mark Sakthi as active speaker wave in demo
-    const sakthiTile = document.getElementById('vcallTile_demo_sakthi');
-    if(sakthiTile){
-      const wave = sakthiTile.querySelector('.vcall-active-wave');
-      if(wave) wave.hidden = false;
-    }
-
-    // Mark Local user as Host and Active Speaker with glowing green border!
-    const locTile = $('#vcallTile_local');
-    if(locTile){
-      locTile.classList.add('active-speaker');
-      const wave = $('#vcallLocalWave');
-      if(wave) wave.hidden = false;
-    }
-
-    updateGridLayout();
-    renderParticipantsSidebar();
-  }
-
-  // --- Dynamic Grid Layout Calculation ---
+  // --- Dynamic Grid Layout Manager ---
   function updateGridLayout(){
     const grid = $('#modernVideoGrid');
     if(!grid) return;
@@ -8919,7 +9030,7 @@ themeK=(TH.find(x=>x[0]===store.get('fwp-theme'))||TH[0])[0];buildThemes();apply
     const pHead = $('#gridPartCountHeader'); if(pHead) pHead.textContent = total;
   }
 
-  // --- Create or Update a Participant Video Card ---
+  // --- Create or Update a Real Participant Video Card ---
   function createRemoteParticipantTile(peerId, name, av = '🙂', host = false, stream = null, audioMuted = false, videoMuted = false){
     const grid = $('#modernVideoGrid');
     if(!grid) return null;
@@ -8985,6 +9096,7 @@ themeK=(TH.find(x=>x[0]===store.get('fwp-theme'))||TH[0])[0];buildThemes();apply
       tileEl: tile
     });
 
+    ModernGridCall.inviteStates.set(peerId, 'joined');
     updateGridLayout();
     renderParticipantsSidebar();
     return tile;
@@ -8996,6 +9108,7 @@ themeK=(TH.find(x=>x[0]===store.get('fwp-theme'))||TH[0])[0];buildThemes();apply
     if(tile) tile.remove();
     ModernGridCall.participants.delete(peerId);
     ModernGridCall.calls.delete(peerId);
+    ModernGridCall.inviteStates.delete(peerId);
     updateGridLayout();
     renderParticipantsSidebar();
   }
@@ -9035,7 +9148,7 @@ themeK=(TH.find(x=>x[0]===store.get('fwp-theme'))||TH[0])[0];buildThemes();apply
       const now = Date.now();
       const pcmData = new Uint8Array(128);
 
-      // 1. Check Local User Audio Level
+      // Local speaking level check
       if(ModernGridCall.localAnalyser && !ModernGridCall.audioMuted){
         ModernGridCall.localAnalyser.getByteTimeDomainData(pcmData);
         let sum = 0;
@@ -9060,7 +9173,7 @@ themeK=(TH.find(x=>x[0]===store.get('fwp-theme'))||TH[0])[0];buildThemes();apply
         }
       }
 
-      // 2. Check Remote Participants Audio Levels
+      // Remote participants speaking level check
       ModernGridCall.participants.forEach((p, peerId)=>{
         if(p.analyser && !p.audioMuted){
           p.analyser.getByteTimeDomainData(pcmData);
@@ -9090,43 +9203,53 @@ themeK=(TH.find(x=>x[0]===store.get('fwp-theme'))||TH[0])[0];buildThemes();apply
     }, 80);
   }
 
-  // --- Start Video Call (Acquire Camera & Audio) ---
+  // --- Start Video Call (Robust Progressive Media Acquisition) ---
   async function startModernGridCall(){
+    if(ModernGridCall.inCall && ModernGridCall.localStream) return;
     ModernGridCall.inCall = true;
     initModernGridUI();
 
+    // 1. Try Progressive getUserMedia Constraints
     try {
-      const constraints = {
+      const qConstraints = {
         video: {
           facingMode: ModernGridCall.facingMode,
           width: { ideal: ModernGridCall.quality === '720p' ? 1280 : (ModernGridCall.quality === '480p' ? 854 : 640) },
           height: { ideal: ModernGridCall.quality === '720p' ? 720 : (ModernGridCall.quality === '480p' ? 480 : 360) },
           frameRate: { ideal: 30 }
         },
-        audio: {
-          echoCancellation: true,
-          noiseSuppression: true,
-          autoGainControl: true
-        }
+        audio: { echoCancellation: true, noiseSuppression: true, autoGainControl: true }
       };
 
-      ModernGridCall.localStream = await navigator.mediaDevices.getUserMedia(constraints);
+      try {
+        ModernGridCall.localStream = await navigator.mediaDevices.getUserMedia(qConstraints);
+      } catch(e1){
+        console.warn('HD constraint failed, trying basic video+audio:', e1);
+        try {
+          ModernGridCall.localStream = await navigator.mediaDevices.getUserMedia({ video: true, audio: true });
+        } catch(e2){
+          console.warn('Video failed, trying audio-only stream:', e2);
+          ModernGridCall.localStream = await navigator.mediaDevices.getUserMedia({ audio: true });
+          ModernGridCall.videoMuted = true;
+        }
+      }
+
       const locVid = $('#vcallLocalVideo');
-      if(locVid){
+      if(locVid && ModernGridCall.localStream){
         locVid.srcObject = ModernGridCall.localStream;
         locVid.play().catch(()=>{});
       }
-      $('#vcallLocalFallback').hidden = true;
+      $('#vcallLocalFallback').hidden = !ModernGridCall.videoMuted;
       setupAudioAnalyser(ModernGridCall.localStream, 'local');
       startAudioAnalyserLoop();
-      toast('🟢 Camera and Microphone Connected');
+      toast('🟢 Camera & Microphone Connected');
     } catch(err){
-      console.warn('getUserMedia error:', err);
+      console.warn('getUserMedia permission error:', err);
       $('#vcallLocalFallback').hidden = false;
-      toast('⚠️ Camera access denied. Running in fallback audio mode.');
+      toast('⚠️ Camera/Mic permission not granted. Running in fallback mode.');
     }
 
-    // Call connected peers in room via PeerJS
+    // 2. Connect to existing peers via PeerJS if already in room
     if(typeof peer !== 'undefined' && peer && typeof conns !== 'undefined' && ModernGridCall.localStream){
       conns.forEach((c, peerId)=>{
         try {
@@ -9143,7 +9266,7 @@ themeK=(TH.find(x=>x[0]===store.get('fwp-theme'))||TH[0])[0];buildThemes();apply
       });
     }
 
-    // Announce presence via data channel
+    // 3. Announce in room
     if(typeof send === 'function'){
       send({
         t: 'v_join',
@@ -9163,17 +9286,11 @@ themeK=(TH.find(x=>x[0]===store.get('fwp-theme'))||TH[0])[0];buildThemes();apply
     ModernGridCall.calls.set(peerId, call);
 
     call.on('stream', remoteStream => {
-      // Clear demo participants on real peer connection if active
-      if(ModernGridCall.demoActive){
-        ModernGridCall.demoActive = false;
-        ['demo_riya', 'demo_sakthi', 'demo_bala'].forEach(id => removeParticipantTile(id));
-      }
-
       const pName = call.metadata?.name || 'Friend';
       const pAv = call.metadata?.av || '🙂';
       const pHost = !!call.metadata?.host;
       createRemoteParticipantTile(peerId, pName, pAv, pHost, remoteStream, false, false);
-      toast(`🟢 ${pName} joined the video call`);
+      toast(`🟢 ${pName} connected to video call`);
     });
 
     call.on('close', ()=>{
@@ -9182,7 +9299,7 @@ themeK=(TH.find(x=>x[0]===store.get('fwp-theme'))||TH[0])[0];buildThemes();apply
     });
 
     call.on('error', err => {
-      console.warn('Grid Call error:', err);
+      console.warn('Grid Call connection error:', err);
     });
   }
 
@@ -9203,12 +9320,10 @@ themeK=(TH.find(x=>x[0]===store.get('fwp-theme'))||TH[0])[0];buildThemes();apply
     ModernGridCall.calls.forEach(c => { try { c.close(); }catch(e){} });
     ModernGridCall.calls.clear();
 
-    // Notify room
     if(typeof send === 'function'){
       send({ t: 'v_leave', name: myName });
     }
 
-    // Stop audio context
     if(ModernGridCall.audioCtx && ModernGridCall.audioCtx.state !== 'closed'){
       ModernGridCall.audioCtx.close().catch(()=>{});
       ModernGridCall.audioCtx = null;
@@ -9217,15 +9332,205 @@ themeK=(TH.find(x=>x[0]===store.get('fwp-theme'))||TH[0])[0];buildThemes();apply
     const locVid = $('#vcallLocalVideo');
     if(locVid) locVid.srcObject = null;
     $('#vcallLocalFallback').hidden = false;
-
-    // Reset container from minimized
     $('#modernVcallContainer')?.classList.remove('minimized');
 
     toast('🔴 Left Video Call');
-    showTab('P'); // Return to Cinema Hub
+    showTab('P');
   }
 
-  // --- In-Call Bottom Toolbar Control Handlers ---
+  // --- HOST INVITATION SYSTEM LOGIC (REQUIREMENT 4) ---
+  function openInviteModal(){
+    const modal = $('#vcallInviteModal');
+    if(!modal) return;
+    const l = (typeof roomLink === 'function') ? roomLink() : window.location.href;
+    const linkIn = $('#inVcallRoomLink');
+    if(linkIn) linkIn.value = l;
+
+    renderInviteUserList();
+    modal.hidden = false;
+  }
+
+  function closeInviteModal(){
+    const modal = $('#vcallInviteModal');
+    if(modal) modal.hidden = true;
+  }
+
+  function renderInviteUserList(){
+    const list = $('#vcallInviteUserList');
+    const badge = $('#vcallInviteOnlineBadge');
+    if(!list) return;
+    list.innerHTML = '';
+
+    const friends = (typeof others === 'function') ? others() : [];
+    if(badge) badge.textContent = `${friends.length} Online`;
+
+    if(!friends.length){
+      list.innerHTML = `
+        <div style="text-align:center;padding:24px 12px;color:#94a3b8">
+          <div style="font-size:32px;margin-bottom:6px">👥</div>
+          <div style="font-size:13px;font-weight:700;color:#fff">No other friends connected yet</div>
+          <div style="font-size:11.5px;margin:4px 0 12px">Share your Party Room link so your friends appear here for instant 1-click video call invitations.</div>
+        </div>
+      `;
+      return;
+    }
+
+    friends.forEach(u => {
+      const isAlreadyInCall = ModernGridCall.participants.has(u.id);
+      let state = isAlreadyInCall ? 'joined' : (ModernGridCall.inviteStates.get(u.id) || 'available');
+
+      const row = document.createElement('div');
+      row.className = 'vcall-invite-user-row';
+      row.id = 'vcallInviteRow_' + u.id;
+
+      let statusBadgeHtml = '';
+      let btnLabel = '📹 Invite';
+      let btnDisabled = false;
+
+      if(state === 'pending'){
+        statusBadgeHtml = '<span class="vcall-invite-status pending">⏳ Pending...</span>';
+        btnLabel = '⏳ Invited';
+        btnDisabled = true;
+      } else if(state === 'accepted'){
+        statusBadgeHtml = '<span class="vcall-invite-status accepted">✅ Accepted</span>';
+        btnLabel = '✅ Accepted';
+        btnDisabled = true;
+      } else if(state === 'declined'){
+        statusBadgeHtml = '<span class="vcall-invite-status declined">❌ Declined</span>';
+        btnLabel = '🔄 Re-invite';
+        btnDisabled = false;
+      } else if(state === 'joined'){
+        statusBadgeHtml = '<span class="vcall-invite-status joined">🟢 In Call</span>';
+        btnLabel = '🟢 Connected';
+        btnDisabled = true;
+      } else {
+        statusBadgeHtml = '<span class="vcall-invite-status">● Available</span>';
+      }
+
+      row.innerHTML = `
+        <div class="vcall-invite-user-meta">
+          <div class="vcall-invite-av">${u.av || '🙂'}</div>
+          <div>
+            <div class="vcall-invite-name">${u.name}</div>
+            <div>${statusBadgeHtml}</div>
+          </div>
+        </div>
+        <button class="vcall-clean-btn primary" data-peer="${u.id}" ${btnDisabled ? 'disabled' : ''}>
+          ${btnLabel}
+        </button>
+      `;
+
+      const btn = row.querySelector('button');
+      btn.onclick = () => sendVideoCallInvite(u.id, u.name);
+      list.appendChild(row);
+    });
+  }
+
+  function sendVideoCallInvite(targetPeerId, targetName){
+    ModernGridCall.inviteStates.set(targetPeerId, 'pending');
+    renderInviteUserList();
+    playToneChime([440, 554.37], 0.2);
+
+    const rTitle = (typeof roomTitle !== 'undefined' && roomTitle) ? roomTitle : 'Movie Night Room';
+    const rCode = (typeof code !== 'undefined' && code) ? code : 'FHP2847';
+
+    if(typeof sendTo === 'function'){
+      sendTo(targetPeerId, {
+        t: 'vcall_invite',
+        hostName: myName,
+        hostAv: (typeof myAv !== 'undefined' ? myAv : '😎'),
+        hostId: (typeof myId === 'function' ? myId() : (typeof peer !== 'undefined' ? peer.id : '')),
+        roomId: rCode,
+        roomTitle: rTitle
+      });
+    }
+
+    toast(`📹 Video call invitation sent to ${targetName}...`);
+
+    // 30s Invitation Expiration Timeout
+    clearTimeout(ModernGridCall.inviteTimers.get(targetPeerId));
+    const timer = setTimeout(()=>{
+      if(ModernGridCall.inviteStates.get(targetPeerId) === 'pending'){
+        ModernGridCall.inviteStates.set(targetPeerId, 'declined');
+        renderInviteUserList();
+        toast(`⚠️ ${targetName} did not answer the video call invitation.`);
+      }
+    }, 30000);
+    ModernGridCall.inviteTimers.set(targetPeerId, timer);
+  }
+
+  // --- RECEIVER INVITATION POPUP & ACCEPT / REJECT (REQUIREMENT 4) ---
+  function handleIncomingVideoCallInvite(m){
+    ModernGridCall.pendingInvite = m;
+    const modal = $('#vcallIncomingModal');
+    if(!modal) return;
+
+    $('#vchatIncomingHostName').textContent = m.hostName || 'Host';
+    $('#vchatIncomingAv').textContent = m.hostAv || '👑';
+    $('#vchatIncomingRoomTitle').textContent = m.roomTitle || 'Party Room';
+    $('#vchatIncomingMsg').textContent = `"${m.hostName || 'Host'} invited you to join a Video Call"`;
+    modal.hidden = false;
+
+    playToneChime([523.25, 659.25, 783.99], 0.25);
+  }
+
+  // Receiver clicks [ ACCEPT ]
+  $('#bVchatIncomingAccept')?.addEventListener('click', async ()=>{
+    const modal = $('#vcallIncomingModal');
+    if(modal) modal.hidden = true;
+    const inv = ModernGridCall.pendingInvite;
+    if(!inv) return;
+
+    // Send accept notification back to host
+    if(typeof sendTo === 'function' && inv.hostId){
+      sendTo(inv.hostId, {
+        t: 'vcall_accept',
+        from: myName,
+        fromAv: (typeof myAv !== 'undefined' ? myAv : '😎'),
+        fromId: (typeof myId === 'function' ? myId() : (typeof peer !== 'undefined' ? peer.id : ''))
+      });
+    }
+
+    // Switch view to Video Call tab
+    showTab('M');
+
+    // Acquire camera & audio
+    if(!ModernGridCall.inCall) await startModernGridCall();
+
+    // Call host via PeerJS
+    if(typeof peer !== 'undefined' && peer && inv.hostId && ModernGridCall.localStream){
+      try {
+        const call = peer.call(inv.hostId, ModernGridCall.localStream, {
+          metadata: {
+            type: 'grid_call',
+            name: myName,
+            av: (typeof myAv !== 'undefined' ? myAv : '😎'),
+            host: (typeof isHost !== 'undefined' ? isHost : false)
+          }
+        });
+        bindGridCallEvents(call);
+      } catch(err){ console.warn('PeerJS call error:', err); }
+    }
+
+    toast('🟢 Joined Video Call!');
+  });
+
+  // Receiver clicks [ REJECT ]
+  $('#bVchatIncomingDecline')?.addEventListener('click', ()=>{
+    const modal = $('#vcallIncomingModal');
+    if(modal) modal.hidden = true;
+    const inv = ModernGridCall.pendingInvite;
+    if(inv && typeof sendTo === 'function' && inv.hostId){
+      sendTo(inv.hostId, {
+        t: 'vcall_reject',
+        from: myName,
+        fromId: (typeof myId === 'function' ? myId() : (typeof peer !== 'undefined' ? peer.id : ''))
+      });
+    }
+    toast('❌ Video call invitation declined');
+  });
+
+  // --- IN-CALL TOOLBAR 7 SIMPLE CONTROLS ---
 
   // 1. Microphone Mute / Unmute
   $('#bGridMic')?.addEventListener('click', ()=>{
@@ -9282,7 +9587,6 @@ themeK=(TH.find(x=>x[0]===store.get('fwp-theme'))||TH[0])[0];buildThemes();apply
         const locVid = $('#vcallLocalVideo');
         if(locVid) locVid.srcObject = ModernGridCall.screenStream;
 
-        // Replace track across all peer connections
         ModernGridCall.calls.forEach(call => {
           if(call.peerConnection){
             const vSender = call.peerConnection.getSenders().find(s => s.track && s.track.kind === 'video');
@@ -9291,7 +9595,7 @@ themeK=(TH.find(x=>x[0]===store.get('fwp-theme'))||TH[0])[0];buildThemes();apply
         });
 
         $('#bGridScreen').classList.add('active');
-        toast('🖥️ Screen Sharing Started');
+        toast('🖥️ Screen Sharing Active');
 
         screenTrack.onended = () => {
           stopScreenSharing();
@@ -9324,7 +9628,7 @@ themeK=(TH.find(x=>x[0]===store.get('fwp-theme'))||TH[0])[0];buildThemes();apply
     toast('🖥️ Screen Sharing Ended');
   }
 
-  // 4. Chat Sidebar Toggle
+  // 4. Chat Toggle
   $('#bGridChatToggle')?.addEventListener('click', ()=>{
     const sb = $('#modernGridSidebar');
     if(!sb) return;
@@ -9334,13 +9638,12 @@ themeK=(TH.find(x=>x[0]===store.get('fwp-theme'))||TH[0])[0];buildThemes();apply
     } else {
       sb.classList.add('collapsed');
     }
-    // Clear unread badge
     ModernGridCall.unreadChatCount = 0;
     const badge = $('#gridChatBadge');
     if(badge) badge.hidden = true;
   });
 
-  // 5. Participants Sidebar Toggle
+  // 5. Participants Toggle
   $('#bGridPartToggle')?.addEventListener('click', ()=>{
     const sb = $('#modernGridSidebar');
     if(!sb) return;
@@ -9352,7 +9655,6 @@ themeK=(TH.find(x=>x[0]===store.get('fwp-theme'))||TH[0])[0];buildThemes();apply
     }
   });
 
-  // Close sidebar button
   $('#bGridCloseSidebar')?.addEventListener('click', ()=>{
     $('#modernGridSidebar')?.classList.add('collapsed');
   });
@@ -9381,7 +9683,7 @@ themeK=(TH.find(x=>x[0]===store.get('fwp-theme'))||TH[0])[0];buildThemes();apply
   $('#tabGridChat')?.addEventListener('click', ()=> switchSidebarTab('chat'));
   $('#tabGridParticipants')?.addEventListener('click', ()=> switchSidebarTab('participants'));
 
-  // 6. More Menu Popup
+  // 6. More Settings Menu
   $('#bGridMore')?.addEventListener('click', (e)=>{
     e.stopPropagation();
     const menu = $('#gridMoreMenu');
@@ -9398,18 +9700,17 @@ themeK=(TH.find(x=>x[0]===store.get('fwp-theme'))||TH[0])[0];buildThemes();apply
   // 7. Leave Call
   $('#bGridLeave')?.addEventListener('click', leaveModernGridCall);
 
-  // 8. Layout Switchers (Grid, Speaker, 1:1, Fullscreen)
+  // Layout Switchers
   $('#bLayoutGrid')?.addEventListener('click', ()=>{
     ModernGridCall.layoutMode = 'grid';
     updateLayoutButtons('grid');
     updateGridLayout();
-    toast('⊞ Symmetrical Grid View Active');
+    toast('⊞ Dynamic Grid View Active');
   });
 
   $('#bLayoutSpeaker')?.addEventListener('click', ()=>{
     ModernGridCall.layoutMode = 'speaker';
     updateLayoutButtons('speaker');
-    // Ensure speaker focus is marked
     const firstRemote = document.querySelector('.vcall-tile:not(.is-local)');
     if(firstRemote) firstRemote.classList.add('speaker-primary');
     updateGridLayout();
@@ -9439,7 +9740,7 @@ themeK=(TH.find(x=>x[0]===store.get('fwp-theme'))||TH[0])[0];buildThemes();apply
     $('#bLayoutSplit')?.classList.toggle('active', activeMode === 'split');
   }
 
-  // Minimize / Expand Window
+  // Minimize / Expand
   $('#bGridMin')?.addEventListener('click', ()=>{
     const cont = $('#modernVcallContainer');
     if(!cont) return;
@@ -9475,7 +9776,6 @@ themeK=(TH.find(x=>x[0]===store.get('fwp-theme'))||TH[0])[0];buildThemes();apply
     toast(`📹 Video Quality: ${ModernGridCall.quality}`);
   });
 
-  // Mobile Camera Flip
   $('#mItemFlip')?.addEventListener('click', async ()=>{
     ModernGridCall.facingMode = (ModernGridCall.facingMode === 'user' ? 'environment' : 'user');
     try {
@@ -9504,42 +9804,31 @@ themeK=(TH.find(x=>x[0]===store.get('fwp-theme'))||TH[0])[0];buildThemes();apply
     }
   });
 
-  // Audio Device Test
   $('#mItemAudioTest')?.addEventListener('click', ()=>{
     if(typeof openAudioTestModal === 'function') openAudioTestModal();
     else playToneChime([523.25, 659.25, 783.99], 0.2);
   });
 
-  // Toggle 4-Participant Preview Demo
-  $('#mItemSimDemo')?.addEventListener('click', ()=>{
-    ModernGridCall.demoActive = !ModernGridCall.demoActive;
-    if(ModernGridCall.demoActive){
-      setupDemoParticipants();
-      toast('🎭 4-Participant Demo Preview Enabled (Matching Screenshot)');
-    } else {
-      ['demo_riya', 'demo_sakthi', 'demo_bala'].forEach(id => removeParticipantTile(id));
-      const locTile = $('#vcallTile_local');
-      if(locTile) locTile.classList.remove('active-speaker');
-      $('#vcallLocalWave').hidden = true;
-      toast('🎭 Demo Preview Disabled (Only Live Users)');
-    }
-    $('#gridMoreMenu').hidden = true;
-  });
+  // Invite Modal Open / Close buttons
+  $('#bGridInvite')?.addEventListener('click', openInviteModal);
+  $('#bGridInviteMore')?.addEventListener('click', openInviteModal);
+  $('#bCloseInviteModal')?.addEventListener('click', closeInviteModal);
 
-  // Invite Links
-  const copyInviteAction = ()=>{
+  const copyRoomAction = ()=>{
     const l = (typeof roomLink === 'function') ? roomLink() : window.location.href;
     navigator.clipboard.writeText(l).then(()=>{
-      toast('📋 Party Room Link Copied! Send it to your friend to join this call!');
+      toast('📋 Room Link Copied! Share it with friends to invite them!');
     }).catch(()=>{ toast(l); });
   };
-  $('#bGridInvite')?.addEventListener('click', copyInviteAction);
-  $('#bGridInviteMore')?.addEventListener('click', copyInviteAction);
-  $('#bGridCopyRoom')?.addEventListener('click', copyInviteAction);
-  $('#vcallRoomCard')?.addEventListener('click', copyInviteAction);
+  $('#bGridCopyRoom')?.addEventListener('click', copyRoomAction);
+  $('#vcallRoomCard')?.addEventListener('click', copyRoomAction);
+  $('#bCopyVcallRoomLink')?.addEventListener('click', copyRoomAction);
 
-  // --- In-Call Chat Messages Logic ---
-  function appendGridChatBubble(name, av, time, text, isOutbound = false){
+  // --- DEDUPLICATED IN-CALL CHAT LOGIC (REQUIREMENTS 1 & 5) ---
+  function appendGridChatBubble(msgId, name, av, time, text, isOutbound = false){
+    if(msgId && ModernGridCall.renderedMsgIds.has(msgId)) return;
+    if(msgId) ModernGridCall.renderedMsgIds.add(msgId);
+
     const list = $('#gridChatMsgs');
     if(!list) return;
 
@@ -9566,20 +9855,18 @@ themeK=(TH.find(x=>x[0]===store.get('fwp-theme'))||TH[0])[0];buildThemes();apply
     if(!txt) return;
     inEl.value = '';
 
+    const msgId = Date.now().toString(36) + Math.random().toString(36).slice(2, 6);
     const tStr = formatCallTime();
     const uName = (typeof myName !== 'undefined' && myName) ? myName : 'You';
     const uAv = (typeof myAv !== 'undefined' && myAv) ? myAv : '😎';
 
-    appendGridChatBubble(uName, uAv, tStr, txt, true);
+    appendGridChatBubble(msgId, uName, uAv, tStr, txt, true);
 
-    if(typeof send === 'function'){
-      send({
-        t: 'chat',
-        text: txt,
-        time: tStr,
-        name: uName,
-        av: uAv
-      });
+    // Send through unified party chat channel
+    if(typeof sendChat === 'function'){
+      sendChat(txt);
+    } else if(typeof send === 'function'){
+      send({ t: 'chat', id: msgId, text: txt, time: tStr, name: uName, av: uAv });
     }
   }
 
@@ -9588,7 +9875,6 @@ themeK=(TH.find(x=>x[0]===store.get('fwp-theme'))||TH[0])[0];buildThemes();apply
     if(e.key === 'Enter') sendGridChatMessage();
   });
 
-  // Emoji Picker quick insert
   $('#bGridChatEmoji')?.addEventListener('click', ()=>{
     const emos = ['❤️', '😂', '🔥', '👏', '😍', '🎉', '🍿', '🎬', '👍'];
     const pick = emos[Math.floor(Math.random() * emos.length)];
@@ -9602,7 +9888,6 @@ themeK=(TH.find(x=>x[0]===store.get('fwp-theme'))||TH[0])[0];buildThemes();apply
     if(!list) return;
     list.innerHTML = '';
 
-    // Local user row
     const uName = (typeof myName !== 'undefined' && myName) ? myName : 'You';
     const uAv = (typeof myAv !== 'undefined' && myAv) ? myAv : '😎';
     const isUserHost = (typeof isHost !== 'undefined' && isHost);
@@ -9624,7 +9909,6 @@ themeK=(TH.find(x=>x[0]===store.get('fwp-theme'))||TH[0])[0];buildThemes();apply
     `;
     list.appendChild(localRow);
 
-    // Remote participants
     ModernGridCall.participants.forEach((p)=>{
       const row = document.createElement('div');
       row.className = 'vcall-part-row';
@@ -9645,17 +9929,17 @@ themeK=(TH.find(x=>x[0]===store.get('fwp-theme'))||TH[0])[0];buildThemes();apply
     });
   }
 
-  // --- Signaling Routing & Event Handlers ---
+  // --- NETMSG SIGNALING & DATA ROUTING ---
   const gridPrevNetMsg = window.netMsg;
   window.netMsg = function(m){
     if(!m) return;
 
     if(m.t === 'chat'){
-      // Append message to video call chat if open
       const isSelf = (m.fid === (typeof myId === 'function' ? myId() : ''));
       if(!isSelf){
-        appendGridChatBubble(m.name || m.fn || 'Friend', m.av || m.fa || '🙂', m.time || formatCallTime(), m.text || m.msg || '', false);
-        // If sidebar is collapsed, increment unread badge
+        const msgId = m.id || (m.ts + '_' + m.fn);
+        appendGridChatBubble(msgId, m.name || m.fn || 'Friend', m.av || m.fa || '🙂', m.time || formatCallTime(), m.text || m.msg || '', false);
+
         const sb = $('#modernGridSidebar');
         if(!sb || sb.classList.contains('collapsed') || ModernGridCall.activeTab !== 'chat'){
           ModernGridCall.unreadChatCount++;
@@ -9664,6 +9948,18 @@ themeK=(TH.find(x=>x[0]===store.get('fwp-theme'))||TH[0])[0];buildThemes();apply
           playToneChime([659.25, 783.99], 0.12);
         }
       }
+    } else if(m.t === 'vcall_invite'){
+      handleIncomingVideoCallInvite(m);
+    } else if(m.t === 'vcall_accept'){
+      clearTimeout(ModernGridCall.inviteTimers.get(m.fromId));
+      ModernGridCall.inviteStates.set(m.fromId, 'accepted');
+      renderInviteUserList();
+      toast(`🎉 ${m.from} accepted the video call invitation!`);
+    } else if(m.t === 'vcall_reject'){
+      clearTimeout(ModernGridCall.inviteTimers.get(m.fromId));
+      ModernGridCall.inviteStates.set(m.fromId, 'declined');
+      renderInviteUserList();
+      toast(`❌ ${m.from} declined the video call.`);
     } else if(m.t === 'v_mic'){
       const p = ModernGridCall.participants.get(m.fid);
       if(p){
@@ -9694,15 +9990,6 @@ themeK=(TH.find(x=>x[0]===store.get('fwp-theme'))||TH[0])[0];buildThemes();apply
       }
     } else if(m.t === 'v_leave'){
       if(m.fid) removeParticipantTile(m.fid);
-    } else if(m.t === 'vchat_invite'){
-      ModernGridCall.pendingInvite = m;
-      const modal = $('#vchatIncomingModal');
-      if(modal){
-        $('#vchatIncomingName').textContent = m.from || 'Friend';
-        $('#vchatIncomingAv').textContent = m.fromAv || '🙂';
-        modal.hidden = false;
-        playToneChime([523.25, 659.25, 783.99], 0.25);
-      }
     }
 
     if(typeof gridPrevNetMsg === 'function') gridPrevNetMsg(m);
@@ -9729,21 +10016,7 @@ themeK=(TH.find(x=>x[0]===store.get('fwp-theme'))||TH[0])[0];buildThemes();apply
     });
   }
 
-  // Accept incoming invite modal button
-  $('#bVchatIncomingAccept')?.addEventListener('click', async ()=>{
-    $('#vchatIncomingModal').hidden = true;
-    showTab('M');
-    if(!ModernGridCall.inCall) await startModernGridCall();
-    toast('🟢 Video Call Connected!');
-  });
-
-  // Decline incoming invite modal button
-  $('#bVchatIncomingDecline')?.addEventListener('click', ()=>{
-    $('#vchatIncomingModal').hidden = true;
-    toast('❌ Video call invitation declined');
-  });
-
-  // Tone chime helper for audible notifications
+  // Tone chime helper for clean audible cues
   function playToneChime(freqs, stepDur = 0.18){
     try {
       const ctx = new (window.AudioContext || window.webkitAudioContext)();
@@ -9765,7 +10038,7 @@ themeK=(TH.find(x=>x[0]===store.get('fwp-theme'))||TH[0])[0];buildThemes();apply
     }catch(e){}
   }
 
-  // Hook into tab shown (when user taps Video Chat tab)
+  // Hook into tab shown (when user taps Video Call tab)
   const prevGridMeetShown = window.meetShown;
   window.meetShown = function(){
     initModernGridUI();
