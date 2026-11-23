@@ -8371,6 +8371,22 @@ window.GP_INITIAL_GAMES = [
     updateCategoryCounts();
   }
 
+  function getPlayHistory(){
+    try {
+      const raw = localStorage.getItem(getStorageKey('history'));
+      return raw ? JSON.parse(raw) : [];
+    }catch(e){ return []; }
+  }
+
+  function recordPlayHistory(gameId){
+    try {
+      let hist = getPlayHistory().filter(id => id !== gameId);
+      hist.unshift(gameId);
+      if(hist.length > 8) hist = hist.slice(0, 8);
+      localStorage.setItem(getStorageKey('history'), JSON.stringify(hist));
+    }catch(e){}
+  }
+
   // Ensure window.PREMIUM_GAME_REGISTRY always starts with our 20 verified titles
   window.PREMIUM_GAME_REGISTRY = INITIAL_GAMES;
 
