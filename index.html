@@ -10799,11 +10799,11 @@ window.GP_COMPONENTS = {
         ctx.textAlign = 'left'; ctx.textBaseline = 'middle';
 
         const roleText = myRole === 'both' ? 'Practice AI Mode' : (myRole === 'w' ? 'You: White (Host)' : 'You: Black (Guest)');
-        const turnText = turn === 'w' ? 'White\\'s Turn' : 'Black\\'s Turn';
+        const turnText = turn === 'w' ? "White's Turn" : "Black's Turn";
         const isMyTurn = myRole === 'both' || turn === myRole;
         const statusMsg = isMyTurn ? '🟢 YOUR TURN (Select piece)' : '⏳ WAITING FOR OPPONENT...';
 
-        ctx.fillText(`${roleText} · ${turnText}`, 14, 580);
+        ctx.fillText(roleText + ' · ' + turnText, 14, 580);
         ctx.textAlign = 'right';
         ctx.fillStyle = isMyTurn ? '#34d399' : '#fbbf24';
         ctx.fillText(statusMsg, W - 14, 580);
@@ -10813,9 +10813,9 @@ window.GP_COMPONENTS = {
           ctx.fillStyle = 'rgba(0, 0, 0, 0.82)'; ctx.fillRect(0, 180, W, 200);
           ctx.fillStyle = '#fde047'; ctx.font = '800 32px sans-serif';
           ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
-          ctx.fillText(`🏆 CHECKMATE!`, W/2, 250);
+          ctx.fillText('🏆 CHECKMATE!', W/2, 250);
           ctx.fillStyle = '#fff'; ctx.font = 'bold 18px sans-serif';
-          ctx.fillText(`${winner} Wins the Tournament Match`, W/2, 290);
+          ctx.fillText((winner || 'Player') + ' Wins the Tournament Match', W/2, 290);
         }
 
         requestAnimationFrame(loop);
@@ -11056,9 +11056,9 @@ window.GP_COMPONENTS = {
         ctx.fillStyle = '#cbd5e1'; ctx.font = 'bold 13px sans-serif';
         ctx.textAlign = 'left'; ctx.textBaseline = 'middle';
 
-        const myLabel = isOnline ? `You: ${colorNames[mySlot]}` : 'Solo Mode';
-        const turnLabel = `${colorNames[currentTurn]}\\'s Turn`;
-        ctx.fillText(`${myLabel} · ${turnLabel}`, 14, 620);
+        const myLabel = isOnline ? ('You: ' + colorNames[mySlot]) : 'Solo Mode';
+        const turnLabel = colorNames[currentTurn] + "'s Turn";
+        ctx.fillText(myLabel + ' · ' + turnLabel, 14, 620);
 
         ctx.textAlign = 'right';
         ctx.fillStyle = isMyTurn ? '#34d399' : '#fbbf24';
@@ -11070,7 +11070,7 @@ window.GP_COMPONENTS = {
           ctx.fillStyle = 'rgba(0, 0, 0, 0.85)'; ctx.fillRect(0, 200, W, 200);
           ctx.fillStyle = '#fde047'; ctx.font = '800 32px sans-serif';
           ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
-          ctx.fillText(`🏆 ${winner.toUpperCase()} WINS!`, W/2, 280);
+          ctx.fillText('🏆 ' + (winner ? winner.toUpperCase() : '') + ' WINS!', W/2, 280);
           ctx.fillStyle = '#fff'; ctx.font = 'bold 16px sans-serif';
           ctx.fillText('All tokens reached Home safely!', W/2, 320);
         }
@@ -11403,7 +11403,7 @@ window.GP_COMPONENTS = {
     title.textContent = game.name;
     cat.textContent = game.category.toUpperCase();
     prov.textContent = game.provider;
-    rating.innerHTML = ((typeof formatGameRatingStr === 'function') ? formatGameRatingStr(game.id) : '⭐ New (0 plays)') + ' · <button type="button" onclick="window._ratingTargetGameId=\'' + game.id + '\';document.getElementById(\''gpRateGameModal\'').hidden=false;" style="background:none;border:none;color:#fbbf24;cursor:pointer;font-weight:700;text-decoration:underline;font-size:12px">⭐ Rate Game</button>';
+    rating.innerHTML = ((typeof formatGameRatingStr === 'function') ? formatGameRatingStr(game.id) : '⭐ New (0 plays)');
     desc.textContent = game.desc;
     controls.textContent = game.controls || 'Arrow keys / WASD / Touch.';
     thumb.style.background = game.thumbGrad;
@@ -12017,7 +12017,7 @@ function gpRenderLobbySlots(){
             <span style="font-size:11px;font-weight:700;color:${p.ready ? '#34d399' : '#94a3b8'};background:rgba(255,255,255,0.06);padding:2px 8px;border-radius:6px">
               ${p.ready ? '✓ READY' : 'WAITING'}
             </span>
-            ${isMeHost && !p.isHost ? `<button class="gp-slot-kick-btn" type="button" style="background:none;border:none;color:#ef4444;font-size:12px;font-weight:700;cursor:pointer" title="Kick Player">✕</button>` : ''}
+            ${isMeHost && !p.isHost ? '<button class="gp-slot-kick-btn" type="button" style="background:none;border:none;color:#ef4444;font-size:12px;font-weight:700;cursor:pointer" title="Kick Player">✕</button>' : ''}
           </div>
         </div>
       `;
@@ -12053,7 +12053,7 @@ function gpRenderLobbySlots(){
     startBtn.hidden = true;
     const mySlotObj = room.players.find(x => x.id === myIdStr);
     const amReady = mySlotObj ? mySlotObj.ready : false;
-    readyBtn.textContent = amReady ? '✓ I\\'m Ready' : '🟢 Ready Up';
+    readyBtn.textContent = amReady ? "✓ I'm Ready" : "🟢 Ready Up";
     readyBtn.style.background = amReady ? '#10b981' : '';
     statusMsg.textContent = amReady ? 'Waiting for host to start...' : 'Click Ready Up when set!';
   }
