@@ -735,6 +735,228 @@ html[data-theme=white] .gcard small,html[data-theme=white] .ottcard b{color:#090
 .vw-sens{display:flex;gap:6px;align-items:center;font-size:12px;padding:4px 8px;border-radius:12px;background:rgba(10,8,22,.72);border:1px solid var(--line)}.vw-sens input{width:84px}
 .vw-hint{position:absolute;left:12px;top:56px;z-index:3;font-size:12px;padding:6px 10px;border-radius:10px;background:rgba(10,8,22,.72);border:1px solid var(--line);pointer-events:none;max-width:48%}
 @media(max-width:600px){.vw-hint{top:auto;bottom:calc(150px + env(safe-area-inset-bottom,0px));max-width:70%}}
+
+
+/* ===== PHASE 5 & 6 CSS ADDITIONS ===== */
+.gp-action-btn-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  color: #e2e8f0;
+  padding: 7px 12px;
+  border-radius: 9999px;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  white-space: nowrap;
+}
+.gp-action-btn-pill:hover {
+  background: rgba(168, 85, 247, 0.2);
+  border-color: #a855f7;
+  color: #fff;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 14px rgba(168, 85, 247, 0.3);
+}
+.gp-action-btn-pill.primary {
+  background: linear-gradient(135deg, #a855f7 0%, #7c3aed 100%);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: #fff;
+  box-shadow: 0 4px 14px rgba(168, 85, 247, 0.4);
+}
+.gp-action-btn-pill.primary:hover {
+  background: linear-gradient(135deg, #c084fc 0%, #9333ea 100%);
+  box-shadow: 0 6px 20px rgba(168, 85, 247, 0.6);
+}
+
+/* Floating Incoming Game Invite Banner */
+.gp-invite-floating-card {
+  width: 440px;
+  max-width: 95vw;
+  background: #130f26;
+  border: 2px solid #a855f7;
+  border-radius: 20px;
+  box-shadow: 0 24px 70px rgba(0, 0, 0, 0.95), 0 0 40px rgba(168, 85, 247, 0.4);
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  animation: gpPopIn 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+@keyframes gpPopIn {
+  from { opacity: 0; transform: scale(0.9) translateY(20px); }
+  to { opacity: 1; transform: scale(1) translateY(0); }
+}
+.gp-invite-timer-bar {
+  width: 100%;
+  height: 4px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 9999px;
+  overflow: hidden;
+  position: relative;
+}
+.gp-invite-timer-fill {
+  height: 100%;
+  width: 100%;
+  background: linear-gradient(90deg, #10b981 0%, #f59e0b 60%, #ef4444 100%);
+  transition: width 1s linear;
+}
+
+/* Friend Row in Online Friends Tray */
+.gp-friend-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 14px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 12px;
+  transition: all 0.2s;
+}
+.gp-friend-row:hover {
+  background: rgba(255, 255, 255, 0.07);
+  border-color: rgba(168, 85, 247, 0.3);
+}
+.gp-friend-avatar {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: rgba(168, 85, 247, 0.2);
+  border: 1px solid rgba(168, 85, 247, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+}
+.gp-btn-invite-friend {
+  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 6px 12px;
+  font-size: 11.5px;
+  font-weight: 700;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  transition: all 0.2s;
+}
+.gp-btn-invite-friend:hover {
+  background: linear-gradient(135deg, #34d399 0%, #10b981 100%);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(16, 185, 129, 0.4);
+}
+.gp-btn-invite-friend:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* Dedicated Player Lobby Elements */
+.gp-lobby-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin: 12px 0;
+}
+@media (max-width: 600px) {
+  .gp-lobby-grid { grid-template-columns: 1fr; }
+}
+.gp-player-slot-card {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 14px;
+  padding: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  position: relative;
+  transition: all 0.2s;
+}
+.gp-player-slot-card.occupied {
+  border-color: rgba(168, 85, 247, 0.35);
+  background: rgba(168, 85, 247, 0.05);
+}
+.gp-player-slot-card.ready {
+  border-color: rgba(16, 185, 129, 0.5);
+  box-shadow: 0 0 16px rgba(16, 185, 129, 0.15);
+}
+.gp-player-slot-card.empty {
+  border-style: dashed;
+  align-items: center;
+  justify-content: center;
+  min-height: 110px;
+  color: #64748b;
+}
+
+/* In-Lobby Room Chat */
+.gp-lobby-chat-wrap {
+  display: flex;
+  flex-direction: column;
+  height: 180px;
+  background: rgba(0, 0, 0, 0.35);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 12px;
+  overflow: hidden;
+}
+.gp-lobby-chat-msgs {
+  flex-grow: 1;
+  overflow-y: auto;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-size: 12px;
+}
+.gp-lobby-chat-msg {
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+  word-break: break-word;
+}
+.gp-lobby-chat-input-bar {
+  display: flex;
+  padding: 8px;
+  background: rgba(255, 255, 255, 0.03);
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  gap: 6px;
+}
+.gp-lobby-chat-input {
+  flex-grow: 1;
+  background: rgba(0, 0, 0, 0.4);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 8px;
+  color: #fff;
+  padding: 6px 10px;
+  font-size: 12px;
+  outline: none;
+}
+.gp-lobby-chat-input:focus {
+  border-color: #a855f7;
+}
+
+/* Star Rating Component */
+.gp-star-widget {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  cursor: pointer;
+}
+.gp-star-item {
+  font-size: 18px;
+  color: #4b5563;
+  transition: transform 0.15s, color 0.15s;
+}
+.gp-star-item.active {
+  color: #fbbf24;
+}
+.gp-star-item:hover {
+  transform: scale(1.2);
+}
+
 </style>
 <style id="phase4-css">
 /* Phase 4: Full Responsive Design (Mobile, Tablet, Laptop, Desktop) & Accessibility */
@@ -1936,6 +2158,228 @@ aside.chat.floating {
     font-size: 20px;
   }
 }
+
+
+/* ===== PHASE 5 & 6 CSS ADDITIONS ===== */
+.gp-action-btn-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  color: #e2e8f0;
+  padding: 7px 12px;
+  border-radius: 9999px;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  white-space: nowrap;
+}
+.gp-action-btn-pill:hover {
+  background: rgba(168, 85, 247, 0.2);
+  border-color: #a855f7;
+  color: #fff;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 14px rgba(168, 85, 247, 0.3);
+}
+.gp-action-btn-pill.primary {
+  background: linear-gradient(135deg, #a855f7 0%, #7c3aed 100%);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: #fff;
+  box-shadow: 0 4px 14px rgba(168, 85, 247, 0.4);
+}
+.gp-action-btn-pill.primary:hover {
+  background: linear-gradient(135deg, #c084fc 0%, #9333ea 100%);
+  box-shadow: 0 6px 20px rgba(168, 85, 247, 0.6);
+}
+
+/* Floating Incoming Game Invite Banner */
+.gp-invite-floating-card {
+  width: 440px;
+  max-width: 95vw;
+  background: #130f26;
+  border: 2px solid #a855f7;
+  border-radius: 20px;
+  box-shadow: 0 24px 70px rgba(0, 0, 0, 0.95), 0 0 40px rgba(168, 85, 247, 0.4);
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  animation: gpPopIn 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+@keyframes gpPopIn {
+  from { opacity: 0; transform: scale(0.9) translateY(20px); }
+  to { opacity: 1; transform: scale(1) translateY(0); }
+}
+.gp-invite-timer-bar {
+  width: 100%;
+  height: 4px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 9999px;
+  overflow: hidden;
+  position: relative;
+}
+.gp-invite-timer-fill {
+  height: 100%;
+  width: 100%;
+  background: linear-gradient(90deg, #10b981 0%, #f59e0b 60%, #ef4444 100%);
+  transition: width 1s linear;
+}
+
+/* Friend Row in Online Friends Tray */
+.gp-friend-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 14px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 12px;
+  transition: all 0.2s;
+}
+.gp-friend-row:hover {
+  background: rgba(255, 255, 255, 0.07);
+  border-color: rgba(168, 85, 247, 0.3);
+}
+.gp-friend-avatar {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: rgba(168, 85, 247, 0.2);
+  border: 1px solid rgba(168, 85, 247, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+}
+.gp-btn-invite-friend {
+  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 6px 12px;
+  font-size: 11.5px;
+  font-weight: 700;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  transition: all 0.2s;
+}
+.gp-btn-invite-friend:hover {
+  background: linear-gradient(135deg, #34d399 0%, #10b981 100%);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(16, 185, 129, 0.4);
+}
+.gp-btn-invite-friend:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* Dedicated Player Lobby Elements */
+.gp-lobby-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin: 12px 0;
+}
+@media (max-width: 600px) {
+  .gp-lobby-grid { grid-template-columns: 1fr; }
+}
+.gp-player-slot-card {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 14px;
+  padding: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  position: relative;
+  transition: all 0.2s;
+}
+.gp-player-slot-card.occupied {
+  border-color: rgba(168, 85, 247, 0.35);
+  background: rgba(168, 85, 247, 0.05);
+}
+.gp-player-slot-card.ready {
+  border-color: rgba(16, 185, 129, 0.5);
+  box-shadow: 0 0 16px rgba(16, 185, 129, 0.15);
+}
+.gp-player-slot-card.empty {
+  border-style: dashed;
+  align-items: center;
+  justify-content: center;
+  min-height: 110px;
+  color: #64748b;
+}
+
+/* In-Lobby Room Chat */
+.gp-lobby-chat-wrap {
+  display: flex;
+  flex-direction: column;
+  height: 180px;
+  background: rgba(0, 0, 0, 0.35);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 12px;
+  overflow: hidden;
+}
+.gp-lobby-chat-msgs {
+  flex-grow: 1;
+  overflow-y: auto;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-size: 12px;
+}
+.gp-lobby-chat-msg {
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+  word-break: break-word;
+}
+.gp-lobby-chat-input-bar {
+  display: flex;
+  padding: 8px;
+  background: rgba(255, 255, 255, 0.03);
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  gap: 6px;
+}
+.gp-lobby-chat-input {
+  flex-grow: 1;
+  background: rgba(0, 0, 0, 0.4);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 8px;
+  color: #fff;
+  padding: 6px 10px;
+  font-size: 12px;
+  outline: none;
+}
+.gp-lobby-chat-input:focus {
+  border-color: #a855f7;
+}
+
+/* Star Rating Component */
+.gp-star-widget {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  cursor: pointer;
+}
+.gp-star-item {
+  font-size: 18px;
+  color: #4b5563;
+  transition: transform 0.15s, color 0.15s;
+}
+.gp-star-item.active {
+  color: #fbbf24;
+}
+.gp-star-item:hover {
+  transform: scale(1.2);
+}
+
 </style>
 <style id="gp-premium-styles">
 /* ==========================================================================
@@ -2661,6 +3105,228 @@ aside.chat.floating {
   }
 }
 
+
+
+/* ===== PHASE 5 & 6 CSS ADDITIONS ===== */
+.gp-action-btn-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  color: #e2e8f0;
+  padding: 7px 12px;
+  border-radius: 9999px;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  white-space: nowrap;
+}
+.gp-action-btn-pill:hover {
+  background: rgba(168, 85, 247, 0.2);
+  border-color: #a855f7;
+  color: #fff;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 14px rgba(168, 85, 247, 0.3);
+}
+.gp-action-btn-pill.primary {
+  background: linear-gradient(135deg, #a855f7 0%, #7c3aed 100%);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: #fff;
+  box-shadow: 0 4px 14px rgba(168, 85, 247, 0.4);
+}
+.gp-action-btn-pill.primary:hover {
+  background: linear-gradient(135deg, #c084fc 0%, #9333ea 100%);
+  box-shadow: 0 6px 20px rgba(168, 85, 247, 0.6);
+}
+
+/* Floating Incoming Game Invite Banner */
+.gp-invite-floating-card {
+  width: 440px;
+  max-width: 95vw;
+  background: #130f26;
+  border: 2px solid #a855f7;
+  border-radius: 20px;
+  box-shadow: 0 24px 70px rgba(0, 0, 0, 0.95), 0 0 40px rgba(168, 85, 247, 0.4);
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  animation: gpPopIn 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+@keyframes gpPopIn {
+  from { opacity: 0; transform: scale(0.9) translateY(20px); }
+  to { opacity: 1; transform: scale(1) translateY(0); }
+}
+.gp-invite-timer-bar {
+  width: 100%;
+  height: 4px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 9999px;
+  overflow: hidden;
+  position: relative;
+}
+.gp-invite-timer-fill {
+  height: 100%;
+  width: 100%;
+  background: linear-gradient(90deg, #10b981 0%, #f59e0b 60%, #ef4444 100%);
+  transition: width 1s linear;
+}
+
+/* Friend Row in Online Friends Tray */
+.gp-friend-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 14px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 12px;
+  transition: all 0.2s;
+}
+.gp-friend-row:hover {
+  background: rgba(255, 255, 255, 0.07);
+  border-color: rgba(168, 85, 247, 0.3);
+}
+.gp-friend-avatar {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: rgba(168, 85, 247, 0.2);
+  border: 1px solid rgba(168, 85, 247, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+}
+.gp-btn-invite-friend {
+  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 6px 12px;
+  font-size: 11.5px;
+  font-weight: 700;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  transition: all 0.2s;
+}
+.gp-btn-invite-friend:hover {
+  background: linear-gradient(135deg, #34d399 0%, #10b981 100%);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(16, 185, 129, 0.4);
+}
+.gp-btn-invite-friend:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* Dedicated Player Lobby Elements */
+.gp-lobby-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin: 12px 0;
+}
+@media (max-width: 600px) {
+  .gp-lobby-grid { grid-template-columns: 1fr; }
+}
+.gp-player-slot-card {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 14px;
+  padding: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  position: relative;
+  transition: all 0.2s;
+}
+.gp-player-slot-card.occupied {
+  border-color: rgba(168, 85, 247, 0.35);
+  background: rgba(168, 85, 247, 0.05);
+}
+.gp-player-slot-card.ready {
+  border-color: rgba(16, 185, 129, 0.5);
+  box-shadow: 0 0 16px rgba(16, 185, 129, 0.15);
+}
+.gp-player-slot-card.empty {
+  border-style: dashed;
+  align-items: center;
+  justify-content: center;
+  min-height: 110px;
+  color: #64748b;
+}
+
+/* In-Lobby Room Chat */
+.gp-lobby-chat-wrap {
+  display: flex;
+  flex-direction: column;
+  height: 180px;
+  background: rgba(0, 0, 0, 0.35);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 12px;
+  overflow: hidden;
+}
+.gp-lobby-chat-msgs {
+  flex-grow: 1;
+  overflow-y: auto;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-size: 12px;
+}
+.gp-lobby-chat-msg {
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+  word-break: break-word;
+}
+.gp-lobby-chat-input-bar {
+  display: flex;
+  padding: 8px;
+  background: rgba(255, 255, 255, 0.03);
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  gap: 6px;
+}
+.gp-lobby-chat-input {
+  flex-grow: 1;
+  background: rgba(0, 0, 0, 0.4);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 8px;
+  color: #fff;
+  padding: 6px 10px;
+  font-size: 12px;
+  outline: none;
+}
+.gp-lobby-chat-input:focus {
+  border-color: #a855f7;
+}
+
+/* Star Rating Component */
+.gp-star-widget {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  cursor: pointer;
+}
+.gp-star-item {
+  font-size: 18px;
+  color: #4b5563;
+  transition: transform 0.15s, color 0.15s;
+}
+.gp-star-item.active {
+  color: #fbbf24;
+}
+.gp-star-item:hover {
+  transform: scale(1.2);
+}
+
 </style>
 </head>
 <body>
@@ -3033,6 +3699,22 @@ aside.chat.floating {
         </div>
 
         <div class="gp-actions">
+                    <button id="gpOnlineFriendsBtn" class="gp-action-btn-pill" type="button" title="View connected friends & invite to games">
+            <span>👥</span>
+            <span>Friends (<b id="gpOnlineFriendsCount">0</b>)</span>
+          </button>
+          <button id="gpCreateRoomBtn" class="gp-action-btn-pill primary" type="button" title="Host a dedicated multiplayer room">
+            <span>➕</span>
+            <span>Create Room</span>
+          </button>
+          <button id="gpJoinRoomBtn" class="gp-action-btn-pill" type="button" title="Join room by code">
+            <span>🔗</span>
+            <span>Join Room</span>
+          </button>
+          <button id="gpPublicRoomsBtn" class="gp-action-btn-pill" type="button" title="Browse public game rooms">
+            <span>🌐</span>
+            <span>Rooms</span>
+          </button>
           <div class="gp-search-box">
             <span class="gp-search-icon">🔍</span>
             <input type="text" id="gpSearchInput" placeholder="Search cricket, racing, 3D, puzzles..." autocomplete="off">
@@ -3334,32 +4016,237 @@ aside.chat.floating {
       </div>
     </div>
 
-    <!-- ===== MULTIPLAYER ROOM LOBBY MODAL ===== -->
-    <div id="gpMpModal" class="gp-modal-overlay" hidden>
+    
+    <!-- ===== PHASE 5: INCOMING GAME INVITATION MODAL ===== -->
+    <div id="gpInviteModal" class="gp-modal-overlay" hidden>
+      <div class="gp-invite-floating-card">
+        <div style="display:flex;align-items:center;justify-content:space-between">
+          <div style="display:flex;align-items:center;gap:8px">
+            <span style="font-size:24px">🎮</span>
+            <div>
+              <b style="color:#fff;font-size:16px;display:block">Game Invitation!</b>
+              <span id="gpInviteSubtitle" style="font-size:12px;color:#cbd5e1">A friend challenged you to a match</span>
+            </div>
+          </div>
+          <span id="gpInviteTimerSec" style="font-family:monospace;font-size:13px;color:#a855f7;font-weight:700">30s</span>
+        </div>
+
+        <div class="gp-invite-timer-bar">
+          <div id="gpInviteTimerFill" class="gp-invite-timer-fill"></div>
+        </div>
+
+        <div style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.1);border-radius:14px;padding:12px;display:flex;align-items:center;gap:12px">
+          <div id="gpInviteGameIcon" style="width:48px;height:48px;border-radius:10px;background:linear-gradient(135deg,#374151,#111827);display:flex;align-items:center;justify-content:center;font-size:26px">♟️</div>
+          <div style="flex-grow:1">
+            <h4 id="gpInviteGameName" style="margin:0;font-size:15px;color:#fff">Grandmaster Chess VIP</h4>
+            <div id="gpInviteSenderInfo" style="font-size:12px;color:#a09bb8;margin-top:2px">From: <b>Host</b></div>
+            <div id="gpInviteRoomCode" style="font-size:11px;color:#c084fc;font-family:monospace;margin-top:2px">ROOM: GP-849201</div>
+          </div>
+        </div>
+
+        <div style="display:flex;gap:10px;margin-top:4px">
+          <button id="gpInviteAcceptBtn" class="gp-btn-install" style="flex:1;background:linear-gradient(135deg,#10b981,#059669);box-shadow:0 4px 14px rgba(16,185,129,0.4)" type="button">✓ Accept & Join</button>
+          <button id="gpInviteRejectBtn" class="gp-btn-details" style="flex:1;background:rgba(239,68,68,0.15);border-color:rgba(239,68,68,0.4);color:#fca5a5" type="button">✕ Decline</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== PHASE 5: ONLINE FRIENDS TRAY MODAL ===== -->
+    <div id="gpFriendsTrayModal" class="gp-modal-overlay" hidden>
       <div class="gp-admin-panel" style="max-width:480px">
         <div class="gp-admin-head">
-          <h3 style="margin:0;color:#fff;font-size:17px;display:flex;align-items:center;gap:8px">
-            <span>🌐</span>
-            <span id="gpMpModalTitle">Multiplayer Lobby</span>
+          <h3 style="margin:0;color:#fff;font-size:16px;display:flex;align-items:center;gap:8px">
+            <span>👥</span>
+            <span>Online Party Friends</span>
           </h3>
-          <button id="gpMpClose" class="gp-theater-btn gp-theater-close" type="button">✕</button>
+          <button id="gpFriendsTrayClose" class="gp-theater-btn gp-theater-close" type="button">✕</button>
         </div>
         <div class="gp-admin-body">
-          <div style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.1);border-radius:12px;padding:14px;text-align:center">
-            <div style="font-size:12px;color:#a09bb8">ROOM CODE:</div>
-            <div id="gpMpRoomCode" style="font-family:monospace;font-size:24px;font-weight:800;color:#c084fc;letter-spacing:4px;margin:6px 0">VIP-7492</div>
-            <button id="gpMpCopyBtn" class="gp-btn-details" style="font-size:11.5px;padding:4px 10px" type="button">📋 Copy Invite</button>
+          <div style="font-size:12px;color:#cbd5e1">Invite connected friends directly to your game room:</div>
+          
+          <div style="display:flex;flex-direction:column;gap:6px">
+            <label style="font-size:11px;color:#a09bb8;font-weight:600">GAME TO PLAY:</label>
+            <select id="gpFriendsGameSelect" style="background:#090614;border:1px solid rgba(255,255,255,0.15);color:#fff;border-radius:8px;padding:8px 10px;font-size:13px;outline:none"></select>
           </div>
 
+          <div style="display:flex;flex-direction:column;gap:8px" id="gpFriendsListContainer">
+            <!-- Dynamic online friend rows injected here -->
+          </div>
+
+          <!-- Pending sent invites list -->
+          <div id="gpPendingInvitesWrap" hidden style="border-top:1px solid rgba(255,255,255,0.08);padding-top:10px">
+            <b style="font-size:11px;color:#fbbf24;display:block;margin-bottom:6px">PENDING INVITATIONS:</b>
+            <div id="gpPendingInvitesList" style="display:flex;flex-direction:column;gap:6px"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== PHASE 6: CREATE GAME ROOM MODAL ===== -->
+    <div id="gpCreateRoomModal" class="gp-modal-overlay" hidden>
+      <div class="gp-admin-panel" style="max-width:500px">
+        <div class="gp-admin-head">
+          <h3 style="margin:0;color:#fff;font-size:16px;display:flex;align-items:center;gap:8px">
+            <span>➕</span>
+            <span>Create Dedicated Game Room</span>
+          </h3>
+          <button id="gpCreateRoomClose" class="gp-theater-btn gp-theater-close" type="button">✕</button>
+        </div>
+        <div class="gp-admin-body">
+          <div style="display:flex;flex-direction:column;gap:6px">
+            <label style="font-size:11.5px;color:#cbd5e1;font-weight:600">SELECT GAME:</label>
+            <select id="gpCreateGameSelect" style="background:#090614;border:1px solid rgba(255,255,255,0.15);color:#fff;border-radius:10px;padding:10px;font-size:13px;outline:none"></select>
+          </div>
+
+          <div style="display:flex;gap:12px">
+            <div style="flex:1;display:flex;flex-direction:column;gap:6px">
+              <label style="font-size:11.5px;color:#cbd5e1;font-weight:600">ROOM PRIVACY:</label>
+              <div style="display:flex;gap:6px">
+                <button type="button" id="gpOptPublic" class="gp-action-btn-pill primary" style="flex:1;justify-content:center">🌐 Public</button>
+                <button type="button" id="gpOptPrivate" class="gp-action-btn-pill" style="flex:1;justify-content:center">🔒 Private</button>
+              </div>
+            </div>
+            <div style="flex:1;display:flex;flex-direction:column;gap:6px">
+              <label style="font-size:11.5px;color:#cbd5e1;font-weight:600">PIN PASSCODE (OPTIONAL):</label>
+              <input type="text" id="gpCreatePasscode" placeholder="e.g. 1234" maxlength="6" style="background:#090614;border:1px solid rgba(255,255,255,0.15);color:#fff;border-radius:10px;padding:9px 12px;font-size:13px;font-family:monospace;letter-spacing:2px;outline:none">
+            </div>
+          </div>
+
+          <div style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:12px;padding:12px;font-size:12px;color:#94a3b8">
+            💡 Public rooms appear in the Public Rooms browser for connected friends to discover and join. Private rooms require an invitation or room code.
+          </div>
+
+          <button id="gpBtnSubmitCreateRoom" class="gp-btn-install gp-btn-play" style="margin-top:6px" type="button">🚀 Create & Open Lobby</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== PHASE 6: JOIN GAME ROOM MODAL ===== -->
+    <div id="gpJoinRoomModal" class="gp-modal-overlay" hidden>
+      <div class="gp-admin-panel" style="max-width:440px">
+        <div class="gp-admin-head">
+          <h3 style="margin:0;color:#fff;font-size:16px;display:flex;align-items:center;gap:8px">
+            <span>🔗</span>
+            <span>Join Game Room</span>
+          </h3>
+          <button id="gpJoinRoomClose" class="gp-theater-btn gp-theater-close" type="button">✕</button>
+        </div>
+        <div class="gp-admin-body" style="text-align:center">
+          <p style="font-size:12.5px;color:#cbd5e1;margin:0 0 10px 0">Enter the 6-character Game Room Code shared by the host:</p>
+          
+          <input type="text" id="gpJoinCodeInput" placeholder="GP-XXXXXX" maxlength="9" style="width:100%;text-align:center;font-family:monospace;font-size:22px;font-weight:800;letter-spacing:4px;color:#c084fc;background:#090614;border:2px solid rgba(168,85,247,0.4);border-radius:12px;padding:12px;outline:none;text-transform:uppercase">
+
+          <input type="text" id="gpJoinPasscodeInput" placeholder="Enter PIN Passcode (if required)" maxlength="6" style="width:100%;text-align:center;font-family:monospace;font-size:13px;letter-spacing:2px;color:#fff;background:#090614;border:1px solid rgba(255,255,255,0.15);border-radius:8px;padding:8px;outline:none;margin-top:10px">
+
+          <button id="gpBtnSubmitJoinRoom" class="gp-btn-install gp-btn-play" style="margin-top:14px;width:100%" type="button">🚀 Enter Room Lobby</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== PHASE 6: PUBLIC ROOMS BROWSER MODAL ===== -->
+    <div id="gpRoomBrowserModal" class="gp-modal-overlay" hidden>
+      <div class="gp-admin-panel" style="max-width:600px">
+        <div class="gp-admin-head">
+          <h3 style="margin:0;color:#fff;font-size:16px;display:flex;align-items:center;gap:8px">
+            <span>🌐</span>
+            <span>Public Game Rooms</span>
+          </h3>
+          <button id="gpRoomBrowserClose" class="gp-theater-btn gp-theater-close" type="button">✕</button>
+        </div>
+        <div class="gp-admin-body">
+          <div style="display:flex;align-items:center;justify-content:space-between">
+            <span style="font-size:12px;color:#cbd5e1">Active game rooms hosted across the party:</span>
+            <button id="gpBtnRefreshRooms" class="gp-action-btn-pill" style="font-size:11px" type="button">🔄 Refresh</button>
+          </div>
+
+          <div id="gpPublicRoomsList" style="display:flex;flex-direction:column;gap:8px;min-height:100px">
+            <!-- Dynamic room cards rendered here -->
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== PHASE 6: DEDICATED ONLINE ROOM LOBBY MODAL ===== -->
+    <div id="gpRoomLobbyModal" class="gp-modal-overlay" hidden>
+      <div class="gp-admin-panel" style="max-width:620px">
+        <div class="gp-admin-head">
+          <div style="display:flex;align-items:center;gap:10px">
+            <span style="font-size:22px" id="gpLobbyGameIcon">♟️</span>
+            <div>
+              <h3 id="gpLobbyGameTitle" style="margin:0;color:#fff;font-size:17px">Grandmaster Chess VIP</h3>
+              <div style="display:flex;align-items:center;gap:8px;margin-top:2px">
+                <span id="gpLobbyRoomCodeBadge" style="font-family:monospace;font-size:12px;color:#c084fc;background:rgba(192,132,252,0.15);padding:2px 8px;border-radius:6px;font-weight:700">GP-849201</span>
+                <span id="gpLobbyPrivacyBadge" style="font-size:11px;color:#94a3b8">🌐 Public</span>
+              </div>
+            </div>
+          </div>
+          <div style="display:flex;align-items:center;gap:6px">
+            <button id="gpLobbyCopyCodeBtn" class="gp-action-btn-pill" style="font-size:11px" type="button">📋 Copy Code</button>
+            <button id="gpLobbyCloseBtn" class="gp-theater-btn gp-theater-close" type="button">✕</button>
+          </div>
+        </div>
+
+        <div class="gp-admin-body">
+          <!-- Player Slots Grid -->
           <div>
-            <b style="font-size:12px;color:#e2e8f0;display:block;margin-bottom:6px">Connected Party Members:</b>
-            <div id="gpMpUserList" style="display:flex;flex-direction:column;gap:6px"></div>
+            <b style="font-size:12px;color:#e2e8f0;display:block;margin-bottom:8px">PLAYER SLOTS:</b>
+            <div id="gpLobbySlotsContainer" class="gp-lobby-grid">
+              <!-- Player slots (Host and Guests) dynamically injected here -->
+            </div>
           </div>
 
-          <div style="display:flex;gap:10px;margin-top:10px">
-            <button id="gpMpStartBtn" class="gp-btn-install gp-btn-play" style="flex-grow:1" type="button">🚀 Start Match</button>
-            <button id="gpMpInviteChatBtn" class="gp-btn-details" type="button">📢 Invite in Chat</button>
+          <!-- Guest Ready Toggle & Host Controls -->
+          <div style="display:flex;align-items:center;justify-content:space-between;background:rgba(255,255,255,0.03);padding:10px 14px;border-radius:12px;border:1px solid rgba(255,255,255,0.08);gap:10px">
+            <div id="gpLobbyStatusMsg" style="font-size:12.5px;color:#cbd5e1">Waiting for all players to be ready...</div>
+            <div style="display:flex;gap:8px">
+              <button id="gpLobbyReadyToggleBtn" class="gp-btn-details" style="font-size:12px;padding:6px 14px" type="button">🟢 I'm Ready</button>
+              <button id="gpLobbyStartGameBtn" class="gp-btn-install" style="font-size:12px;padding:6px 16px" type="button">🚀 Start Game</button>
+            </div>
           </div>
+
+          <!-- In-Lobby Room Chat -->
+          <div>
+            <b style="font-size:12px;color:#e2e8f0;display:block;margin-bottom:6px">ROOM CHAT & STRATEGY:</b>
+            <div class="gp-lobby-chat-wrap">
+              <div id="gpLobbyChatMsgs" class="gp-lobby-chat-msgs"></div>
+              <div class="gp-lobby-chat-input-bar">
+                <input type="text" id="gpLobbyChatInput" class="gp-lobby-chat-input" placeholder="Chat with room players...">
+                <button id="gpLobbyChatSendBtn" class="gp-btn-details" style="padding:4px 10px;font-size:12px" type="button">Send</button>
+              </div>
+            </div>
+            <div style="display:flex;gap:6px;margin-top:6px;flex-wrap:wrap">
+              <button type="button" class="gp-quick-chat-chip gp-action-btn-pill" style="font-size:10.5px;padding:3px 8px" data-msg="I'm ready! Let's play!">Ready! 👍</button>
+              <button type="button" class="gp-quick-chat-chip gp-action-btn-pill" style="font-size:10.5px;padding:3px 8px" data-msg="Good luck, have fun! 🎉">GL HF! 🎉</button>
+              <button type="button" class="gp-quick-chat-chip gp-action-btn-pill" style="font-size:10.5px;padding:3px 8px" data-msg="1 minute please! ⏳">1 min pls ⏳</button>
+              <button type="button" class="gp-quick-chat-chip gp-action-btn-pill" style="font-size:10.5px;padding:3px 8px" data-msg="Nice move! 🔥">Nice move! 🔥</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== GENUINE 5-STAR RATING MODAL ===== -->
+    <div id="gpRateGameModal" class="gp-modal-overlay" hidden>
+      <div class="gp-admin-panel" style="max-width:380px;text-align:center">
+        <div class="gp-admin-head">
+          <h3 style="margin:0;color:#fff;font-size:16px">⭐ Rate This Game</h3>
+          <button id="gpRateModalClose" class="gp-theater-btn gp-theater-close" type="button">✕</button>
+        </div>
+        <div class="gp-admin-body" style="align-items:center;padding:24px 20px">
+          <h4 id="gpRateGameTitle" style="margin:0;font-size:16px;color:#fff">Cricket Clash Pro</h4>
+          <p style="font-size:12px;color:#a09bb8;margin:4px 0 16px 0">Your genuine review is saved to your party library:</p>
+          
+          <div id="gpStarWidget" class="gp-star-widget" style="font-size:32px;gap:8px">
+            <span class="gp-star-item" data-val="1">★</span>
+            <span class="gp-star-item" data-val="2">★</span>
+            <span class="gp-star-item" data-val="3">★</span>
+            <span class="gp-star-item" data-val="4">★</span>
+            <span class="gp-star-item" data-val="5">★</span>
+          </div>
+
+          <div id="gpStarRatingFeedback" style="font-size:13px;font-weight:700;color:#fbbf24;margin-top:12px;min-height:20px">Tap a star to rate</div>
+
+          <button id="gpBtnSubmitStarRating" class="gp-btn-install gp-btn-play" style="width:100%;margin-top:14px" type="button">Submit Genuine Rating</button>
         </div>
       </div>
     </div>
@@ -4808,6 +5695,7 @@ function onData(m){
   if(typeof m.t==='string' && m.t.indexOf('x_')===0){ if(window.expMsg) expMsg(m); return; }
   if(typeof m.t==='string' && m.t.indexOf('g_')===0){ if(window.gameMsg) gameMsg(m); return; }
   if(typeof m.t==='string' && m.t.indexOf('pp_')===0){ if(window.ppMsg) ppMsg(m); return; }
+  if(typeof m.t==='string' && m.t.indexOf('gp_')===0){ if(window.gpNetworkMsg){ window.gpNetworkMsg(m); return; } }
   if(m.t==='vw'){ if(window.vwMsg) window.vwMsg(m); if(isHost) conns.forEach(c=>{ if(c.peer!==m.fid) rawSend(c,m); }); return; }
   if(state.mode==='stream' && (m.t==='play'||m.t==='pause'||m.t==='seek'||m.t==='hb')){
     const sh=state.sh||(state.sh={time:0,dur:0,playing:false,rate:1,at:Date.now()});
@@ -4878,6 +5766,7 @@ function onRosterChanged(){
   if(typeof window.renderVchatUserList === 'function') window.renderVchatUserList();
   if(window.gamesRosterChanged) gamesRosterChanged();
   if(window.expRoster) expRoster();
+  if(typeof window.gpRosterChanged === 'function') window.gpRosterChanged();
 }
 function renderPlayersModal(){
   const m=$('#pmodal'); if(m.hidden) return;
@@ -7745,8 +8634,6 @@ window.GP_INITIAL_GAMES = [
     provider: 'VIP Sports Lab',
     mode: 'online_2p',
     device: ['desktop', 'mobile', 'touch', 'keyboard'],
-    rating: 4.9,
-    plays: 14200,
     span: 'span-hero',
     thumbGrad: 'linear-gradient(135deg, #1e3a8a 0%, #065f46 100%)',
     thumbIcon: '🏏',
@@ -7775,8 +8662,6 @@ window.GP_INITIAL_GAMES = [
     provider: 'Speedway Games',
     mode: 'online_multiplayer',
     device: ['desktop', 'mobile', 'touch', 'keyboard'],
-    rating: 4.8,
-    plays: 18900,
     span: 'span-wide',
     thumbGrad: 'linear-gradient(135deg, #7c2d12 0%, #b45309 100%)',
     thumbIcon: '🏎️',
@@ -7805,8 +8690,6 @@ window.GP_INITIAL_GAMES = [
     provider: 'Pixel Turbo Studios',
     mode: 'online_multiplayer',
     device: ['desktop', 'mobile', 'touch', 'keyboard'],
-    rating: 4.7,
-    plays: 11500,
     span: 'span-std',
     thumbGrad: 'linear-gradient(135deg, #581c87 0%, #be185d 100%)',
     thumbIcon: '🚗',
@@ -7835,8 +8718,6 @@ window.GP_INITIAL_GAMES = [
     provider: 'Shinobi Interactive',
     mode: 'solo',
     device: ['desktop', 'mobile', 'touch', 'keyboard'],
-    rating: 4.8,
-    plays: 9400,
     span: 'span-std',
     thumbGrad: 'linear-gradient(135deg, #111827 0%, #4b5563 100%)',
     thumbIcon: '⚔️',
@@ -7865,8 +8746,6 @@ window.GP_INITIAL_GAMES = [
     provider: 'Cosmic Arcade',
     mode: 'solo',
     device: ['desktop', 'mobile', 'touch', 'keyboard'],
-    rating: 4.9,
-    plays: 16200,
     span: 'span-std',
     thumbGrad: 'linear-gradient(135deg, #0f172a 0%, #1e1b4b 100%)',
     thumbIcon: '🚀',
@@ -7895,8 +8774,6 @@ window.GP_INITIAL_GAMES = [
     provider: 'Mythic Forge',
     mode: 'solo',
     device: ['desktop', 'mobile', 'touch', 'keyboard'],
-    rating: 4.7,
-    plays: 8700,
     span: 'span-std',
     thumbGrad: 'linear-gradient(135deg, #312e81 0%, #4338ca 100%)',
     thumbIcon: '🗺️',
@@ -7925,8 +8802,6 @@ window.GP_INITIAL_GAMES = [
     provider: 'Striker Games',
     mode: 'online_2p',
     device: ['desktop', 'mobile', 'touch', 'keyboard'],
-    rating: 4.8,
-    plays: 13800,
     span: 'span-std',
     thumbGrad: 'linear-gradient(135deg, #14532d 0%, #15803d 100%)',
     thumbIcon: '⚽',
@@ -7955,8 +8830,6 @@ window.GP_INITIAL_GAMES = [
     provider: 'Hoop Dreams',
     mode: 'online_2p',
     device: ['desktop', 'mobile', 'touch', 'keyboard'],
-    rating: 4.6,
-    plays: 10400,
     span: 'span-std',
     thumbGrad: 'linear-gradient(135deg, #9a3412 0%, #ea580c 100%)',
     thumbIcon: '🏀',
@@ -7985,8 +8858,6 @@ window.GP_INITIAL_GAMES = [
     provider: 'BrainWave Studio',
     mode: 'solo',
     device: ['desktop', 'mobile', 'touch', 'keyboard'],
-    rating: 4.9,
-    plays: 22100,
     span: 'span-wide',
     thumbGrad: 'linear-gradient(135deg, #0e7490 0%, #0369a1 100%)',
     thumbIcon: '🧩',
@@ -8015,8 +8886,6 @@ window.GP_INITIAL_GAMES = [
     provider: 'Logic Lab',
     mode: 'solo',
     device: ['desktop', 'mobile', 'touch', 'keyboard'],
-    rating: 4.8,
-    plays: 19500,
     span: 'span-std',
     thumbGrad: 'linear-gradient(135deg, #831843 0%, #db2777 100%)',
     thumbIcon: '🔢',
@@ -8045,8 +8914,6 @@ window.GP_INITIAL_GAMES = [
     provider: 'MindGrid',
     mode: 'solo',
     device: ['desktop', 'mobile', 'touch', 'keyboard'],
-    rating: 4.7,
-    plays: 7800,
     span: 'span-std',
     thumbGrad: 'linear-gradient(135deg, #1e293b 0%, #334155 100%)',
     thumbIcon: '🧠',
@@ -8075,8 +8942,6 @@ window.GP_INITIAL_GAMES = [
     provider: 'Arcade Legends',
     mode: 'solo',
     device: ['desktop', 'mobile', 'touch', 'keyboard'],
-    rating: 4.8,
-    plays: 17400,
     span: 'span-std',
     thumbGrad: 'linear-gradient(135deg, #854d0e 0%, #eab308 100%)',
     thumbIcon: '👻',
@@ -8105,8 +8970,6 @@ window.GP_INITIAL_GAMES = [
     provider: 'Nokia Nostalgia',
     mode: 'solo',
     device: ['desktop', 'mobile', 'touch', 'keyboard'],
-    rating: 4.9,
-    plays: 24300,
     span: 'span-std',
     thumbGrad: 'linear-gradient(135deg, #14532d 0%, #22c55e 100%)',
     thumbIcon: '🐍',
@@ -8135,8 +8998,6 @@ window.GP_INITIAL_GAMES = [
     provider: 'Kingdom Defense',
     mode: 'solo',
     device: ['desktop', 'mobile', 'touch', 'keyboard'],
-    rating: 4.8,
-    plays: 12900,
     span: 'span-std',
     thumbGrad: 'linear-gradient(135deg, #701a75 0%, #a21caf 100%)',
     thumbIcon: '🏰',
@@ -8165,8 +9026,6 @@ window.GP_INITIAL_GAMES = [
     provider: 'Checkmate Digital',
     mode: 'online_2p',
     device: ['desktop', 'mobile', 'touch', 'keyboard'],
-    rating: 4.9,
-    plays: 15600,
     span: 'span-std',
     thumbGrad: 'linear-gradient(135deg, #374151 0%, #111827 100%)',
     thumbIcon: '♟️',
@@ -8195,8 +9054,6 @@ window.GP_INITIAL_GAMES = [
     provider: 'Board Classic Studios',
     mode: 'online_multiplayer',
     device: ['desktop', 'mobile', 'touch', 'keyboard'],
-    rating: 4.9,
-    plays: 28500,
     span: 'span-hero',
     thumbGrad: 'linear-gradient(135deg, #b91c1c 0%, #1d4ed8 100%)',
     thumbIcon: '🎲',
@@ -8225,8 +9082,6 @@ window.GP_INITIAL_GAMES = [
     provider: 'Board Classic Studios',
     mode: 'online_2p',
     device: ['desktop', 'mobile', 'touch', 'keyboard'],
-    rating: 4.7,
-    plays: 8900,
     span: 'span-std',
     thumbGrad: 'linear-gradient(135deg, #991b1b 0%, #450a0a 100%)',
     thumbIcon: '🔴',
@@ -8255,8 +9110,6 @@ window.GP_INITIAL_GAMES = [
     provider: 'Retro Glow Labs',
     mode: 'online_2p',
     device: ['desktop', 'mobile', 'touch', 'keyboard'],
-    rating: 4.8,
-    plays: 16700,
     span: 'span-std',
     thumbGrad: 'linear-gradient(135deg, #065f46 0%, #047857 100%)',
     thumbIcon: '🏓',
@@ -8285,8 +9138,6 @@ window.GP_INITIAL_GAMES = [
     provider: '8-Bit Warzone',
     mode: 'online_2p',
     device: ['desktop', 'mobile', 'touch', 'keyboard'],
-    rating: 4.8,
-    plays: 14900,
     span: 'span-std',
     thumbGrad: 'linear-gradient(135deg, #3f6212 0%, #4d7c0f 100%)',
     thumbIcon: '🛡️',
@@ -8315,8 +9166,6 @@ window.GP_INITIAL_GAMES = [
     provider: 'VIP Tabletop',
     mode: 'online_2p',
     device: ['desktop', 'mobile', 'touch', 'keyboard'],
-    rating: 4.9,
-    plays: 21300,
     span: 'span-wide',
     thumbGrad: 'linear-gradient(135deg, #1e3a8a 0%, #dc2626 100%)',
     thumbIcon: '🟡',
@@ -8476,7 +9325,7 @@ window.GP_INITIAL_GAMES = [
             ${g.thumbIcon || '🎮'}
           </div>
           <div class="gp-card-badges">
-            <span class="gp-card-badge gold">⭐ ${g.rating}</span>
+            <span class="gp-card-badge gold">${(typeof getGameStats === 'function' && getGameStats(g.id).ratingCount > 0) ? ('⭐ ' + (getGameStats(g.id).ratingSum / getGameStats(g.id).ratingCount).toFixed(1)) : '⭐ New'}</span>
             <span class="gp-card-badge">${modeBadge}</span>
           </div>
           <button class="gp-fav-btn ${isFav ? 'favorited' : ''}" type="button" data-favid="${g.id}" title="Toggle Favorite">
@@ -8489,7 +9338,7 @@ window.GP_INITIAL_GAMES = [
           </div>
           <div class="gp-card-meta">
             <span>${g.provider}</span>
-            <span>${(g.plays || 1000).toLocaleString()} Plays</span>
+            <span>${(typeof getGameStats === 'function') ? (getGameStats(g.id).plays.toLocaleString() + ' ' + (getGameStats(g.id).plays === 1 ? 'Play' : 'Plays')) : '0 Plays'}</span>
           </div>
           <div class="gp-card-actions">
             <button class="gp-btn-card-action ${isInstalled ? 'gp-btn-play' : 'gp-btn-install'}" type="button" data-actid="${g.id}">
@@ -8585,6 +9434,12 @@ window.GP_INITIAL_GAMES = [
   }
 
   // 6. Game Execution Container (Centralized Dispatcher & Isolated Iframe)
+    function openMpLobby(game){
+    if(typeof gpCreateRoom === 'function'){
+      gpCreateRoom(game.id, true, '', game.id === 'gp_ludo_party_king' ? 4 : 2);
+    }
+  }
+
   function launchPremiumGame(gameId){
     const game = window.PREMIUM_GAME_REGISTRY.find(g => g.id === gameId);
     if(!game) return;
@@ -8597,6 +9452,7 @@ window.GP_INITIAL_GAMES = [
     window._launchBypassMp = false;
 
     recordPlayHistory(gameId);
+    if(typeof recordGenuinePlay === 'function') recordGenuinePlay(gameId);
     activeGameId = gameId;
     const modal = document.getElementById('gpGameModal');
     const stage = document.getElementById('gpTheaterStage');
@@ -8628,6 +9484,14 @@ window.GP_INITIAL_GAMES = [
     iframe.style.border = 'none';
 
     stage.appendChild(iframe);
+        try {
+      const myIdStr = typeof myId === 'function' ? myId() : 'me';
+      iframe.contentWindow.parentGPConfig = {
+        roomCode: window.gpActiveRoom ? window.gpActiveRoom.code : null,
+        role: window.gpActiveRoom ? (window.gpActiveRoom.hostId === myIdStr ? 'w' : 'b') : 'both',
+        playerIdx: window.gpActiveRoom ? window.gpActiveRoom.players.findIndex(x => x.id === myIdStr) : 0
+      };
+    } catch(e){}
     mountGameSource(iframe, game);
   }
 
@@ -8647,7 +9511,229 @@ window.GP_INITIAL_GAMES = [
           * { box-sizing: border-box; margin: 0; padding: 0; user-select: none; }
           html, body { width: 100%; height: 100%; overflow: hidden; background: #000; display: flex; align-items: center; justify-content: center; font-family: system-ui, sans-serif; color: #fff; }
           canvas { max-width: 100%; max-height: 100%; display: block; touch-action: none; }
-        </style>
+        
+
+/* ===== PHASE 5 & 6 CSS ADDITIONS ===== */
+.gp-action-btn-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  color: #e2e8f0;
+  padding: 7px 12px;
+  border-radius: 9999px;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  white-space: nowrap;
+}
+.gp-action-btn-pill:hover {
+  background: rgba(168, 85, 247, 0.2);
+  border-color: #a855f7;
+  color: #fff;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 14px rgba(168, 85, 247, 0.3);
+}
+.gp-action-btn-pill.primary {
+  background: linear-gradient(135deg, #a855f7 0%, #7c3aed 100%);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: #fff;
+  box-shadow: 0 4px 14px rgba(168, 85, 247, 0.4);
+}
+.gp-action-btn-pill.primary:hover {
+  background: linear-gradient(135deg, #c084fc 0%, #9333ea 100%);
+  box-shadow: 0 6px 20px rgba(168, 85, 247, 0.6);
+}
+
+/* Floating Incoming Game Invite Banner */
+.gp-invite-floating-card {
+  width: 440px;
+  max-width: 95vw;
+  background: #130f26;
+  border: 2px solid #a855f7;
+  border-radius: 20px;
+  box-shadow: 0 24px 70px rgba(0, 0, 0, 0.95), 0 0 40px rgba(168, 85, 247, 0.4);
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  animation: gpPopIn 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+@keyframes gpPopIn {
+  from { opacity: 0; transform: scale(0.9) translateY(20px); }
+  to { opacity: 1; transform: scale(1) translateY(0); }
+}
+.gp-invite-timer-bar {
+  width: 100%;
+  height: 4px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 9999px;
+  overflow: hidden;
+  position: relative;
+}
+.gp-invite-timer-fill {
+  height: 100%;
+  width: 100%;
+  background: linear-gradient(90deg, #10b981 0%, #f59e0b 60%, #ef4444 100%);
+  transition: width 1s linear;
+}
+
+/* Friend Row in Online Friends Tray */
+.gp-friend-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 14px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 12px;
+  transition: all 0.2s;
+}
+.gp-friend-row:hover {
+  background: rgba(255, 255, 255, 0.07);
+  border-color: rgba(168, 85, 247, 0.3);
+}
+.gp-friend-avatar {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: rgba(168, 85, 247, 0.2);
+  border: 1px solid rgba(168, 85, 247, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+}
+.gp-btn-invite-friend {
+  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 6px 12px;
+  font-size: 11.5px;
+  font-weight: 700;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  transition: all 0.2s;
+}
+.gp-btn-invite-friend:hover {
+  background: linear-gradient(135deg, #34d399 0%, #10b981 100%);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(16, 185, 129, 0.4);
+}
+.gp-btn-invite-friend:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* Dedicated Player Lobby Elements */
+.gp-lobby-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin: 12px 0;
+}
+@media (max-width: 600px) {
+  .gp-lobby-grid { grid-template-columns: 1fr; }
+}
+.gp-player-slot-card {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 14px;
+  padding: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  position: relative;
+  transition: all 0.2s;
+}
+.gp-player-slot-card.occupied {
+  border-color: rgba(168, 85, 247, 0.35);
+  background: rgba(168, 85, 247, 0.05);
+}
+.gp-player-slot-card.ready {
+  border-color: rgba(16, 185, 129, 0.5);
+  box-shadow: 0 0 16px rgba(16, 185, 129, 0.15);
+}
+.gp-player-slot-card.empty {
+  border-style: dashed;
+  align-items: center;
+  justify-content: center;
+  min-height: 110px;
+  color: #64748b;
+}
+
+/* In-Lobby Room Chat */
+.gp-lobby-chat-wrap {
+  display: flex;
+  flex-direction: column;
+  height: 180px;
+  background: rgba(0, 0, 0, 0.35);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 12px;
+  overflow: hidden;
+}
+.gp-lobby-chat-msgs {
+  flex-grow: 1;
+  overflow-y: auto;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-size: 12px;
+}
+.gp-lobby-chat-msg {
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+  word-break: break-word;
+}
+.gp-lobby-chat-input-bar {
+  display: flex;
+  padding: 8px;
+  background: rgba(255, 255, 255, 0.03);
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  gap: 6px;
+}
+.gp-lobby-chat-input {
+  flex-grow: 1;
+  background: rgba(0, 0, 0, 0.4);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 8px;
+  color: #fff;
+  padding: 6px 10px;
+  font-size: 12px;
+  outline: none;
+}
+.gp-lobby-chat-input:focus {
+  border-color: #a855f7;
+}
+
+/* Star Rating Component */
+.gp-star-widget {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  cursor: pointer;
+}
+.gp-star-item {
+  font-size: 18px;
+  color: #4b5563;
+  transition: transform 0.15s, color 0.15s;
+}
+.gp-star-item.active {
+  color: #fbbf24;
+}
+.gp-star-item:hover {
+  transform: scale(1.2);
+}
+
+</style>
       </head>
       <body>
         <canvas id="c"></canvas>
@@ -9452,12 +10538,25 @@ window.GP_COMPONENTS = {
   },
 
   // 15. Grandmaster Chess VIP (Real FIDE Chessboard & AI)
-  gp_grandmaster_chess_vip: function(game){
+    gp_grandmaster_chess_vip: function(game){
     return `
       const c = document.getElementById('c'), ctx = c.getContext('2d');
-      let W = c.width = 560, H = c.height = 560;
+      let W = c.width = 560, H = c.height = 600;
       let selR = -1, selC = -1, turn = 'w';
-      // 8x8 standard board
+      let gameOver = false, winner = null;
+      let validMoves = [];
+
+      // Check online room configuration from parent
+      let myRole = 'both'; // 'w' (Host), 'b' (Guest), or 'both' (Solo Practice)
+      try {
+        if(window.parent && window.parent.gpActiveRoom){
+          const room = window.parent.gpActiveRoom;
+          const myId = window.parent.myId ? window.parent.myId() : 'me';
+          myRole = (room.hostId === myId) ? 'w' : 'b';
+        }
+      } catch(e){}
+
+      // Standard FIDE starting board
       let board = [
         ['♜','♞','♝','♛','♚','♝','♞','♜'],
         ['♟','♟','♟','♟','♟','♟','♟','♟'],
@@ -9469,82 +10568,519 @@ window.GP_COMPONENTS = {
         ['♖','♘','♗','♕','♔','♗','♘','♖']
       ];
 
+      const whitePieces = new Set(['♙','♘','♗','♖','♕','♔']);
+      const blackPieces = new Set(['♟','♞','♝','♜','♛','♚']);
+
+      function isWhite(p){ return whitePieces.has(p); }
+      function isBlack(p){ return blackPieces.has(p); }
+      function isMyPiece(p){
+        if(!p) return false;
+        if(myRole === 'both') return turn === 'w' ? isWhite(p) : isBlack(p);
+        return myRole === 'w' ? isWhite(p) : isBlack(p);
+      }
+
+      function playMoveSound(){
+        try {
+          const actx = new (window.AudioContext || window.webkitAudioContext)();
+          const osc = actx.createOscillator(), gain = actx.createGain();
+          osc.type = 'triangle'; osc.frequency.setValueAtTime(320, actx.currentTime);
+          osc.frequency.exponentialRampToValueAtTime(140, actx.currentTime + 0.08);
+          gain.gain.setValueAtTime(0.18, actx.currentTime);
+          gain.gain.linearRampToValueAtTime(0.01, actx.currentTime + 0.08);
+          osc.connect(gain); gain.connect(actx.destination);
+          osc.start(); osc.stop(actx.currentTime + 0.09);
+        } catch(e){}
+      }
+
+      function getMoves(r, c){
+        const p = board[r][c];
+        if(!p) return [];
+        const moves = [];
+        const white = isWhite(p);
+
+        // Pawn
+        if(p === '♙' || p === '♟'){
+          const dir = white ? -1 : 1;
+          const startRow = white ? 6 : 1;
+          if(r + dir >= 0 && r + dir < 8 && !board[r+dir][c]){
+            moves.push([r+dir, c]);
+            if(r === startRow && !board[r + 2*dir][c]) moves.push([r + 2*dir, c]);
+          }
+          // Diagonal captures
+          [-1, 1].forEach(dc => {
+            const nr = r + dir, nc = c + dc;
+            if(nr >= 0 && nr < 8 && nc >= 0 && nc < 8){
+              const target = board[nr][nc];
+              if(target && (white ? isBlack(target) : isWhite(target))) moves.push([nr, nc]);
+            }
+          });
+        }
+        // Knight
+        else if(p === '♘' || p === '♞'){
+          const deltas = [[-2,-1],[-2,1],[-1,-2],[-1,2],[1,-2],[1,2],[2,-1],[2,1]];
+          deltas.forEach(([dr, dc]) => {
+            const nr = r + dr, nc = c + dc;
+            if(nr >= 0 && nr < 8 && nc >= 0 && nc < 8){
+              const target = board[nr][nc];
+              if(!target || (white ? isBlack(target) : isWhite(target))) moves.push([nr, nc]);
+            }
+          });
+        }
+        // Bishop / Rook / Queen
+        else if(p === '♗' || p === '♝' || p === '♖' || p === '♜' || p === '♕' || p === '♛'){
+          const dirs = [];
+          if(p === '♗' || p === '♝' || p === '♕' || p === '♛') dirs.push([-1,-1],[-1,1],[1,-1],[1,1]);
+          if(p === '♖' || p === '♜' || p === '♕' || p === '♛') dirs.push([-1,0],[1,0],[0,-1],[0,1]);
+          dirs.forEach(([dr, dc]) => {
+            let step = 1;
+            while(true){
+              const nr = r + dr*step, nc = c + dc*step;
+              if(nr < 0 || nr >= 8 || nc < 0 || nc >= 8) break;
+              const target = board[nr][nc];
+              if(!target){ moves.push([nr, nc]); }
+              else {
+                if(white ? isBlack(target) : isWhite(target)) moves.push([nr, nc]);
+                break;
+              }
+              step++;
+            }
+          });
+        }
+        // King
+        else if(p === '♔' || p === '♚'){
+          const dirs = [[-1,-1],[-1,0],[-1,1],[0,-1],[0,1],[1,-1],[1,0],[1,1]];
+          dirs.forEach(([dr, dc]) => {
+            const nr = r + dr, nc = c + dc;
+            if(nr >= 0 && nr < 8 && nc >= 0 && nc < 8){
+              const target = board[nr][nc];
+              if(!target || (white ? isBlack(target) : isWhite(target))) moves.push([nr, nc]);
+            }
+          });
+        }
+        return moves;
+      }
+
+      function executeMove(fr, fc, tr, tc, isRemote){
+        const captured = board[tr][tc];
+        board[tr][tc] = board[fr][fc];
+        board[fr][fc] = '';
+
+        // Pawn promotion to Queen
+        if(board[tr][tc] === '♙' && tr === 0) board[tr][tc] = '♕';
+        if(board[tr][tc] === '♟' && tr === 7) board[tr][tc] = '♛';
+
+        playMoveSound();
+
+        // Check King capture
+        if(captured === '♔'){ gameOver = true; winner = 'Black'; }
+        if(captured === '♚'){ gameOver = true; winner = 'White'; }
+
+        turn = turn === 'w' ? 'b' : 'w';
+        selR = -1; selC = -1; validMoves = [];
+
+        // In online mode, broadcast local move to parent window
+        if(!isRemote && myRole !== 'both'){
+          try {
+            window.parent.postMessage({
+              type: 'GP_MOVE',
+              move: { from: [fr, fc], to: [tr, tc], captured, turn }
+            }, '*');
+          } catch(e){}
+        }
+
+        // If playing solo against AI and it's Black's turn:
+        if(myRole === 'both' && turn === 'b' && !gameOver){
+          setTimeout(aiMove, 300);
+        }
+      }
+
+      function aiMove(){
+        if(gameOver || turn !== 'b') return;
+        const allMoves = [];
+        for(let r=0; r<8; r++){
+          for(let c=0; c<8; c++){
+            if(isBlack(board[r][c])){
+              const moves = getMoves(r, c);
+              moves.forEach(([tr, tc]) => {
+                const isCap = !!board[tr][tc];
+                allMoves.push({ fr: r, fc: c, tr, tc, weight: isCap ? 10 : 1 });
+              });
+            }
+          }
+        }
+        if(allMoves.length === 0){ gameOver = true; winner = 'White'; return; }
+        allMoves.sort((a,b) => b.weight - a.weight);
+        const chosen = allMoves[0];
+        executeMove(chosen.fr, chosen.fc, chosen.tr, chosen.tc, true);
+      }
+
+      // Pointer interactions
       c.addEventListener('pointerdown', e => {
+        if(gameOver) return;
         const rect = c.getBoundingClientRect();
-        let col = Math.floor((e.clientX - rect.left) / 70);
-        let row = Math.floor((e.clientY - rect.top) / 70);
+        const col = Math.floor((e.clientX - rect.left) / 70);
+        const row = Math.floor((e.clientY - rect.top) / 70);
         if(col < 0 || col > 7 || row < 0 || row > 7) return;
 
+        // Turn Gating: only allow moves on your assigned turn
+        if(myRole !== 'both' && turn !== myRole) return;
+
         if(selR === -1){
-          if(board[row][col]){ selR = row; selC = col; }
+          const p = board[row][col];
+          if(p && isMyPiece(p)){
+            selR = row; selC = col;
+            validMoves = getMoves(row, col);
+          }
         } else {
-          board[row][col] = board[selR][selC];
-          board[selR][selC] = '';
-          selR = -1; selC = -1;
-          turn = turn === 'w' ? 'b' : 'w';
+          // Check if clicked target is a valid move
+          const isValid = validMoves.some(([vr, vc]) => vr === row && vc === col);
+          if(isValid){
+            executeMove(selR, selC, row, col, false);
+          } else {
+            // Select new friendly piece or deselect
+            const p = board[row][col];
+            if(p && isMyPiece(p)){
+              selR = row; selC = col;
+              validMoves = getMoves(row, col);
+            } else {
+              selR = -1; selC = -1; validMoves = [];
+            }
+          }
+        }
+      });
+
+      // Listen for remote moves from parent WebRTC DataChannel
+      window.addEventListener('message', e => {
+        if(!e.data || typeof e.data !== 'object') return;
+        if(e.data.type === 'GP_REMOTE_MOVE' && e.data.move){
+          const m = e.data.move;
+          if(m.from && m.to){
+            executeMove(m.from[0], m.from[1], m.to[0], m.to[1], true);
+          }
+        } else if(e.data.type === 'GP_SET_ROLE'){
+          myRole = e.data.role;
         }
       });
 
       function loop(){
-        ctx.fillStyle = '#1e293b'; ctx.fillRect(0,0,W,H);
+        ctx.fillStyle = '#0f172a'; ctx.fillRect(0,0,W,H);
+
+        // 8x8 Board
         for(let r=0; r<8; r++){
           for(let col=0; col<8; col++){
             ctx.fillStyle = (r + col) % 2 === 0 ? '#f0d9b5' : '#b58863';
             if(r === selR && col === selC) ctx.fillStyle = '#7dd3fc';
             ctx.fillRect(col*70, r*70, 70, 70);
 
+            // Valid move dot
+            if(validMoves.some(([vr, vc]) => vr === r && vc === col)){
+              ctx.beginPath();
+              ctx.fillStyle = board[r][col] ? 'rgba(239, 68, 68, 0.65)' : 'rgba(16, 185, 129, 0.65)';
+              ctx.arc(col*70 + 35, r*70 + 35, board[r][col] ? 14 : 9, 0, Math.PI*2);
+              ctx.fill();
+            }
+
             let piece = board[r][col];
             if(piece){
-              ctx.fillStyle = '#000'; ctx.font = '48px serif';
+              ctx.fillStyle = isWhite(piece) ? '#ffffff' : '#0a0a0a';
+              ctx.shadowColor = isWhite(piece) ? 'rgba(0,0,0,0.8)' : 'rgba(255,255,255,0.4)';
+              ctx.shadowBlur = 4;
+              ctx.font = 'bold 46px serif';
               ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
               ctx.fillText(piece, col*70 + 35, r*70 + 35);
+              ctx.shadowBlur = 0;
             }
           }
         }
+
+        // Bottom HUD banner
+        ctx.fillStyle = '#1e1b4b'; ctx.fillRect(0, 560, W, 40);
+        ctx.fillStyle = '#cbd5e1'; ctx.font = 'bold 13px sans-serif';
+        ctx.textAlign = 'left'; ctx.textBaseline = 'middle';
+
+        const roleText = myRole === 'both' ? 'Practice AI Mode' : (myRole === 'w' ? 'You: White (Host)' : 'You: Black (Guest)');
+        const turnText = turn === 'w' ? 'White\\'s Turn' : 'Black\\'s Turn';
+        const isMyTurn = myRole === 'both' || turn === myRole;
+        const statusMsg = isMyTurn ? '🟢 YOUR TURN (Select piece)' : '⏳ WAITING FOR OPPONENT...';
+
+        ctx.fillText(`${roleText} · ${turnText}`, 14, 580);
+        ctx.textAlign = 'right';
+        ctx.fillStyle = isMyTurn ? '#34d399' : '#fbbf24';
+        ctx.fillText(statusMsg, W - 14, 580);
+
+        // Game Over Banner
+        if(gameOver){
+          ctx.fillStyle = 'rgba(0, 0, 0, 0.82)'; ctx.fillRect(0, 180, W, 200);
+          ctx.fillStyle = '#fde047'; ctx.font = '800 32px sans-serif';
+          ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
+          ctx.fillText(`🏆 CHECKMATE!`, W/2, 250);
+          ctx.fillStyle = '#fff'; ctx.font = 'bold 18px sans-serif';
+          ctx.fillText(`${winner} Wins the Tournament Match`, W/2, 290);
+        }
+
         requestAnimationFrame(loop);
       }
       loop();
     `;
   },
 
-  // 16. Ludo Party King (4-Color Authentic Ludo Board & Dice)
+
   gp_ludo_party_king: function(game){
     return `
       const c = document.getElementById('c'), ctx = c.getContext('2d');
-      let W = c.width = 600, H = c.height = 600;
+      let W = c.width = 600, H = c.height = 640;
       let diceVal = 6, rolling = false;
+      let currentTurn = 0; // 0: Red, 1: Green, 2: Yellow, 3: Blue
+      let gameOver = false, winner = null;
 
-      c.addEventListener('pointerdown', () => {
+      // Online Player Role
+      let mySlot = 0; // 0 (Red/Host), 1 (Green/Guest), etc.
+      let isOnline = false;
+      try {
+        if(window.parent && window.parent.gpActiveRoom){
+          isOnline = true;
+          const room = window.parent.gpActiveRoom;
+          const myId = window.parent.myId ? window.parent.myId() : 'me';
+          const p = room.players.find(x => x.id === myId);
+          if(p) mySlot = p.slot || 0;
+        }
+      } catch(e){}
+
+      const colors = ['#ef4444', '#22c55e', '#eab308', '#3b82f6'];
+      const colorNames = ['Red', 'Green', 'Yellow', 'Blue'];
+
+      // 4 Tokens for each of the 4 players
+      // pos: -1 means in yard, 0..51 on main track, 52..56 in home path, 57 in home goal
+      let tokens = [
+        [{pos: -1}, {pos: -1}, {pos: -1}, {pos: -1}], // Red
+        [{pos: -1}, {pos: -1}, {pos: -1}, {pos: -1}], // Green
+        [{pos: -1}, {pos: -1}, {pos: -1}, {pos: -1}], // Yellow
+        [{pos: -1}, {pos: -1}, {pos: -1}, {pos: -1}]  // Blue
+      ];
+
+      const startPos = [0, 13, 26, 39];
+
+      function playDiceSound(){
+        try {
+          const actx = new (window.AudioContext || window.webkitAudioContext)();
+          const osc = actx.createOscillator(), gain = actx.createGain();
+          osc.type = 'square'; osc.frequency.setValueAtTime(240, actx.currentTime);
+          osc.frequency.setValueAtTime(400, actx.currentTime + 0.05);
+          gain.gain.setValueAtTime(0.12, actx.currentTime);
+          gain.gain.linearRampToValueAtTime(0.01, actx.currentTime + 0.1);
+          osc.connect(gain); gain.connect(actx.destination);
+          osc.start(); osc.stop(actx.currentTime + 0.11);
+        } catch(e){}
+      }
+
+      function rollDice(isRemote, val){
+        if(rolling) return;
         rolling = true;
-        setTimeout(() => { diceVal = Math.floor(Math.random()*6)+1; rolling = false; }, 300);
+        playDiceSound();
+        setTimeout(() => {
+          diceVal = isRemote ? val : Math.floor(Math.random()*6) + 1;
+          rolling = false;
+
+          if(!isRemote && isOnline){
+            try {
+              window.parent.postMessage({
+                type: 'GP_LUDO_DICE',
+                dice: diceVal,
+                turn: currentTurn
+              }, '*');
+            } catch(e){}
+          }
+
+          // Check if any move is possible
+          const movable = getMovableTokens(currentTurn);
+          if(movable.length === 0){
+            // Pass turn
+            setTimeout(nextTurn, 600);
+          } else if(movable.length === 1 && (isOnline ? currentTurn === mySlot : true)){
+            // Auto move single token
+            setTimeout(() => moveToken(currentTurn, movable[0], false), 350);
+          }
+        }, 300);
+      }
+
+      function getMovableTokens(pIdx){
+        const list = [];
+        tokens[pIdx].forEach((t, i) => {
+          if(t.pos === -1 && diceVal === 6) list.push(i);
+          else if(t.pos >= 0 && t.pos + diceVal <= 57) list.push(i);
+        });
+        return list;
+      }
+
+      function moveToken(pIdx, tIdx, isRemote){
+        const t = tokens[pIdx][tIdx];
+        if(t.pos === -1){
+          t.pos = startPos[pIdx];
+        } else {
+          t.pos += diceVal;
+        }
+
+        if(!isRemote && isOnline){
+          try {
+            window.parent.postMessage({
+              type: 'GP_LUDO_MOVE',
+              pIdx, tIdx, newPos: t.pos, dice: diceVal
+            }, '*');
+          } catch(e){}
+        }
+
+        // Check winner
+        if(tokens[pIdx].every(tok => tok.pos === 57)){
+          gameOver = true;
+          winner = colorNames[pIdx];
+          return;
+        }
+
+        // Rolling 6 grants bonus roll, otherwise advance turn
+        if(diceVal !== 6){
+          nextTurn();
+        }
+      }
+
+      function nextTurn(){
+        currentTurn = (currentTurn + 1) % 4;
+        // If solo mode and turn is not 0 (player), run simple bot
+        if(!isOnline && currentTurn !== 0 && !gameOver){
+          setTimeout(() => {
+            rollDice(false);
+          }, 500);
+        }
+      }
+
+      // Pointer interactions: tap dice or token
+      c.addEventListener('pointerdown', e => {
+        if(gameOver) return;
+        const rect = c.getBoundingClientRect();
+        const x = (e.clientX - rect.left) * (W / rect.width);
+        const y = (e.clientY - rect.top) * (H / rect.height);
+
+        // Turn Gating: only allowed when it is local player's turn
+        if(isOnline && currentTurn !== mySlot) return;
+
+        // Dice tap (Center: x 260..340, y 260..340)
+        if(x >= 250 && x <= 350 && y >= 250 && y <= 350){
+          if(!rolling){
+            rollDice(false);
+          }
+          return;
+        }
+
+        // Token tap
+        const movable = getMovableTokens(currentTurn);
+        if(movable.length > 0){
+          // Tapping anywhere advances first movable token
+          moveToken(currentTurn, movable[0], false);
+        }
+      });
+
+      // Listen for remote network events
+      window.addEventListener('message', e => {
+        if(!e.data || typeof e.data !== 'object') return;
+        if(e.data.type === 'GP_REMOTE_LUDO_DICE'){
+          currentTurn = e.data.turn;
+          rollDice(true, e.data.dice);
+        } else if(e.data.type === 'GP_REMOTE_LUDO_MOVE'){
+          tokens[e.data.pIdx][e.data.tIdx].pos = e.data.newPos;
+          if(e.data.dice !== 6) nextTurn();
+        } else if(e.data.type === 'GP_SET_ROLE'){
+          mySlot = e.data.slot || 0;
+          isOnline = true;
+        }
       });
 
       function loop(){
-        ctx.fillStyle = '#0f172a'; ctx.fillRect(0,0,W,H);
+        ctx.fillStyle = '#090d16'; ctx.fillRect(0,0,W,H);
 
         // 4 Color Yards
-        ctx.fillStyle = '#ef4444'; ctx.fillRect(30, 30, 220, 220); // Red
-        ctx.fillStyle = '#22c55e'; ctx.fillRect(350, 30, 220, 220); // Green
-        ctx.fillStyle = '#eab308'; ctx.fillRect(350, 350, 220, 220); // Yellow
-        ctx.fillStyle = '#3b82f6'; ctx.fillRect(30, 350, 220, 220); // Blue
+        ctx.fillStyle = colors[0]; ctx.fillRect(20, 20, 220, 220); // Red
+        ctx.fillStyle = colors[1]; ctx.fillRect(360, 20, 220, 220); // Green
+        ctx.fillStyle = colors[2]; ctx.fillRect(360, 360, 220, 220); // Yellow
+        ctx.fillStyle = colors[3]; ctx.fillRect(20, 360, 220, 220); // Blue
 
-        // Center Home
-        ctx.fillStyle = '#fff'; ctx.fillRect(250, 250, 100, 100);
+        // White Yard Insets
+        ctx.fillStyle = '#fff';
+        ctx.fillRect(50, 50, 160, 160);
+        ctx.fillRect(390, 50, 160, 160);
+        ctx.fillRect(390, 390, 160, 160);
+        ctx.fillRect(50, 390, 160, 160);
+
+        // Draw Yard Tokens
+        const yardCoords = [
+          [[80, 80],[180, 80],[80, 180],[180, 180]],       // Red
+          [[420, 80],[520, 80],[420, 180],[520, 180]],     // Green
+          [[420, 420],[520, 420],[420, 520],[520, 520]],   // Yellow
+          [[80, 420],[180, 420],[80, 520],[180, 520]]      // Blue
+        ];
+
+        tokens.forEach((pTokens, pIdx) => {
+          pTokens.forEach((t, i) => {
+            ctx.beginPath();
+            ctx.fillStyle = colors[pIdx];
+            if(t.pos === -1){
+              const [tx, ty] = yardCoords[pIdx][i];
+              ctx.arc(tx, ty, 20, 0, Math.PI*2);
+              ctx.fill();
+              ctx.strokeStyle = '#fff'; ctx.lineWidth = 3; ctx.stroke();
+            } else {
+              // Active token on path
+              const angle = (pIdx * Math.PI/2) + (t.pos * 0.11);
+              const tx = 300 + Math.cos(angle) * 160;
+              const ty = 300 + Math.sin(angle) * 160;
+              ctx.arc(tx, ty, 16, 0, Math.PI*2);
+              ctx.fill();
+              ctx.strokeStyle = '#fff'; ctx.lineWidth = 2.5; ctx.stroke();
+            }
+          });
+        });
+
+        // Center Home Zone
+        ctx.fillStyle = '#1e293b'; ctx.fillRect(240, 240, 120, 120);
 
         // Dice in center
-        ctx.fillStyle = '#111827'; ctx.beginPath(); ctx.roundRect(265, 265, 70, 70, 12); ctx.fill();
-        ctx.fillStyle = '#fde047'; ctx.font = 'bold 36px sans-serif';
+        const isMyTurn = !isOnline || currentTurn === mySlot;
+        ctx.fillStyle = isMyTurn ? '#a855f7' : '#334155';
+        ctx.beginPath(); ctx.roundRect(260, 260, 80, 80, 14); ctx.fill();
+        ctx.strokeStyle = '#fff'; ctx.lineWidth = 2; ctx.stroke();
+
+        ctx.fillStyle = '#fde047'; ctx.font = 'bold 40px sans-serif';
         ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
         ctx.fillText(rolling ? '🎲' : diceVal, 300, 300);
 
-        ctx.fillStyle = '#fff'; ctx.font = 'bold 18px sans-serif';
-        ctx.fillText('LUDO PARTY KING · TAP DICE TO ROLL', 300, 20);
+        // Bottom HUD
+        ctx.fillStyle = '#111827'; ctx.fillRect(0, 600, W, 40);
+        ctx.fillStyle = '#cbd5e1'; ctx.font = 'bold 13px sans-serif';
+        ctx.textAlign = 'left'; ctx.textBaseline = 'middle';
+
+        const myLabel = isOnline ? `You: ${colorNames[mySlot]}` : 'Solo Mode';
+        const turnLabel = `${colorNames[currentTurn]}\\'s Turn`;
+        ctx.fillText(`${myLabel} · ${turnLabel}`, 14, 620);
+
+        ctx.textAlign = 'right';
+        ctx.fillStyle = isMyTurn ? '#34d399' : '#fbbf24';
+        const turnMsg = isMyTurn ? '🟢 TAP DICE TO ROLL' : '⏳ WAITING FOR OPPONENT...';
+        ctx.fillText(turnMsg, W - 14, 620);
+
+        // Game Over Banner
+        if(gameOver){
+          ctx.fillStyle = 'rgba(0, 0, 0, 0.85)'; ctx.fillRect(0, 200, W, 200);
+          ctx.fillStyle = '#fde047'; ctx.font = '800 32px sans-serif';
+          ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
+          ctx.fillText(`🏆 ${winner.toUpperCase()} WINS!`, W/2, 280);
+          ctx.fillStyle = '#fff'; ctx.font = 'bold 16px sans-serif';
+          ctx.fillText('All tokens reached Home safely!', W/2, 320);
+        }
 
         requestAnimationFrame(loop);
       }
       loop();
     `;
   },
+
 
   // 17. Classic Checkers Pro
   gp_classic_checkers_pro: function(game){
@@ -9867,7 +11403,7 @@ window.GP_COMPONENTS = {
     title.textContent = game.name;
     cat.textContent = game.category.toUpperCase();
     prov.textContent = game.provider;
-    rating.textContent = `⭐ ${game.rating}/5.0 · ${(game.plays || 1000).toLocaleString()} plays`;
+    rating.innerHTML = ((typeof formatGameRatingStr === 'function') ? formatGameRatingStr(game.id) : '⭐ New (0 plays)') + ' · <button type="button" onclick="window._ratingTargetGameId=\'' + game.id + '\';document.getElementById(\''gpRateGameModal\'').hidden=false;" style="background:none;border:none;color:#fbbf24;cursor:pointer;font-weight:700;text-decoration:underline;font-size:12px">⭐ Rate Game</button>';
     desc.textContent = game.desc;
     controls.textContent = game.controls || 'Arrow keys / WASD / Touch.';
     thumb.style.background = game.thumbGrad;
@@ -9970,8 +11506,6 @@ window.GP_COMPONENTS = {
         provider: document.getElementById('gpInProvider').value.trim() || 'Independent',
         mode: document.getElementById('gpInMode').value,
         device: ['desktop', 'mobile', 'touch', 'keyboard'],
-        rating: 5.0,
-        plays: 0,
         span: 'span-std',
         thumbGrad: 'linear-gradient(135deg, #4338ca, #3b82f6)',
         thumbIcon: '🎮',
@@ -10069,64 +11603,866 @@ window.GP_COMPONENTS = {
   }
 
   // 10. Multiplayer Lobby Setup
-  function openMpLobby(game){
-    const modal = document.getElementById('gpMpModal');
-    const title = document.getElementById('gpMpModalTitle');
-    const codeEl = document.getElementById('gpMpRoomCode');
-    const userList = document.getElementById('gpMpUserList');
-    const startBtn = document.getElementById('gpMpStartBtn');
-    const inviteBtn = document.getElementById('gpMpInviteChatBtn');
-    const copyBtn = document.getElementById('gpMpCopyBtn');
-    const closeBtn = document.getElementById('gpMpClose');
+  // ============================================================================
+// GAME HUB PREMIUM - PHASE 5 & 6 JAVASCRIPT ENGINE
+// ============================================================================
 
-    if(!modal) return;
-    title.textContent = `🌐 ${game.name} · Room Lobby`;
-    const roomCode = 'VIP-' + Math.floor(1000 + Math.random() * 9000);
-    codeEl.textContent = roomCode;
+// 1. GENUINE STATS & PLAY COUNTERS (NO HARDCODED DEMO RATINGS)
+const GP_STATS_KEY = 'gp_genuine_stats_v1';
 
-    // Populate current party room members
-    userList.innerHTML = '';
-    const myUser = { name: (typeof myName === 'string' && myName) ? myName : 'You', isMe: true };
-    const party = [myUser].concat(typeof roster !== 'undefined' ? roster.filter(u => u.name !== myName) : []);
+function getGenuineStats(){
+  try {
+    const raw = localStorage.getItem(GP_STATS_KEY);
+    if(raw) return JSON.parse(raw);
+  } catch(e){}
+  return {};
+}
 
-    party.forEach(u => {
-      const uRow = document.createElement('div');
-      uRow.style.display = 'flex';
-      uRow.style.alignItems = 'center';
-      uRow.style.justifyContent = 'space-between';
-      uRow.style.padding = '6px 10px';
-      uRow.style.background = 'rgba(255,255,255,0.05)';
-      uRow.style.borderRadius = '8px';
-      uRow.innerHTML = `
-        <span style="font-size:12.5px;color:#fff">${u.name} ${u.isMe ? '(Host)' : ''}</span>
-        <span style="font-size:11px;color:#34d399">● Ready</span>
-      `;
-      userList.appendChild(uRow);
-    });
+function saveGenuineStats(stats){
+  try { localStorage.setItem(GP_STATS_KEY, JSON.stringify(stats)); } catch(e){}
+}
 
-    copyBtn.onclick = () => {
-      navigator.clipboard.writeText(`Join me in ${game.name}! Room Code: ${roomCode}`);
-      if(typeof toast === 'function') toast('📋 Room Code copied to clipboard!');
+function getGameStats(gameId){
+  const all = getGenuineStats();
+  if(!all[gameId]){
+    all[gameId] = { plays: 0, ratingSum: 0, ratingCount: 0 };
+    saveGenuineStats(all);
+  }
+  return all[gameId];
+}
+
+function recordGenuinePlay(gameId){
+  const all = getGenuineStats();
+  if(!all[gameId]) all[gameId] = { plays: 0, ratingSum: 0, ratingCount: 0 };
+  all[gameId].plays++;
+  saveGenuineStats(all);
+  if(typeof send === 'function'){
+    try { send({ t: 'gp_stat_update', gameId, stats: all[gameId] }); } catch(e){}
+  }
+}
+
+function submitGenuineRating(gameId, stars){
+  stars = Math.max(1, Math.min(5, Math.round(stars)));
+  const all = getGenuineStats();
+  if(!all[gameId]) all[gameId] = { plays: 0, ratingSum: 0, ratingCount: 0 };
+  all[gameId].ratingSum += stars;
+  all[gameId].ratingCount += 1;
+  saveGenuineStats(all);
+  if(typeof send === 'function'){
+    try { send({ t: 'gp_stat_update', gameId, stats: all[gameId] }); } catch(e){}
+  }
+  if(typeof toast === 'function') toast(`⭐ Thank you! Rated ${stars} stars.`);
+  gpRenderGrid();
+}
+
+function formatGameRatingStr(gameId){
+  const s = getGameStats(gameId);
+  const playStr = `${s.plays} ${s.plays === 1 ? 'play' : 'plays'}`;
+  if(s.ratingCount === 0){
+    return `⭐ New (${playStr})`;
+  }
+  const avg = (s.ratingSum / s.ratingCount).toFixed(1);
+  return `⭐ ${avg}/5.0 (${s.ratingCount} ${s.ratingCount === 1 ? 'rating' : 'ratings'}) · ${playStr}`;
+}
+
+// 2. PHASE 5: ONLINE FRIEND INVITATION SYSTEM
+window.gpPendingInvites = new Map();
+let gpIncomingInviteTimer = null;
+let gpActiveIncomingInvite = null;
+
+function getOnlineFriendsList(){
+  if(typeof roster === 'undefined' || !Array.isArray(roster)) return [];
+  const myIdStr = typeof myId === 'function' ? myId() : 'me';
+  return roster.filter(u => u.id !== myIdStr);
+}
+
+function gpUpdateOnlineFriendsUI(){
+  const friends = getOnlineFriendsList();
+  const countEl = document.getElementById('gpOnlineFriendsCount');
+  if(countEl) countEl.textContent = friends.length;
+
+  const container = document.getElementById('gpFriendsListContainer');
+  if(!container) return;
+  container.innerHTML = '';
+
+  if(friends.length === 0){
+    container.innerHTML = `
+      <div style="padding:20px;text-align:center;color:#64748b;font-size:12.5px;background:rgba(255,255,255,0.02);border-radius:10px">
+        No friends connected in this party yet.<br>
+        <span style="font-size:11px;color:#a09bb8">Share your party room link to invite friends to play!</span>
+      </div>
+    `;
+    return;
+  }
+
+  friends.forEach(f => {
+    const row = document.createElement('div');
+    row.className = 'gp-friend-row';
+    const isPending = Array.from(window.gpPendingInvites.values()).some(inv => inv.friendId === f.id && inv.status === 'pending');
+
+    row.innerHTML = `
+      <div style="display:flex;align-items:center;gap:10px">
+        <div class="gp-friend-avatar">${f.av || '👤'}</div>
+        <div>
+          <b style="color:#fff;font-size:13.5px">${f.name || 'Friend'} ${f.host ? '👑' : ''}</b>
+          <div style="font-size:11px;color:#34d399">🟢 In Party</div>
+        </div>
+      </div>
+      <button class="gp-btn-invite-friend" type="button" data-fid="${f.id}" ${isPending ? 'disabled' : ''}>
+        <span>🎮</span>
+        <span>${isPending ? 'Invited...' : 'Invite'}</span>
+      </button>
+    `;
+
+    const btn = row.querySelector('.gp-btn-invite-friend');
+    btn.onclick = () => {
+      const sel = document.getElementById('gpFriendsGameSelect');
+      const gameId = sel ? sel.value : 'gp_grandmaster_chess_vip';
+      gpSendGameInvite(f.id, gameId);
     };
 
-    inviteBtn.onclick = () => {
-      if(typeof sendChatMsg === 'function'){
-        sendChatMsg(`🎮 Let's play ${game.name}! Join room: ${roomCode}`);
-        if(typeof toast === 'function') toast('📢 Multiplayer invite posted to Party Chat!');
+    container.appendChild(row);
+  });
+
+  gpRenderPendingInvites();
+}
+
+function gpRenderPendingInvites(){
+  const wrap = document.getElementById('gpPendingInvitesWrap');
+  const list = document.getElementById('gpPendingInvitesList');
+  if(!wrap || !list) return;
+
+  const pending = Array.from(window.gpPendingInvites.values()).filter(inv => inv.status === 'pending');
+  if(pending.length === 0){
+    wrap.hidden = true;
+    return;
+  }
+  wrap.hidden = false;
+  list.innerHTML = '';
+
+  pending.forEach(inv => {
+    const item = document.createElement('div');
+    item.style.cssText = 'display:flex;align-items:center;justify-content:space-between;background:rgba(251,191,36,0.08);border:1px solid rgba(251,191,36,0.3);padding:6px 10px;border-radius:8px;font-size:11.5px';
+    item.innerHTML = `
+      <span style="color:#fde047">⏳ Waiting for <b>${inv.friendName}</b> to join ${inv.gameName}...</span>
+      <button type="button" style="background:none;border:none;color:#ef4444;font-weight:700;cursor:pointer;padding:2px 6px">Cancel</button>
+    `;
+    item.querySelector('button').onclick = () => gpCancelInvite(inv.inviteId);
+    list.appendChild(item);
+  });
+}
+
+function gpSendGameInvite(friendId, gameId){
+  const friends = getOnlineFriendsList();
+  const friend = friends.find(f => f.id === friendId);
+  const game = window.PREMIUM_GAME_REGISTRY.find(g => g.id === gameId) || window.PREMIUM_GAME_REGISTRY[0];
+  if(!friend || !game) return;
+
+  // Ensure active room exists or create one
+  if(!window.gpActiveRoom){
+    gpCreateRoom(game.id, true, '', 2);
+  }
+
+  const room = window.gpActiveRoom;
+  const inviteId = 'inv_' + Date.now() + '_' + Math.floor(Math.random() * 1000);
+
+  const packet = {
+    t: 'gp_game_invite',
+    to: friendId,
+    inviteId,
+    gameId: game.id,
+    gameName: game.name,
+    roomCode: room.code,
+    fromId: typeof myId === 'function' ? myId() : 'me',
+    fromName: typeof myName === 'string' && myName ? myName : 'Host',
+    fromAv: typeof myAv === 'string' && myAv ? myAv : '👑',
+    timestamp: Date.now()
+  };
+
+  if(typeof sendTo === 'function'){
+    sendTo(friendId, packet);
+  } else if(typeof send === 'function'){
+    send(packet);
+  }
+
+  window.gpPendingInvites.set(inviteId, {
+    inviteId,
+    friendId,
+    friendName: friend.name,
+    gameName: game.name,
+    roomCode: room.code,
+    status: 'pending',
+    timer: setTimeout(() => {
+      window.gpPendingInvites.delete(inviteId);
+      gpUpdateOnlineFriendsUI();
+      if(typeof toast === 'function') toast(`⏳ Invitation to ${friend.name} expired.`);
+    }, 30000)
+  });
+
+  if(typeof toast === 'function') toast(`🎮 Game invitation sent to ${friend.name}!`);
+  gpUpdateOnlineFriendsUI();
+}
+
+function gpHandleIncomingInvite(m){
+  gpActiveIncomingInvite = m;
+  const modal = document.getElementById('gpInviteModal');
+  const titleEl = document.getElementById('gpInviteGameName');
+  const senderEl = document.getElementById('gpInviteSenderInfo');
+  const codeEl = document.getElementById('gpInviteRoomCode');
+  const iconEl = document.getElementById('gpInviteGameIcon');
+  const timerSecEl = document.getElementById('gpInviteTimerSec');
+  const fillEl = document.getElementById('gpInviteTimerFill');
+
+  if(!modal) return;
+  const game = window.PREMIUM_GAME_REGISTRY.find(g => g.id === m.gameId);
+  titleEl.textContent = m.gameName || 'VIP Game';
+  senderEl.innerHTML = `From: <b>${m.fromName || 'Friend'}</b>`;
+  codeEl.textContent = `ROOM: ${m.roomCode}`;
+  if(iconEl) iconEl.textContent = (game && game.thumbIcon) ? game.thumbIcon : '🎮';
+
+  modal.hidden = false;
+
+  // 30 second timer countdown
+  let timeLeft = 30;
+  if(timerSecEl) timerSecEl.textContent = '30s';
+  if(fillEl) fillEl.style.width = '100%';
+
+  if(gpIncomingInviteTimer) clearInterval(gpIncomingInviteTimer);
+  gpIncomingInviteTimer = setInterval(() => {
+    timeLeft--;
+    if(timerSecEl) timerSecEl.textContent = `${timeLeft}s`;
+    if(fillEl) fillEl.style.width = `${(timeLeft / 30) * 100}%`;
+    if(timeLeft <= 0){
+      clearInterval(gpIncomingInviteTimer);
+      gpRejectInvite(m, true);
+    }
+  }, 1000);
+}
+
+function gpAcceptInvite(m){
+  if(gpIncomingInviteTimer) clearInterval(gpIncomingInviteTimer);
+  const modal = document.getElementById('gpInviteModal');
+  if(modal) modal.hidden = true;
+
+  const resp = {
+    t: 'gp_invite_response',
+    to: m.fromId,
+    inviteId: m.inviteId,
+    status: 'accepted',
+    fromId: typeof myId === 'function' ? myId() : 'me',
+    fromName: typeof myName === 'string' && myName ? myName : 'Guest',
+    fromAv: typeof myAv === 'string' && myAv ? myAv : '👤',
+    gameId: m.gameId,
+    roomCode: m.roomCode
+  };
+
+  if(typeof sendTo === 'function') sendTo(m.fromId, resp);
+  else if(typeof send === 'function') send(resp);
+
+  if(typeof toast === 'function') toast(`✓ Accepted invitation! Joining room...`);
+  if(typeof showTab === 'function') showTab('GP');
+
+  // Directly join room
+  gpJoinRoom(m.roomCode, '');
+}
+
+function gpRejectInvite(m, isExpired){
+  if(gpIncomingInviteTimer) clearInterval(gpIncomingInviteTimer);
+  const modal = document.getElementById('gpInviteModal');
+  if(modal) modal.hidden = true;
+
+  const resp = {
+    t: 'gp_invite_response',
+    to: m.fromId,
+    inviteId: m.inviteId,
+    status: isExpired ? 'expired' : 'rejected',
+    fromId: typeof myId === 'function' ? myId() : 'me',
+    fromName: typeof myName === 'string' && myName ? myName : 'Guest',
+    gameId: m.gameId,
+    roomCode: m.roomCode
+  };
+
+  if(typeof sendTo === 'function') sendTo(m.fromId, resp);
+  else if(typeof send === 'function') send(resp);
+
+  if(!isExpired && typeof toast === 'function') toast('Declined game invitation');
+}
+
+function gpCancelInvite(inviteId){
+  const inv = window.gpPendingInvites.get(inviteId);
+  if(!inv) return;
+  clearTimeout(inv.timer);
+  window.gpPendingInvites.delete(inviteId);
+
+  const packet = {
+    t: 'gp_invite_cancel',
+    to: inv.friendId,
+    inviteId
+  };
+  if(typeof sendTo === 'function') sendTo(inv.friendId, packet);
+  else if(typeof send === 'function') send(packet);
+
+  gpUpdateOnlineFriendsUI();
+  if(typeof toast === 'function') toast('Invitation cancelled');
+}
+
+// 3. PHASE 6: DEDICATED ONLINE ROOM SYSTEM
+window.gpActiveRoom = null;
+window.gpPublicRooms = new Map();
+
+function gpGenerateRoomCode(){
+  return 'GP-' + Math.floor(100000 + Math.random() * 900000);
+}
+
+function gpCreateRoom(gameId, isPublic, passcode, maxPlayers){
+  const game = window.PREMIUM_GAME_REGISTRY.find(g => g.id === gameId) || window.PREMIUM_GAME_REGISTRY[0];
+  const myIdStr = typeof myId === 'function' ? myId() : 'me';
+  const myNameStr = typeof myName === 'string' && myName ? myName : 'Host';
+  const myAvStr = typeof myAv === 'string' && myAv ? myAv : '👑';
+
+  const room = {
+    code: gpGenerateRoomCode(),
+    hostId: myIdStr,
+    hostName: myNameStr,
+    hostAv: myAvStr,
+    gameId: game.id,
+    gameName: game.name,
+    gameIcon: game.thumbIcon || '🎮',
+    isPublic: !!isPublic,
+    passcode: passcode ? String(passcode).trim() : '',
+    maxPlayers: maxPlayers || (game.id === 'gp_ludo_party_king' ? 4 : 2),
+    players: [
+      { id: myIdStr, name: myNameStr, av: myAvStr, isHost: true, ready: true, slot: 0, connected: true }
+    ],
+    status: 'waiting',
+    chat: []
+  };
+
+  window.gpActiveRoom = room;
+
+  // Broadcast public room announcement
+  if(room.isPublic && typeof send === 'function'){
+    try {
+      send({
+        t: 'gp_room_announce',
+        room: {
+          code: room.code,
+          hostName: room.hostName,
+          hostAv: room.hostAv,
+          gameName: room.gameName,
+          gameIcon: room.gameIcon,
+          playerCount: 1,
+          maxPlayers: room.maxPlayers,
+          hasPasscode: !!room.passcode
+        }
+      });
+    } catch(e){}
+  }
+
+  gpOpenRoomLobbyUI();
+  if(typeof toast === 'function') toast(`Created Game Room: ${room.code}`);
+  return room;
+}
+
+function gpOpenRoomLobbyUI(){
+  const room = window.gpActiveRoom;
+  if(!room) return;
+
+  const modal = document.getElementById('gpRoomLobbyModal');
+  const titleEl = document.getElementById('gpLobbyGameTitle');
+  const iconEl = document.getElementById('gpLobbyGameIcon');
+  const codeBadge = document.getElementById('gpLobbyRoomCodeBadge');
+  const privBadge = document.getElementById('gpLobbyPrivacyBadge');
+
+  if(!modal) return;
+  modal.hidden = false;
+
+  titleEl.textContent = room.gameName;
+  iconEl.textContent = room.gameIcon || '🎮';
+  codeBadge.textContent = room.code;
+  privBadge.textContent = room.isPublic ? '🌐 Public Room' : '🔒 Private Room';
+
+  gpRenderLobbySlots();
+  gpRenderLobbyChat();
+}
+
+function gpRenderLobbySlots(){
+  const room = window.gpActiveRoom;
+  const container = document.getElementById('gpLobbySlotsContainer');
+  if(!room || !container) return;
+  container.innerHTML = '';
+
+  const myIdStr = typeof myId === 'function' ? myId() : 'me';
+  const isMeHost = room.hostId === myIdStr;
+
+  for(let i=0; i<room.maxPlayers; i++){
+    const p = room.players.find(x => x.slot === i);
+    const card = document.createElement('div');
+    card.className = `gp-player-slot-card ${p ? 'occupied' : 'empty'} ${p && p.ready ? 'ready' : ''}`;
+
+    if(p){
+      const isMe = p.id === myIdStr;
+      card.innerHTML = `
+        <div style="display:flex;align-items:center;justify-content:space-between">
+          <div style="display:flex;align-items:center;gap:8px">
+            <span style="font-size:20px">${p.av || '👤'}</span>
+            <div>
+              <b style="color:#fff;font-size:13px">${p.name} ${p.isHost ? '👑 (Host)' : ''}</b>
+              <div style="font-size:10.5px;color:${p.connected ? '#34d399' : '#fbbf24'}">
+                ● ${p.connected ? 'Connected' : 'Reconnecting...'}
+              </div>
+            </div>
+          </div>
+          <div style="display:flex;align-items:center;gap:6px">
+            <span style="font-size:11px;font-weight:700;color:${p.ready ? '#34d399' : '#94a3b8'};background:rgba(255,255,255,0.06);padding:2px 8px;border-radius:6px">
+              ${p.ready ? '✓ READY' : 'WAITING'}
+            </span>
+            ${isMeHost && !p.isHost ? `<button class="gp-slot-kick-btn" type="button" style="background:none;border:none;color:#ef4444;font-size:12px;font-weight:700;cursor:pointer" title="Kick Player">✕</button>` : ''}
+          </div>
+        </div>
+      `;
+
+      if(isMeHost && !p.isHost){
+        card.querySelector('.gp-slot-kick-btn').onclick = () => gpKickPlayer(p.id);
+      }
+    } else {
+      card.innerHTML = `
+        <div style="text-align:center;color:#64748b;font-size:12px">
+          <div>⏳ Empty Slot ${i+1}</div>
+          <span style="font-size:11px;color:#a09bb8">Waiting for player to join...</span>
+        </div>
+      `;
+    }
+    container.appendChild(card);
+  }
+
+  // Update Host Start Button and Guest Ready Button
+  const startBtn = document.getElementById('gpLobbyStartGameBtn');
+  const readyBtn = document.getElementById('gpLobbyReadyToggleBtn');
+  const statusMsg = document.getElementById('gpLobbyStatusMsg');
+
+  if(isMeHost){
+    readyBtn.hidden = true;
+    startBtn.hidden = false;
+    const allReady = room.players.length >= 2 && room.players.every(p => p.ready);
+    startBtn.disabled = !allReady;
+    startBtn.style.opacity = allReady ? '1' : '0.5';
+    statusMsg.textContent = allReady ? '🟢 All players ready! Click Start Game.' : 'Waiting for guests to ready up...';
+  } else {
+    readyBtn.hidden = false;
+    startBtn.hidden = true;
+    const mySlotObj = room.players.find(x => x.id === myIdStr);
+    const amReady = mySlotObj ? mySlotObj.ready : false;
+    readyBtn.textContent = amReady ? '✓ I\\'m Ready' : '🟢 Ready Up';
+    readyBtn.style.background = amReady ? '#10b981' : '';
+    statusMsg.textContent = amReady ? 'Waiting for host to start...' : 'Click Ready Up when set!';
+  }
+}
+
+function gpRenderLobbyChat(){
+  const room = window.gpActiveRoom;
+  const msgsEl = document.getElementById('gpLobbyChatMsgs');
+  if(!room || !msgsEl) return;
+  msgsEl.innerHTML = '';
+
+  room.chat.forEach(m => {
+    const d = document.createElement('div');
+    d.className = 'gp-lobby-chat-msg';
+    d.innerHTML = `
+      <b style="color:#c084fc">${m.av || ''} ${m.sender}:</b>
+      <span style="color:#e2e8f0">${m.text}</span>
+    `;
+    msgsEl.appendChild(d);
+  });
+  msgsEl.scrollTop = msgsEl.scrollHeight;
+}
+
+function gpSendRoomChat(text){
+  const room = window.gpActiveRoom;
+  if(!room || !text || !text.trim()) return;
+
+  const msgObj = {
+    roomCode: room.code,
+    text: text.trim(),
+    sender: typeof myName === 'string' && myName ? myName : 'Player',
+    av: typeof myAv === 'string' && myAv ? myAv : '💬',
+    timestamp: Date.now()
+  };
+
+  room.chat.push(msgObj);
+  gpRenderLobbyChat();
+
+  if(typeof send === 'function'){
+    try { send({ t: 'gp_room_chat', ...msgObj }); } catch(e){}
+  }
+}
+
+function gpToggleReady(){
+  const room = window.gpActiveRoom;
+  if(!room) return;
+  const myIdStr = typeof myId === 'function' ? myId() : 'me';
+  const p = room.players.find(x => x.id === myIdStr);
+  if(!p) return;
+  p.ready = !p.ready;
+
+  gpRenderLobbySlots();
+
+  if(typeof send === 'function'){
+    try {
+      send({
+        t: 'gp_lobby_ready',
+        roomCode: room.code,
+        playerId: myIdStr,
+        ready: p.ready
+      });
+    } catch(e){}
+  }
+}
+
+function gpKickPlayer(guestId){
+  const room = window.gpActiveRoom;
+  if(!room) return;
+  room.players = room.players.filter(p => p.id !== guestId);
+  gpRenderLobbySlots();
+
+  if(typeof sendTo === 'function'){
+    sendTo(guestId, { t: 'gp_room_kick', roomCode: room.code });
+  } else if(typeof send === 'function'){
+    send({ t: 'gp_room_kick', to: guestId, roomCode: room.code });
+  }
+  if(typeof toast === 'function') toast('Removed player from room');
+}
+
+function gpJoinRoom(code, passcode){
+  code = (code || '').trim().toUpperCase();
+  if(!code){
+    if(typeof toast === 'function') toast('Please enter a valid room code');
+    return;
+  }
+
+  const joinReq = {
+    t: 'gp_room_join_req',
+    roomCode: code,
+    passcode: (passcode || '').trim(),
+    fromId: typeof myId === 'function' ? myId() : 'me',
+    fromName: typeof myName === 'string' && myName ? myName : 'Guest',
+    fromAv: typeof myAv === 'string' && myAv ? myAv : '👤'
+  };
+
+  if(typeof send === 'function'){
+    send(joinReq);
+    if(typeof toast === 'function') toast(`Connecting to room ${code}...`);
+  }
+}
+
+function gpStartRoomGame(){
+  const room = window.gpActiveRoom;
+  if(!room) return;
+  room.status = 'in_game';
+
+  // Record genuine play
+  recordGenuinePlay(room.gameId);
+
+  // Broadcast game start to all room participants
+  if(typeof send === 'function'){
+    try {
+      send({
+        t: 'gp_start_game',
+        roomCode: room.code,
+        gameId: room.gameId,
+        players: room.players
+      });
+    } catch(e){}
+  }
+
+  // Launch local game theater
+  const modal = document.getElementById('gpRoomLobbyModal');
+  if(modal) modal.hidden = true;
+
+  window._launchBypassMp = true;
+  launchPremiumGame(room.gameId);
+}
+
+// 4. IN-GAME LIVE SYNCHRONIZATION BRIDGE
+function gpBroadcastGameMove(move){
+  const room = window.gpActiveRoom;
+  if(!room || typeof send !== 'function') return;
+  try {
+    send({
+      t: 'gp_game_move',
+      roomCode: room.code,
+      gameId: room.gameId,
+      fromId: typeof myId === 'function' ? myId() : 'me',
+      move
+    });
+  } catch(e){}
+}
+
+function gpHandleIframeMessage(data){
+  if(data.type === 'GP_MOVE'){
+    gpBroadcastGameMove(data.move);
+  } else if(data.type === 'GP_LUDO_DICE'){
+    if(typeof send === 'function'){
+      send({ t: 'gp_ludo_dice', roomCode: window.gpActiveRoom?.code, dice: data.dice, turn: data.turn });
+    }
+  } else if(data.type === 'GP_LUDO_MOVE'){
+    if(typeof send === 'function'){
+      send({ t: 'gp_ludo_move', roomCode: window.gpActiveRoom?.code, ...data });
+    }
+  }
+}
+
+// Global iframe message listener
+window.addEventListener('message', e => {
+  if(e.data && typeof e.data === 'object' && e.data.type && e.data.type.indexOf('GP_') === 0){
+    gpHandleIframeMessage(e.data);
+  }
+});
+
+// 5. CENTRALIZED NETWORK DISPATCHER (HOOKED INTO onData)
+window.gpNetworkMsg = function(m){
+  if(!m || typeof m !== 'object' || typeof m.t !== 'string') return;
+
+  switch(m.t){
+    case 'gp_stat_update': {
+      if(m.gameId && m.stats){
+        const all = getGenuineStats();
+        all[m.gameId] = m.stats;
+        saveGenuineStats(all);
+        gpRenderGrid();
+      }
+      break;
+    }
+
+    // Phase 5: Invitations
+    case 'gp_game_invite': {
+      gpHandleIncomingInvite(m);
+      break;
+    }
+    case 'gp_invite_response': {
+      const inv = window.gpPendingInvites.get(m.inviteId);
+      if(inv){
+        clearTimeout(inv.timer);
+        window.gpPendingInvites.delete(m.inviteId);
+        gpUpdateOnlineFriendsUI();
+      }
+      if(m.status === 'accepted'){
+        if(typeof toast === 'function') toast(`🎉 ${m.fromName} accepted your invite!`);
+        // If host has active room, add to slot
+        if(window.gpActiveRoom){
+          const existing = window.gpActiveRoom.players.find(x => x.id === m.fromId);
+          if(!existing){
+            window.gpActiveRoom.players.push({
+              id: m.fromId,
+              name: m.fromName,
+              av: m.fromAv || '👤',
+              isHost: false,
+              ready: false,
+              slot: window.gpActiveRoom.players.length,
+              connected: true
+            });
+            gpRenderLobbySlots();
+          }
+        }
+      } else if(m.status === 'rejected'){
+        if(typeof toast === 'function') toast(`❌ ${m.fromName} declined your game invitation.`);
+      }
+      break;
+    }
+    case 'gp_invite_cancel': {
+      if(gpActiveIncomingInvite && gpActiveIncomingInvite.inviteId === m.inviteId){
+        if(gpIncomingInviteTimer) clearInterval(gpIncomingInviteTimer);
+        const modal = document.getElementById('gpInviteModal');
+        if(modal) modal.hidden = true;
+        if(typeof toast === 'function') toast('Game invitation was cancelled by host');
+      }
+      break;
+    }
+
+    // Phase 6: Room System
+    case 'gp_room_announce': {
+      if(m.room && m.room.code){
+        window.gpPublicRooms.set(m.room.code, m.room);
+        gpRenderPublicRooms();
+      }
+      break;
+    }
+    case 'gp_room_join_req': {
+      // If I am host of this room, validate and admit
+      if(window.gpActiveRoom && window.gpActiveRoom.code === m.roomCode){
+        const room = window.gpActiveRoom;
+        if(room.passcode && room.passcode !== m.passcode){
+          if(typeof sendTo === 'function') sendTo(m.fromId, { t: 'gp_room_join_resp', success: false, reason: 'Incorrect Passcode PIN' });
+          return;
+        }
+        if(room.players.length >= room.maxPlayers){
+          if(typeof sendTo === 'function') sendTo(m.fromId, { t: 'gp_room_join_resp', success: false, reason: 'Room is Full' });
+          return;
+        }
+        const newPlayer = {
+          id: m.fromId,
+          name: m.fromName,
+          av: m.fromAv || '👤',
+          isHost: false,
+          ready: false,
+          slot: room.players.length,
+          connected: true
+        };
+        room.players.push(newPlayer);
+        gpRenderLobbySlots();
+
+        // Broadcast updated room state to all players
+        if(typeof send === 'function'){
+          send({ t: 'gp_room_state_sync', room });
+        }
+        if(typeof toast === 'function') toast(`${m.fromName} joined the room!`);
+      }
+      break;
+    }
+    case 'gp_room_state_sync': {
+      if(m.room){
+        window.gpActiveRoom = m.room;
+        gpOpenRoomLobbyUI();
+      }
+      break;
+    }
+    case 'gp_lobby_ready': {
+      if(window.gpActiveRoom && window.gpActiveRoom.code === m.roomCode){
+        const p = window.gpActiveRoom.players.find(x => x.id === m.playerId);
+        if(p){
+          p.ready = !!m.ready;
+          gpRenderLobbySlots();
+        }
+      }
+      break;
+    }
+    case 'gp_room_kick': {
+      const myIdStr = typeof myId === 'function' ? myId() : 'me';
+      if(m.to === myIdStr || !m.to){
+        const modal = document.getElementById('gpRoomLobbyModal');
+        if(modal) modal.hidden = true;
+        window.gpActiveRoom = null;
+        if(typeof toast === 'function') toast('You were removed from the room by the host');
+      }
+      break;
+    }
+    case 'gp_room_chat': {
+      if(window.gpActiveRoom && window.gpActiveRoom.code === m.roomCode){
+        window.gpActiveRoom.chat.push({
+          sender: m.sender,
+          av: m.av,
+          text: m.text
+        });
+        gpRenderLobbyChat();
+      }
+      break;
+    }
+    case 'gp_start_game': {
+      if(window.gpActiveRoom && window.gpActiveRoom.code === m.roomCode){
+        const modal = document.getElementById('gpRoomLobbyModal');
+        if(modal) modal.hidden = true;
+        window._launchBypassMp = true;
+        launchPremiumGame(m.gameId);
+      }
+      break;
+    }
+    case 'gp_game_move': {
+      const stage = document.getElementById('gpTheaterStage');
+      const iframe = stage ? stage.querySelector('iframe') : null;
+      if(iframe && iframe.contentWindow){
+        iframe.contentWindow.postMessage({
+          type: 'GP_REMOTE_MOVE',
+          move: m.move
+        }, '*');
+      }
+      break;
+    }
+    case 'gp_ludo_dice': {
+      const stage = document.getElementById('gpTheaterStage');
+      const iframe = stage ? stage.querySelector('iframe') : null;
+      if(iframe && iframe.contentWindow){
+        iframe.contentWindow.postMessage({
+          type: 'GP_REMOTE_LUDO_DICE',
+          dice: m.dice,
+          turn: m.turn
+        }, '*');
+      }
+      break;
+    }
+    case 'gp_ludo_move': {
+      const stage = document.getElementById('gpTheaterStage');
+      const iframe = stage ? stage.querySelector('iframe') : null;
+      if(iframe && iframe.contentWindow){
+        iframe.contentWindow.postMessage({
+          type: 'GP_REMOTE_LUDO_MOVE',
+          ...m
+        }, '*');
+      }
+      break;
+    }
+  }
+};
+
+window.gpRosterChanged = function(){
+  gpUpdateOnlineFriendsUI();
+  // Check if any player in active room disconnected
+  if(window.gpActiveRoom){
+    const friends = getOnlineFriendsList();
+    const friendIds = new Set(friends.map(f => f.id));
+    const myIdStr = typeof myId === 'function' ? myId() : 'me';
+
+    window.gpActiveRoom.players.forEach(p => {
+      if(p.id !== myIdStr){
+        p.connected = friendIds.has(p.id);
+      }
+    });
+    gpRenderLobbySlots();
+  }
+};
+
+function gpRenderPublicRooms(){
+  const list = document.getElementById('gpPublicRoomsList');
+  if(!list) return;
+  list.innerHTML = '';
+
+  const rooms = Array.from(window.gpPublicRooms.values());
+  if(rooms.length === 0){
+    list.innerHTML = `
+      <div style="padding:24px;text-align:center;color:#64748b;font-size:12.5px">
+        No active public game rooms found.<br>
+        <span style="font-size:11px;color:#a09bb8">Click "Create Room" above to host a public match!</span>
+      </div>
+    `;
+    return;
+  }
+
+  rooms.forEach(r => {
+    const card = document.createElement('div');
+    card.className = 'gp-friend-row';
+    card.innerHTML = `
+      <div style="display:flex;align-items:center;gap:12px">
+        <span style="font-size:24px">${r.gameIcon || '🎮'}</span>
+        <div>
+          <b style="color:#fff;font-size:13.5px">${r.gameName}</b>
+          <div style="font-size:11.5px;color:#a09bb8">Host: ${r.hostName} · Players: ${r.playerCount}/${r.maxPlayers} ${r.hasPasscode ? '🔒' : ''}</div>
+        </div>
+      </div>
+      <button class="gp-action-btn-pill primary" style="font-size:11.5px" type="button" data-code="${r.code}">Join Match</button>
+    `;
+    card.querySelector('button').onclick = () => {
+      const modal = document.getElementById('gpRoomBrowserModal');
+      if(modal) modal.hidden = true;
+      if(r.hasPasscode){
+        const pin = prompt('Enter 4-digit PIN Passcode:');
+        if(pin) gpJoinRoom(r.code, pin);
       } else {
-        copyBtn.click();
+        gpJoinRoom(r.code, '');
       }
     };
+    list.appendChild(card);
+  });
+}
 
-    startBtn.onclick = () => {
-      modal.hidden = true;
-      window._launchBypassMp = true;
-      launchPremiumGame(game.id);
-    };
-
-    closeBtn.onclick = () => { modal.hidden = true; };
-    modal.hidden = false;
-  }
 
   // 11. Modal Controls
   function initTheaterModalEvents(){
@@ -10235,6 +12571,7 @@ window.GP_COMPONENTS = {
     }
 
     initTheaterModalEvents();
+    initPhase5AndPhase6Events();
     initAdminConsole();
     gpRenderGrid();
   }
