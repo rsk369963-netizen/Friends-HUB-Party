@@ -8347,19 +8347,38 @@ window.GP_INITIAL_GAMES = [
     return `fwp_premium_${sub}_${u}`;
   }
 
-  // Load custom/admin registry or fallback to INITIAL_GAMES
-  let customRegistry = null;
-  try {
-    const raw = localStorage.getItem('fwp_premium_registry_custom');
-    if(raw) customRegistry = JSON.parse(raw);
-  }catch(e){}
+  function getInstalledSet(){
+    try {
+      const raw = localStorage.getItem(getStorageKey('installed'));
+      return new Set(raw ? JSON.parse(raw) : ['gp_cricket_clash_pro', 'gp_super_speed_3d', 'gp_ludo_party_king', 'gp_grandmaster_chess_vip']);
+    }catch(e){ return new Set(['gp_cricket_clash_pro', 'gp_super_speed_3d', 'gp_ludo_party_king']); }
+  }
 
-  window.PREMIUM_GAME_REGISTRY = (Array.isArray(customRegistry) && customRegistry.length) ? customRegistry : INITIAL_GAMES;
+  function saveInstalledSet(st){
+    try { localStorage.setItem(getStorageKey('installed'), JSON.stringify(Array.from(st))); }catch(e){}
+    updateCategoryCounts();
+  }
+
+  function getFavsSet(){
+    try {
+      const raw = localStorage.getItem(getStorageKey('favs'));
+      return new Set(raw ? JSON.parse(raw) : []);
+    }catch(e){ return new Set(); }
+  }
+
+  function saveFavsSet(st){
+    try { localStorage.setItem(getStorageKey('favs'), JSON.stringify(Array.from(st))); }catch(e){}
+    updateCategoryCounts();
+  }
+
+  // Ensure window.PREMIUM_GAME_REGISTRY always starts with our 20 verified titles
+  window.PREMIUM_GAME_REGISTRY = INITIAL_GAMES;
 
   // Active state
   let currentCat = 'all_premium';
   let searchQuery = '';
   let activeGameInstance = null;
+  let activeGameId = 'gp_cricket_clash_pro';
   let activeAudioMuted = false;
 
   // 3. Category Counts
@@ -8562,6 +8581,7 @@ window.GP_INITIAL_GAMES = [
     window._launchBypassMp = false;
 
     recordPlayHistory(gameId);
+    activeGameId = gameId;
     const modal = document.getElementById('gpGameModal');
     const stage = document.getElementById('gpTheaterStage');
     const titleEl = document.getElementById('gpModalGameTitle');
@@ -10101,12 +10121,22 @@ window.GP_COMPONENTS = {
     const controlsToggle = document.getElementById('gpBtnControlsToggle');
     const sheet = document.getElementById('gpControlsSheet');
 
-    closeBtn?.addEventListener('click', () => {
+    const doCloseTheater = () => {
       if(modal) modal.hidden = true;
       const stage = document.getElementById('gpTheaterStage');
       if(stage) stage.innerHTML = ''; // safely unmounts game
       if(sheet) sheet.hidden = true;
-    });
+    };
+    if(closeBtn){
+      closeBtn.onclick = doCloseTheater;
+      closeBtn.addEventListener('click', doCloseTheater);
+    }
+    const rulesBtn = document.getElementById('gpBtnRulesToggle');
+    if(rulesBtn){
+      rulesBtn.onclick = () => {
+        if(typeof showGameRulesModal === 'function') showGameRulesModal(activeGameId || 'gp_cricket_clash_pro');
+      };
+    }
 
     controlsToggle?.addEventListener('click', () => {
       if(sheet) sheet.hidden = !sheet.hidden;
@@ -10149,44 +10179,55 @@ window.GP_COMPONENTS = {
     }
   };
 
-  // 13. Initialization
-  document.addEventListener('DOMContentLoaded', () => {
-    // Category pills click handlers
+  // 13. Robust Initialization (Runs immediately if DOM already loaded)
+  function bootGameHubPremium(){
     document.querySelectorAll('.gp-cat-pill').forEach(btn => {
-      btn.addEventListener('click', () => {
+      btn.onclick = () => {
         document.querySelectorAll('.gp-cat-pill').forEach(b => b.classList.remove('active'));
         btn.classList.add('active');
         currentCat = btn.dataset.cat || 'all_premium';
         gpRenderGrid();
-      });
+      };
     });
 
-    // Search input handler
     const searchIn = document.getElementById('gpSearchInput');
-    searchIn?.addEventListener('input', (e) => {
-      searchQuery = e.target.value;
-      gpRenderGrid();
-    });
+    if(searchIn){
+      searchIn.oninput = (e) => {
+        searchQuery = e.target.value;
+        gpRenderGrid();
+      };
+    }
 
-    // Hero Spotlight actions
-    document.getElementById('gpHeroActionBtn')?.addEventListener('click', () => {
-      const topGame = window.PREMIUM_GAME_REGISTRY[0];
-      if(topGame){
-        const isInst = getInstalledSet().has(topGame.id);
-        if(isInst) launchPremiumGame(topGame.id);
-        else installPremiumGame(topGame.id);
-      }
-    });
+    const heroActionBtn = document.getElementById('gpHeroActionBtn');
+    if(heroActionBtn){
+      heroActionBtn.onclick = () => {
+        const topGame = window.PREMIUM_GAME_REGISTRY[0];
+        if(topGame){
+          const isInst = getInstalledSet().has(topGame.id);
+          if(isInst) launchPremiumGame(topGame.id);
+          else installPremiumGame(topGame.id);
+        }
+      };
+    }
 
-    document.getElementById('gpHeroDetailsBtn')?.addEventListener('click', () => {
-      const topGame = window.PREMIUM_GAME_REGISTRY[0];
-      if(topGame) showGameDetailsModal(topGame.id);
-    });
+    const heroDetailsBtn = document.getElementById('gpHeroDetailsBtn');
+    if(heroDetailsBtn){
+      heroDetailsBtn.onclick = () => {
+        const topGame = window.PREMIUM_GAME_REGISTRY[0];
+        if(topGame) showGameDetailsModal(topGame.id);
+      };
+    }
 
     initTheaterModalEvents();
     initAdminConsole();
     gpRenderGrid();
-  });
+  }
+
+  if(document.readyState === 'loading'){
+    document.addEventListener('DOMContentLoaded', bootGameHubPremium);
+  } else {
+    bootGameHubPremium();
+  }
 
 })();
 
