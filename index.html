@@ -4181,6 +4181,7 @@ aside.chat.floating {
             </div>
           </div>
           <div style="display:flex;align-items:center;gap:6px">
+            <button id="gpLobbySoloBtn" class="gp-action-btn-pill" style="font-size:11px" type="button">🤖 Solo AI Practice</button>
             <button id="gpLobbyCopyCodeBtn" class="gp-action-btn-pill" style="font-size:11px" type="button">📋 Copy Code</button>
             <button id="gpLobbyCloseBtn" class="gp-theater-btn gp-theater-close" type="button">✕</button>
           </div>
@@ -12460,6 +12461,273 @@ function gpRenderPublicRooms(){
       }
     };
     list.appendChild(card);
+  });
+}
+
+
+// 6. PHASE 5 & 6 EVENT INITIALIZATION
+function initPhase5AndPhase6Events(){
+  // Topbar buttons
+  const friendsBtn = document.getElementById('gpOnlineFriendsBtn');
+  if(friendsBtn){
+    friendsBtn.onclick = () => {
+      gpPopulateFriendsGameSelect();
+      gpUpdateOnlineFriendsUI();
+      const m = document.getElementById('gpFriendsTrayModal');
+      if(m) m.hidden = false;
+    };
+  }
+
+  const friendsClose = document.getElementById('gpFriendsTrayClose');
+  if(friendsClose){
+    friendsClose.onclick = () => {
+      const m = document.getElementById('gpFriendsTrayModal');
+      if(m) m.hidden = true;
+    };
+  }
+
+  const createRoomBtn = document.getElementById('gpCreateRoomBtn');
+  if(createRoomBtn){
+    createRoomBtn.onclick = () => {
+      gpPopulateCreateGameSelect();
+      const m = document.getElementById('gpCreateRoomModal');
+      if(m) m.hidden = false;
+    };
+  }
+
+  const createClose = document.getElementById('gpCreateRoomClose');
+  if(createClose){
+    createClose.onclick = () => {
+      const m = document.getElementById('gpCreateRoomModal');
+      if(m) m.hidden = true;
+    };
+  }
+
+  let isRoomPublic = true;
+  const optPub = document.getElementById('gpOptPublic');
+  const optPriv = document.getElementById('gpOptPrivate');
+  if(optPub && optPriv){
+    optPub.onclick = () => {
+      isRoomPublic = true;
+      optPub.classList.add('primary');
+      optPriv.classList.remove('primary');
+    };
+    optPriv.onclick = () => {
+      isRoomPublic = false;
+      optPriv.classList.add('primary');
+      optPub.classList.remove('primary');
+    };
+  }
+
+  const submitCreate = document.getElementById('gpBtnSubmitCreateRoom');
+  if(submitCreate){
+    submitCreate.onclick = () => {
+      const sel = document.getElementById('gpCreateGameSelect');
+      const passIn = document.getElementById('gpCreatePasscode');
+      const gameId = sel ? sel.value : 'gp_grandmaster_chess_vip';
+      const pin = passIn ? passIn.value.trim() : '';
+      const m = document.getElementById('gpCreateRoomModal');
+      if(m) m.hidden = true;
+      gpCreateRoom(gameId, isRoomPublic, pin, gameId === 'gp_ludo_party_king' ? 4 : 2);
+    };
+  }
+
+  const joinRoomBtn = document.getElementById('gpJoinRoomBtn');
+  if(joinRoomBtn){
+    joinRoomBtn.onclick = () => {
+      const m = document.getElementById('gpJoinRoomModal');
+      if(m) m.hidden = false;
+    };
+  }
+
+  const joinClose = document.getElementById('gpJoinRoomClose');
+  if(joinClose){
+    joinClose.onclick = () => {
+      const m = document.getElementById('gpJoinRoomModal');
+      if(m) m.hidden = true;
+    };
+  }
+
+  const submitJoin = document.getElementById('gpBtnSubmitJoinRoom');
+  if(submitJoin){
+    submitJoin.onclick = () => {
+      const codeIn = document.getElementById('gpJoinCodeInput');
+      const pinIn = document.getElementById('gpJoinPasscodeInput');
+      const code = codeIn ? codeIn.value.trim() : '';
+      const pin = pinIn ? pinIn.value.trim() : '';
+      if(!code){
+        if(typeof toast === 'function') toast('Please enter a room code');
+        return;
+      }
+      const m = document.getElementById('gpJoinRoomModal');
+      if(m) m.hidden = true;
+      gpJoinRoom(code, pin);
+    };
+  }
+
+  const pubRoomsBtn = document.getElementById('gpPublicRoomsBtn');
+  if(pubRoomsBtn){
+    pubRoomsBtn.onclick = () => {
+      gpRenderPublicRooms();
+      const m = document.getElementById('gpRoomBrowserModal');
+      if(m) m.hidden = false;
+    };
+  }
+
+  const pubRoomsClose = document.getElementById('gpRoomBrowserClose');
+  if(pubRoomsClose){
+    pubRoomsClose.onclick = () => {
+      const m = document.getElementById('gpRoomBrowserModal');
+      if(m) m.hidden = true;
+    };
+  }
+
+  const refreshRooms = document.getElementById('gpBtnRefreshRooms');
+  if(refreshRooms){
+    refreshRooms.onclick = () => {
+      gpRenderPublicRooms();
+      if(typeof toast === 'function') toast('Refreshed public room list');
+    };
+  }
+
+  // Lobby controls
+  const lobbyClose = document.getElementById('gpLobbyCloseBtn');
+  if(lobbyClose){
+    lobbyClose.onclick = () => {
+      const m = document.getElementById('gpRoomLobbyModal');
+      if(m) m.hidden = true;
+    };
+  }
+
+  const soloBtn = document.getElementById('gpLobbySoloBtn');
+  if(soloBtn){
+    soloBtn.onclick = () => {
+      const m = document.getElementById('gpRoomLobbyModal');
+      if(m) m.hidden = true;
+      const gameId = window.gpActiveRoom ? window.gpActiveRoom.gameId : 'gp_grandmaster_chess_vip';
+      window._launchBypassMp = true;
+      launchPremiumGame(gameId);
+    };
+  }
+
+  const lobbyCopy = document.getElementById('gpLobbyCopyCodeBtn');
+  if(lobbyCopy){
+    lobbyCopy.onclick = () => {
+      if(window.gpActiveRoom){
+        navigator.clipboard.writeText('Join my Game Hub Premium match in ' + window.gpActiveRoom.gameName + '! Room Code: ' + window.gpActiveRoom.code);
+        if(typeof toast === 'function') toast('📋 Room Code copied to clipboard!');
+      }
+    };
+  }
+
+  const readyToggle = document.getElementById('gpLobbyReadyToggleBtn');
+  if(readyToggle){
+    readyToggle.onclick = gpToggleReady;
+  }
+
+  const startGameBtn = document.getElementById('gpLobbyStartGameBtn');
+  if(startGameBtn){
+    startGameBtn.onclick = gpStartRoomGame;
+  }
+
+  const chatSendBtn = document.getElementById('gpLobbyChatSendBtn');
+  const chatInput = document.getElementById('gpLobbyChatInput');
+  if(chatSendBtn && chatInput){
+    const doSend = () => {
+      const txt = chatInput.value;
+      if(txt){
+        gpSendRoomChat(txt);
+        chatInput.value = '';
+      }
+    };
+    chatSendBtn.onclick = doSend;
+    chatInput.onkeydown = e => { if(e.key === 'Enter') doSend(); };
+  }
+
+  document.querySelectorAll('.gp-quick-chat-chip').forEach(btn => {
+    btn.onclick = () => {
+      const msg = btn.dataset.msg;
+      if(msg) gpSendRoomChat(msg);
+    };
+  });
+
+  // Incoming Invite Actions
+  const acceptBtn = document.getElementById('gpInviteAcceptBtn');
+  if(acceptBtn){
+    acceptBtn.onclick = () => {
+      if(gpActiveIncomingInvite) gpAcceptInvite(gpActiveIncomingInvite);
+    };
+  }
+
+  const rejectBtn = document.getElementById('gpInviteRejectBtn');
+  if(rejectBtn){
+    rejectBtn.onclick = () => {
+      if(gpActiveIncomingInvite) gpRejectInvite(gpActiveIncomingInvite, false);
+    };
+  }
+
+  // Star Rating Widget
+  let selectedRatingVal = 5;
+  document.querySelectorAll('#gpStarWidget .gp-star-item').forEach(star => {
+    star.onclick = () => {
+      selectedRatingVal = parseInt(star.dataset.val, 10) || 5;
+      updateStarDisplay(selectedRatingVal);
+    };
+  });
+
+  function updateStarDisplay(val){
+    document.querySelectorAll('#gpStarWidget .gp-star-item').forEach(s => {
+      const sVal = parseInt(s.dataset.val, 10);
+      s.classList.toggle('active', sVal <= val);
+    });
+    const fb = document.getElementById('gpStarRatingFeedback');
+    if(fb){
+      const labels = ['', 'Poor ⭐', 'Fair ⭐⭐', 'Good ⭐⭐⭐', 'Very Good ⭐⭐⭐⭐', 'Masterpiece! ⭐⭐⭐⭐⭐'];
+      fb.textContent = labels[val] || '';
+    }
+  }
+  updateStarDisplay(5);
+
+  const submitRatingBtn = document.getElementById('gpBtnSubmitStarRating');
+  if(submitRatingBtn){
+    submitRatingBtn.onclick = () => {
+      const targetId = window._ratingTargetGameId || activeGameId || 'gp_cricket_clash_pro';
+      submitGenuineRating(targetId, selectedRatingVal);
+      const m = document.getElementById('gpRateGameModal');
+      if(m) m.hidden = true;
+    };
+  }
+
+  const rateClose = document.getElementById('gpRateModalClose');
+  if(rateClose){
+    rateClose.onclick = () => {
+      const m = document.getElementById('gpRateGameModal');
+      if(m) m.hidden = true;
+    };
+  }
+}
+
+function gpPopulateFriendsGameSelect(){
+  const sel = document.getElementById('gpFriendsGameSelect');
+  if(!sel || sel.children.length > 0) return;
+  sel.innerHTML = '';
+  window.PREMIUM_GAME_REGISTRY.forEach(g => {
+    const opt = document.createElement('option');
+    opt.value = g.id;
+    opt.textContent = (g.thumbIcon || '🎮') + ' ' + g.name + ' (' + (g.mode === 'online_multiplayer' ? 'Up to 4P' : '2P') + ')';
+    sel.appendChild(opt);
+  });
+}
+
+function gpPopulateCreateGameSelect(){
+  const sel = document.getElementById('gpCreateGameSelect');
+  if(!sel || sel.children.length > 0) return;
+  sel.innerHTML = '';
+  window.PREMIUM_GAME_REGISTRY.forEach(g => {
+    const opt = document.createElement('option');
+    opt.value = g.id;
+    opt.textContent = (g.thumbIcon || '🎮') + ' ' + g.name;
+    sel.appendChild(opt);
   });
 }
 
